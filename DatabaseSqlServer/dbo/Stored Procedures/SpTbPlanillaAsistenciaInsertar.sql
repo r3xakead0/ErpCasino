@@ -1,0 +1,33 @@
+﻿CREATE PROC [dbo].[SpTbPlanillaAsistenciaInsertar]
+@IdPlanillaAsistencia AS INT OUTPUT,
+@IdPlanilla AS INT,
+@CodigoEmpleado AS VARCHAR(10),
+@Fecha AS DATE,
+@Semana AS INT,
+@FechaHoraInicio AS DATETIME,
+@FechaHoraFinal AS DATETIME,
+@MinutosAsistenciaTotal AS INT,
+@MinutosAsistenciaNormalDiurna AS INT,
+@MinutosAsistenciaNormalNocturna AS INT,
+@MinutosAsistenciaNormalDiurnaExtra1 AS INT,
+@MinutosAsistenciaNormalNocturnaExtra1 AS INT,
+@MinutosAsistenciaNormalDiurnaExtra2 AS INT,
+@MinutosAsistenciaNormalNocturnaExtra2 AS INT,
+@MinutosAsistenciaFeriadoDiurna AS INT,
+@MinutosAsistenciaFeriadoNocturna AS INT,
+@MinutosAsistenciaFeriadoDiurnaExtra1 AS INT,
+@MinutosAsistenciaFeriadoNocturnaExtra1 AS INT,
+@MinutosAsistenciaFeriadoDiurnaExtra2 AS INT,
+@MinutosAsistenciaFeriadoNocturnaExtra2 AS INT,
+@MinutosTardanzaTotal AS INT,
+@MinutosTardanzaNormalDiurna AS INT,
+@MinutosTardanzaNormalNocturna AS INT,
+@MinutosTardanzaFeriadoDiurna AS INT,
+@MinutosTardanzaFeriadoNocturna AS INT,
+@MinutosInasistenciaTotal AS INT
+AS
+BEGIN
+	INSERT INTO TbPlanillaAsistencia (IdPlanilla,CodigoEmpleado,Fecha,Semana,FechaHoraInicio,FechaHoraFinal,MinutosAsistenciaTotal,MinutosAsistenciaNormalDiurna,MinutosAsistenciaNormalNocturna,MinutosAsistenciaNormalDiurnaExtra1,MinutosAsistenciaNormalNocturnaExtra1,MinutosAsistenciaNormalDiurnaExtra2,MinutosAsistenciaNormalNocturnaExtra2,MinutosAsistenciaFeriadoDiurna,MinutosAsistenciaFeriadoNocturna,MinutosAsistenciaFeriadoDiurnaExtra1,MinutosAsistenciaFeriadoNocturnaExtra1,MinutosAsistenciaFeriadoDiurnaExtra2,MinutosAsistenciaFeriadoNocturnaExtra2,MinutosTardanzaTotal,MinutosTardanzaNormalDiurna,MinutosTardanzaNormalNocturna,MinutosTardanzaFeriadoDiurna,MinutosTardanzaFeriadoNocturna,MinutosInasistenciaTotal)
+	VALUES (@IdPlanilla,@CodigoEmpleado,@Fecha,@Semana,@FechaHoraInicio,@FechaHoraFinal,@MinutosAsistenciaTotal,@MinutosAsistenciaNormalDiurna,@MinutosAsistenciaNormalNocturna,@MinutosAsistenciaNormalDiurnaExtra1,@MinutosAsistenciaNormalNocturnaExtra1,@MinutosAsistenciaNormalDiurnaExtra2,@MinutosAsistenciaNormalNocturnaExtra2,@MinutosAsistenciaFeriadoDiurna,@MinutosAsistenciaFeriadoNocturna,@MinutosAsistenciaFeriadoDiurnaExtra1,@MinutosAsistenciaFeriadoNocturnaExtra1,@MinutosAsistenciaFeriadoDiurnaExtra2,@MinutosAsistenciaFeriadoNocturnaExtra2,@MinutosTardanzaTotal,@MinutosTardanzaNormalDiurna,@MinutosTardanzaNormalNocturna,@MinutosTardanzaFeriadoDiurna,@MinutosTardanzaFeriadoNocturna,@MinutosInasistenciaTotal)
+	SET @IdPlanillaAsistencia = @@IDENTITY
+END

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{683289CD-DF07-4A88-A8EE-7556C1A7DD02}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ErpCasino.BusinessLibrary</RootNamespace>
+    <AssemblyName>ErpCasino.BusinessLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BE\Adelanto.cs" />
+    <Compile Include="BE\DescuentoEmpleado.cs" />
+    <Compile Include="BE\Gratificacion.cs" />
+    <Compile Include="BE\Observacion.cs" />
+    <Compile Include="BE\ObservacionEmpleado.cs" />
+    <Compile Include="BE\SueldoMinimo.cs" />
+    <Compile Include="BE\CTS.cs" />
+    <Compile Include="BE\Inasistencia.cs" />
+    <Compile Include="BE\OnpComision.cs" />
+    <Compile Include="BE\Descuento.cs" />
+    <Compile Include="BE\Audit.cs" />
+    <Compile Include="BE\Record.cs" />
+    <Compile Include="BE\Bono.cs" />
+    <Compile Include="BE\Feriado.cs" />
+    <Compile Include="BE\Planilla.cs" />
+    <Compile Include="BE\AfpComision.cs" />
+    <Compile Include="BE\Afp.cs" />
+    <Compile Include="BE\Asistencia.cs" />
+    <Compile Include="BE\Area.cs" />
+    <Compile Include="BE\Banco.cs" />
+    <Compile Include="BE\ClsBeTbCandidatoContratacion.cs" />
+    <Compile Include="BE\Cargo.cs" />
+    <Compile Include="BE\Categoria.cs" />
+    <Compile Include="BE\ClsBeTbCandidato.cs" />
+    <Compile Include="BE\ClsBeTbCandidatoContacto.cs" />
+    <Compile Include="BE\ClsBeTbCandidatoTelefono.cs" />
+    <Compile Include="BE\ClsBeResult.cs" />
+    <Compile Include="BE\ClsBeTbPlantillaHorario.cs" />
+    <Compile Include="BE\Horario.cs" />
+    <Compile Include="BE\ClsBeTbPostulanteEstado.cs" />
+    <Compile Include="BE\ClsBeTbPostulante.cs" />
+    <Compile Include="BE\ClsBeTbEmpleado.cs" />
+    <Compile Include="BE\ClsBeTbPostulanteHistorial.cs" />
+    <Compile Include="BE\ClsBeTbPostulanteReclutamiento.cs" />
+    <Compile Include="BE\ClsBeTbPostulanteContacto.cs" />
+    <Compile Include="BE\ClsBeTbEmpleadoContacto.cs" />
+    <Compile Include="BE\ClsBeTbEmpleadoRecurso.cs" />
+    <Compile Include="BE\ClsBeTbPostulanteTelefono.cs" />
+    <Compile Include="BE\ClsBeTbEmpleadoTelefono.cs" />
+    <Compile Include="BE\Pais.cs" />
+    <Compile Include="BE\Sala.cs" />
+    <Compile Include="BE\Turno.cs" />
+    <Compile Include="BE\Ubigeo.cs" />
+    <Compile Include="BE\Tipo.cs" />
+    <Compile Include="BE\Parametros.cs" />
+    <Compile Include="BE\UI\Activo.cs" />
+    <Compile Include="BE\UI\BonoEmpleado.cs" />
+    <Compile Include="BE\UI\DescuentoEmpleado.cs" />
+    <Compile Include="BE\UI\ObservacionEmpleado.cs" />
+    <Compile Include="BE\UI\Observacion.cs" />
+    <Compile Include="BE\UI\Sala.cs" />
+    <Compile Include="BE\UI\Asistencia.cs" />
+    <Compile Include="BE\UI\Gratificacion.cs" />
+    <Compile Include="BE\UI\AfpComision.cs" />
+    <Compile Include="BE\UI\CTS.cs" />
+    <Compile Include="BE\UI\Candidato.cs" />
+    <Compile Include="BE\UI\Postulante.cs" />
+    <Compile Include="BE\UI\Empleado.cs" />
+    <Compile Include="BE\UI\Liquidacion.cs" />
+    <Compile Include="BE\UI\Inasistencia.cs" />
+    <Compile Include="BE\UI\Horario.cs" />
+    <Compile Include="BE\UI\SueldoMinimo.cs" />
+    <Compile Include="BE\UI\Perfil.cs" />
+    <Compile Include="BE\UI\Usuario.cs" />
+    <Compile Include="BE\Usuario.cs" />
+    <Compile Include="BE\Prestamo.cs" />
+    <Compile Include="BE\UI\Adelanto.cs" />
+    <Compile Include="BE\UI\OnpComision.cs" />
+    <Compile Include="BE\UI\Planilla.cs" />
+    <Compile Include="BE\UI\Cuota.cs" />
+    <Compile Include="BE\UI\Prestamo.cs" />
+    <Compile Include="DA\Adelanto.cs" />
+    <Compile Include="DA\DescuentoEmpleado.cs" />
+    <Compile Include="DA\ObservacionEmpleado.cs" />
+    <Compile Include="DA\Observacion.cs" />
+    <Compile Include="DA\Gratificacion.cs" />
+    <Compile Include="DA\SueldoMinimo.cs" />
+    <Compile Include="DA\CTS.cs" />
+    <Compile Include="DA\Inasistencia.cs" />
+    <Compile Include="DA\Prestamo.cs" />
+    <Compile Include="DA\OnpComision.cs" />
+    <Compile Include="DA\Descuento.cs" />
+    <Compile Include="DA\Bono.cs" />
+    <Compile Include="DA\Feriado.cs" />
+    <Compile Include="DA\Planilla.cs" />
+    <Compile Include="DA\Afp.cs" />
+    <Compile Include="DA\AfpComision.cs" />
+    <Compile Include="DA\Asistencia.cs" />
+    <Compile Include="DA\Area.cs" />
+    <Compile Include="DA\Banco.cs" />
+    <Compile Include="DA\ClsDaTbCandidatoContratacion.cs" />
+    <Compile Include="DA\Cargo.cs" />
+    <Compile Include="DA\Categoria.cs" />
+    <Compile Include="DA\ClsDaTbCandidato.cs" />
+    <Compile Include="DA\ClsDaTbCandidatoContacto.cs" />
+    <Compile Include="DA\ClsDaTbCandidatoTelefono.cs" />
+    <Compile Include="DA\ClsDaTbHorarioPlantilla.cs" />
+    <Compile Include="DA\ClsDaTbPostulante.cs" />
+    <Compile Include="DA\ClsDaTbEmpleado.cs" />
+    <Compile Include="DA\ClsDaTbPostulanteHistorial.cs" />
+    <Compile Include="DA\ClsDaTbPostulanteReclutamiento.cs" />
+    <Compile Include="DA\ClsDaTbPostulanteContacto.cs" />
+    <Compile Include="DA\ClsDaTbEmpleadoContacto.cs" />
+    <Compile Include="DA\ClsDaTbEmpleadoRecurso.cs" />
+    <Compile Include="DA\ClsDaTbPostulanteEstado.cs" />
+    <Compile Include="DA\ClsDaTbPostulanteTelefono.cs" />
+    <Compile Include="DA\ClsDaTbEmpleadoTelefono.cs" />
+    <Compile Include="DA\Pais.cs" />
+    <Compile Include="DA\Ubigeo.cs" />
+    <Compile Include="DA\Tipo.cs" />
+    <Compile Include="DA\Usuario.cs" />
+    <Compile Include="DA\Horario.cs" />
+    <Compile Include="DA\Sala.cs" />
+    <Compile Include="DA\Turno.cs" />
+    <Compile Include="DA\ConnectionManager.cs" />
+    <Compile Include="LN\DescuentoEmpleado.cs" />
+    <Compile Include="LN\ObservacionEmpleado.cs" />
+    <Compile Include="LN\Observacion.cs" />
+    <Compile Include="LN\SueldoMinimo.cs" />
+    <Compile Include="LN\Gratificacion.cs" />
+    <Compile Include="LN\CTS.cs" />
+    <Compile Include="LN\Liquidacion.cs" />
+    <Compile Include="LN\Adelanto.cs" />
+    <Compile Include="LN\Inasistencia.cs" />
+    <Compile Include="LN\Prestamo.cs" />
+    <Compile Include="LN\OnpComision.cs" />
+    <Compile Include="LN\Descuento.cs" />
+    <Compile Include="LN\Feriado.cs" />
+    <Compile Include="LN\Bono.cs" />
+    <Compile Include="LN\Planilla.cs" />
+    <Compile Include="LN\AfpComision.cs" />
+    <Compile Include="LN\Asistencia.cs" />
+    <Compile Include="LN\Afp.cs" />
+    <Compile Include="LN\Banco.cs" />
+    <Compile Include="LN\Cargo.cs" />
+    <Compile Include="LN\Area.cs" />
+    <Compile Include="LN\Candidato.cs" />
+    <Compile Include="LN\ClsLnTbPlantillaHorario.cs" />
+    <Compile Include="LN\Postulante.cs" />
+    <Compile Include="LN\Empleado.cs" />
+    <Compile Include="LN\Record.cs" />
+    <Compile Include="LN\Pais.cs" />
+    <Compile Include="LN\Sala.cs" />
+    <Compile Include="LN\Ubigeo.cs" />
+    <Compile Include="LN\Horario.cs" />
+    <Compile Include="LN\Turno.cs" />
+    <Compile Include="LN\Usuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

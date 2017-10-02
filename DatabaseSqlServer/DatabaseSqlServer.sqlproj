@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DatabaseSqlServer</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{37e8bd66-f298-4eea-ac05-b2eeb1470d82}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DatabaseSqlServer</RootNamespace>
+    <AssemblyName>DatabaseSqlServer</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Functions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\TbUsuario.sql" />
+    <Build Include="dbo\Tables\TbTipo.sql" />
+    <Build Include="dbo\Tables\TbPais.sql" />
+    <Build Include="dbo\Tables\TbEmpleadoTelefono.sql" />
+    <Build Include="dbo\Tables\TbEmpleadoRecurso.sql" />
+    <Build Include="dbo\Tables\TbEmpleadoContacto.sql" />
+    <Build Include="dbo\Tables\TbEmpleado.sql" />
+    <Build Include="dbo\Tables\TbCategoria.sql" />
+    <Build Include="dbo\Tables\TbCargo.sql" />
+    <Build Include="dbo\Tables\TbBanco.sql" />
+    <Build Include="dbo\Tables\TbArea.sql" />
+    <Build Include="dbo\Tables\TbAfp.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUsuarioValidar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUsuarioListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUsuarioInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUsuarioEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUsuarioActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoTelefonoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoTelefonoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoTelefonoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoTelefonoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoRecursoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoRecursoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoRecursoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoRecursoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoContactoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoContactoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoContactoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoContactoActualizar.sql" />
+    <Build Include="dbo\Tables\TbPostulanteTelefono.sql" />
+    <Build Include="dbo\Tables\TbPostulanteReclutamiento.sql" />
+    <Build Include="dbo\Tables\TbPostulanteHistorial.sql" />
+    <Build Include="dbo\Tables\TbPostulanteEstado.sql" />
+    <Build Include="dbo\Tables\TbPostulanteContacto.sql" />
+    <Build Include="dbo\Tables\TbPostulante.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTipoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTipoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTipoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTipoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTipoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteReclutamientoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteReclutamientoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteReclutamientoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteReclutamientoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteHistorialListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteHistorialInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteEstadoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteEstadoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteContactoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteContactoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteContactoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteContactoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPaisObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPaisListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCategoriaObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCategoriaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCargoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCargoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBancoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBancoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBancoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBancoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBancoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAreaObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAreaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpActualizar.sql" />
+    <Build Include="dbo\Tables\TbCandidatoTelefono.sql" />
+    <Build Include="dbo\Tables\TbCandidatoContacto.sql" />
+    <Build Include="dbo\Tables\TbCandidato.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoTelefonoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoTelefonoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoTelefonoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoTelefonoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContactoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContactoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContactoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContactoActualizar.sql" />
+    <Build Include="dbo\Tables\TbUbigeo.sql" />
+    <Build Include="dbo\Tables\TbCandidatoContratacion.sql" />
+    <Build Include="dbo\Functions\FnCalcularEdad.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUbigeoObtenerDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUbigeoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUbigeoListarProvincias.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUbigeoListarDistritos.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUbigeoListarDepartamentos.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteContratar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContratar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContratacionObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContratacionInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContratacionEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoContratacionActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteGeneralObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteGeneralInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteGeneralEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteGeneralActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralActualizar.sql" />
+    <Build Include="dbo\Tables\TbAsistencia.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAsistenciaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAsistenciaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAsistenciaEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAsistenciaResumenListar.sql" />
+    <Build Include="dbo\Tables\TbTurno.sql" />
+    <Build Include="dbo\Tables\TbSala.sql" />
+    <Build Include="dbo\Tables\TbHorario.sql" />
+    <Build Include="dbo\Tables\TbFeriado.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTurnoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTurnoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTurnoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTurnoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbTurnoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSalaObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSalaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSalaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSalaEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSalaActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioActualizar.sql" />
+    <Build Include="dbo\Functions\FnDiferenciaTiempo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralObtenerCodigo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoComboNombres.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralObtenerCodigo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoComboNombres.sql" />
+    <Build Include="dbo\Tables\TbSueldoMinimo.sql" />
+    <Build Include="dbo\Tables\TbAfpComision.sql" />
+    <Build Include="dbo\Functions\FnObtenerNombreCompleto.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpComisionObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpComisionListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpComisionInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpComisionEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpComisionActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralValidarDocumento.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralValidarCodigo.sql" />
+    <Build Include="dbo\Tables\TbPlantillaHorario.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlantillaHorarioListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlantillaHorarioInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlantillaHorarioEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\SpObtenerNombreCompleto.sql" />
+    <Build Include="dbo\Tables\TbPlanillaDetalle.sql" />
+    <Build Include="dbo\Tables\TbPlanilla.sql" />
+    <Build Include="dbo\Functions\IsOverlapDates.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaExiste.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarAsistenciaEmpleado.sql" />
+    <Build Include="dbo\Tables\TbPlanillaAsistencia.sql" />
+    <Build Include="dbo\Tables\TbAsistenciaDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaAsistenciaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpObtenerPlanillaResumen.sql" />
+    <Build Include="dbo\Tables\TbPlanillaDetalleResumen.sql" />
+    <Build Include="dbo\Tables\TbPlanillaDetalleCosto.sql" />
+    <Build Include="dbo\Tables\TbPlanillaDetalleCantidad.sql" />
+    <Build Include="dbo\Tables\TbInasistencia.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleResumenInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleCostoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleCostoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleCantidadInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbFeriadoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbFeriadoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarSueldosEmpleado.sql" />
+    <Build Include="dbo\Tables\TbPrestamoCuota.sql" />
+    <Build Include="dbo\Tables\TbPrestamo.sql" />
+    <Build Include="dbo\Tables\TbOnpComision.sql" />
+    <Build Include="dbo\Tables\TbDescuento.sql" />
+    <Build Include="dbo\Tables\TbBono.sql" />
+    <Build Include="dbo\Tables\TbAdelanto.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoCuotaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoCuotaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoCuotaEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbOnpComisionObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbOnpComisionListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbOnpComisionInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbOnpComisionEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAdelantoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAdelantoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAdelantoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAdelantoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAdelantoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioListarSemana.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioEliminarSemana.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbInasistenciaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbInasistenciaActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarInasistencias.sql" />
+    <Build Include="dbo\Tables\TbLiquidacion.sql" />
+    <Build Include="dbo\Tables\TbGratificacionDetalle.sql" />
+    <Build Include="dbo\Tables\TbGratificacion.sql" />
+    <Build Include="dbo\Tables\TbCts.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoMinimoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoMinimoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoMinimoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoMinimoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionDetalleListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionDetalleInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionDetalleEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionDetalleActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbGratificacionActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCtsObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCtsListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCtsInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCtsEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCtsActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaAsistenciaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAsistenciaResumenEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioListarResumenSemanal.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioListarResumenMensual.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioEliminarMes.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralValidarCodigo.sql" />
+    <Build Include="dbo\Tables\TbObservacionEmpleado.sql" />
+    <Build Include="dbo\Tables\TbObservacion.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPostulanteGeneralValidarDocumento.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionEmpleadoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionEmpleadoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionEmpleadoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionEmpleadoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbObservacionActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoGeneralValidarDocumento.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAsistenciaActualizar.sql" />
+    <Build Include="dbo\Tables\TbDescuentoEmpleado.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoActualizar.sql" />
+  </ItemGroup>
+</Project>

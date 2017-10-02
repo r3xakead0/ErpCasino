@@ -1,0 +1,8 @@
+﻿
+CREATE PROCEDURE SpTbTurnoEliminar
+@IdTurno AS INT
+AS
+BEGIN
+	DELETE FROM TbTurno
+	WHERE IdTurno = @IdTurno
+END

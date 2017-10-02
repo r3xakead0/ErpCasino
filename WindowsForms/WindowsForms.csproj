@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ADB9AAF7-10D0-469B-AE31-3E10EE5A7E49}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsForms</RootNamespace>
+    <AssemblyName>WindowsForms</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RecursosHumanos\FrmAsignarBonoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarBonoList.designer.cs">
+      <DependentUpon>FrmAsignarBonoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarDescuentoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarDescuentoList.designer.cs">
+      <DependentUpon>FrmAsignarDescuentoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarObservacionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarObservacionList.designer.cs">
+      <DependentUpon>FrmAsignarObservacionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarDescuentoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarDescuentoMant.designer.cs">
+      <DependentUpon>FrmAsignarDescuentoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarObservacionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarObservacionMant.designer.cs">
+      <DependentUpon>FrmAsignarObservacionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoObservacionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoObservacionMant.designer.cs">
+      <DependentUpon>FrmTipoObservacionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioAsignarBonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioAsignarBonos.designer.cs">
+      <DependentUpon>FrmHorarioAsignarBonos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioMensualMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioMensualMant.designer.cs">
+      <DependentUpon>FrmHorarioMensualMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioMensualList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioMensualList.designer.cs">
+      <DependentUpon>FrmHorarioMensualList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaDetalleAsistencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaDetalleAsistencia.designer.cs">
+      <DependentUpon>FrmPlanillaDetalleAsistencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCargoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCargoMant.designer.cs">
+      <DependentUpon>FrmCargoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSalaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSalaList.designer.cs">
+      <DependentUpon>FrmSalaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSueldoMinimoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSueldoMinimoMant.designer.cs">
+      <DependentUpon>FrmSueldoMinimoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmGratificacionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmGratificacionList.designer.cs">
+      <DependentUpon>FrmGratificacionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmGratificacionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmGratificacionMant.designer.cs">
+      <DependentUpon>FrmGratificacionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCtsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCtsList.designer.cs">
+      <DependentUpon>FrmCtsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCtsMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCtsMant.designer.cs">
+      <DependentUpon>FrmCtsMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmLiquidacionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmLiquidacionList.designer.cs">
+      <DependentUpon>FrmLiquidacionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmLiquidacionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmLiquidacionMant.designer.cs">
+      <DependentUpon>FrmLiquidacionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaDetalleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaDetalleView.designer.cs">
+      <DependentUpon>FrmPlanillaDetalleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmInasistenciaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmInasistenciaMant.designer.cs">
+      <DependentUpon>FrmInasistenciaMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioSemanalVista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioSemanalVista.designer.cs">
+      <DependentUpon>FrmHorarioSemanalVista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioSemanalMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioSemanalMant.designer.cs">
+      <DependentUpon>FrmHorarioSemanalMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPrestamoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPrestamoMant.designer.cs">
+      <DependentUpon>FrmPrestamoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPrestamoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPrestamoList.designer.cs">
+      <DependentUpon>FrmPrestamoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAdelantoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAdelantoMant.designer.cs">
+      <DependentUpon>FrmAdelantoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmOnpComisionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmOnpComisionMant.designer.cs">
+      <DependentUpon>FrmOnpComisionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.designer.cs">
+      <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoBonoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoBonoMant.designer.cs">
+      <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmInasistenciaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmInasistenciaList.designer.cs">
+      <DependentUpon>FrmInasistenciaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaRevisar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaRevisar.designer.cs">
+      <DependentUpon>FrmPlanillaRevisar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaCalcular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaCalcular.designer.cs">
+      <DependentUpon>FrmPlanillaCalcular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAfpComisionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAfpComisionMant.designer.cs">
+      <DependentUpon>FrmAfpComisionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioSemanalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmHorarioSemanalList.designer.cs">
+      <DependentUpon>FrmHorarioSemanalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsistenciaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsistenciaList.designer.cs">
+      <DependentUpon>FrmAsistenciaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCandidatoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCandidatoList.designer.cs">
+      <DependentUpon>FrmCandidatoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCandidatoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCandidatoMant.designer.cs">
+      <DependentUpon>FrmCandidatoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAdelantoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAdelantoList.designer.cs">
+      <DependentUpon>FrmAdelantoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPostulanteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPostulanteList.designer.cs">
+      <DependentUpon>FrmPostulanteList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmEmpleadoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmEmpleadoList.designer.cs">
+      <DependentUpon>FrmEmpleadoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPostulanteMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPostulanteMant.designer.cs">
+      <DependentUpon>FrmPostulanteMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsistenciaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsistenciaMant.designer.cs">
+      <DependentUpon>FrmAsistenciaMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\FrmCambioClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\FrmCambioClave.designer.cs">
+      <DependentUpon>FrmCambioClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\FrmPerfilMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\FrmPerfilMant.designer.cs">
+      <DependentUpon>FrmPerfilMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SortableBindingList.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="RecursosHumanos\FrmEmpleadoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmEmpleadoMant.designer.cs">
+      <DependentUpon>FrmEmpleadoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\FrmLogin.designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\FrmUsuarioList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\FrmUsuarioList.designer.cs">
+      <DependentUpon>FrmUsuarioList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\FrmUsuarioMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\FrmUsuarioMant.designer.cs">
+      <DependentUpon>FrmUsuarioMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MdiMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdiMain.designer.cs">
+      <DependentUpon>MdiMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarBonoList.resx">
+      <DependentUpon>FrmAsignarBonoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarDescuentoList.resx">
+      <DependentUpon>FrmAsignarDescuentoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarObservacionList.resx">
+      <DependentUpon>FrmAsignarObservacionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarDescuentoMant.resx">
+      <DependentUpon>FrmAsignarDescuentoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarObservacionMant.resx">
+      <DependentUpon>FrmAsignarObservacionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmTipoObservacionMant.resx">
+      <DependentUpon>FrmTipoObservacionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmHorarioAsignarBonos.resx">
+      <DependentUpon>FrmHorarioAsignarBonos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmHorarioMensualMant.resx">
+      <DependentUpon>FrmHorarioMensualMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmHorarioMensualList.resx">
+      <DependentUpon>FrmHorarioMensualList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaDetalleAsistencia.resx">
+      <DependentUpon>FrmPlanillaDetalleAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmCargoMant.resx">
+      <DependentUpon>FrmCargoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmSalaList.resx">
+      <DependentUpon>FrmSalaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmSueldoMinimoMant.resx">
+      <DependentUpon>FrmSueldoMinimoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmGratificacionList.resx">
+      <DependentUpon>FrmGratificacionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmGratificacionMant.resx">
+      <DependentUpon>FrmGratificacionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmCtsList.resx">
+      <DependentUpon>FrmCtsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmCtsMant.resx">
+      <DependentUpon>FrmCtsMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmLiquidacionList.resx">
+      <DependentUpon>FrmLiquidacionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmLiquidacionMant.resx">
+      <DependentUpon>FrmLiquidacionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaDetalleView.resx">
+      <DependentUpon>FrmPlanillaDetalleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmInasistenciaMant.resx">
+      <DependentUpon>FrmInasistenciaMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmHorarioSemanalVista.resx">
+      <DependentUpon>FrmHorarioSemanalVista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmHorarioSemanalMant.resx">
+      <DependentUpon>FrmHorarioSemanalMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPrestamoMant.resx">
+      <DependentUpon>FrmPrestamoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPrestamoList.resx">
+      <DependentUpon>FrmPrestamoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAdelantoMant.resx">
+      <DependentUpon>FrmAdelantoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmOnpComisionMant.resx">
+      <DependentUpon>FrmOnpComisionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmTipoDescuentoMant.resx">
+      <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmTipoBonoMant.resx">
+      <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmInasistenciaList.resx">
+      <DependentUpon>FrmInasistenciaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaRevisar.resx">
+      <DependentUpon>FrmPlanillaRevisar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaCalcular.resx">
+      <DependentUpon>FrmPlanillaCalcular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAfpComisionMant.resx">
+      <DependentUpon>FrmAfpComisionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmHorarioSemanalList.resx">
+      <DependentUpon>FrmHorarioSemanalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsistenciaList.resx">
+      <DependentUpon>FrmAsistenciaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmCandidatoList.resx">
+      <DependentUpon>FrmCandidatoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmCandidatoMant.resx">
+      <DependentUpon>FrmCandidatoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAdelantoList.resx">
+      <DependentUpon>FrmAdelantoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPostulanteList.resx">
+      <DependentUpon>FrmPostulanteList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPostulanteMant.resx">
+      <DependentUpon>FrmPostulanteMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmEmpleadoMant.resx">
+      <DependentUpon>FrmEmpleadoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmEmpleadoList.resx">
+      <DependentUpon>FrmEmpleadoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\FrmPerfilMant.resx">
+      <DependentUpon>FrmPerfilMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\FrmUsuarioList.resx">
+      <DependentUpon>FrmUsuarioList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsistenciaMant.resx">
+      <DependentUpon>FrmAsistenciaMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\FrmCambioClave.resx">
+      <DependentUpon>FrmCambioClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\FrmUsuarioMant.resx">
+      <DependentUpon>FrmUsuarioMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MdiMain.resx">
+      <DependentUpon>MdiMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLibrary\BusinessLibrary.csproj">
+      <Project>{683289cd-df07-4a88-a8ee-7556c1a7dd02}</Project>
+      <Name>BusinessLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logistica\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

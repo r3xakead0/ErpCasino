@@ -1,0 +1,8 @@
+﻿
+CREATE PROCEDURE SpTbSalaEliminar
+@IdSala AS INT
+AS
+BEGIN
+DELETE FROM TbSala
+WHERE IdSala = @IdSala
+END

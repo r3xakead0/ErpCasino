@@ -1,0 +1,8 @@
+﻿
+CREATE PROCEDURE SpTbCtsEliminar
+@IdCts AS INT
+AS
+BEGIN
+DELETE FROM TbCts
+WHERE IdCts = @IdCts
+END
