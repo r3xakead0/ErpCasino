@@ -213,7 +213,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #endregion
 
-                var lstBeCargos = new LN.Cargo().ListarCombo();
+                var lstUiCargos = new LN.Cargo().ListarCombo();
                 var lstTrabajadores = this.ListadoTrabajadores();
 
                 #region Cargar registro
@@ -227,11 +227,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 uiHorario.FechaHoraInicio = fechaHoraInicio;
                 uiHorario.FechaHoraFinal = fechaHoraFin;
 
-                var beCargo = lstBeCargos.SingleOrDefault(x => x.Nombre.Equals(nomCargo));
-                if (beCargo != null)
+                var uiCargo = lstUiCargos.SingleOrDefault(x => x.Nombre.Equals(nomCargo));
+                if (uiCargo != null)
                 {
-                    uiHorario.CargoId = beCargo.IdCargo;
-                    uiHorario.CargoNombre = beCargo.Nombre;
+                    uiHorario.CargoId = uiCargo.Id;
+                    uiHorario.CargoNombre = uiCargo.Nombre;
                 }
 
                 uiHorario.Fecha = fechaHorario;

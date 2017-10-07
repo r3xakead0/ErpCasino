@@ -82,14 +82,29 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmBonoCalc = new FrmAsignarBonoCalcular(this);
+                frmBonoCalc.MdiParent = this.MdiParent;
+                frmBonoCalc.Show();
+
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             try
             {
-                //var frmBonoMant = new FrmAsignarBonoMant(this);
-                //frmBonoMant.MdiParent = this.MdiParent;
-                //frmBonoMant.Show();
-                
+                var frmBonoMant = new FrmAsignarBonoMant(this);
+                frmBonoMant.MdiParent = this.MdiParent;
+                frmBonoMant.Show();
+
             }
             catch (Exception ex)
             {
@@ -127,14 +142,14 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     var uiBonoEmpleado = (BE.UI.BonoEmpleado)this.dgvBonos.CurrentRow.DataBoundItem;
 
-                    //int idObservacion = uiBonoEmpleado.ID;
-                    //bool rpta = new LN.BonoEmpleado().Eliminar(idObservacion);
+                    int idObservacion = uiBonoEmpleado.ID;
+                    bool rpta = new LN.BonoEmpleado().Eliminar(idObservacion);
 
-                    //if (rpta == true)
-                    //{
-                    //    Util.InformationMessage("Se eliminó el Bono seleccionado");
-                    //    this.CargarListadoBonos();
-                    //}
+                    if (rpta == true)
+                    {
+                        Util.InformationMessage("Se eliminó el Bono seleccionado");
+                        this.CargarListadoBonos();
+                    }
                 }
             }
             catch (Exception ex)
@@ -152,10 +167,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                //var frmBonoMant = new FrmAsignarBonoMant(this);
-                //frmBonoMant.MdiParent = this.MdiParent;
-                //frmBonoMant.Show();
-                //frmBonoMant.Cargar(uiBonoEmpleado);
+                var frmBonoMant = new FrmAsignarBonoMant(this);
+                frmBonoMant.MdiParent = this.MdiParent;
+                frmBonoMant.Show();
+                frmBonoMant.Cargar(uiBonoEmpleado);
             }
             catch (Exception ex)
             {
@@ -171,9 +186,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
                 int mes = int.Parse(this.cboMes.SelectedValue.ToString());
 
-                //var lstUiBonos = new LN.BonoEmpleado().Listar(anho, mes);
-                var lstUiBonos = new List<BE.UI.BonoEmpleado>();
-
+                var lstUiBonos = new LN.BonoEmpleado().Listar(anho, mes);
+                
                 var source = new BindingSource();
                 source.DataSource = lstUiBonos;
 
@@ -211,13 +225,18 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvBonos.Columns["EmpleadoNombreCompleto"].Width = 200;
                 this.dgvBonos.Columns["EmpleadoNombreCompleto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
+                this.dgvBonos.Columns["BonoTipo"].Visible = true;
+                this.dgvBonos.Columns["BonoTipo"].HeaderText = "Tipo";
+                this.dgvBonos.Columns["BonoTipo"].Width = 100;
+                this.dgvBonos.Columns["BonoTipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                 this.dgvBonos.Columns["BonoNombre"].Visible = true;
                 this.dgvBonos.Columns["BonoNombre"].HeaderText = "Bono";
                 this.dgvBonos.Columns["BonoNombre"].Width = 100;
                 this.dgvBonos.Columns["BonoNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 this.dgvBonos.Columns["Monto"].Visible = true;
-                this.dgvBonos.Columns["Monto"].HeaderText = "Motivo";
+                this.dgvBonos.Columns["Monto"].HeaderText = "Monto";
                 this.dgvBonos.Columns["Monto"].Width = 100;
                 this.dgvBonos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 this.dgvBonos.Columns["Monto"].DefaultCellStyle.Format = "N2";

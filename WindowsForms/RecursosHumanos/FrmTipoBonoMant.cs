@@ -1,116 +1,42 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Data;
 using System.Collections.Generic;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.Drawing;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmTipoBonoMant : Form
     {
 
-        private BE.Bono beBono = new BE.Bono();
+        private string valorInicialNombre = "";
+        private string valorInicialDescripcion = "";
+
+        private Color ColorFilaModificada = Color.LightGoldenrodYellow;
+
+        private List<BE.UI.Bono> lstUiBonoes = new List<BE.UI.Bono>();
+
+        private List<BE.UI.Bono> lstCreados = new List<BE.UI.Bono>();
+        private List<BE.UI.Bono> lstModificados = new List<BE.UI.Bono>();
+        private List<BE.UI.Bono> lstEliminados = new List<BE.UI.Bono>();
 
         public FrmTipoBonoMant()
         {
-            try
-            {
-                InitializeComponent();
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-
-        }
-
-        private void Limpiar()
-        {
-            try
-            {
-                //Limpiar objeto
-                this.beBono = new BE.Bono();
-
-                //Limpiar controles de edicion
-                this.txtNombre.Clear();
-                this.txtDescripcion.Clear();
-                this.txtMonto.Text = "0.00";
-                this.chkActivo.Checked = false;
-
-                //Cargar lista de bonos
-                this.CargarListadoBonos();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private void CargarListadoBonos()
-        {
-            try
-            {
-                var lstBonos = new LN.Bono().Listar();
-
-                var source = new BindingSource();
-                source.DataSource = lstBonos;
-
-                this.dgvListadoBonos.DataSource = source;
-
-                this.FormatoListadoBonos();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private void FormatoListadoBonos()
-        {
-            try
-            {
-                Util.FormatDatagridview(ref this.dgvListadoBonos);
-
-                for (int col = 0; col < this.dgvListadoBonos.Columns.Count; col++)
-                    this.dgvListadoBonos.Columns[col].Visible = false;
-
-                this.dgvListadoBonos.Columns["Nombre"].Visible = true;
-                this.dgvListadoBonos.Columns["Nombre"].HeaderText = "Nombre";
-                this.dgvListadoBonos.Columns["Nombre"].Width = 150;
-                this.dgvListadoBonos.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-                this.dgvListadoBonos.Columns["Descripcion"].Visible = true;
-                this.dgvListadoBonos.Columns["Descripcion"].HeaderText = "Descripción";
-                this.dgvListadoBonos.Columns["Descripcion"].Width = 300;
-                this.dgvListadoBonos.Columns["Descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-                this.dgvListadoBonos.Columns["Monto"].Visible = true;
-                this.dgvListadoBonos.Columns["Monto"].HeaderText = "Monto";
-                this.dgvListadoBonos.Columns["Monto"].Width = 70;
-                this.dgvListadoBonos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvListadoBonos.Columns["Monto"].DefaultCellStyle.Format = "N2";
-
-                this.dgvListadoBonos.Columns["Activo"].Visible = true;
-                this.dgvListadoBonos.Columns["Activo"].HeaderText = "Activo";
-                this.dgvListadoBonos.Columns["Activo"].Width = 50;
-                this.dgvListadoBonos.Columns["Activo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                Util.AutoWidthColumn(ref this.dgvListadoBonos, "Descripcion");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            InitializeComponent();
         }
 
         #region Formulario
-
         private void FrmTipoBonoMant_Load(object sender, EventArgs e)
         {
             try
             {
-                this.Limpiar();
+                var uiBono = new BE.UI.Bono();
+                this.valorInicialNombre = uiBono.Nombre;
+                this.valorInicialDescripcion = uiBono.Descripcion;
+                
+                this.CargarListadoBonos();
+                
             }
             catch (Exception ex)
             {
@@ -118,66 +44,21 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void FrmTipoBonoMant_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-
-                #region Validaciones
-                if (this.txtNombre.Text.Trim().Length == 0)
+                int cntCreados = this.lstCreados.Count;
+                int cntModificados = this.lstModificados.Count;
+                int cntEliminar = this.lstEliminados.Count;
+                if (cntCreados + cntModificados + cntEliminar > 0)
                 {
-                    this.txtNombre.Focus();
-                    throw new Exception("Ingrese el nombre del bono");
+                    if (Util.ConfirmationMessage("¿Desea salir sin guardar los cambios realizados?") == false)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
                 }
-
-                if (this.txtDescripcion.Text.Trim().Length == 0)
-                {
-                    this.txtDescripcion.Focus();
-                    throw new Exception("Ingrese la descripcion del bono");
-                }
-
-                if (this.txtMonto.Text.Trim().Length == 0)
-                {
-                    this.txtMonto.Focus();
-                    throw new Exception("Ingrese el monto del bono");
-                }
-
-                if (double.Parse(this.txtMonto.Text) == 0.0)
-                {
-                    this.txtMonto.Focus();
-                    throw new Exception("Ingrese el monto del bono");
-                }
-                #endregion
-
-                #region Guardar
-
-                this.beBono.Nombre = this.txtNombre.Text;
-                this.beBono.Descripcion = this.txtDescripcion.Text;
-                this.beBono.Monto = double.Parse(this.txtMonto.Text);
-                this.beBono.Activo = this.chkActivo.Checked;
-
-                bool rpta = false;
-                string msg = "";
-                var lnBono = new LN.Bono();
-                if (this.beBono.IdBono == 0) //Nuevo
-                {
-                    rpta = lnBono.Insertar(ref this.beBono);
-                    if (true)
-                        msg = "Se registro el nuevo bono";
-                }
-                else  //Actualizar
-                {
-                    rpta = lnBono.Actualizar(this.beBono);
-                    if (true)
-                        msg = "Se actualizo el bono";
-                }
-
-                if (rpta == true)
-                    Util.InformationMessage(msg);
-                #endregion
-
-                this.Limpiar();
-
             }
             catch (Exception ex)
             {
@@ -185,18 +66,89 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void dgvBonoes_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
+                if (this.dgvBonos.IsCurrentRowDirty)
+                {
+                    var uiBono = (BE.UI.Bono)this.dgvBonos.CurrentRow.DataBoundItem;
 
-                var rpta = Util.ConfirmationMessage("¿Desea salir del formulario de Bonos?");
+                    if (uiBono.Nombre.Equals(this.valorInicialNombre) 
+                        || uiBono.Descripcion.Equals(this.valorInicialDescripcion))
+                    {
+                        this.dgvBonos.AllowUserToAddRows = false;
+                        return;
+                    }
+                    else
+                    {
+                        this.dgvBonos.AllowUserToAddRows = true;
+                    }
 
-                if (rpta == false)
+                    if (uiBono.Id > 0)
+                    {
+                        if (this.lstModificados.Contains(uiBono) == false)
+                            this.lstModificados.Add(uiBono);
+                    }
+                    else
+                    {
+                        if (this.lstCreados.Contains(uiBono) == false)
+                            this.lstCreados.Add(uiBono);
+                    }
+
+                    this.dgvBonos.CurrentRow.DefaultCellStyle.BackColor = this.ColorFilaModificada;
+
+                    this.dgvBonos.EndEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Util.ConfirmationMessage("¿Desea guardar los cambios realizados?") == false)
                     return;
 
-                this.Close();
+                //Util.ConfirmationMessage("Cant. Creados : " + this.lstCreados.Count);
+                //Util.ConfirmationMessage("Cant. Modificados : " + this.lstModificados.Count);
+                //Util.ConfirmationMessage("Cant. Eliminados : " + this.lstEliminados.Count);
 
+                bool rpta = false;
+                var lnBono = new LN.Bono();
+
+                for (int i = 0; i < this.lstCreados.Count; i++)
+                {
+                    var uiBonoCreada = this.lstCreados[i];
+                    rpta = lnBono.Insertar(ref uiBonoCreada);
+                }
+
+                this.lstCreados.Clear();
+
+                for (int i = 0; i < this.lstModificados.Count; i++)
+                {
+                    var uiBonoModificado = this.lstModificados[i];
+                    rpta = lnBono.Actualizar(uiBonoModificado);
+                }
+
+                this.lstModificados.Clear();
+
+                for (int i = 0; i < this.lstEliminados.Count; i++)
+                {
+                    int idBono = this.lstEliminados[i].Id;
+                    rpta = lnBono.Eliminar(idBono);
+                }
+
+                this.lstEliminados.Clear();
+
+                this.CargarListadoBonos();
+
+                Util.InformationMessage("Se guardaron todos los cambios realizados");
             }
             catch (Exception ex)
             {
@@ -204,9 +156,119 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                try
+                {
+                    if (this.dgvBonos.CurrentRow != null)
+                    {
+
+                        var uiBono = (BE.UI.Bono)this.dgvBonos.CurrentRow.DataBoundItem;
+
+                        if (uiBono.Calculado == true)
+                            throw new Exception("No se puede eliminar una observación calculada");
+
+                        if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
+                            return;
+
+                        if (uiBono.Id > 0)
+                        {
+                            this.lstEliminados.Add(uiBono);
+                        }
+
+                        this.lstCreados.Remove(uiBono);
+                        this.lstModificados.Remove(uiBono);
+
+                        this.dgvBonos.Rows.RemoveAt(this.dgvBonos.CurrentRow.Index);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Util.ErrorMessage(ex.Message);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+        
         #endregion
 
-        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        #region Metodos
+        
+        private void CargarListadoBonos()
+        {
+            try
+            {
+                this.lstUiBonoes = new LN.Bono().Listar();
+                
+                var source = new BindingSource();
+                source.DataSource = lstUiBonoes;
+
+                this.dgvBonos.Columns.Clear();
+                this.dgvBonos.AutoGenerateColumns = false;
+                this.dgvBonos.AutoSize = true;
+                this.dgvBonos.DataSource = source;
+                this.dgvBonos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+                DataGridViewColumn colNombre = new DataGridViewTextBoxColumn();
+                colNombre.DataPropertyName = "Nombre";
+                colNombre.Name = "Nombre";
+                colNombre.Width = 200;
+                this.dgvBonos.Columns.Add(colNombre);
+
+                DataGridViewColumn colDescripcion = new DataGridViewTextBoxColumn();
+                colDescripcion.DataPropertyName = "Descripcion";
+                colDescripcion.Name = "Descripcion";
+                colDescripcion.Width = 300;
+                this.dgvBonos.Columns.Add(colDescripcion);
+
+                DataGridViewColumn colMonto = new DataGridViewTextBoxColumn();
+                colMonto.DataPropertyName = "Monto";
+                colMonto.Name = "Monto";
+                colMonto.Width = 100;
+                colMonto.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                colMonto.DefaultCellStyle.Format = "N2";
+                this.dgvBonos.Columns.Add(colMonto);
+
+                DataGridViewColumn colActivo = new DataGridViewCheckBoxColumn();
+                colActivo.DataPropertyName = "Activo";
+                colActivo.Name = "Activo";
+                colActivo.Width = 70;
+                this.dgvBonos.Columns.Add(colActivo);
+
+                Util.AutoWidthColumn(ref this.dgvBonos, "Descripcion");
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void dgvBonos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvBonos.Columns[dgvBonos.CurrentCell.ColumnIndex].Name == "Monto")
+            {
+                e.Control.KeyPress += new KeyPressEventHandler(dgvBonos_KeyPress);
+                e.Control.Leave += new EventHandler(dgvBonos_Leave);
+            }
+        }
+
+        private void dgvBonos_Leave(object sender, EventArgs e)
+        {
+            if (dgvBonos.Columns[dgvBonos.CurrentCell.ColumnIndex].Name == "Monto")
+            {
+                (sender as DataGridViewTextBoxEditingControl).KeyPress -= new KeyPressEventHandler(dgvBonos_KeyPress);
+            }
+        }
+
+        private void dgvBonos_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -228,71 +290,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void txtMonto_Enter(object sender, EventArgs e)
-        {
-            BeginInvoke((Action)delegate
-            {
-                txtMonto.SelectAll();
-            });
-        }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                bool rpta = false;
+        #endregion
 
-                if (this.beBono != null && this.beBono.IdBono > 0)
-                {
-                    int id = this.beBono.IdBono;
-                    rpta = new LN.Bono().Eliminar(id);
-                }
 
-                if (rpta == true)
-                    Util.InformationMessage("Se eliminó el bono");
-
-                this.Limpiar();
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
-        private void dgvListadoBonos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                var beBonoTmp = (BE.Bono)this.dgvListadoBonos.CurrentRow.DataBoundItem;
-
-                this.txtNombre.Text = beBonoTmp.Nombre;
-                this.txtDescripcion.Text = beBonoTmp.Descripcion;
-                this.txtMonto.Text = beBonoTmp.Monto.ToString("N2");
-                this.chkActivo.Checked = beBonoTmp.Activo;
-
-                this.beBono = beBonoTmp;
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
-        private void txtMonto_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                double monto = 0.0;
-
-                if (this.txtMonto.Text.Length > 0)
-                    monto = double.Parse(this.txtMonto.Text);
-
-                this.txtMonto.Text = monto.ToString("N2");
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
     }
 }

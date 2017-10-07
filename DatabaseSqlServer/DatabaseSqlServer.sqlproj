@@ -329,5 +329,27 @@
     <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoEliminar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoActualizar.sql" />
+    <Build Include="dbo\Tables\TbBonoEmpleado.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCargoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCargoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCargoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoEmpleadoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoEmpleadoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoEmpleadoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoEmpleadoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbBonoEmpleadoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaAsistenciaResumen.sql" />
+    <Build Include="dbo\Tables\TbMetaSala.sql" />
+    <Build Include="dbo\Tables\TbComprometido.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbMetaSalaObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbMetaSalaListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbMetaSalaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbMetaSalaEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbMetaSalaActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbComprometidoObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbComprometidoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbComprometidoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbComprometidoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbComprometidoActualizar.sql" />
   </ItemGroup>
 </Project>

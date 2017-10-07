@@ -379,8 +379,8 @@ namespace ErpCasino.BusinessLibrary.LN
                         uiPlanillaDetalle.EmpleadoCodigo = beDetalle.CodigoEmpleado;
                         uiPlanillaDetalle.EmpleadoNombre = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(beDetalle.CodigoEmpleado);
 
-                        var beCargo = new BE.Cargo() { IdCargo = beDetalle.IdCargo };
-                        if (new DA.Cargo().Obtener(ref beCargo))
+                        var beCargo = new DA.Cargo().Obtener(beDetalle.IdCargo);
+                        if (beCargo != null)
                         {
                             uiPlanillaDetalle.CargoID = beDetalle.IdCargo;
                             uiPlanillaDetalle.CargoNombre = beCargo.Nombre;
@@ -485,6 +485,40 @@ namespace ErpCasino.BusinessLibrary.LN
                 totalSnp = ttlSnp;
                 totalAfp = ttlAfp;
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene un resumen de las asistencias, inasistencias y tardanzas del empleado
+        /// </summary>
+        /// <param name="codigoEmpleado">Codigo del Empleado o Candidato</param>
+        /// <returns></returns>
+        public BE.UI.PlanillaAsistenciaResumenEmpleado ObtenerResumenAsistenciaEmpleado(string codigoEmpleado)
+        {
+
+            BE.UI.PlanillaAsistenciaResumenEmpleado uiResumenAsistencia = null;
+            try
+            {
+                DataTable dtAsistencia = new DA.Planilla().ListarAsistenciaResumen(this.anho, this.mes, codigoEmpleado);
+
+                foreach (DataRow drItem in dtAsistencia.Rows)
+                {
+                    uiResumenAsistencia = new BE.UI.PlanillaAsistenciaResumenEmpleado();
+
+                    uiResumenAsistencia.IdPlanilla = int.Parse(drItem["IdPlanilla"].ToString());
+                    uiResumenAsistencia.CodigoEmpleado = drItem["CodigoEmpleado"].ToString();
+                    uiResumenAsistencia.CantidadAsistencias = int.Parse(drItem["CantidadAsistencias"].ToString());
+                    uiResumenAsistencia.CantidadInasistencias = int.Parse(drItem["CantidadInasistencias"].ToString());
+                    uiResumenAsistencia.CantidadTardanzas = int.Parse(drItem["CantidadTardanzas"].ToString());
+
+                    break;
+                }
+
+                return uiResumenAsistencia;
             }
             catch (Exception ex)
             {

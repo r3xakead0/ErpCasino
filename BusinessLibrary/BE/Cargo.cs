@@ -10,6 +10,7 @@ namespace ErpCasino.BusinessLibrary.BE
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public bool Activo { get; set; }
+        public double Bono { get; set; }
 
     }
 

@@ -185,6 +185,24 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        public BE.ClsBeTbEmpleadoRecurso ObtenerRecurso(string codigo)
+        {
+            try
+            {
+                BE.ClsBeTbEmpleadoRecurso beEmpleadoRecurso = null;
+
+                var beEmpleado = new DA.ClsDaTbEmpleado().Obtener(codigo);
+                if (beEmpleado != null)
+                    beEmpleadoRecurso = new DA.ClsDaTbEmpleadoRecurso().Obtener(beEmpleado.IdEmpleado);
+
+                return beEmpleadoRecurso;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public BE.ClsBeTbEmpleado Obtener(int idEmpleado)
         {
             BE.ClsBeTbEmpleado beEmpleado = null;
@@ -241,11 +259,12 @@ namespace ErpCasino.BusinessLibrary.LN
         }
 
         /// <summary>
-        /// Obtener los datos completos del empleado mediante el codigo
+        /// Obtener los datos del empleado mediante el codigo
         /// </summary>
         /// <param name="codigo">Codigo del Empleado</param>
+        /// <param name="detalle">Opcion para regresar datos completos del Empleado</param>
         /// <returns></returns>
-        public BE.ClsBeTbEmpleado Obtener(string codigo)
+        public BE.ClsBeTbEmpleado Obtener(string codigo, bool detalle = false)
         {
             BE.ClsBeTbEmpleado beEmpleado = null;
             try
@@ -258,8 +277,11 @@ namespace ErpCasino.BusinessLibrary.LN
                     return beEmpleado;
                 else
                 {
-                    idEmpleado = beEmpleado.IdEmpleado;
-                    beEmpleado = this.Obtener(idEmpleado);
+                    if (detalle)
+                    {
+                        idEmpleado = beEmpleado.IdEmpleado;
+                        beEmpleado = this.Obtener(idEmpleado);
+                    }
                 }
 
                 return beEmpleado;

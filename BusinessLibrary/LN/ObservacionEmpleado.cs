@@ -2,6 +2,7 @@ using BE = ErpCasino.BusinessLibrary.BE;
 using DA = ErpCasino.BusinessLibrary.DA;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace ErpCasino.BusinessLibrary.LN
 {
@@ -117,6 +118,47 @@ namespace ErpCasino.BusinessLibrary.LN
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Obtener la cantidad de observaciones por Empleado o Candidato
+        /// </summary>
+        /// <param name="anho">Numero de 4 digitos del Año. Ejm: 2017</param>
+        /// <param name="mes">Numero de 1 al 12 del Mes. Ejm: 1 (Enero) - 12 (Diciembre)</param>
+        /// <param name="codigoEmpleado">Codigo del Empleado o Candidato</param>
+        /// <returns></returns>
+        public int CantidadObservacionesEmpleado(int anho, int mes, string codigoEmpleado)
+        {
+            try
+            {
+                var lstUiObservacionEmpleados = this.Listar(anho, mes);
+
+                lstUiObservacionEmpleados = lstUiObservacionEmpleados.Where(x => x.EmpleadoCodigo.Equals(codigoEmpleado)).ToList();
+
+                return lstUiObservacionEmpleados.Count;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public int CantidadObservacionesSala(int anho, int mes, int idSala)
+        {
+            try
+            {
+                var lstUiObservacionSalas = this.Listar(anho, mes);
+
+                lstUiObservacionSalas = lstUiObservacionSalas.Where(x => x.SalaID == idSala).ToList();
+
+                return lstUiObservacionSalas.Count;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

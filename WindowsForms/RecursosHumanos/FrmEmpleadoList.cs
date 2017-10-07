@@ -235,13 +235,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     lstFiltro.Add(new BE.Record() { Codigo = "Si", Nombre = "Si" });
                     lstFiltro.Add(new BE.Record() { Codigo = "No", Nombre = "No" });
                     break;
-                case "5": //Sexo
-                    var lstBeCargos = new LN.Cargo().Listar();
-                    foreach (BE.Cargo beCargo in lstBeCargos)
+                case "5": //Cargo
+                    var lstUiCargos = new LN.Cargo().Listar();
+                    foreach (BE.UI.Cargo uiCargo in lstUiCargos)
                     {
                         lstFiltro.Add(new BE.Record() {
-                            Codigo = beCargo.IdCargo.ToString(),
-                            Nombre = beCargo.Nombre
+                            Codigo = uiCargo.Id.ToString(),
+                            Nombre = uiCargo.Nombre
                         });
                     }
                     break;

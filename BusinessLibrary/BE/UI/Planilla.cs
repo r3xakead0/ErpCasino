@@ -4,6 +4,24 @@ using System;
 namespace ErpCasino.BusinessLibrary.BE.UI
 {
 
+    public class PlanillaAsistenciaResumenSala
+    {
+        public int IdPlanilla { get; set; }
+        public int IdSala { get; set; }
+        public int CantidadAsistencias { get; set; }
+        public int CantidadInasistencias { get; set; }
+        public int CantidadTardanzas { get; set; }
+    }
+
+    public class PlanillaAsistenciaResumenEmpleado
+    {
+        public int IdPlanilla { get; set; }
+        public string CodigoEmpleado { get; set; }
+        public int CantidadAsistencias { get; set; }
+        public int CantidadInasistencias { get; set; }
+        public int CantidadTardanzas { get; set; }
+    }
+
     public class PlanillaAsistencia: ICloneable 
     {
 

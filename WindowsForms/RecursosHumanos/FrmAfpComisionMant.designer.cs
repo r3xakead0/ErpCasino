@@ -59,7 +59,7 @@
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(577, 320);
+            this.tlpPrincipal.Size = new System.Drawing.Size(577, 355);
             this.tlpPrincipal.TabIndex = 16;
             // 
             // pnlPrincipal
@@ -69,7 +69,7 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(571, 264);
+            this.pnlPrincipal.Size = new System.Drawing.Size(571, 299);
             this.pnlPrincipal.TabIndex = 16;
             // 
             // GrpPeriodo
@@ -123,7 +123,7 @@
             this.GrpComisiones.Controls.Add(this.dgvComisiones);
             this.GrpComisiones.Location = new System.Drawing.Point(9, 75);
             this.GrpComisiones.Name = "GrpComisiones";
-            this.GrpComisiones.Size = new System.Drawing.Size(553, 186);
+            this.GrpComisiones.Size = new System.Drawing.Size(553, 221);
             this.GrpComisiones.TabIndex = 38;
             this.GrpComisiones.TabStop = false;
             this.GrpComisiones.Text = "Comisiones";
@@ -136,7 +136,7 @@
             this.dgvComisiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComisiones.Location = new System.Drawing.Point(6, 19);
             this.dgvComisiones.Name = "dgvComisiones";
-            this.dgvComisiones.Size = new System.Drawing.Size(541, 160);
+            this.dgvComisiones.Size = new System.Drawing.Size(541, 195);
             this.dgvComisiones.TabIndex = 0;
             this.dgvComisiones.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgvComisiones_EditingControlShowing);
             // 
@@ -145,7 +145,7 @@
             this.panel2.Controls.Add(this.BtnSave);
             this.panel2.Controls.Add(this.BtnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 273);
+            this.panel2.Location = new System.Drawing.Point(3, 308);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(571, 44);
             this.panel2.TabIndex = 17;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 320);
+            this.ClientSize = new System.Drawing.Size(577, 355);
             this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.Name = "FrmAfpComisionMant";

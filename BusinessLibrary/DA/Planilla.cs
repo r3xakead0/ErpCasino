@@ -867,6 +867,39 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+
+        public DataTable ListarAsistenciaResumen(int anho, int mes, string codigoEmpleado = "")
+        {
+            try
+            {
+                string sp = "SpTbPlanillaAsistenciaResumen";
+
+                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(sp, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                cmd.Parameters.Add(new SqlParameter("@MES", mes));
+                if (codigoEmpleado == null || codigoEmpleado.Trim().Length == 0)
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", DBNull.Value));
+                else
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", codigoEmpleado));
+
+                SqlDataAdapter dad = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable();
+                dad.Fill(dt);
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Calculo al detalle por dia sobre : 
         /// - Horas asistidas e inasistidas en Minutos

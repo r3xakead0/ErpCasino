@@ -678,11 +678,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             var lstCargos = new LN.Cargo().ListarCombo();
 
             if (Seleccione == true)
-                lstCargos.Insert(0, new BE.Cargo() { IdCargo = 0, Nombre = "Seleccione" });
+                lstCargos.Insert(0, new BE.UI.Cargo() { Id = 0, Nombre = "Seleccione", Descripcion = "" });
 
             this.CbxCargo.DataSource = lstCargos;
             this.CbxCargo.DisplayMember = "Nombre";
-            this.CbxCargo.ValueMember = "IdCargo";
+            this.CbxCargo.ValueMember = "Id";
         }
 
         private void CargarAreas(bool Seleccione)
@@ -862,18 +862,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #region Recurso
 
-                var area = (BE.Area)this.CbxArea.SelectedItem;
-                var cargo = (BE.Cargo)this.CbxCargo.SelectedItem;
-                var sala = (BE.Sala)this.cboSala.SelectedItem;
-                var banco = (BE.Banco)this.CbxBanco.SelectedItem;
-                var cts = (BE.Banco)this.CbxBancoCTS.SelectedItem;
-                
+                var beArea = (BE.Area)this.CbxArea.SelectedItem;
+                var beSala = (BE.Sala)this.cboSala.SelectedItem;
+                var beBancoPago = (BE.Banco)this.CbxBanco.SelectedItem;
+                var beBancoCts = (BE.Banco)this.CbxBancoCTS.SelectedItem;
+
+                var uiCargo = (BE.UI.Cargo)this.CbxCargo.SelectedItem;
+                var beCargo = new BE.Cargo();
+                beCargo.IdCargo = uiCargo.Id;
+                beCargo.Nombre = uiCargo.Nombre;
+                beCargo.Descripcion = uiCargo.Descripcion;
+                beCargo.Activo = uiCargo.Activo;
+                beCargo.Bono = uiCargo.Bono;
+                uiCargo = null;
+
                 if (this.beEmpleadoGeneral.Recurso == null)
                     this.beEmpleadoGeneral.Recurso = new BE.ClsBeTbEmpleadoRecurso() { IdEmpleado = beEmpleadoGeneral.IdEmpleado };
 
-                this.beEmpleadoGeneral.Recurso.Area = area;
-                this.beEmpleadoGeneral.Recurso.Cargo = cargo;
-                this.beEmpleadoGeneral.Recurso.Sala = sala;
+                this.beEmpleadoGeneral.Recurso.Area = beArea;
+                this.beEmpleadoGeneral.Recurso.Cargo = beCargo;
+                this.beEmpleadoGeneral.Recurso.Sala = beSala;
                 this.beEmpleadoGeneral.Recurso.FechaInicio = this.DtpFechaInicio.Value;
 
                 this.beEmpleadoGeneral.Recurso.Cesado = this.CbxCesado.Checked;
@@ -883,10 +891,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.beEmpleadoGeneral.Recurso.FechaCese = null;
 
                 this.beEmpleadoGeneral.Recurso.NumeroHijos = int.Parse(this.TxtNumeroHijos.Text);
-                this.beEmpleadoGeneral.Recurso.Banco = banco;
+                this.beEmpleadoGeneral.Recurso.Banco = beBancoPago;
                 this.beEmpleadoGeneral.Recurso.CuentaBanco = this.TxtCuentaBanco.Text;
                 this.beEmpleadoGeneral.Recurso.CCI = this.TxtCci.Text;
-                this.beEmpleadoGeneral.Recurso.BancoCTS = cts;
+                this.beEmpleadoGeneral.Recurso.BancoCTS = beBancoCts;
                 this.beEmpleadoGeneral.Recurso.CuentaCTS = this.TxtCuentaCTS.Text;
 
                 double dSueldo = 0.0;

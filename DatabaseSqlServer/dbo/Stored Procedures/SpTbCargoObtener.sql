@@ -1,5 +1,5 @@
 ﻿
-CREATE PROCEDURE [dbo].[SpTbCargoObtener]
+CREATE PROCEDURE SpTbCargoObtener
 @IdCargo AS INT
 AS
 BEGIN
@@ -7,7 +7,8 @@ BEGIN
 			IdCargo,
 			Nombre,
 			Descripcion,
-			Activo
+			Activo,
+			Bono
 	FROM	TbCargo
 	WHERE	IdCargo = @IdCargo
 END

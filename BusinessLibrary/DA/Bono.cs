@@ -26,8 +26,9 @@ namespace ErpCasino.BusinessLibrary.DA
                 cmd.Parameters["@IDBONO"].Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeBono.Nombre));
                 cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeBono.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", oBeBono.Monto));
                 cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeBono.Activo));
+                cmd.Parameters.Add(new SqlParameter("@CALCULADO", oBeBono.Calculado));
+                cmd.Parameters.Add(new SqlParameter("@MONTO", oBeBono.Monto));
 
                 rowsAffected = cmd.ExecuteNonQuery();
                 oBeBono.IdBono = int.Parse(cmd.Parameters["@IDBONO"].Value.ToString());
@@ -57,8 +58,9 @@ namespace ErpCasino.BusinessLibrary.DA
                 cmd.Parameters.Add(new SqlParameter("@IDBONO", oBeBono.IdBono));
                 cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeBono.Nombre));
                 cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeBono.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", oBeBono.Monto));
                 cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeBono.Activo));
+                cmd.Parameters.Add(new SqlParameter("@CALCULADO", oBeBono.Calculado));
+                cmd.Parameters.Add(new SqlParameter("@MONTO", oBeBono.Monto));
 
                 rowsAffected = cmd.ExecuteNonQuery();
 
@@ -118,8 +120,9 @@ namespace ErpCasino.BusinessLibrary.DA
                     beBono.IdBono = int.Parse(reader["IdBono"].ToString());
                     beBono.Nombre = reader["Nombre"].ToString();
                     beBono.Descripcion = reader["Descripcion"] .ToString();
-                    beBono.Monto = double.Parse(reader["Monto"].ToString());
                     beBono.Activo = bool.Parse(reader["Activo"].ToString());
+                    beBono.Calculado = bool.Parse(reader["Calculado"].ToString());
+                    beBono.Monto = double.Parse(reader["Monto"].ToString());
 
                     lstBonos.Add(beBono);
                 }
@@ -155,8 +158,10 @@ namespace ErpCasino.BusinessLibrary.DA
                     beBono.IdBono = int.Parse(reader["IdBono"].ToString());
                     beBono.Nombre = reader["Nombre"].ToString();
                     beBono.Descripcion = reader["Descripcion"].ToString();
-                    beBono.Monto = double.Parse(reader["Monto"].ToString());
                     beBono.Activo = bool.Parse(reader["Activo"].ToString());
+                    beBono.Calculado = bool.Parse(reader["Calculado"].ToString());
+                    beBono.Monto = double.Parse(reader["Monto"].ToString());
+
                 }
 
                 return beBono;

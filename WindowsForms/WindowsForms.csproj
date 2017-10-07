@@ -55,11 +55,23 @@
     <Compile Include="RecursosHumanos\FrmAsignarBonoList.designer.cs">
       <DependentUpon>FrmAsignarBonoList.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarBonoCalcular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarBonoCalcular.designer.cs">
+      <DependentUpon>FrmAsignarBonoCalcular.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmAsignarDescuentoList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RecursosHumanos\FrmAsignarDescuentoList.designer.cs">
       <DependentUpon>FrmAsignarDescuentoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarBonoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarBonoMant.designer.cs">
+      <DependentUpon>FrmAsignarBonoMant.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmAsignarObservacionList.cs">
       <SubType>Form</SubType>
@@ -79,17 +91,23 @@
     <Compile Include="RecursosHumanos\FrmAsignarObservacionMant.designer.cs">
       <DependentUpon>FrmAsignarObservacionMant.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\FrmCargoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmCargoMant.designer.cs">
+      <DependentUpon>FrmCargoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoBonoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoBonoMant.designer.cs">
+      <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmTipoObservacionMant.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RecursosHumanos\FrmTipoObservacionMant.designer.cs">
       <DependentUpon>FrmTipoObservacionMant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmHorarioAsignarBonos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmHorarioAsignarBonos.designer.cs">
-      <DependentUpon>FrmHorarioAsignarBonos.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmHorarioMensualMant.cs">
       <SubType>Form</SubType>
@@ -108,12 +126,6 @@
     </Compile>
     <Compile Include="RecursosHumanos\FrmPlanillaDetalleAsistencia.designer.cs">
       <DependentUpon>FrmPlanillaDetalleAsistencia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmCargoMant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmCargoMant.designer.cs">
-      <DependentUpon>FrmCargoMant.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmSalaList.cs">
       <SubType>Form</SubType>
@@ -216,12 +228,6 @@
     </Compile>
     <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.designer.cs">
       <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmTipoBonoMant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmTipoBonoMant.designer.cs">
-      <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmInasistenciaList.cs">
       <SubType>Form</SubType>
@@ -350,8 +356,14 @@
     <EmbeddedResource Include="RecursosHumanos\FrmAsignarBonoList.resx">
       <DependentUpon>FrmAsignarBonoList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarBonoCalcular.resx">
+      <DependentUpon>FrmAsignarBonoCalcular.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmAsignarDescuentoList.resx">
       <DependentUpon>FrmAsignarDescuentoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarBonoMant.resx">
+      <DependentUpon>FrmAsignarBonoMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmAsignarObservacionList.resx">
       <DependentUpon>FrmAsignarObservacionList.cs</DependentUpon>
@@ -362,11 +374,14 @@
     <EmbeddedResource Include="RecursosHumanos\FrmAsignarObservacionMant.resx">
       <DependentUpon>FrmAsignarObservacionMant.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmCargoMant.resx">
+      <DependentUpon>FrmCargoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmTipoBonoMant.resx">
+      <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmTipoObservacionMant.resx">
       <DependentUpon>FrmTipoObservacionMant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmHorarioAsignarBonos.resx">
-      <DependentUpon>FrmHorarioAsignarBonos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmHorarioMensualMant.resx">
       <DependentUpon>FrmHorarioMensualMant.cs</DependentUpon>
@@ -376,9 +391,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmPlanillaDetalleAsistencia.resx">
       <DependentUpon>FrmPlanillaDetalleAsistencia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmCargoMant.resx">
-      <DependentUpon>FrmCargoMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmSalaList.resx">
       <DependentUpon>FrmSalaList.cs</DependentUpon>
@@ -430,9 +442,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmTipoDescuentoMant.resx">
       <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmTipoBonoMant.resx">
-      <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmInasistenciaList.resx">
       <DependentUpon>FrmInasistenciaList.cs</DependentUpon>

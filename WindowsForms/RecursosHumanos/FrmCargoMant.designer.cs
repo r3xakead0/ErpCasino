@@ -46,13 +46,15 @@
             this.dgvCargos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCargos.Location = new System.Drawing.Point(0, 0);
             this.dgvCargos.Name = "dgvCargos";
-            this.dgvCargos.Size = new System.Drawing.Size(609, 331);
+            this.dgvCargos.Size = new System.Drawing.Size(663, 209);
             this.dgvCargos.TabIndex = 0;
+            this.dgvCargos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvCargos_EditingControlShowing);
+            this.dgvCargos.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargoes_RowLeave);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(500, 10);
+            this.btnGuardar.Location = new System.Drawing.Point(554, 10);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 16;
@@ -63,7 +65,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(394, 10);
+            this.btnEliminar.Location = new System.Drawing.Point(448, 10);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 17;
@@ -83,7 +85,7 @@
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(615, 397);
+            this.tlpPrincipal.Size = new System.Drawing.Size(669, 275);
             this.tlpPrincipal.TabIndex = 19;
             // 
             // pnlInferior
@@ -91,9 +93,9 @@
             this.pnlInferior.Controls.Add(this.btnGuardar);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 340);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 218);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(609, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(663, 54);
             this.pnlInferior.TabIndex = 1;
             // 
             // pnlSuperior
@@ -102,18 +104,19 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSuperior.Location = new System.Drawing.Point(3, 3);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(609, 331);
+            this.pnlSuperior.Size = new System.Drawing.Size(663, 209);
             this.pnlSuperior.TabIndex = 0;
             // 
             // FrmCargoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 397);
+            this.ClientSize = new System.Drawing.Size(669, 275);
             this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.Name = "FrmCargoMant";
             this.Text = "Mantenimiento de Cargos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCargoMant_FormClosing);
             this.Load += new System.EventHandler(this.FrmCargoMant_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCargos)).EndInit();
             this.tlpPrincipal.ResumeLayout(false);

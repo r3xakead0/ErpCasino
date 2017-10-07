@@ -144,16 +144,16 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         private void CargarCargos(bool Seleccione = false)
         {
-            var lstCargos = new LN.Cargo().ListarCombo();
+            var lstUiCargos = new LN.Cargo().ListarCombo();
 
-            lstCargos = lstCargos.OrderBy(o => o.Nombre).Distinct().ToList();
+            lstUiCargos = lstUiCargos.OrderBy(o => o.Nombre).Distinct().ToList();
 
             if (Seleccione == true)
-                lstCargos.Insert(0, new BE.Cargo() { IdCargo = 0, Nombre = "Seleccione" });
+                lstUiCargos.Insert(0, new BE.UI.Cargo() { Id = 0, Nombre = "Seleccione", Descripcion = "" });
 
-            this.CboCargo.DataSource = lstCargos;
+            this.CboCargo.DataSource = lstUiCargos;
             this.CboCargo.DisplayMember = "Nombre";
-            this.CboCargo.ValueMember = "IdCargo";
+            this.CboCargo.ValueMember = "Id";
         }
 
         private void CargarEmpleados(bool Seleccione = false)
@@ -447,9 +447,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 uiHorario.FechaHoraInicio = this.dtpTurnoDesde.Value;
                 uiHorario.FechaHoraFinal = this.dtpTurnoHasta.Value;
 
-                var beCargo = (BE.Cargo)this.CboCargo.SelectedItem;
-                uiHorario.CargoId = beCargo.IdCargo;
-                uiHorario.CargoNombre = beCargo.Nombre;
+                var uiCargo = (BE.UI.Cargo)this.CboCargo.SelectedItem;
+                uiHorario.CargoId = uiCargo.Id;
+                uiHorario.CargoNombre = uiCargo.Nombre;
 
                 uiHorario.Fecha = DateTime.Parse(this.txtFechaDia.Text);
 

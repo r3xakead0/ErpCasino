@@ -79,8 +79,11 @@ namespace ErpCasino.BusinessLibrary.LN
 
         private BE.UI.Horario HorarioBEtoUI(BE.Horario beHorario)
         {
-            var beCargo = new BE.Cargo() { IdCargo = beHorario.IdCargo };
-            bool esCargo = new DA.Cargo().Obtener(ref beCargo);
+
+            string nombreCargo = "";
+            var beCargo = new DA.Cargo().Obtener(beHorario.IdCargo);
+            if (beCargo != null)
+                nombreCargo = beCargo.Nombre;
 
             var uiHorario = new BE.UI.Horario();
             uiHorario.IdHorario = beHorario.IdHorario;
@@ -90,7 +93,7 @@ namespace ErpCasino.BusinessLibrary.LN
             uiHorario.FechaHoraFinal = beHorario.FechaFinal.Add(beHorario.HoraFinal);
             uiHorario.SalaId = beHorario.IdSala;
             uiHorario.CargoId = beHorario.IdCargo;
-            uiHorario.CargoNombre = (esCargo ? beCargo.Nombre : "");
+            uiHorario.CargoNombre = nombreCargo;
             uiHorario.Fecha = beHorario.Fecha;
             uiHorario.EmpleadoCodigo = beHorario.Codigo;
 

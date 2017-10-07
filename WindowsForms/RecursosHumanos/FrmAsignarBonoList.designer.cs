@@ -34,8 +34,12 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
+            this.btnCalcular = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
+            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
+            this.lblEmpleado = new System.Windows.Forms.Label();
+            this.cboEmpleado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboMes = new System.Windows.Forms.ComboBox();
             this.cboAnho = new System.Windows.Forms.ComboBox();
@@ -109,6 +113,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnCalcular);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Controls.Add(this.btnEditar);
@@ -117,6 +122,17 @@
             this.pnlInferior.Name = "pnlInferior";
             this.pnlInferior.Size = new System.Drawing.Size(885, 54);
             this.pnlInferior.TabIndex = 1;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCalcular.Location = new System.Drawing.Point(9, 10);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(100, 30);
+            this.btnCalcular.TabIndex = 19;
+            this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
             // pnlSuperior
             // 
@@ -129,6 +145,9 @@
             // 
             // pnlFiltro
             // 
+            this.pnlFiltro.Controls.Add(this.txtEmpleadoCodigo);
+            this.pnlFiltro.Controls.Add(this.lblEmpleado);
+            this.pnlFiltro.Controls.Add(this.cboEmpleado);
             this.pnlFiltro.Controls.Add(this.label1);
             this.pnlFiltro.Controls.Add(this.cboMes);
             this.pnlFiltro.Controls.Add(this.cboAnho);
@@ -138,6 +157,34 @@
             this.pnlFiltro.Name = "pnlFiltro";
             this.pnlFiltro.Size = new System.Drawing.Size(885, 34);
             this.pnlFiltro.TabIndex = 2;
+            // 
+            // txtEmpleadoCodigo
+            // 
+            this.txtEmpleadoCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(523, 7);
+            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
+            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
+            this.txtEmpleadoCodigo.TabIndex = 92;
+            // 
+            // lblEmpleado
+            // 
+            this.lblEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEmpleado.AutoSize = true;
+            this.lblEmpleado.Location = new System.Drawing.Point(431, 10);
+            this.lblEmpleado.Name = "lblEmpleado";
+            this.lblEmpleado.Size = new System.Drawing.Size(60, 13);
+            this.lblEmpleado.TabIndex = 90;
+            this.lblEmpleado.Text = "Empleado :";
+            // 
+            // cboEmpleado
+            // 
+            this.cboEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmpleado.FormattingEnabled = true;
+            this.cboEmpleado.Location = new System.Drawing.Point(615, 7);
+            this.cboEmpleado.Name = "cboEmpleado";
+            this.cboEmpleado.Size = new System.Drawing.Size(261, 21);
+            this.cboEmpleado.TabIndex = 91;
             // 
             // label1
             // 
@@ -212,5 +259,9 @@
         private System.Windows.Forms.ComboBox cboMes;
         private System.Windows.Forms.ComboBox cboAnho;
         internal System.Windows.Forms.Label LblFechaHora;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.TextBox txtEmpleadoCodigo;
+        internal System.Windows.Forms.Label lblEmpleado;
+        private System.Windows.Forms.ComboBox cboEmpleado;
     }
 }

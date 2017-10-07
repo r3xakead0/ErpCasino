@@ -161,9 +161,15 @@ namespace ErpCasino.BusinessLibrary.LN
                     uiInasistencia.CargoId = int.Parse(drInasistencia["IdCargo"].ToString());
                     if (uiInasistencia.CargoId > 0)
                     {
-                        var beCargo = new BE.Cargo() { IdCargo = uiInasistencia.CargoId };
-                        bool exists = new DA.Cargo().Obtener(ref beCargo);
-                        uiInasistencia.CargoNombre = (exists == true ? beCargo.Nombre : "");
+                        int idCargo = uiInasistencia.CargoId;
+                        string nombreCargo = "";
+
+                        var beCargo = new DA.Cargo().Obtener(idCargo);
+                        if (beCargo != null)
+                            nombreCargo = beCargo.Nombre;
+                        beCargo = null;
+
+                        uiInasistencia.CargoNombre = nombreCargo;
                     }
 
                     uiInasistencia.EmpleadoCodigo = drInasistencia["Codigo"].ToString();

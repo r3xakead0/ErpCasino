@@ -3,6 +3,7 @@ using ErpCasino.BusinessLibrary.DA;
 using System.Data;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace ErpCasino.BusinessLibrary.LN
 {
@@ -10,28 +11,19 @@ namespace ErpCasino.BusinessLibrary.LN
     public class Cargo
     {
 
-        public List<BE.Cargo> Listar()
+        private BE.UI.Cargo BeToUi(BE.Cargo beCargo)
         {
-
-            var lstBeCargos = new List<BE.Cargo>();
-
             try
             {
+                var uiCargo = new BE.UI.Cargo();
 
-                var daCargo = new DA.Cargo();
+                uiCargo.Id = beCargo.IdCargo;
+                uiCargo.Nombre = beCargo.Nombre;
+                uiCargo.Descripcion = beCargo.Descripcion;
+                uiCargo.Activo = beCargo.Activo;
+                uiCargo.Bono = beCargo.Bono;
 
-                DataTable dt = daCargo.Listar();
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    var dr = dt.Rows[i];
-                    var beCargo = new BE.Cargo();
-                    daCargo.Cargar(ref beCargo, ref dr);
-                    lstBeCargos.Add(beCargo);
-                }
-
-                return lstBeCargos;
-
+                return uiCargo;
             }
             catch (Exception ex)
             {
@@ -39,17 +31,17 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public BE.Cargo Obtener (int idCargo)
+        private BE.Cargo UiToBe(BE.UI.Cargo uiCargo)
         {
             try
             {
-                var beCargo = new BE.Cargo() { IdCargo = idCargo };
+                var beCargo = new BE.Cargo();
 
-                bool rpta = new DA.Cargo().Obtener(ref beCargo);
-                if (rpta == false)
-                {
-                    beCargo = null;
-                }
+                beCargo.IdCargo = uiCargo.Id;
+                beCargo.Nombre = uiCargo.Nombre;
+                beCargo.Descripcion = uiCargo.Descripcion;
+                beCargo.Activo = uiCargo.Activo;
+                beCargo.Bono = uiCargo.Bono;
 
                 return beCargo;
             }
@@ -59,28 +51,90 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public List<BE.Cargo> ListarCombo()
+        public bool Insertar(ref BE.UI.Cargo uiCargo)
         {
-
-            List<BE.Cargo> lst = new List<BE.Cargo>();
-
             try
             {
+                var beCargo = this.UiToBe(uiCargo);
 
-                var daCargo = new DA.Cargo();
+                bool rpta = new DA.Cargo().Insertar(ref beCargo);
+                uiCargo = this.BeToUi(beCargo);
 
-                DataTable dt = daCargo.Listar(new BE.Cargo() { Activo = true });
+                return rpta;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+        public bool Actualizar(BE.UI.Cargo uiCargo)
+        {
+            try
+            {
+                var beCargo = this.UiToBe(uiCargo);
+                return new DA.Cargo().Actualizar(beCargo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Eliminar(int idCargo)
+        {
+            try
+            {
+                return new DA.Cargo().Eliminar(idCargo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<BE.UI.Cargo> Listar()
+        {
+            try
+            {
+                var lstUiCargos = new List<BE.UI.Cargo>();
+
+                var lstBeCargos = new DA.Cargo().Listar();
+                foreach (BE.Cargo beCargo in lstBeCargos)
                 {
-                    var dr = dt.Rows[i];
-                    var beCargo = new BE.Cargo();
-                    daCargo.Cargar(ref beCargo,ref dr);
-                    lst.Add(beCargo);
+                    BE.UI.Cargo uiCargo = this.BeToUi(beCargo);
+                    lstUiCargos.Add(uiCargo);
                 }
 
-                return lst;
+                return lstUiCargos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public BE.UI.Cargo Obtener(int idCargo)
+        {
+            try
+            {
+                var beCargo = new DA.Cargo().Obtener(idCargo);
+                var uiCargo = this.BeToUi(beCargo);
+                return uiCargo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<BE.UI.Cargo> ListarCombo()
+        {
+            try
+            {
+                var lstUiCargos = this.Listar();
+                lstUiCargos = lstUiCargos.Where(x => x.Activo == true).ToList();
+                return lstUiCargos;
             }
             catch (Exception ex)
             {

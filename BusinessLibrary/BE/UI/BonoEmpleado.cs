@@ -10,7 +10,9 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public string EmpleadoCodigo { get; set; }
         public string EmpleadoNombreCompleto { get; set; }
         public int BonoID { get; set; }
+        public string BonoTipo { get; set; } //Manual o Calculado
         public string BonoNombre { get; set; }
+        public string Motivo { get; set; }
         public double Monto { get; set; }
 
     }

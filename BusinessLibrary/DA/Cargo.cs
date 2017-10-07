@@ -1,4 +1,5 @@
 using BE = ErpCasino.BusinessLibrary.BE;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System;
@@ -7,22 +8,98 @@ namespace ErpCasino.BusinessLibrary.DA
 {
     public class Cargo
     {
-        public void Cargar(ref BE.Cargo beCargo, ref DataRow dr)
+
+        public bool Insertar(ref BE.Cargo beCargo)
         {
             try
             {
-                beCargo.IdCargo = dr["IdCargo"] == DBNull.Value ? 0 : int.Parse(dr["IdCargo"].ToString());
-                beCargo.Nombre = dr["Nombre"] == DBNull.Value ? "" : dr["Nombre"].ToString();
-                beCargo.Descripcion = dr["Descripcion"] == DBNull.Value ? "" : dr["Descripcion"].ToString();
-                beCargo.Activo = dr["Activo"] == DBNull.Value ? false : bool.Parse(dr["Activo"].ToString());
+                string sp = "SpTbCargoInsertar";
+
+                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
+                SqlCommand cmd = new SqlCommand(sp, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                int rowsAffected = 0;
+                cnn.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@IDCARGO", beCargo.IdCargo));
+                cmd.Parameters["@IDCARGO"].Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beCargo.Nombre));
+                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beCargo.Descripcion));
+                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beCargo.Activo));
+                cmd.Parameters.Add(new SqlParameter("@BONO", beCargo.Bono));
+
+                rowsAffected = cmd.ExecuteNonQuery();
+                beCargo.IdCargo = int.Parse(cmd.Parameters["@IDCARGO"].Value.ToString());
+
+                return (rowsAffected > 0 ? true : false);
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public DataTable Listar(BE.Cargo beCargo = null)
+
+        public bool Actualizar(BE.Cargo beCargo)
         {
+            try
+            {
+                string sp = "SpTbCargoActualizar";
+
+                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
+                SqlCommand cmd = new SqlCommand(sp, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                int rowsAffected = 0;
+                cnn.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@IDCARGO", beCargo.IdCargo));
+                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beCargo.Nombre));
+                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beCargo.Descripcion));
+                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beCargo.Activo));
+                cmd.Parameters.Add(new SqlParameter("@BONO", beCargo.Bono));
+
+                rowsAffected = cmd.ExecuteNonQuery();
+
+                return (rowsAffected > 0 ? true : false);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Eliminar(int idCargo)
+        {
+            try
+            {
+                string sp = "SpTbCargoEliminar";
+
+                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
+                SqlCommand cmd = new SqlCommand(sp, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                int rowsAffected = 0;
+                cnn.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@IDCARGO", idCargo));
+
+                rowsAffected = cmd.ExecuteNonQuery();
+
+                return (rowsAffected > 0 ? true : false);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<BE.Cargo> Listar()
+        {
+            var lstCargos = new List<BE.Cargo>();
             try
             {
                 string sp = "SpTbCargoListar";
@@ -33,15 +110,21 @@ namespace ErpCasino.BusinessLibrary.DA
                 SqlCommand cmd = new SqlCommand(sp, cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                if (beCargo != null)
-                    dad.SelectCommand.Parameters.Add(new SqlParameter("@ACTIVO", beCargo.Activo));
-                
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var beCargo = new BE.Cargo();
 
-                return dt;
+                    beCargo.IdCargo = int.Parse(reader["IdCargo"].ToString());
+                    beCargo.Nombre = reader["Nombre"].ToString();
+                    beCargo.Descripcion = reader["Descripcion"].ToString();
+                    beCargo.Activo = bool.Parse(reader["Activo"].ToString());
+                    beCargo.Bono = double.Parse(reader["Bono"].ToString());
 
+                    lstCargos.Add(beCargo);
+                }
+
+                return lstCargos;
             }
             catch (Exception ex)
             {
@@ -49,35 +132,35 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public bool Obtener(ref BE.Cargo beCargo)
+        public BE.Cargo Obtener(int idCargo)
         {
-            bool rpta = false;
+            BE.Cargo beCargo = null;
             try
             {
                 string sp = "SpTbCargoObtener";
 
-                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
+
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand(sp, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@IDCARGO", idCargo));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                 {
-                    cnn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sp, cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    beCargo = new BE.Cargo();
 
-                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDCARGO", beCargo.IdCargo));
+                    beCargo.IdCargo = int.Parse(reader["IdCargo"].ToString());
+                    beCargo.Nombre = reader["Nombre"].ToString();
+                    beCargo.Descripcion = reader["Descripcion"].ToString();
+                    beCargo.Activo = bool.Parse(reader["Activo"].ToString());
+                    beCargo.Bono = double.Parse(reader["Bono"].ToString());
 
-                    DataTable dt = new DataTable();
-                    dad.Fill(dt);
-
-                    if ((dt.Rows.Count == 1))
-                    {
-                        DataRow dr = dt.Rows[0];
-                        Cargar(ref beCargo, ref dr);
-                        rpta = true;
-                    }
                 }
 
-                return rpta;
+                return beCargo;
 
             }
             catch (Exception ex)
