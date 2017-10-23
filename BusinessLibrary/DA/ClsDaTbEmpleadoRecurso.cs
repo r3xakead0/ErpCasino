@@ -101,26 +101,31 @@ namespace ErpCasino.BusinessLibrary.DA
         public BE.ClsBeTbEmpleadoRecurso Obtener(int idEmpleado)
         {
             BE.ClsBeTbEmpleadoRecurso beEmpleadoRecurso = null;
+
             try
             {
                 string sp = "SpTbEmpleadoRecursoObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDEMPLEADO", idEmpleado));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    beEmpleadoRecurso = this.Cargar(dr);
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDEMPLEADO", idEmpleado));
+
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        beEmpleadoRecurso = this.Cargar(dr);
+                    }
+
+                    cnn.Close();
                 }
 
                 return beEmpleadoRecurso;

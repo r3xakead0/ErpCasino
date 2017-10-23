@@ -40,7 +40,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -52,11 +52,23 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 Util.ErrorMessage(ex.Message);
             }
         }
-        
+
+        private void FrmSueldoMinimoMant_ResizeEnd(object sender, EventArgs e)
+        {
+            try
+            {
+                Util.AutoWidthColumn(ref this.dgvSueldosMinimos, "FechaInicio");
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         #endregion
 
         #region Metodos
-        
+
         private void CargarSueldosMinimos()
         {
             try
@@ -92,13 +104,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.dgvSueldosMinimos.Columns["Monto"].Visible = true;
                 this.dgvSueldosMinimos.Columns["Monto"].HeaderText = "Monto";
-                this.dgvSueldosMinimos.Columns["Monto"].Width = 100;
+                this.dgvSueldosMinimos.Columns["Monto"].Width = 70;
                 this.dgvSueldosMinimos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvSueldosMinimos.Columns["Monto"].DefaultCellStyle.Format = "N2";
 
                 this.dgvSueldosMinimos.Columns["Activo"].Visible = true;
                 this.dgvSueldosMinimos.Columns["Activo"].HeaderText = "Activo";
-                this.dgvSueldosMinimos.Columns["Activo"].Width = 100;
+                this.dgvSueldosMinimos.Columns["Activo"].Width = 70;
                 this.dgvSueldosMinimos.Columns["Activo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 Util.AutoWidthColumn(ref this.dgvSueldosMinimos, "FechaInicio");

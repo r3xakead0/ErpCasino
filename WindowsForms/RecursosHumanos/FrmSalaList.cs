@@ -3,11 +3,13 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.Drawing;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmSalaList : Form
     {
+
         public FrmSalaList()
         {
             InitializeComponent();
@@ -19,8 +21,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                this.CargarSalas();
-                this.FormatoSalas();
+                this.CargarListadoSalas();
+                this.FormatoListadoSalas();
 
             }
             catch (Exception ex)
@@ -29,11 +31,27 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void FrmSalaList_ResizeEnd(object sender, EventArgs e)
         {
             try
             {
-                
+                Util.AutoWidthColumn(ref this.dgvSalas, "Nombre");
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var frmSalaMant = new FrmSalaMant(this);
+                frmSalaMant.MdiParent = this.MdiParent;
+                frmSalaMant.Show();
+
             }
             catch (Exception ex)
             {
@@ -45,30 +63,57 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-
-                
+                if (this.dgvSalas.CurrentRow != null)
+                {
+                    var uiSala = (BE.UI.Sala)this.dgvSalas.CurrentRow.DataBoundItem;
+                    this.Editar(uiSala);
+                }
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
             }
         }
-        
-        #endregion
 
-        #region Metodos
-        
-        private void CargarSalas()
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
-                var lstBeSalas = new LN.Sala().Listar();
+                if (this.dgvSalas.CurrentRow != null)
+                {
 
-                var source = new BindingSource();
-                source.DataSource = lstBeSalas;
+                    if (Util.ConfirmationMessage("¿Desea eliminar la Sala seleccionada?") == false)
+                        return;
 
-                this.dgvSalas.DataSource = source;
-                
+                    var uiSala = (BE.UI.Sala)this.dgvSalas.CurrentRow.DataBoundItem;
+
+                    bool rpta = new LN.Sala().Eliminar(uiSala.ID);
+
+                    if (rpta == true)
+                    {
+                        Util.InformationMessage("Se eliminó la Sala seleccionada");
+                        this.CargarListadoSalas();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region Metodos
+
+        private void Editar(BE.UI.Sala uiSala)
+        {
+            try
+            {
+                var frmSalaMant = new FrmSalaMant(this);
+                frmSalaMant.MdiParent = this.MdiParent;
+                frmSalaMant.Show();
+                frmSalaMant.Cargar(uiSala);
             }
             catch (Exception ex)
             {
@@ -76,18 +121,36 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void FormatoSalas()
+        public void CargarListadoSalas()
+        {
+            try
+            {
+                var lstUiSalas = new LN.Sala().Listar();
+
+                var source = new BindingSource();
+                source.DataSource = lstUiSalas;
+
+                this.dgvSalas.DataSource = source;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void FormatoListadoSalas()
         {
             try
             {
                 Util.FormatDatagridview(ref this.dgvSalas);
-   
-                for (int col = 0; col < this.dgvSalas.Columns.Count; col++)
-                    this.dgvSalas.Columns[col].Visible = false;
+
+                for (int i = 0; i < this.dgvSalas.Columns.Count; i++)
+                    this.dgvSalas.Columns[i].Visible = false;
 
                 this.dgvSalas.Columns["Nombre"].Visible = true;
                 this.dgvSalas.Columns["Nombre"].HeaderText = "Nombre";
-                this.dgvSalas.Columns["Nombre"].Width = 150;
+                this.dgvSalas.Columns["Nombre"].Width = 100;
                 this.dgvSalas.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvSalas.Columns["Departamento"].Visible = true;
@@ -105,6 +168,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvSalas.Columns["Distrito"].Width = 100;
                 this.dgvSalas.Columns["Distrito"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
+                this.dgvSalas.Columns["Zona"].Visible = true;
+                this.dgvSalas.Columns["Zona"].HeaderText = "Zona";
+                this.dgvSalas.Columns["Zona"].Width = 100;
+                this.dgvSalas.Columns["Zona"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
                 this.dgvSalas.Columns["Activo"].Visible = true;
                 this.dgvSalas.Columns["Activo"].HeaderText = "Activo";
                 this.dgvSalas.Columns["Activo"].Width = 70;
@@ -118,7 +186,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+
         #endregion
 
+        
     }
 }

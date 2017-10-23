@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Drawing;
-using System.Data;
 using System.Collections.Generic;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
@@ -136,7 +134,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #region Formulario
 
-        private void FrmAfpComisionMant_Load(object sender, EventArgs e)
+        private void FrmOnpComisionMant_Load(object sender, EventArgs e)
         {
             try
             {

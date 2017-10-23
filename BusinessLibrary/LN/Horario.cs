@@ -3,6 +3,7 @@ using DA = ErpCasino.BusinessLibrary.DA;
 using System.Data;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace ErpCasino.BusinessLibrary.LN
 {
@@ -356,6 +357,42 @@ namespace ErpCasino.BusinessLibrary.LN
                 }
 
                 return lstUiHorarioSemanal;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Listar los Empleados y Candidatos que estan asignado en el horario
+        /// por Sala, Mes y Año
+        /// </summary>
+        /// <param name="anho">Numero de año. Ejm: 2017</param>
+        /// <param name="semana">Numero de mes. Ejm: 1 (enero) o 12 (Diciembre)</param>
+        /// <param name="idSala">ID sala</param>
+        /// <returns></returns>
+        public List<BE.Record> ListarColaborados(int anho, int semana, int idSala)
+        {
+            var lstColaborados = new List<BE.Record>();
+            try
+            {
+                var lstEmpleados = new LN.Empleado().Combo();
+                var lstCandidatos = new LN.Candidato().Combo();
+                lstEmpleados.AddRange(lstCandidatos);
+                var lstColaboradores = lstEmpleados.OrderBy(o => o.Nombre).Distinct().ToList();
+            
+                var lstCodigos = new DA.Horario().ListarColaborados(anho, semana, idSala);
+                foreach (string codigo in lstCodigos)
+                {
+                    var colaborador = lstColaboradores.Where(x => x.Codigo.Equals(codigo)).FirstOrDefault();
+                    if (colaborador != null)
+                    {
+                        lstColaborados.Add(colaborador);
+                    }  
+                }
+
+                return lstColaborados;
             }
             catch (Exception ex)
             {

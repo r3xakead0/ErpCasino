@@ -359,21 +359,6 @@ namespace ErpCasino.WindowsForms
             }
         }
 
-        private void tsmSalas_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frmSala = new FrmSalaList();
-                frmSala.MdiParent = this;
-                frmSala.StartPosition = FormStartPosition.CenterScreen;
-                frmSala.Show();
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
         private void tsmCargos_Click(object sender, EventArgs e)
         {
             try
@@ -493,6 +478,50 @@ namespace ErpCasino.WindowsForms
                 Util.ErrorMessage(ex.Message);
             }
         }
-        
+
+        private void tsmSalasMantenimiento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmSala = new FrmSalaList();
+                frmSala.MdiParent = this;
+                frmSala.StartPosition = FormStartPosition.CenterScreen;
+                frmSala.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void tsmSalasMeta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmSalaMeta = new FrmSalaMetaMant();
+                frmSalaMeta.MdiParent = this;
+                frmSalaMeta.StartPosition = FormStartPosition.CenterScreen;
+                frmSalaMeta.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void tsmColaboradoresCompromisos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmColaboradorComprometido = new FrmColaboradorComprometidoMant();
+                frmColaboradorComprometido.MdiParent = this;
+                frmColaboradorComprometido.StartPosition = FormStartPosition.CenterScreen;
+                frmColaboradorComprometido.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
     }
 }

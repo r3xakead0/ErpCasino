@@ -2,7 +2,7 @@ using System;
 
 namespace ErpCasino.BusinessLibrary.BE.UI
 {
-    public class Observacion : IDisposable
+    public class Observacion 
     {
 
         private int pId;
@@ -78,11 +78,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
             this.pActivo = Activo.Si;
         }
 
-        public void Dispose()
-        {
-            this.Dispose();
-        }
-        
+       
     }
     
 }

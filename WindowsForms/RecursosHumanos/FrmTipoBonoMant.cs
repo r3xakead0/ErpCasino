@@ -160,41 +160,33 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-
-                try
+                if (this.dgvBonos.CurrentRow != null)
                 {
-                    if (this.dgvBonos.CurrentRow != null)
+
+                    var uiBono = (BE.UI.Bono)this.dgvBonos.CurrentRow.DataBoundItem;
+
+                    if (uiBono.Calculado == true)
+                        throw new Exception("No se puede eliminar una observación calculada");
+
+                    if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
+                        return;
+
+                    if (uiBono.Id > 0)
                     {
-
-                        var uiBono = (BE.UI.Bono)this.dgvBonos.CurrentRow.DataBoundItem;
-
-                        if (uiBono.Calculado == true)
-                            throw new Exception("No se puede eliminar una observación calculada");
-
-                        if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
-                            return;
-
-                        if (uiBono.Id > 0)
-                        {
-                            this.lstEliminados.Add(uiBono);
-                        }
-
-                        this.lstCreados.Remove(uiBono);
-                        this.lstModificados.Remove(uiBono);
-
-                        this.dgvBonos.Rows.RemoveAt(this.dgvBonos.CurrentRow.Index);
+                        this.lstEliminados.Add(uiBono);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Util.ErrorMessage(ex.Message);
-                }
 
+                    this.lstCreados.Remove(uiBono);
+                    this.lstModificados.Remove(uiBono);
+
+                    this.dgvBonos.Rows.RemoveAt(this.dgvBonos.CurrentRow.Index);
+                }
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
             }
+
         }
         
         #endregion

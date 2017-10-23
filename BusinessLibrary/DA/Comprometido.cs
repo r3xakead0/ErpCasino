@@ -14,23 +14,28 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbComprometidoInsertar";
+                int rowsAffected = 0;
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", beComprometido.IdComprometido));
-                cmd.Parameters["@IDCOMPROMETIDO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", beComprometido.Anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", beComprometido.Mes));
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", beComprometido.Sala.IdSala));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beComprometido.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@COMPROMETIDO", beComprometido.Estado));
+                    cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", beComprometido.IdComprometido));
+                    cmd.Parameters["@IDCOMPROMETIDO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", beComprometido.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", beComprometido.Mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", beComprometido.Sala.IdSala));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beComprometido.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@COMPROMETIDO", beComprometido.Estado));
 
-                int rowsAffected = cmd.ExecuteNonQuery();
-                beComprometido.IdComprometido = int.Parse(cmd.Parameters["@IDCOMPROMETIDO"].Value.ToString());
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beComprometido.IdComprometido = int.Parse(cmd.Parameters["@IDCOMPROMETIDO"].Value.ToString());
+
+                    cnn.Close();
+                }
 
                 return (rowsAffected > 0 ? true : false);
 
@@ -46,21 +51,26 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbComprometidoActualizar";
+                int rowsAffected = 0;
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", beComprometido.IdComprometido));
-                cmd.Parameters.Add(new SqlParameter("@ANHO", beComprometido.Anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", beComprometido.Mes));
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", beComprometido.Sala.IdSala));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beComprometido.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@COMPROMETIDO", beComprometido.Estado));
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", beComprometido.IdComprometido));
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", beComprometido.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", beComprometido.Mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", beComprometido.Sala.IdSala));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beComprometido.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@COMPROMETIDO", beComprometido.Estado));
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
 
+                    cnn.Close();
+                }
+                    
                 return (rowsAffected > 0 ? true : false);
 
             }
@@ -75,15 +85,18 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbComprometidoEliminar";
+                int rowsAffected = 0;
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", idComprometido));
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", idComprometido));
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return (rowsAffected > 0 ? true : false);
 
@@ -102,41 +115,44 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbComprometidoListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", mes));
-
-                if (idSala == null || idSala == 0)
-                    cmd.Parameters.Add(new SqlParameter("@IDSALA", DBNull.Value));
-                else
-                    cmd.Parameters.Add(new SqlParameter("@IDSALA", (int)idSala));
-
-                if (codigoEmpleado == null || codigoEmpleado.Length == 0)
-                    cmd.Parameters.Add(new SqlParameter("@IDSALA", DBNull.Value));
-                else
-                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", codigoEmpleado));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    var beComprometido = new BE.Comprometido();
+                    cnn.Open();
 
-                    beComprometido.IdComprometido = reader["IdComprometido"] == DBNull.Value ? 0 : int.Parse(reader["IdComprometido"].ToString());
-                    beComprometido.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
-                    beComprometido.Mes = reader["Mes"] == DBNull.Value ? 0 : int.Parse(reader["Mes"].ToString());
-                    beComprometido.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
-                    beComprometido.Estado = reader["Comprometido"] == DBNull.Value ? false : bool.Parse(reader["Comprometido"].ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
 
-                    beComprometido.Sala = new BE.Sala()
+                    if (idSala == null || idSala == 0)
+                        cmd.Parameters.Add(new SqlParameter("@IDSALA", DBNull.Value));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@IDSALA", (int)idSala));
+
+                    if (codigoEmpleado == null || codigoEmpleado.Length == 0)
+                        cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", DBNull.Value));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", codigoEmpleado));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        IdSala = reader["IdSala"] == DBNull.Value ? 0 : int.Parse(reader["IdSala"].ToString())
-                    };
+                        var beComprometido = new BE.Comprometido();
 
-                    lstComprometido.Add(beComprometido);
+                        beComprometido.IdComprometido = reader["IdComprometido"] == DBNull.Value ? 0 : int.Parse(reader["IdComprometido"].ToString());
+                        beComprometido.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                        beComprometido.Mes = reader["Mes"] == DBNull.Value ? 0 : int.Parse(reader["Mes"].ToString());
+                        beComprometido.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
+                        beComprometido.Estado = reader["Comprometido"] == DBNull.Value ? false : bool.Parse(reader["Comprometido"].ToString());
+
+                        beComprometido.Sala = new BE.Sala()
+                        {
+                            IdSala = reader["IdSala"] == DBNull.Value ? 0 : int.Parse(reader["IdSala"].ToString())
+                        };
+
+                        lstComprometido.Add(beComprometido);
+                    }
+
                 }
 
                 return lstComprometido;
@@ -155,29 +171,31 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbComprometidoObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", idComprometido));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    beComprometido = new BE.Comprometido();
+                    cnn.Open();
 
-                    beComprometido.IdComprometido = reader["IdComprometido"] == DBNull.Value ? 0 : int.Parse(reader["IdComprometido"].ToString());
-                    beComprometido.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
-                    beComprometido.Mes = reader["Mes"] == DBNull.Value ? 0 : int.Parse(reader["Mes"].ToString());
-                    beComprometido.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
-                    beComprometido.Estado = reader["Comprometido"] == DBNull.Value ? false : bool.Parse(reader["Comprometido"].ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDCOMPROMETIDO", idComprometido));
 
-                    beComprometido.Sala = new BE.Sala()
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        IdSala = reader["IdSala"] == DBNull.Value ? 0 : int.Parse(reader["IdSala"].ToString())
-                    };
+                        beComprometido = new BE.Comprometido();
 
+                        beComprometido.IdComprometido = reader["IdComprometido"] == DBNull.Value ? 0 : int.Parse(reader["IdComprometido"].ToString());
+                        beComprometido.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                        beComprometido.Mes = reader["Mes"] == DBNull.Value ? 0 : int.Parse(reader["Mes"].ToString());
+                        beComprometido.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
+                        beComprometido.Estado = reader["Comprometido"] == DBNull.Value ? false : bool.Parse(reader["Comprometido"].ToString());
+
+                        beComprometido.Sala = new BE.Sala()
+                        {
+                            IdSala = reader["IdSala"] == DBNull.Value ? 0 : int.Parse(reader["IdSala"].ToString())
+                        };
+
+                    }
                 }
 
                 return beComprometido;

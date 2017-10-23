@@ -224,9 +224,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 458);
             this.Controls.Add(this.tlpPrincipal);
+            this.MaximizeBox = false;
             this.Name = "FrmOnpComisionMant";
             this.Text = "Mantenimiento de Comisiones de ONP";
-            this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);
+            this.Load += new System.EventHandler(this.FrmOnpComisionMant_Load);
             this.tlpPrincipal.ResumeLayout(false);
             this.pnlPrincipal.ResumeLayout(false);
             this.grpPeriodo.ResumeLayout(false);

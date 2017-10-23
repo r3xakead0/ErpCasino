@@ -70,7 +70,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (this.dgvCts.CurrentRow != null)
                 {
 
-                    if (Util.ConfirmationMessage("¿Desea eliminar al adelanto seleccionado?") == false)
+                    if (Util.ConfirmationMessage("¿Desea eliminar el registro seleccionado?") == false)
                         return;
 
                     var uiAdelato = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
@@ -80,7 +80,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     if (rpta == true)
                     {
-                        Util.InformationMessage("Se eliminó el adelanto");
+                        Util.InformationMessage("Se eliminó el registro seleccionado");
                         this.CargarListadoCts();
                     }
                 }

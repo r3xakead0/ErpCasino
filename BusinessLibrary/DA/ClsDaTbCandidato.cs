@@ -334,75 +334,80 @@ namespace ErpCasino.BusinessLibrary.DA
                 int rowsAffected = 0;
                 string sp = "";
 
-                cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-                tns = cnn.BeginTransaction();
-
-                SqlCommand cmd = null;
-
-                #region Contacto
-
-                sp = "SpTbCandidatoContactoEliminar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
-                
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                #region Telefonos
-
-                sp = "SpTbCandidatoTelefonoEliminar";
-
-                foreach (var telefono in beCandidato.Telefonos)
+                using (cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
+
+                    tns = cnn.BeginTransaction();
+
+                    SqlCommand cmd = null;
+
+                    #region Contacto
+
+                    sp = "SpTbCandidatoContactoEliminar";
 
                     cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tns;
 
-                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATOTELEFONO", telefono.IdCandidatoTelefono));
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 
+                    #region Telefonos
+
+                    sp = "SpTbCandidatoTelefonoEliminar";
+
+                    foreach (var telefono in beCandidato.Telefonos)
+                    {
+
+                        cmd = new SqlCommand(sp, cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Transaction = tns;
+
+                        cmd.Parameters.Add(new SqlParameter("@IDCANDIDATOTELEFONO", telefono.IdCandidatoTelefono));
+
+                        rowsAffected += cmd.ExecuteNonQuery();
+
+                    }
+
+                    #endregion
+
+                    #endregion
+
+                    #region Contratacion
+
+                    sp = "SpTbCandidatoContratacionEliminar";
+
+                    cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tns;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+
+                    #endregion
+
+                    #region General
+
+                    sp = "SpTbCandidatoGeneralEliminar";
+
+                    cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tns;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+
+                    #endregion
+
+                    cnn.Close();
+
+                    if (tns != null)
+                        tns.Commit();
                 }
-
-                #endregion
-
-                #endregion
-
-                #region Contratacion
-
-                sp = "SpTbCandidatoContratacionEliminar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                #endregion
-
-                #region General
-
-                sp = "SpTbCandidatoGeneralEliminar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                #endregion
-
-                if (tns != null)
-                    tns.Commit();
 
                 return rowsAffected > 0;
 
@@ -435,6 +440,8 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
 
                     rowsAffected += cmd.ExecuteNonQuery();
+
+                    cnn.Close();
                 }
 
                 return rowsAffected;
@@ -451,16 +458,21 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbCandidatoListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+  
                 return dt;
 
             }
@@ -475,16 +487,21 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbCandidatoComboNombres";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+                    
                 return dt;
 
             }
@@ -503,30 +520,36 @@ namespace ErpCasino.BusinessLibrary.DA
 
                 string sp = "SpTbCandidatoGeneralObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
+                    cnn.Open();
 
-                    beCandidato = this.Cargar(dr);
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    var beUbigeoNacimiento = beCandidato.UbigeoNacimiento;
-                    if (new Ubigeo().Obtener(ref beUbigeoNacimiento))
-                        beCandidato.UbigeoNacimiento = beUbigeoNacimiento;
-                    else
-                        beCandidato.UbigeoNacimiento = null;
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
 
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+
+                        beCandidato = this.Cargar(dr);
+
+                        var beUbigeoNacimiento = beCandidato.UbigeoNacimiento;
+                        if (new Ubigeo().Obtener(ref beUbigeoNacimiento))
+                            beCandidato.UbigeoNacimiento = beUbigeoNacimiento;
+                        else
+                            beCandidato.UbigeoNacimiento = null;
+
+                    }
+
+                    cnn.Close();
                 }
-
+                    
                 return beCandidato;
 
             }
@@ -545,90 +568,96 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbCandidatoGeneralObtenerCodigo";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@CODIGO", codigo));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
+                    cnn.Open();
 
-                    beCandidato = new BE.Candidato();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region General
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@CODIGO", codigo));
 
-                    idCandidato = dr["IdCandidato"] == DBNull.Value ? 0 : int.Parse(dr["IdCandidato"].ToString());
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
 
-                    beCandidato.IdCandidato = idCandidato;
-                    beCandidato.Codigo = dr["Codigo"] == DBNull.Value ? "" : dr["Codigo"].ToString();
-                    beCandidato.Nombres = dr["Nombres"] == DBNull.Value ? "" : dr["Nombres"].ToString();
-                    beCandidato.ApellidoPaterno = dr["ApellidoPaterno"] == DBNull.Value ? "" : dr["ApellidoPaterno"].ToString();
-                    beCandidato.ApellidoMaterno = dr["ApellidoMaterno"] == DBNull.Value ? "" : dr["ApellidoMaterno"].ToString();
-                    beCandidato.FechaNacimiento = dr["FechaNacimiento"] == DBNull.Value ? DateTime.Now.AddYears(-18) : DateTime.Parse(dr["FechaNacimiento"].ToString());
-                    beCandidato.NumeroDocumento = dr["NumeroDocumento"] == DBNull.Value ? "" : dr["NumeroDocumento"].ToString();
-                    beCandidato.Activo = dr["Activo"] == DBNull.Value ? false : bool.Parse(dr["Activo"].ToString());
-
-                    if (dr["CodNacimiento"] == DBNull.Value)
-                        beCandidato.UbigeoNacimiento = null;
-                    else
+                    if ((dt.Rows.Count == 1))
                     {
-                        var beUbigeoNacimiento = new BE.Ubigeo();
-                        beUbigeoNacimiento.Codigo = dr["CodNacimiento"].ToString();
+                        DataRow dr = dt.Rows[0];
 
-                        if (new LN.Ubigeo().Obtener(ref beUbigeoNacimiento))
-                            beCandidato.UbigeoNacimiento = beUbigeoNacimiento;
-                        else
+                        beCandidato = new BE.Candidato();
+
+                        #region General
+
+                        idCandidato = dr["IdCandidato"] == DBNull.Value ? 0 : int.Parse(dr["IdCandidato"].ToString());
+
+                        beCandidato.IdCandidato = idCandidato;
+                        beCandidato.Codigo = dr["Codigo"] == DBNull.Value ? "" : dr["Codigo"].ToString();
+                        beCandidato.Nombres = dr["Nombres"] == DBNull.Value ? "" : dr["Nombres"].ToString();
+                        beCandidato.ApellidoPaterno = dr["ApellidoPaterno"] == DBNull.Value ? "" : dr["ApellidoPaterno"].ToString();
+                        beCandidato.ApellidoMaterno = dr["ApellidoMaterno"] == DBNull.Value ? "" : dr["ApellidoMaterno"].ToString();
+                        beCandidato.FechaNacimiento = dr["FechaNacimiento"] == DBNull.Value ? DateTime.Now.AddYears(-18) : DateTime.Parse(dr["FechaNacimiento"].ToString());
+                        beCandidato.NumeroDocumento = dr["NumeroDocumento"] == DBNull.Value ? "" : dr["NumeroDocumento"].ToString();
+                        beCandidato.Activo = dr["Activo"] == DBNull.Value ? false : bool.Parse(dr["Activo"].ToString());
+
+                        if (dr["CodNacimiento"] == DBNull.Value)
                             beCandidato.UbigeoNacimiento = null;
-                    }
-
-                    if (dr["CodPais"] == DBNull.Value)
-                        beCandidato.PaisNacimiento = null;
-                    else
-                    {
-                        var bePais = new BE.Pais();
-                        bePais.Codigo = dr["CodPais"].ToString();
-
-                        if (new LN.Pais().Obtener(ref bePais))
-                            beCandidato.PaisNacimiento = bePais;
                         else
+                        {
+                            var beUbigeoNacimiento = new BE.Ubigeo();
+                            beUbigeoNacimiento.Codigo = dr["CodNacimiento"].ToString();
+
+                            if (new LN.Ubigeo().Obtener(ref beUbigeoNacimiento))
+                                beCandidato.UbigeoNacimiento = beUbigeoNacimiento;
+                            else
+                                beCandidato.UbigeoNacimiento = null;
+                        }
+
+                        if (dr["CodPais"] == DBNull.Value)
                             beCandidato.PaisNacimiento = null;
+                        else
+                        {
+                            var bePais = new BE.Pais();
+                            bePais.Codigo = dr["CodPais"].ToString();
+
+                            if (new LN.Pais().Obtener(ref bePais))
+                                beCandidato.PaisNacimiento = bePais;
+                            else
+                                beCandidato.PaisNacimiento = null;
+                        }
+
+                        if (dr["CodSexo"] == DBNull.Value)
+                            beCandidato.Sexo = null;
+                        else
+                        {
+                            string codSexo = dr["CodSexo"].ToString();
+                            var beSexo = new LN.Record().ObtenerSexo(codSexo);
+                            beCandidato.Sexo = beSexo;
+                        }
+
+                        if (dr["CodEstadoCivil"] == DBNull.Value)
+                            beCandidato.EstadoCivil = null;
+                        else
+                        {
+                            string codEstadoCivil = dr["CodEstadoCivil"].ToString();
+                            var beEstadoCivil = new LN.Record().ObtenerEstadoCivil(codEstadoCivil);
+                            beCandidato.EstadoCivil = beEstadoCivil;
+                        }
+
+                        if (dr["CodDocumentoIdentidad"] == DBNull.Value)
+                            beCandidato.TipoDocumento = null;
+                        else
+                        {
+                            string codDocumentoIdentidad = dr["CodDocumentoIdentidad"].ToString();
+                            var beDocumentoIdentidad = new LN.Record().ObtenerTipoDocumento(codDocumentoIdentidad);
+                            beCandidato.TipoDocumento = beDocumentoIdentidad;
+                        }
+
+                        #endregion
+
                     }
 
-                    if (dr["CodSexo"] == DBNull.Value)
-                        beCandidato.Sexo = null;
-                    else
-                    {
-                        string codSexo = dr["CodSexo"].ToString();
-                        var beSexo = new LN.Record().ObtenerSexo(codSexo);
-                        beCandidato.Sexo = beSexo;
-                    }
-
-                    if (dr["CodEstadoCivil"] == DBNull.Value)
-                        beCandidato.EstadoCivil = null;
-                    else
-                    {
-                        string codEstadoCivil = dr["CodEstadoCivil"].ToString();
-                        var beEstadoCivil = new LN.Record().ObtenerEstadoCivil(codEstadoCivil);
-                        beCandidato.EstadoCivil = beEstadoCivil;
-                    }
-
-                    if (dr["CodDocumentoIdentidad"] == DBNull.Value)
-                        beCandidato.TipoDocumento = null;
-                    else
-                    {
-                        string codDocumentoIdentidad = dr["CodDocumentoIdentidad"].ToString();
-                        var beDocumentoIdentidad = new LN.Record().ObtenerTipoDocumento(codDocumentoIdentidad);
-                        beCandidato.TipoDocumento = beDocumentoIdentidad;
-                    }
-
-                    #endregion
-
+                    cnn.Close();
                 }
 
                 return beCandidato;
@@ -647,17 +676,21 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbCandidatoGeneralValidarCodigo";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                if (idCandidato > 0)
-                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", codigo));
+                    if (idCandidato > 0)
+                        cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", codigo));
 
-                rpta = (bool)cmd.ExecuteScalar();
+                    rpta = (bool)cmd.ExecuteScalar();
+
+                    cnn.Close();
+                }   
 
                 return rpta;
 

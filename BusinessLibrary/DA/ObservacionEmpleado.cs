@@ -14,25 +14,28 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbObservacionEmpleadoInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACIONEMPLEADO", beObservacionEmpleado.IdObservacionEmpleado));
-                cmd.Parameters["@IDOBSERVACIONEMPLEADO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@FECHA", beObservacionEmpleado.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", beObservacionEmpleado.Sala.IdSala));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beObservacionEmpleado.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacionEmpleado.Observacion.IdObservacion));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacionEmpleado.Descripcion));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beObservacionEmpleado.IdObservacionEmpleado = int.Parse(cmd.Parameters["@IDOBSERVACIONEMPLEADO"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACIONEMPLEADO", beObservacionEmpleado.IdObservacionEmpleado));
+                    cmd.Parameters["@IDOBSERVACIONEMPLEADO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", beObservacionEmpleado.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", beObservacionEmpleado.Sala.IdSala));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beObservacionEmpleado.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacionEmpleado.Observacion.IdObservacion));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacionEmpleado.Descripcion));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beObservacionEmpleado.IdObservacionEmpleado = int.Parse(cmd.Parameters["@IDOBSERVACIONEMPLEADO"].Value.ToString());
+
+                    cnn.Close();
+                }
 
                 return rowsAffected;
 
@@ -48,24 +51,27 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbObservacionEmpleadoActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACIONEMPLEADO", beObservacionEmpleado.IdObservacionEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@FECHA", beObservacionEmpleado.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", beObservacionEmpleado.Sala.IdSala));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beObservacionEmpleado.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacionEmpleado.Observacion.IdObservacion));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacionEmpleado.Descripcion));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACIONEMPLEADO", beObservacionEmpleado.IdObservacionEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", beObservacionEmpleado.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", beObservacionEmpleado.Sala.IdSala));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beObservacionEmpleado.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacionEmpleado.Observacion.IdObservacion));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacionEmpleado.Descripcion));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+
+                    cnn.Close();
+                }
+    
                 return rowsAffected;
 
             }
@@ -80,18 +86,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbObservacionEmpleadoEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACIONEMPLEADO", idObservacionEmpleado));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACIONEMPLEADO", idObservacionEmpleado));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+
+                    cnn.Close();
+                }
 
                 return rowsAffected;
 
@@ -155,6 +163,7 @@ namespace ErpCasino.BusinessLibrary.DA
                         lstBeObservaciones.Add(beObservacionEmpleado);
                     }
 
+                    cnn.Close();
                 }
 
                 return lstBeObservaciones;

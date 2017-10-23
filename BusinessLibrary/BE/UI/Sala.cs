@@ -13,7 +13,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public string Zona { get; set; }
         public string Direccion { get; set; }
         public string Referencia { get; set; }
-        public string Activo { get; set; } //SI|NO
+        public string Activo { get; set; }  //SI|NO
 
     }
 }

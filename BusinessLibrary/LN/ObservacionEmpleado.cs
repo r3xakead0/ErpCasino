@@ -9,9 +9,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
     public class ObservacionEmpleado
     {
-
-        private int idUsuario = 0;
-
+        
         private BE.UI.ObservacionEmpleado BeToUI(BE.ObservacionEmpleado beObservacionEmpleado)
         {
             try

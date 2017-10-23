@@ -351,5 +351,6 @@
     <Build Include="dbo\Stored Procedures\SpTbComprometidoInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbComprometidoEliminar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbComprometidoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbHorarioListarColaboradores.sql" />
   </ItemGroup>
 </Project>

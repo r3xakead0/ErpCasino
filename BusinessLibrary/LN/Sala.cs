@@ -9,17 +9,15 @@ namespace ErpCasino.BusinessLibrary.LN
 
     public class Sala
     {
-        public int Insertar(ref BE.Sala oBeTbSala)
+        public bool Insertar(ref BE.Sala oBeTbSala)
         {
-            int rowsAffected = 0;
-
             try
             {
                 var daSala = new DA.Sala();
 
-                rowsAffected = daSala.Insertar(ref oBeTbSala);
+                int rowsAffected = daSala.Insertar(ref oBeTbSala);
 
-                return rowsAffected;
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -27,17 +25,15 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public int Actualizar(BE.Sala oBeTbSala)
+        public bool Actualizar(BE.Sala oBeTbSala)
         {
-            int rowsAffected = 0;
-
             try
             {
                 var daSala = new DA.Sala();
 
-                rowsAffected = daSala.Actualizar(oBeTbSala);
+                int rowsAffected = daSala.Actualizar(oBeTbSala);
 
-                return rowsAffected;
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -45,17 +41,13 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public int Eliminar(BE.Sala oBeTbSala)
+        public bool Eliminar(int idSala)
         {
-            int rowsAffected = 0;
-
             try
             {
-                var daSala = new DA.Sala();
+                int rowsAffected = new DA.Sala().Eliminar(idSala);
 
-                rowsAffected = daSala.Eliminar(oBeTbSala.IdSala);
-
-                return rowsAffected;
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -81,6 +73,10 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        /// <summary>
+        /// Lista detallada de las salas 
+        /// </summary>
+        /// <returns></returns>
         public List<BE.UI.Sala> Listar()
         {
 
@@ -122,16 +118,24 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public bool Obtener(ref BE.Sala oBeTbSala)
+        public BE.Sala Obtener(int idSala)
         {
-            bool exists = false;
             try
             {
-                var daSala = new DA.Sala();
+                var beSala = new BE.Sala() { IdSala = idSala };
 
-                exists = daSala.Obtener(ref oBeTbSala);
+                bool exists = new DA.Sala().Obtener(ref beSala);
+                if (exists == true)
+                {
+                    var beUbigeo = new BE.Ubigeo() { Codigo = beSala.Ubigeo.Codigo };
+                    exists = new DA.Ubigeo().Obtener(ref beUbigeo);
+                    if (exists == true)
+                        beSala.Ubigeo = beUbigeo;
+                }
+                else
+                    beSala = null;
 
-                return exists;
+                return beSala;
             }
             catch (Exception ex)
             {

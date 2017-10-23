@@ -49,6 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecursosHumanos\FrmSalaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSalaMant.designer.cs">
+      <DependentUpon>FrmSalaMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmColaboradorComprometidoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmColaboradorComprometidoMant.designer.cs">
+      <DependentUpon>FrmColaboradorComprometidoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSalaMetaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmSalaMetaMant.designer.cs">
+      <DependentUpon>FrmSalaMetaMant.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmAsignarBonoList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +371,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecursosHumanos\FrmSalaMant.resx">
+      <DependentUpon>FrmSalaMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmColaboradorComprometidoMant.resx">
+      <DependentUpon>FrmColaboradorComprometidoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmSalaMetaMant.resx">
+      <DependentUpon>FrmSalaMetaMant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmAsignarBonoList.resx">
       <DependentUpon>FrmAsignarBonoList.cs</DependentUpon>
     </EmbeddedResource>

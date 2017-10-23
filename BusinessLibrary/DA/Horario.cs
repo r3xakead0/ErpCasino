@@ -9,6 +9,49 @@ namespace ErpCasino.BusinessLibrary.DA
     public class Horario
     {
 
+        /// <summary>
+        /// Lista todos los codigos de Empleado y Candidato que esten
+        /// asignados en el horario de la sala
+        /// </summary>
+        /// <param name="anho">Numero del año. Ejm: 2017</param>
+        /// <param name="mes">Numero del mes. Ejm: 1 (Enero), 12 (Diciembre)</param>
+        /// <param name="idSala">ID de la Sala</param>
+        /// <returns></returns>
+        public List<string> ListarColaborados(int anho, int mes, int idSala)
+        {
+            var lstCodigos = new List<string>();
+            try
+            {
+                string sp = "SpTbHorarioListarColaboradores";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", idSala));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var codigo = reader["Codigo"].ToString();
+                        lstCodigos.Add(codigo);
+                    }
+                }
+                
+                return lstCodigos;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Insertar(ref List<BE.Horario> lstBeHorarios)
         {
 

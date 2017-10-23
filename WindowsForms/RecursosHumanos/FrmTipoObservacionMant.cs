@@ -34,11 +34,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 this.idUsuario = 0;
 
-                using (var uiObservacion = new BE.UI.Observacion())
-                {
-                    this.valorInicialNombre = uiObservacion.Nombre;
-                    this.valorInicialDescripcion = uiObservacion.Descripcion;
-                }
+                var uiObservacion = new BE.UI.Observacion();
+                this.valorInicialNombre = uiObservacion.Nombre;
+                this.valorInicialDescripcion = uiObservacion.Descripcion;
+                uiObservacion = null;
 
                 this.CargarListadoObservaciones();
                 
@@ -163,39 +162,32 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+
             try
             {
-
-                try
+                if (this.dgvObservaciones.CurrentRow != null)
                 {
-                    if (this.dgvObservaciones.CurrentRow != null)
+
+                    if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
+                        return;
+
+                    var uiObservacion = (BE.UI.Observacion)this.dgvObservaciones.CurrentRow.DataBoundItem;
+                    if (uiObservacion.Id > 0)
                     {
-
-                        if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
-                            return;
-
-                        var uiObservacion = (BE.UI.Observacion)this.dgvObservaciones.CurrentRow.DataBoundItem;
-                        if (uiObservacion.Id > 0)
-                        {
-                            this.lstEliminados.Add(uiObservacion);
-                        }
-
-                        this.lstCreados.Remove(uiObservacion);
-                        this.lstModificados.Remove(uiObservacion);
-
-                        this.dgvObservaciones.Rows.RemoveAt(this.dgvObservaciones.CurrentRow.Index);
+                        this.lstEliminados.Add(uiObservacion);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Util.ErrorMessage(ex.Message);
-                }
 
+                    this.lstCreados.Remove(uiObservacion);
+                    this.lstModificados.Remove(uiObservacion);
+
+                    this.dgvObservaciones.Rows.RemoveAt(this.dgvObservaciones.CurrentRow.Index);
+                }
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
             }
+            
         }
         
         #endregion

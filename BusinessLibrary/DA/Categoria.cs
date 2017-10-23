@@ -29,17 +29,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbCategoriaListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDTIPO", IdTipo));
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDTIPO", IdTipo));
+                    dad.Fill(dt);
+                }
+ 
                 return dt;
 
             }
@@ -48,42 +51,7 @@ namespace ErpCasino.BusinessLibrary.DA
                 throw ex;
             }
         }
-
-        public bool Obtener(BE.Categoria oBeTbCategoria)
-        {
-            try
-            {
-                string sp = "SpTbCategoriaObtener";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDCATEGORIA", oBeTbCategoria.IdCategoria));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
-                {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref oBeTbCategoria, ref dr);
-                }
-                else
-                {
-                    throw new Exception("No se pudo obtener el registro");
-                }
-
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        
+ 
     }
 
 }

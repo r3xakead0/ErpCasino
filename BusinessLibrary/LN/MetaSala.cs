@@ -91,15 +91,17 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public List<BE.UI.MetaSala> Listar()
+        public List<BE.UI.MetaSala> Listar(int anho, int mes)
         {
             try
             {
-                List<BE.Sala> lstBeSalas = new DA.Sala().Listar();
+                List<BE.Sala> lstBeSalas = new DA.Sala().Listar(); 
 
                 List<BE.UI.MetaSala> lstUiMetaSalas = new List<BE.UI.MetaSala>();
 
                 List<BE.MetaSala> lstBeMetaSalas = new DA.MetaSala().Listar();
+                lstBeMetaSalas = lstBeMetaSalas.Where(x => x.Anho == anho && x.Mes == mes).ToList();
+
                 foreach (BE.MetaSala beMetaSala in lstBeMetaSalas)
                 {
                     var uiMetaSala = this.BeToUi(beMetaSala);

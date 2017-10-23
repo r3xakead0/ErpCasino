@@ -402,7 +402,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.dgvBonos.Columns["EmpleadoCodigo"].Visible = true;
                 this.dgvBonos.Columns["EmpleadoCodigo"].HeaderText = "Codigo";
-                this.dgvBonos.Columns["EmpleadoCodigo"].Width = 100;
+                this.dgvBonos.Columns["EmpleadoCodigo"].Width = 80;
                 this.dgvBonos.Columns["EmpleadoCodigo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvBonos.Columns["EmpleadoNombreCompleto"].Visible = true;
