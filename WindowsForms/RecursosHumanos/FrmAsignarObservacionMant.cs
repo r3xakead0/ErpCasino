@@ -172,7 +172,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (this.txtDescripcion.Text.Trim().Length == 0)
                 {
                     this.txtDescripcion.Focus();
-                    throw new Exception("Ingrese la descripción de la Observación");
+                    throw new Exception("Ingrese la Observación");
                 }
                 
                 #endregion
@@ -195,13 +195,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     rpta = lnObservacionEmpleado.Insertar(ref this.uiObservacionEmpleado);
                     if (true)
-                        msg = "Se registro el nuevo adelanto";
+                        msg = "Se registro la nueva observación";
                 }
                 else  //Actualizar
                 {
                     rpta = lnObservacionEmpleado.Actualizar(this.uiObservacionEmpleado);
                     if (true)
-                        msg = "Se actualizo el adelanto";
+                        msg = "Se actualizo la observación";
                 }
 
                 if (rpta == true)
@@ -228,6 +228,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
                     this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
                 }
             }
             catch (Exception ex)

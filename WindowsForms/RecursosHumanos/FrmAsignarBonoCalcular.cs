@@ -474,6 +474,14 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 double bonoMonto = 0.0;
                 beBono = null;
 
+                if (new LN.BonoEmpleado().ExisteCalculo(this.Anho, this.Mes, bonoId))
+                {
+                    if (Util.ConfirmationMessage("Ya existe un calculo de bonos para este periodo. ¿Desea continua?") == false)
+                    {
+                        return;
+                    }
+                }
+
                 List<BE.Record> lstTrabajadores = new List<BE.Record>();
                 var lstEmpleados = new LN.Empleado().Combo();
                 var lstCandidatos = new LN.Candidato().Combo();
@@ -521,7 +529,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     uiBonoEmpleado.Monto = bonoMonto;
                     uiBonoEmpleado.Motivo = "";
 
-                    lstUiBonosEmpleados.Add(uiBonoEmpleado);
+                    if (bonoMonto > 0.0)
+                        lstUiBonosEmpleados.Add(uiBonoEmpleado);
 
                 }
 
@@ -555,6 +564,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+
+                if (this.lstUiBonosEmpleados.Count == 0)
+                    throw new Exception("Debe realizar un calculo de bonos");
+
+                if (Util.ConfirmationMessage("¿Desea guardar los bonos calculados?") == false)
+                    return;
+
+                bool rpta = false;
+                var lnBonoEmpleado = new LN.BonoEmpleado();
+                for (int i = 0; i < this.lstUiBonosEmpleados.Count; i++)
+                {
+                    BE.UI.BonoEmpleado uiBonoEmpleado = this.lstUiBonosEmpleados[i];
+                    rpta = lnBonoEmpleado.Insertar(ref uiBonoEmpleado);
+                    this.lstUiBonosEmpleados[i].ID = uiBonoEmpleado.ID;
+                }
+
+                Util.InformationMessage("Se guardo los bonos calculados");
+                this.frmList.CargarListadoBonos();
+                this.Close();
 
             }
             catch (Exception ex)

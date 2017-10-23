@@ -28,250 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dgvDescuentos = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlPrincipal = new System.Windows.Forms.Panel();
-            this.grpDetalleTipoDescuento = new System.Windows.Forms.GroupBox();
-            this.chkActivo = new System.Windows.Forms.CheckBox();
-            this.txtMonto = new System.Windows.Forms.TextBox();
-            this.lblMonto = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.grpListadoTipoDescuento = new System.Windows.Forms.GroupBox();
-            this.dgvListadoDescuentos = new System.Windows.Forms.DataGridView();
             this.pnlInferior = new System.Windows.Forms.Panel();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnSave = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
+            this.pnlSuperior = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
-            this.pnlPrincipal.SuspendLayout();
-            this.grpDetalleTipoDescuento.SuspendLayout();
-            this.grpListadoTipoDescuento.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDescuentos)).BeginInit();
             this.pnlInferior.SuspendLayout();
+            this.pnlSuperior.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // dgvDescuentos
+            // 
+            this.dgvDescuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDescuentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDescuentos.Location = new System.Drawing.Point(0, 0);
+            this.dgvDescuentos.Name = "dgvDescuentos";
+            this.dgvDescuentos.Size = new System.Drawing.Size(631, 219);
+            this.dgvDescuentos.TabIndex = 0;
+            this.dgvDescuentos.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_RowLeave);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Location = new System.Drawing.Point(522, 5);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
+            this.btnGuardar.TabIndex = 16;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Location = new System.Drawing.Point(416, 5);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminar.TabIndex = 17;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // tlpPrincipal
             // 
             this.tlpPrincipal.ColumnCount = 1;
             this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.Controls.Add(this.pnlPrincipal, 0, 0);
             this.tlpPrincipal.Controls.Add(this.pnlInferior, 0, 1);
+            this.tlpPrincipal.Controls.Add(this.pnlSuperior, 0, 0);
             this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(644, 479);
-            this.tlpPrincipal.TabIndex = 16;
-            // 
-            // pnlPrincipal
-            // 
-            this.pnlPrincipal.Controls.Add(this.grpDetalleTipoDescuento);
-            this.pnlPrincipal.Controls.Add(this.grpListadoTipoDescuento);
-            this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
-            this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(638, 413);
-            this.pnlPrincipal.TabIndex = 16;
-            // 
-            // grpDetalleTipoDescuento
-            // 
-            this.grpDetalleTipoDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpDetalleTipoDescuento.Controls.Add(this.chkActivo);
-            this.grpDetalleTipoDescuento.Controls.Add(this.txtMonto);
-            this.grpDetalleTipoDescuento.Controls.Add(this.lblMonto);
-            this.grpDetalleTipoDescuento.Controls.Add(this.txtDescripcion);
-            this.grpDetalleTipoDescuento.Controls.Add(this.lblDescripcion);
-            this.grpDetalleTipoDescuento.Controls.Add(this.txtNombre);
-            this.grpDetalleTipoDescuento.Controls.Add(this.lblNombre);
-            this.grpDetalleTipoDescuento.Location = new System.Drawing.Point(3, 271);
-            this.grpDetalleTipoDescuento.Name = "grpDetalleTipoDescuento";
-            this.grpDetalleTipoDescuento.Size = new System.Drawing.Size(632, 139);
-            this.grpDetalleTipoDescuento.TabIndex = 39;
-            this.grpDetalleTipoDescuento.TabStop = false;
-            this.grpDetalleTipoDescuento.Text = "Detalle de Descuento";
-            // 
-            // chkActivo
-            // 
-            this.chkActivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkActivo.AutoSize = true;
-            this.chkActivo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkActivo.Checked = true;
-            this.chkActivo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkActivo.Location = new System.Drawing.Point(565, 109);
-            this.chkActivo.Name = "chkActivo";
-            this.chkActivo.Size = new System.Drawing.Size(56, 17);
-            this.chkActivo.TabIndex = 24;
-            this.chkActivo.Text = "Activo";
-            this.chkActivo.UseVisualStyleBackColor = true;
-            // 
-            // txtMonto
-            // 
-            this.txtMonto.Location = new System.Drawing.Point(78, 107);
-            this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(118, 20);
-            this.txtMonto.TabIndex = 23;
-            this.txtMonto.Text = "0.00";
-            this.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMonto.Enter += new System.EventHandler(this.txtMonto_Enter);
-            this.txtMonto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
-            this.txtMonto.Leave += new System.EventHandler(this.txtMonto_Leave);
-            // 
-            // lblMonto
-            // 
-            this.lblMonto.AutoSize = true;
-            this.lblMonto.Location = new System.Drawing.Point(9, 110);
-            this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(43, 13);
-            this.lblMonto.TabIndex = 22;
-            this.lblMonto.Text = "Monto :";
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcion.Location = new System.Drawing.Point(78, 49);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(543, 52);
-            this.txtDescripcion.TabIndex = 21;
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(9, 52);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(69, 13);
-            this.lblDescripcion.TabIndex = 20;
-            this.lblDescripcion.Text = "Descripcion :";
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombre.Location = new System.Drawing.Point(78, 23);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(543, 20);
-            this.txtNombre.TabIndex = 19;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(9, 26);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(50, 13);
-            this.lblNombre.TabIndex = 18;
-            this.lblNombre.Text = "Nombre :";
-            // 
-            // grpListadoTipoDescuento
-            // 
-            this.grpListadoTipoDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpListadoTipoDescuento.Controls.Add(this.dgvListadoDescuentos);
-            this.grpListadoTipoDescuento.Location = new System.Drawing.Point(3, 9);
-            this.grpListadoTipoDescuento.Name = "grpListadoTipoDescuento";
-            this.grpListadoTipoDescuento.Size = new System.Drawing.Size(632, 256);
-            this.grpListadoTipoDescuento.TabIndex = 38;
-            this.grpListadoTipoDescuento.TabStop = false;
-            this.grpListadoTipoDescuento.Text = "Listado de Descuentos";
-            // 
-            // dgvListadoDescuentos
-            // 
-            this.dgvListadoDescuentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvListadoDescuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListadoDescuentos.Location = new System.Drawing.Point(12, 19);
-            this.dgvListadoDescuentos.Name = "dgvListadoDescuentos";
-            this.dgvListadoDescuentos.Size = new System.Drawing.Size(609, 230);
-            this.dgvListadoDescuentos.TabIndex = 0;
-            this.dgvListadoDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListadoDescuentos_CellClick);
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(637, 275);
+            this.tlpPrincipal.TabIndex = 19;
             // 
             // pnlInferior
             // 
-            this.pnlInferior.Controls.Add(this.BtnDelete);
-            this.pnlInferior.Controls.Add(this.BtnSave);
-            this.pnlInferior.Controls.Add(this.BtnCancel);
+            this.pnlInferior.Controls.Add(this.btnGuardar);
+            this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 422);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 228);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(638, 54);
-            this.pnlInferior.TabIndex = 17;
+            this.pnlInferior.Size = new System.Drawing.Size(631, 44);
+            this.pnlInferior.TabIndex = 1;
             // 
-            // BtnDelete
+            // pnlSuperior
             // 
-            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDelete.Location = new System.Drawing.Point(404, 5);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(100, 30);
-            this.BtnDelete.TabIndex = 19;
-            this.BtnDelete.Text = "Eliminar";
-            this.BtnDelete.UseVisualStyleBackColor = true;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(524, 5);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(100, 30);
-            this.BtnSave.TabIndex = 17;
-            this.BtnSave.Text = "Guardar";
-            this.BtnSave.UseVisualStyleBackColor = true;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // BtnCancel
-            // 
-            this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(284, 5);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(100, 30);
-            this.BtnCancel.TabIndex = 18;
-            this.BtnCancel.Text = "Cancelar";
-            this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.pnlSuperior.Controls.Add(this.dgvDescuentos);
+            this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSuperior.Location = new System.Drawing.Point(3, 3);
+            this.pnlSuperior.Name = "pnlSuperior";
+            this.pnlSuperior.Size = new System.Drawing.Size(631, 219);
+            this.pnlSuperior.TabIndex = 0;
             // 
             // FrmTipoDescuentoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 479);
+            this.ClientSize = new System.Drawing.Size(637, 275);
             this.Controls.Add(this.tlpPrincipal);
+            this.MaximizeBox = false;
             this.Name = "FrmTipoDescuentoMant";
             this.Text = "Mantenimiento de Tipos de Descuentos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTipoDescuentoMant_FormClosing);
             this.Load += new System.EventHandler(this.FrmTipoDescuentoMant_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).EndInit();
             this.tlpPrincipal.ResumeLayout(false);
-            this.pnlPrincipal.ResumeLayout(false);
-            this.grpDetalleTipoDescuento.ResumeLayout(false);
-            this.grpDetalleTipoDescuento.PerformLayout();
-            this.grpListadoTipoDescuento.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDescuentos)).EndInit();
             this.pnlInferior.ResumeLayout(false);
+            this.pnlSuperior.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dgvDescuentos;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
-        private System.Windows.Forms.Panel pnlPrincipal;
-        internal System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Panel pnlInferior;
-        public System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.Button BtnCancel;
-        private System.Windows.Forms.GroupBox grpListadoTipoDescuento;
-        private System.Windows.Forms.DataGridView dgvListadoDescuentos;
-        private System.Windows.Forms.GroupBox grpDetalleTipoDescuento;
-        private System.Windows.Forms.CheckBox chkActivo;
-        private System.Windows.Forms.TextBox txtMonto;
-        internal System.Windows.Forms.Label lblMonto;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        internal System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.TextBox txtNombre;
-        public System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.Panel pnlSuperior;
     }
 }

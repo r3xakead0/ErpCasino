@@ -44,6 +44,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.cboEmpleado.SelectedValue = this.uiBonoEmpleado.EmpleadoCodigo;
                     this.cboBono.SelectedValue = this.uiBonoEmpleado.BonoID;
                     this.txtMonto.Text = this.uiBonoEmpleado.Monto.ToString("N2");
+                    this.txtMotivo.Text = this.uiBonoEmpleado.Motivo;
 
                 }
             }
@@ -159,6 +160,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtMonto.Focus();
                     throw new Exception("Ingrese el monto del Bono");
                 }
+                else if (monto == 0.0)
+                {
+                    this.txtMonto.Focus();
+                    throw new Exception("Ingrese el monto del Bono");
+                }
 
                 #endregion
 
@@ -213,6 +219,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
                     this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
                 }
             }
             catch (Exception ex)
@@ -293,11 +303,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 Util.ErrorMessage(ex.Message);
             }
-        }
-
-        private void cboBono_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-
         }
 
         #endregion

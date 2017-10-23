@@ -96,11 +96,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 var lstTipos = new LN.Descuento().Listar();
 
-                lstTipos.Insert(0, new BE.Descuento() { IdDescuento = 0, Nombre = "Seleccione" });
+                lstTipos.Insert(0, new BE.UI.Descuento() { Id = 0, Nombre = "Seleccione" });
 
                 this.cboDescuento.DataSource = lstTipos;
                 this.cboDescuento.DisplayMember = "Nombre";
-                this.cboDescuento.ValueMember = "IdDescuento";
+                this.cboDescuento.ValueMember = "Id";
             }
             catch (Exception ex)
             {
@@ -159,6 +159,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtMonto.Focus();
                     throw new Exception("Ingrese el monto del descuento");
                 }
+                else if (monto == 0.0)
+                {
+                    this.txtMonto.Focus();
+                    throw new Exception("Ingrese el monto del descuento");
+                }
 
                 #endregion
 
@@ -167,8 +172,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.uiDescuentoEmpleado.Fecha = this.dtpFecha.Value;
                 this.uiDescuentoEmpleado.EmpleadoCodigo = ((BE.Record)this.cboEmpleado.SelectedItem).Codigo;
                 this.uiDescuentoEmpleado.EmpleadoNombreCompleto = ((BE.Record)this.cboEmpleado.SelectedItem).Nombre;
-                this.uiDescuentoEmpleado.DescuentoID = ((BE.Descuento)this.cboDescuento.SelectedItem).IdDescuento;
-                this.uiDescuentoEmpleado.DescuentoNombre = ((BE.Descuento)this.cboDescuento.SelectedItem).Nombre;
+                this.uiDescuentoEmpleado.DescuentoID = ((BE.UI.Descuento)this.cboDescuento.SelectedItem).Id;
+                this.uiDescuentoEmpleado.DescuentoNombre = ((BE.UI.Descuento)this.cboDescuento.SelectedItem).Nombre;
                 this.uiDescuentoEmpleado.Motivo = this.txtMotivo.Text.Trim();
                 this.uiDescuentoEmpleado.Monto = double.Parse(this.txtMonto.Text);
 
@@ -212,6 +217,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
                     this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
                 }
             }
             catch (Exception ex)

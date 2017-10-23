@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
@@ -40,6 +41,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.cboAnho.SelectedValue = DateTime.Now.Year.ToString();
                 this.cboMes.SelectedValue = DateTime.Now.Month.ToString();
+
+                this.CargarEmpleados();
 
                 this.CargarListadoBonos();
                 this.FormatoListadoBonos();
@@ -158,6 +161,56 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void cboEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboEmpleado.SelectedIndex > 0)
+                {
+                    string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                }
+
+                this.CargarListadoBonos();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+
+        }
+
+        private void txtEmpleadoCodigo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string codigoEmpleado = this.txtEmpleadoCodigo.Text.Trim();
+
+                var lst = (List<BE.Record>)this.cboEmpleado.DataSource;
+
+                if (lst.Where(x => x.Codigo == codigoEmpleado).Count() > 0)
+                {
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                    this.cboEmpleado.SelectedValue = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                    this.cboEmpleado.SelectedIndex = 0;
+                }
+
+                this.CargarListadoBonos();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+
+        }
 
         #endregion
 
@@ -185,8 +238,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
                 int mes = int.Parse(this.cboMes.SelectedValue.ToString());
+                string codigoEmpleado = this.txtEmpleadoCodigo.Text;
 
-                var lstUiBonos = new LN.BonoEmpleado().Listar(anho, mes);
+                var lstUiBonos = new LN.BonoEmpleado().Listar(anho, mes, codigoEmpleado);
                 
                 var source = new BindingSource();
                 source.DataSource = lstUiBonos;
@@ -238,7 +292,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvBonos.Columns["Monto"].Visible = true;
                 this.dgvBonos.Columns["Monto"].HeaderText = "Monto";
                 this.dgvBonos.Columns["Monto"].Width = 100;
-                this.dgvBonos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                this.dgvBonos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvBonos.Columns["Monto"].DefaultCellStyle.Format = "N2";
 
                 Util.AutoWidthColumn(ref this.dgvBonos, "EmpleadoNombreCompleto");
@@ -302,6 +356,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 throw ex;
             }
+        }
+
+        private void CargarEmpleados()
+        {
+            var lstEmpleados = new LN.Empleado().Combo();
+            var lstCandidatos = new LN.Candidato().Combo();
+            lstEmpleados.AddRange(lstCandidatos);
+            var lstTrabajador = lstEmpleados.OrderBy(o => o.Codigo).Distinct().ToList();
+
+            lstTrabajador.Insert(0, new BE.Record() { Codigo = "", Nombre = "Seleccione" });
+
+            this.cboEmpleado.DataSource = lstTrabajador;
+            this.cboEmpleado.DisplayMember = "Nombre";
+            this.cboEmpleado.ValueMember = "Codigo";
         }
 
         #endregion

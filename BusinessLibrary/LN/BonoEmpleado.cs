@@ -115,13 +115,13 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public List<BE.UI.BonoEmpleado> Listar(int anho, int mes)
+        public List<BE.UI.BonoEmpleado> Listar(int anho, int mes, string codigoEmpleado)
         {
             try
             {
                 var lstUiBonoEmpleados = new List<BE.UI.BonoEmpleado>();
 
-                var lstBeBonoEmpleados = new DA.BonoEmpleado().Listar(anho, mes);
+                var lstBeBonoEmpleados = new DA.BonoEmpleado().Listar(anho, mes, codigoEmpleado);
                 foreach (BE.BonoEmpleado beBonoEmpleado in lstBeBonoEmpleados)
                 {
                     BE.UI.BonoEmpleado uiBonoEmpleado = this.BeToUi(beBonoEmpleado);
@@ -135,7 +135,25 @@ namespace ErpCasino.BusinessLibrary.LN
                 throw ex;
             }
         }
-        
+
+        /// <summary>
+        /// Validar si existe bonos calcululados para el periodo (año y mes) y tipo de bono
+        /// </summary>
+        /// <param name="anho">Año de consulta en formato yyyy. Ejm: 2017</param>
+        /// <param name="mes">Mes de consulta en rango del 1 al 12. Ejm: 1</param>
+        /// <param name="idBono">ID del tipo de bono</param>
+        /// <returns></returns>
+        public bool ExisteCalculo(int anho, int mes, int idBono)
+        {
+            try
+            {
+                return new DA.BonoEmpleado().ExisteCalculo(anho, mes, idBono);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 

@@ -121,6 +121,12 @@
     <Compile Include="RecursosHumanos\FrmTipoBonoMant.designer.cs">
       <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.designer.cs">
+      <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmTipoObservacionMant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,12 +246,6 @@
     </Compile>
     <Compile Include="RecursosHumanos\FrmOnpComisionMant.designer.cs">
       <DependentUpon>FrmOnpComisionMant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RecursosHumanos\FrmTipoDescuentoMant.designer.cs">
-      <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmInasistenciaList.cs">
       <SubType>Form</SubType>
@@ -407,6 +407,9 @@
     <EmbeddedResource Include="RecursosHumanos\FrmTipoBonoMant.resx">
       <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmTipoDescuentoMant.resx">
+      <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmTipoObservacionMant.resx">
       <DependentUpon>FrmTipoObservacionMant.cs</DependentUpon>
     </EmbeddedResource>
@@ -466,9 +469,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmOnpComisionMant.resx">
       <DependentUpon>FrmOnpComisionMant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmTipoDescuentoMant.resx">
-      <DependentUpon>FrmTipoDescuentoMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmInasistenciaList.resx">
       <DependentUpon>FrmInasistenciaList.cs</DependentUpon>

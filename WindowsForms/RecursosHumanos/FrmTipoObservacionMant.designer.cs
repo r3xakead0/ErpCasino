@@ -46,14 +46,14 @@
             this.dgvObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvObservaciones.Location = new System.Drawing.Point(0, 0);
             this.dgvObservaciones.Name = "dgvObservaciones";
-            this.dgvObservaciones.Size = new System.Drawing.Size(663, 209);
+            this.dgvObservaciones.Size = new System.Drawing.Size(663, 219);
             this.dgvObservaciones.TabIndex = 0;
             this.dgvObservaciones.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvObservaciones_RowLeave);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(554, 10);
+            this.btnGuardar.Location = new System.Drawing.Point(554, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 16;
@@ -64,7 +64,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(448, 10);
+            this.btnEliminar.Location = new System.Drawing.Point(448, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 17;
@@ -83,7 +83,7 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(669, 275);
             this.tlpPrincipal.TabIndex = 19;
             // 
@@ -92,9 +92,9 @@
             this.pnlInferior.Controls.Add(this.btnGuardar);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 218);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 228);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(663, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(663, 44);
             this.pnlInferior.TabIndex = 1;
             // 
             // pnlSuperior
@@ -103,7 +103,7 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSuperior.Location = new System.Drawing.Point(3, 3);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(663, 209);
+            this.pnlSuperior.Size = new System.Drawing.Size(663, 219);
             this.pnlSuperior.TabIndex = 0;
             // 
             // FrmTipoObservacionMant
@@ -114,7 +114,7 @@
             this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.Name = "FrmTipoObservacionMant";
-            this.Text = "Mantenimiento de Observaciones";
+            this.Text = "Mantenimiento de Tipos de Observaciones";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTipoObservacionMant_FormClosing);
             this.Load += new System.EventHandler(this.FrmTipoObservacionMant_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvObservaciones)).EndInit();

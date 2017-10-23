@@ -102,7 +102,7 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public List<BE.BonoEmpleado> Listar(int anho, int mes)
+        public List<BE.BonoEmpleado> Listar(int anho, int mes, string codigoEmpleado)
         {
             var lstBeObservaciones = new List<BE.BonoEmpleado>();
 
@@ -118,6 +118,11 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
                     cmd.Parameters.Add(new SqlParameter("@MES", mes));
+
+                    if (codigoEmpleado.Trim().Length == 0)
+                        cmd.Parameters.Add(new SqlParameter("@CODIGO", DBNull.Value));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@CODIGO", codigoEmpleado));
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -155,7 +160,50 @@ namespace ErpCasino.BusinessLibrary.DA
             }
             
         }
-        
+
+        /// <summary>
+        /// Validar si existe bonos calcululados para el periodo (año y mes) y tipo de bono
+        /// </summary>
+        /// <param name="anho">Año de consulta en formato yyyy. Ejm: 2017</param>
+        /// <param name="mes">Mes de consulta en rango del 1 al 12. Ejm: 1</param>
+        /// <param name="idBono">ID del tipo de bono</param>
+        /// <returns></returns>
+        public bool ExisteCalculo (int anho, int mes, int idBono)
+        {
+            int cantidad = 0;
+
+            try
+            {
+                string sp = "SpTbBonoEmpleadoExisteCalculo";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDBONO", idBono));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        cantidad = reader["Cantidad"] == DBNull.Value ? 0 : int.Parse(reader["Cantidad"].ToString());
+                    }
+
+                }
+
+                return cantidad > 0;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 
 }

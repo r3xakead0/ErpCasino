@@ -7,7 +7,6 @@ namespace ErpCasino.BusinessLibrary.BE.UI
     {
 
         private int pId;
-        private string p;
         private string pNombre;
         private string pDescripcion;
         private bool pActivo;
