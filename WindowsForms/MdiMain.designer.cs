@@ -42,6 +42,8 @@
             this.tsmPostulantesPensiones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPostulantesCandidatos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPostulantesEmpleados = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmColaboradoresCompromisos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCargos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalas = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalasMantenimiento = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,8 +90,8 @@
             this.stsPrincipal = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.stlUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmColaboradoresCompromisos = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmRecibosCalcular = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrincipal.SuspendLayout();
             this.stsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -121,32 +123,33 @@
             // tsmUsuarios
             // 
             this.tsmUsuarios.Name = "tsmUsuarios";
-            this.tsmUsuarios.Size = new System.Drawing.Size(151, 22);
+            this.tsmUsuarios.Size = new System.Drawing.Size(152, 22);
             this.tsmUsuarios.Text = "Usuarios";
             this.tsmUsuarios.Click += new System.EventHandler(this.tsmUsuarios_Click);
             // 
             // tsmPerfiles
             // 
             this.tsmPerfiles.Name = "tsmPerfiles";
-            this.tsmPerfiles.Size = new System.Drawing.Size(151, 22);
+            this.tsmPerfiles.Size = new System.Drawing.Size(152, 22);
             this.tsmPerfiles.Text = "Perfiles";
             this.tsmPerfiles.Click += new System.EventHandler(this.tsmPerfiles_Click);
             // 
             // tsmPermisos
             // 
             this.tsmPermisos.Name = "tsmPermisos";
-            this.tsmPermisos.Size = new System.Drawing.Size(151, 22);
+            this.tsmPermisos.Size = new System.Drawing.Size(152, 22);
             this.tsmPermisos.Text = "Permisos";
+            this.tsmPermisos.Click += new System.EventHandler(this.tsmPermisos_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
             // tsmCambiarClave
             // 
             this.tsmCambiarClave.Name = "tsmCambiarClave";
-            this.tsmCambiarClave.Size = new System.Drawing.Size(151, 22);
+            this.tsmCambiarClave.Size = new System.Drawing.Size(152, 22);
             this.tsmCambiarClave.Text = "Cambiar Clave";
             this.tsmCambiarClave.Click += new System.EventHandler(this.tsmCambiarClave_Click);
             // 
@@ -204,23 +207,35 @@
             // tsmPostulantesPensiones
             // 
             this.tsmPostulantesPensiones.Name = "tsmPostulantesPensiones";
-            this.tsmPostulantesPensiones.Size = new System.Drawing.Size(152, 22);
+            this.tsmPostulantesPensiones.Size = new System.Drawing.Size(149, 22);
             this.tsmPostulantesPensiones.Text = "Postulantes";
             this.tsmPostulantesPensiones.Click += new System.EventHandler(this.tsmPostulantesPensiones_Click);
             // 
             // tsmPostulantesCandidatos
             // 
             this.tsmPostulantesCandidatos.Name = "tsmPostulantesCandidatos";
-            this.tsmPostulantesCandidatos.Size = new System.Drawing.Size(152, 22);
+            this.tsmPostulantesCandidatos.Size = new System.Drawing.Size(149, 22);
             this.tsmPostulantesCandidatos.Text = "Candidatos";
             this.tsmPostulantesCandidatos.Click += new System.EventHandler(this.tsmPostulantesCandidatos_Click);
             // 
             // tsmPostulantesEmpleados
             // 
             this.tsmPostulantesEmpleados.Name = "tsmPostulantesEmpleados";
-            this.tsmPostulantesEmpleados.Size = new System.Drawing.Size(152, 22);
+            this.tsmPostulantesEmpleados.Size = new System.Drawing.Size(149, 22);
             this.tsmPostulantesEmpleados.Text = "Empleados";
             this.tsmPostulantesEmpleados.Click += new System.EventHandler(this.tsmPostulantesEmpleados_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(146, 6);
+            // 
+            // tsmColaboradoresCompromisos
+            // 
+            this.tsmColaboradoresCompromisos.Name = "tsmColaboradoresCompromisos";
+            this.tsmColaboradoresCompromisos.Size = new System.Drawing.Size(149, 22);
+            this.tsmColaboradoresCompromisos.Text = "Compromisos";
+            this.tsmColaboradoresCompromisos.Click += new System.EventHandler(this.tsmColaboradoresCompromisos_Click);
             // 
             // tsmCargos
             // 
@@ -278,14 +293,14 @@
             // tsmPensionesPrivadas
             // 
             this.tsmPensionesPrivadas.Name = "tsmPensionesPrivadas";
-            this.tsmPensionesPrivadas.Size = new System.Drawing.Size(152, 22);
+            this.tsmPensionesPrivadas.Size = new System.Drawing.Size(99, 22);
             this.tsmPensionesPrivadas.Text = "AFP";
             this.tsmPensionesPrivadas.Click += new System.EventHandler(this.tsmPensionesPrivadas_Click);
             // 
             // tsmPensionesPublicas
             // 
             this.tsmPensionesPublicas.Name = "tsmPensionesPublicas";
-            this.tsmPensionesPublicas.Size = new System.Drawing.Size(152, 22);
+            this.tsmPensionesPublicas.Size = new System.Drawing.Size(99, 22);
             this.tsmPensionesPublicas.Text = "ONP";
             this.tsmPensionesPublicas.Click += new System.EventHandler(this.tsmPensionesPublicas_Click);
             // 
@@ -322,7 +337,9 @@
             this.tsmRecibos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAsignarBonos,
             this.tsmAsignarDescuentos,
-            this.tsmAsignarObservaciones});
+            this.tsmAsignarObservaciones,
+            this.toolStripSeparator7,
+            this.tsmRecibosCalcular});
             this.tsmRecibos.Name = "tsmRecibos";
             this.tsmRecibos.Size = new System.Drawing.Size(199, 22);
             this.tsmRecibos.Text = "Recibos";
@@ -360,14 +377,14 @@
             // tsmHorariosSemanales
             // 
             this.tsmHorariosSemanales.Name = "tsmHorariosSemanales";
-            this.tsmHorariosSemanales.Size = new System.Drawing.Size(152, 22);
+            this.tsmHorariosSemanales.Size = new System.Drawing.Size(130, 22);
             this.tsmHorariosSemanales.Text = "Semanales";
             this.tsmHorariosSemanales.Click += new System.EventHandler(this.tsmHorariosSemanales_Click);
             // 
             // tsmHorariosMensuales
             // 
             this.tsmHorariosMensuales.Name = "tsmHorariosMensuales";
-            this.tsmHorariosMensuales.Size = new System.Drawing.Size(152, 22);
+            this.tsmHorariosMensuales.Size = new System.Drawing.Size(130, 22);
             this.tsmHorariosMensuales.Text = "Mensuales";
             this.tsmHorariosMensuales.Click += new System.EventHandler(this.tsmHorariosMensuales_Click);
             // 
@@ -483,13 +500,13 @@
             // tsmAlmacenes
             // 
             this.tsmAlmacenes.Name = "tsmAlmacenes";
-            this.tsmAlmacenes.Size = new System.Drawing.Size(144, 22);
+            this.tsmAlmacenes.Size = new System.Drawing.Size(152, 22);
             this.tsmAlmacenes.Text = "Almacenes";
             // 
             // tsmArticulos
             // 
             this.tsmArticulos.Name = "tsmArticulos";
-            this.tsmArticulos.Size = new System.Drawing.Size(144, 22);
+            this.tsmArticulos.Size = new System.Drawing.Size(152, 22);
             this.tsmArticulos.Text = "Articulos";
             // 
             // tsmMovimientos
@@ -499,7 +516,7 @@
             this.tsmMovimientosSalidas,
             this.tsmMovimientosTransferencias});
             this.tsmMovimientos.Name = "tsmMovimientos";
-            this.tsmMovimientos.Size = new System.Drawing.Size(144, 22);
+            this.tsmMovimientos.Size = new System.Drawing.Size(152, 22);
             this.tsmMovimientos.Text = "Movimientos";
             // 
             // tsmMovimientosIngresos
@@ -549,17 +566,16 @@
             this.stlUsuario.Name = "stlUsuario";
             this.stlUsuario.Size = new System.Drawing.Size(0, 17);
             // 
-            // tsmColaboradoresCompromisos
+            // tsmRecibosCalcular
             // 
-            this.tsmColaboradoresCompromisos.Name = "tsmColaboradoresCompromisos";
-            this.tsmColaboradoresCompromisos.Size = new System.Drawing.Size(152, 22);
-            this.tsmColaboradoresCompromisos.Text = "Compromisos";
-            this.tsmColaboradoresCompromisos.Click += new System.EventHandler(this.tsmColaboradoresCompromisos_Click);
+            this.tsmRecibosCalcular.Name = "tsmRecibosCalcular";
+            this.tsmRecibosCalcular.Size = new System.Drawing.Size(194, 22);
+            this.tsmRecibosCalcular.Text = "Calcular";
             // 
-            // toolStripSeparator6
+            // toolStripSeparator7
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(191, 6);
             // 
             // MdiMain
             // 
@@ -646,5 +662,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmSalasMeta;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem tsmColaboradoresCompromisos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem tsmRecibosCalcular;
     }
 }

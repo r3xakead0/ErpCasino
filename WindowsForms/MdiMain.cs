@@ -359,6 +359,18 @@ namespace ErpCasino.WindowsForms
             }
         }
 
+        private void tsmPermisos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void tsmCargos_Click(object sender, EventArgs e)
         {
             try
@@ -523,5 +535,7 @@ namespace ErpCasino.WindowsForms
                 Util.ErrorMessage(ex.Message);
             }
         }
+
+        
     }
 }

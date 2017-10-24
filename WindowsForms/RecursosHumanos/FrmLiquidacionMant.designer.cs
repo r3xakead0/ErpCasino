@@ -30,6 +30,21 @@
         {
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
+            this.grpResumen = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
             this.textBox21 = new System.Windows.Forms.TextBox();
@@ -45,26 +60,26 @@
             this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
             this.label32 = new System.Windows.Forms.Label();
             this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
+            this.label27 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.label27 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.textBox14 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.textBox20 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.grpSueldo = new System.Windows.Forms.GroupBox();
@@ -113,28 +128,13 @@
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.grpResumen = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
+            this.grpResumen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpSueldo.SuspendLayout();
             this.grpDatos.SuspendLayout();
             this.pnlInferior.SuspendLayout();
-            this.grpResumen.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpPrincipal
@@ -148,8 +148,8 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(878, 515);
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(878, 505);
             this.tlpPrincipal.TabIndex = 16;
             // 
             // pnlPrincipal
@@ -163,6 +163,164 @@
             this.pnlPrincipal.Name = "pnlPrincipal";
             this.pnlPrincipal.Size = new System.Drawing.Size(872, 449);
             this.pnlPrincipal.TabIndex = 16;
+            // 
+            // grpResumen
+            // 
+            this.grpResumen.Controls.Add(this.textBox1);
+            this.grpResumen.Controls.Add(this.label33);
+            this.grpResumen.Controls.Add(this.textBox2);
+            this.grpResumen.Controls.Add(this.textBox3);
+            this.grpResumen.Controls.Add(this.textBox4);
+            this.grpResumen.Controls.Add(this.label36);
+            this.grpResumen.Controls.Add(this.label37);
+            this.grpResumen.Controls.Add(this.label38);
+            this.grpResumen.Controls.Add(this.label39);
+            this.grpResumen.Controls.Add(this.label40);
+            this.grpResumen.Controls.Add(this.textBox5);
+            this.grpResumen.Controls.Add(this.textBox6);
+            this.grpResumen.Controls.Add(this.textBox7);
+            this.grpResumen.Controls.Add(this.label41);
+            this.grpResumen.Location = new System.Drawing.Point(610, 225);
+            this.grpResumen.Name = "grpResumen";
+            this.grpResumen.Size = new System.Drawing.Size(253, 216);
+            this.grpResumen.TabIndex = 113;
+            this.grpResumen.TabStop = false;
+            this.grpResumen.Text = "Pagar";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(137, 127);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(99, 20);
+            this.textBox1.TabIndex = 111;
+            this.textBox1.Text = "935.00";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(19, 130);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(59, 13);
+            this.label33.TabIndex = 112;
+            this.label33.Text = "Sub Total :";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(137, 22);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(99, 20);
+            this.textBox2.TabIndex = 99;
+            this.textBox2.Text = "850.00";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(137, 179);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(99, 20);
+            this.textBox3.TabIndex = 109;
+            this.textBox3.Text = "935.00";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(137, 74);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(99, 20);
+            this.textBox4.TabIndex = 103;
+            this.textBox4.Text = "0.00";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(19, 77);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(83, 13);
+            this.label36.TabIndex = 104;
+            this.label36.Text = "Gratificaciones :";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(19, 182);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(37, 13);
+            this.label37.TabIndex = 110;
+            this.label37.Text = "Total :";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(19, 103);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(82, 13);
+            this.label38.TabIndex = 106;
+            this.label38.Text = "Bonificaciones :";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(19, 25);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(34, 13);
+            this.label39.TabIndex = 100;
+            this.label39.Text = "CTS :";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(19, 51);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(69, 13);
+            this.label40.TabIndex = 102;
+            this.label40.Text = "Vacaciones :";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(137, 153);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(99, 20);
+            this.textBox5.TabIndex = 107;
+            this.textBox5.Text = "0.00";
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(137, 100);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(99, 20);
+            this.textBox6.TabIndex = 105;
+            this.textBox6.Text = "0.00";
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(137, 48);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(99, 20);
+            this.textBox7.TabIndex = 101;
+            this.textBox7.Text = "85.00";
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(19, 156);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(64, 13);
+            this.label41.TabIndex = 108;
+            this.label41.Text = "Dsto. AFP  :";
             // 
             // groupBox1
             // 
@@ -338,6 +496,15 @@
             this.dateTimePicker6.Size = new System.Drawing.Size(99, 20);
             this.dateTimePicker6.TabIndex = 123;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(460, 53);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(15, 13);
+            this.label27.TabIndex = 113;
+            this.label27.Text = "al";
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -358,88 +525,6 @@
             this.textBox17.Text = "21.59";
             this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox18
-            // 
-            this.textBox18.Location = new System.Drawing.Point(481, 75);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(99, 20);
-            this.textBox18.TabIndex = 118;
-            this.textBox18.Text = "195.56";
-            this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(311, 104);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(30, 13);
-            this.label24.TabIndex = 117;
-            this.label24.Text = "Días";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(355, 101);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(99, 20);
-            this.textBox19.TabIndex = 116;
-            this.textBox19.Text = "15";
-            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(311, 78);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(38, 13);
-            this.label25.TabIndex = 115;
-            this.label25.Text = "Meses";
-            // 
-            // textBox20
-            // 
-            this.textBox20.Location = new System.Drawing.Point(355, 75);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(99, 20);
-            this.textBox20.TabIndex = 114;
-            this.textBox20.Text = "4";
-            this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(311, 53);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 13);
-            this.label26.TabIndex = 110;
-            this.label26.Text = "Desde";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(355, 49);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(99, 20);
-            this.dateTimePicker3.TabIndex = 111;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(460, 53);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(15, 13);
-            this.label27.TabIndex = 113;
-            this.label27.Text = "al";
-            // 
-            // dateTimePicker4
-            // 
-            this.dateTimePicker4.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(481, 49);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(99, 20);
-            this.dateTimePicker4.TabIndex = 112;
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -450,6 +535,15 @@
             this.label22.TabIndex = 99;
             this.label22.Text = "Compensacion Por Tiempo de Servicios";
             // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker4.Location = new System.Drawing.Point(481, 49);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePicker4.TabIndex = 112;
+            // 
             // textBox16
             // 
             this.textBox16.Location = new System.Drawing.Point(179, 101);
@@ -459,6 +553,16 @@
             this.textBox16.TabIndex = 108;
             this.textBox16.Text = "21.59";
             this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(481, 75);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.ReadOnly = true;
+            this.textBox18.Size = new System.Drawing.Size(99, 20);
+            this.textBox18.TabIndex = 118;
+            this.textBox18.Text = "195.56";
+            this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox15
             // 
@@ -479,6 +583,15 @@
             this.label21.TabIndex = 106;
             this.label21.Text = "Días";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(311, 104);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(30, 13);
+            this.label24.TabIndex = 117;
+            this.label24.Text = "Días";
+            // 
             // textBox14
             // 
             this.textBox14.Location = new System.Drawing.Point(53, 101);
@@ -487,6 +600,15 @@
             this.textBox14.TabIndex = 105;
             this.textBox14.Text = "15";
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker3.Location = new System.Drawing.Point(355, 49);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePicker3.TabIndex = 111;
             // 
             // label20
             // 
@@ -497,6 +619,15 @@
             this.label20.TabIndex = 104;
             this.label20.Text = "Meses";
             // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(355, 101);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(99, 20);
+            this.textBox19.TabIndex = 116;
+            this.textBox19.Text = "15";
+            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // textBox13
             // 
             this.textBox13.Location = new System.Drawing.Point(53, 75);
@@ -505,6 +636,15 @@
             this.textBox13.TabIndex = 103;
             this.textBox13.Text = "4";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(311, 53);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(38, 13);
+            this.label26.TabIndex = 110;
+            this.label26.Text = "Desde";
             // 
             // label19
             // 
@@ -515,6 +655,15 @@
             this.label19.TabIndex = 99;
             this.label19.Text = "Desde";
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(311, 78);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(38, 13);
+            this.label25.TabIndex = 115;
+            this.label25.Text = "Meses";
+            // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
@@ -523,6 +672,15 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(99, 20);
             this.dateTimePicker2.TabIndex = 100;
+            // 
+            // textBox20
+            // 
+            this.textBox20.Location = new System.Drawing.Point(355, 75);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(99, 20);
+            this.textBox20.TabIndex = 114;
+            this.textBox20.Text = "4";
+            this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label18
             // 
@@ -1004,13 +1162,13 @@
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInferior.Location = new System.Drawing.Point(3, 458);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(872, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(872, 44);
             this.pnlInferior.TabIndex = 17;
             // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(758, 5);
+            this.BtnSave.Location = new System.Drawing.Point(763, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -1021,7 +1179,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(637, 5);
+            this.BtnCancel.Location = new System.Drawing.Point(657, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;
@@ -1029,175 +1187,20 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // grpResumen
-            // 
-            this.grpResumen.Controls.Add(this.textBox1);
-            this.grpResumen.Controls.Add(this.label33);
-            this.grpResumen.Controls.Add(this.textBox2);
-            this.grpResumen.Controls.Add(this.textBox3);
-            this.grpResumen.Controls.Add(this.textBox4);
-            this.grpResumen.Controls.Add(this.label36);
-            this.grpResumen.Controls.Add(this.label37);
-            this.grpResumen.Controls.Add(this.label38);
-            this.grpResumen.Controls.Add(this.label39);
-            this.grpResumen.Controls.Add(this.label40);
-            this.grpResumen.Controls.Add(this.textBox5);
-            this.grpResumen.Controls.Add(this.textBox6);
-            this.grpResumen.Controls.Add(this.textBox7);
-            this.grpResumen.Controls.Add(this.label41);
-            this.grpResumen.Location = new System.Drawing.Point(610, 225);
-            this.grpResumen.Name = "grpResumen";
-            this.grpResumen.Size = new System.Drawing.Size(253, 216);
-            this.grpResumen.TabIndex = 113;
-            this.grpResumen.TabStop = false;
-            this.grpResumen.Text = "Pagar";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(137, 127);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(99, 20);
-            this.textBox1.TabIndex = 111;
-            this.textBox1.Text = "935.00";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(19, 130);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(59, 13);
-            this.label33.TabIndex = 112;
-            this.label33.Text = "Sub Total :";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(137, 22);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(99, 20);
-            this.textBox2.TabIndex = 99;
-            this.textBox2.Text = "850.00";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(137, 179);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(99, 20);
-            this.textBox3.TabIndex = 109;
-            this.textBox3.Text = "935.00";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(137, 74);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(99, 20);
-            this.textBox4.TabIndex = 103;
-            this.textBox4.Text = "0.00";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(19, 77);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(83, 13);
-            this.label36.TabIndex = 104;
-            this.label36.Text = "Gratificaciones :";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(19, 182);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(37, 13);
-            this.label37.TabIndex = 110;
-            this.label37.Text = "Total :";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(19, 103);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(82, 13);
-            this.label38.TabIndex = 106;
-            this.label38.Text = "Bonificaciones :";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(19, 25);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(34, 13);
-            this.label39.TabIndex = 100;
-            this.label39.Text = "CTS :";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(19, 51);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(69, 13);
-            this.label40.TabIndex = 102;
-            this.label40.Text = "Vacaciones :";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(137, 153);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(99, 20);
-            this.textBox5.TabIndex = 107;
-            this.textBox5.Text = "0.00";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(137, 100);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(99, 20);
-            this.textBox6.TabIndex = 105;
-            this.textBox6.Text = "0.00";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(137, 48);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(99, 20);
-            this.textBox7.TabIndex = 101;
-            this.textBox7.Text = "85.00";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(19, 156);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(64, 13);
-            this.label41.TabIndex = 108;
-            this.label41.Text = "Dsto. AFP  :";
-            // 
             // FrmLiquidacionMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 515);
+            this.ClientSize = new System.Drawing.Size(878, 505);
             this.Controls.Add(this.tlpPrincipal);
+            this.MaximizeBox = false;
             this.Name = "FrmLiquidacionMant";
             this.Text = "Liquidacion de  Empleado";
             this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);
             this.tlpPrincipal.ResumeLayout(false);
             this.pnlPrincipal.ResumeLayout(false);
+            this.grpResumen.ResumeLayout(false);
+            this.grpResumen.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpSueldo.ResumeLayout(false);
@@ -1205,8 +1208,6 @@
             this.grpDatos.ResumeLayout(false);
             this.grpDatos.PerformLayout();
             this.pnlInferior.ResumeLayout(false);
-            this.grpResumen.ResumeLayout(false);
-            this.grpResumen.PerformLayout();
             this.ResumeLayout(false);
 
         }

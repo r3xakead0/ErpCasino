@@ -63,7 +63,7 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(449, 359);
             this.tlpPrincipal.TabIndex = 16;
             // 
@@ -73,7 +73,7 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(443, 293);
+            this.pnlPrincipal.Size = new System.Drawing.Size(443, 303);
             this.pnlPrincipal.TabIndex = 16;
             // 
             // grpInasistencia
@@ -95,7 +95,7 @@
             this.grpInasistencia.Controls.Add(this.lblFecha);
             this.grpInasistencia.Location = new System.Drawing.Point(9, 9);
             this.grpInasistencia.Name = "grpInasistencia";
-            this.grpInasistencia.Size = new System.Drawing.Size(425, 270);
+            this.grpInasistencia.Size = new System.Drawing.Size(425, 280);
             this.grpInasistencia.TabIndex = 3;
             this.grpInasistencia.TabStop = false;
             this.grpInasistencia.Text = "Detalle de la Inasistencia";
@@ -104,7 +104,7 @@
             // 
             this.txtCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCertificado.Location = new System.Drawing.Point(78, 239);
+            this.txtCertificado.Location = new System.Drawing.Point(78, 249);
             this.txtCertificado.Name = "txtCertificado";
             this.txtCertificado.Size = new System.Drawing.Size(336, 20);
             this.txtCertificado.TabIndex = 6;
@@ -113,7 +113,7 @@
             // 
             this.lblCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCertificado.AutoSize = true;
-            this.lblCertificado.Location = new System.Drawing.Point(9, 242);
+            this.lblCertificado.Location = new System.Drawing.Point(9, 252);
             this.lblCertificado.Name = "lblCertificado";
             this.lblCertificado.Size = new System.Drawing.Size(63, 13);
             this.lblCertificado.TabIndex = 73;
@@ -137,7 +137,7 @@
             this.txtDetalle.Multiline = true;
             this.txtDetalle.Name = "txtDetalle";
             this.txtDetalle.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDetalle.Size = new System.Drawing.Size(336, 130);
+            this.txtDetalle.Size = new System.Drawing.Size(336, 140);
             this.txtDetalle.TabIndex = 5;
             // 
             // lblDetalle
@@ -220,15 +220,15 @@
             this.pnlInferior.Controls.Add(this.btnGuardar);
             this.pnlInferior.Controls.Add(this.btnCancelar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 302);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 312);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(443, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(443, 44);
             this.pnlInferior.TabIndex = 17;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(329, 5);
+            this.btnGuardar.Location = new System.Drawing.Point(334, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 17;
@@ -239,7 +239,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(208, 5);
+            this.btnCancelar.Location = new System.Drawing.Point(228, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
             this.btnCancelar.TabIndex = 18;

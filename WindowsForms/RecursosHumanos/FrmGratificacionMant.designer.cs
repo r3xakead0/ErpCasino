@@ -117,7 +117,7 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(694, 462);
             this.tlpPrincipal.TabIndex = 16;
             // 
@@ -128,7 +128,7 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(688, 396);
+            this.pnlPrincipal.Size = new System.Drawing.Size(688, 406);
             this.pnlPrincipal.TabIndex = 16;
             // 
             // tbcDetalles
@@ -141,7 +141,7 @@
             this.tbcDetalles.Location = new System.Drawing.Point(3, 96);
             this.tbcDetalles.Name = "tbcDetalles";
             this.tbcDetalles.SelectedIndex = 0;
-            this.tbcDetalles.Size = new System.Drawing.Size(682, 297);
+            this.tbcDetalles.Size = new System.Drawing.Size(682, 307);
             this.tbcDetalles.TabIndex = 74;
             // 
             // tbpResumen
@@ -154,7 +154,7 @@
             this.tbpResumen.Location = new System.Drawing.Point(4, 22);
             this.tbpResumen.Name = "tbpResumen";
             this.tbpResumen.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpResumen.Size = new System.Drawing.Size(674, 271);
+            this.tbpResumen.Size = new System.Drawing.Size(674, 281);
             this.tbpResumen.TabIndex = 0;
             this.tbpResumen.Text = "Resumen";
             this.tbpResumen.UseVisualStyleBackColor = true;
@@ -561,7 +561,7 @@
             this.tbpDetalle.Location = new System.Drawing.Point(4, 22);
             this.tbpDetalle.Name = "tbpDetalle";
             this.tbpDetalle.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpDetalle.Size = new System.Drawing.Size(674, 271);
+            this.tbpDetalle.Size = new System.Drawing.Size(674, 281);
             this.tbpDetalle.TabIndex = 1;
             this.tbpDetalle.Text = "Detalle";
             this.tbpDetalle.UseVisualStyleBackColor = true;
@@ -569,7 +569,7 @@
             // txtDetalleBonoNocturno
             // 
             this.txtDetalleBonoNocturno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDetalleBonoNocturno.Location = new System.Drawing.Point(197, 236);
+            this.txtDetalleBonoNocturno.Location = new System.Drawing.Point(197, 246);
             this.txtDetalleBonoNocturno.Name = "txtDetalleBonoNocturno";
             this.txtDetalleBonoNocturno.ReadOnly = true;
             this.txtDetalleBonoNocturno.Size = new System.Drawing.Size(120, 20);
@@ -580,7 +580,7 @@
             // txtDetalleBonoHorasExtras
             // 
             this.txtDetalleBonoHorasExtras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDetalleBonoHorasExtras.Location = new System.Drawing.Point(318, 236);
+            this.txtDetalleBonoHorasExtras.Location = new System.Drawing.Point(318, 246);
             this.txtDetalleBonoHorasExtras.Name = "txtDetalleBonoHorasExtras";
             this.txtDetalleBonoHorasExtras.ReadOnly = true;
             this.txtDetalleBonoHorasExtras.Size = new System.Drawing.Size(120, 20);
@@ -591,7 +591,7 @@
             // txtDetalleDiasCalculo
             // 
             this.txtDetalleDiasCalculo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDetalleDiasCalculo.Location = new System.Drawing.Point(439, 236);
+            this.txtDetalleDiasCalculo.Location = new System.Drawing.Point(439, 246);
             this.txtDetalleDiasCalculo.Name = "txtDetalleDiasCalculo";
             this.txtDetalleDiasCalculo.ReadOnly = true;
             this.txtDetalleDiasCalculo.Size = new System.Drawing.Size(120, 20);
@@ -603,7 +603,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(564, 6);
+            this.label3.Location = new System.Drawing.Point(564, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 27;
@@ -617,7 +617,7 @@
             this.dgvDetalleGratificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetalleGratificaciones.Location = new System.Drawing.Point(6, 6);
             this.dgvDetalleGratificaciones.Name = "dgvDetalleGratificaciones";
-            this.dgvDetalleGratificaciones.Size = new System.Drawing.Size(556, 224);
+            this.dgvDetalleGratificaciones.Size = new System.Drawing.Size(556, 234);
             this.dgvDetalleGratificaciones.TabIndex = 23;
             this.dgvDetalleGratificaciones.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleGratificaciones_CellEndEdit);
             this.dgvDetalleGratificaciones.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetalleGratificaciones_EditingControlShowing);
@@ -625,7 +625,7 @@
             // DetalleCalculoDias
             // 
             this.DetalleCalculoDias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DetalleCalculoDias.Location = new System.Drawing.Point(567, 89);
+            this.DetalleCalculoDias.Location = new System.Drawing.Point(567, 99);
             this.DetalleCalculoDias.Name = "DetalleCalculoDias";
             this.DetalleCalculoDias.Size = new System.Drawing.Size(100, 27);
             this.DetalleCalculoDias.TabIndex = 26;
@@ -635,7 +635,7 @@
             // btnDetalleHorarioNocturno
             // 
             this.btnDetalleHorarioNocturno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDetalleHorarioNocturno.Location = new System.Drawing.Point(567, 56);
+            this.btnDetalleHorarioNocturno.Location = new System.Drawing.Point(567, 66);
             this.btnDetalleHorarioNocturno.Name = "btnDetalleHorarioNocturno";
             this.btnDetalleHorarioNocturno.Size = new System.Drawing.Size(100, 27);
             this.btnDetalleHorarioNocturno.TabIndex = 24;
@@ -645,7 +645,7 @@
             // btnDetalleHorasExtras
             // 
             this.btnDetalleHorasExtras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDetalleHorasExtras.Location = new System.Drawing.Point(567, 22);
+            this.btnDetalleHorasExtras.Location = new System.Drawing.Point(567, 32);
             this.btnDetalleHorasExtras.Name = "btnDetalleHorasExtras";
             this.btnDetalleHorasExtras.Size = new System.Drawing.Size(100, 28);
             this.btnDetalleHorasExtras.TabIndex = 25;
@@ -659,7 +659,7 @@
             this.label19.BackColor = System.Drawing.Color.Navy;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(6, 232);
+            this.label19.Location = new System.Drawing.Point(6, 242);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(556, 28);
             this.label19.TabIndex = 77;
@@ -781,15 +781,15 @@
             this.pnlInferior.Controls.Add(this.btnGuardar);
             this.pnlInferior.Controls.Add(this.btnCancelar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 405);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 415);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(688, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(688, 44);
             this.pnlInferior.TabIndex = 17;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(581, 10);
+            this.btnGuardar.Location = new System.Drawing.Point(579, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 17;
@@ -800,7 +800,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(460, 10);
+            this.btnCancelar.Location = new System.Drawing.Point(473, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
             this.btnCancelar.TabIndex = 18;
@@ -814,6 +814,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 462);
             this.Controls.Add(this.tlpPrincipal);
+            this.MaximizeBox = false;
             this.Name = "FrmGratificacionMant";
             this.Text = "Mantenimiento de Gratificacion";
             this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);

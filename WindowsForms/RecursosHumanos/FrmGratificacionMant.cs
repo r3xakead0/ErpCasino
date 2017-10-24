@@ -369,6 +369,14 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                if (this.cboPeriodoFiltro.SelectedIndex == 0)
+                {
+                    this.txtFechaInicialFiltro.Clear();
+                    this.txtFechaFinalFiltro.Clear();
+
+                    return;
+                }
+
                 string strPeriodo = this.cboPeriodoFiltro.SelectedValue.ToString();
                 string[] anhoPeriodo = strPeriodo.Split('-');
 

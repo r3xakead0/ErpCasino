@@ -46,14 +46,14 @@
             this.dgvPerfiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPerfiles.Location = new System.Drawing.Point(0, 0);
             this.dgvPerfiles.Name = "dgvPerfiles";
-            this.dgvPerfiles.Size = new System.Drawing.Size(706, 254);
+            this.dgvPerfiles.Size = new System.Drawing.Size(706, 264);
             this.dgvPerfiles.TabIndex = 0;
             this.dgvPerfiles.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPerfiles_ColumnHeaderMouseClick);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(597, 10);
+            this.btnGuardar.Location = new System.Drawing.Point(597, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 16;
@@ -63,7 +63,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(491, 10);
+            this.btnCancelar.Location = new System.Drawing.Point(491, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
             this.btnCancelar.TabIndex = 17;
@@ -81,7 +81,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 320);
             this.tableLayoutPanel1.TabIndex = 19;
             // 
@@ -90,9 +90,9 @@
             this.panel2.Controls.Add(this.btnGuardar);
             this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 263);
+            this.panel2.Location = new System.Drawing.Point(3, 273);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(706, 54);
+            this.panel2.Size = new System.Drawing.Size(706, 44);
             this.panel2.TabIndex = 1;
             // 
             // panel1
@@ -101,7 +101,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 254);
+            this.panel1.Size = new System.Drawing.Size(706, 264);
             this.panel1.TabIndex = 0;
             // 
             // FrmPerfilMant

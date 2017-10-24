@@ -69,7 +69,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCerrar.Location = new System.Drawing.Point(650, 5);
+            this.btnCerrar.Location = new System.Drawing.Point(644, 5);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 18;

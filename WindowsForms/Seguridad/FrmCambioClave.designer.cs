@@ -55,8 +55,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 177);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(315, 177);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // panel1
@@ -70,7 +70,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(388, 111);
+            this.panel1.Size = new System.Drawing.Size(309, 121);
             this.panel1.TabIndex = 16;
             // 
             // lblClaveActual
@@ -89,7 +89,7 @@
             this.txtClaveActual.Location = new System.Drawing.Point(145, 20);
             this.txtClaveActual.Name = "txtClaveActual";
             this.txtClaveActual.PasswordChar = '*';
-            this.txtClaveActual.Size = new System.Drawing.Size(206, 20);
+            this.txtClaveActual.Size = new System.Drawing.Size(127, 20);
             this.txtClaveActual.TabIndex = 17;
             // 
             // lblClaveNueva
@@ -108,7 +108,7 @@
             this.txtClaveNueva.Location = new System.Drawing.Point(145, 46);
             this.txtClaveNueva.Name = "txtClaveNueva";
             this.txtClaveNueva.PasswordChar = '*';
-            this.txtClaveNueva.Size = new System.Drawing.Size(206, 20);
+            this.txtClaveNueva.Size = new System.Drawing.Size(127, 20);
             this.txtClaveNueva.TabIndex = 20;
             // 
             // lblClaveRepetir
@@ -127,7 +127,7 @@
             this.txtClaveRepetir.Location = new System.Drawing.Point(145, 72);
             this.txtClaveRepetir.Name = "txtClaveRepetir";
             this.txtClaveRepetir.PasswordChar = '*';
-            this.txtClaveRepetir.Size = new System.Drawing.Size(206, 20);
+            this.txtClaveRepetir.Size = new System.Drawing.Size(127, 20);
             this.txtClaveRepetir.TabIndex = 22;
             // 
             // panel2
@@ -135,15 +135,15 @@
             this.panel2.Controls.Add(this.BtnSave);
             this.panel2.Controls.Add(this.BtnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 120);
+            this.panel2.Location = new System.Drawing.Point(3, 130);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(388, 54);
+            this.panel2.Size = new System.Drawing.Size(309, 44);
             this.panel2.TabIndex = 17;
             // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(251, 5);
+            this.BtnSave.Location = new System.Drawing.Point(200, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -154,7 +154,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(145, 5);
+            this.BtnCancel.Location = new System.Drawing.Point(94, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;
@@ -166,8 +166,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 177);
+            this.ClientSize = new System.Drawing.Size(315, 177);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
             this.Name = "FrmCambioClave";
             this.Text = "Cambiar Clave";
             this.tableLayoutPanel1.ResumeLayout(false);

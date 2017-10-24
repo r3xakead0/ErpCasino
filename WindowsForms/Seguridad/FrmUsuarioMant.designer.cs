@@ -70,8 +70,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(518, 301);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(350, 290);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // panel1
@@ -100,7 +100,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(512, 235);
+            this.panel1.Size = new System.Drawing.Size(344, 234);
             this.panel1.TabIndex = 16;
             // 
             // LblContrasenha
@@ -129,7 +129,7 @@
             this.TxtContrasenha.Location = new System.Drawing.Point(145, 108);
             this.TxtContrasenha.Name = "TxtContrasenha";
             this.TxtContrasenha.PasswordChar = '*';
-            this.TxtContrasenha.Size = new System.Drawing.Size(330, 20);
+            this.TxtContrasenha.Size = new System.Drawing.Size(162, 20);
             this.TxtContrasenha.TabIndex = 35;
             // 
             // LblUsuario
@@ -157,7 +157,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtUsuario.Location = new System.Drawing.Point(145, 20);
             this.TxtUsuario.Name = "TxtUsuario";
-            this.TxtUsuario.Size = new System.Drawing.Size(330, 20);
+            this.TxtUsuario.Size = new System.Drawing.Size(162, 20);
             this.TxtUsuario.TabIndex = 17;
             // 
             // LblNombre
@@ -185,7 +185,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtNombre.Location = new System.Drawing.Point(145, 52);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(330, 20);
+            this.TxtNombre.Size = new System.Drawing.Size(162, 20);
             this.TxtNombre.TabIndex = 20;
             // 
             // LblEmail
@@ -213,7 +213,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtEmail.Location = new System.Drawing.Point(145, 80);
             this.TxtEmail.Name = "TxtEmail";
-            this.TxtEmail.Size = new System.Drawing.Size(330, 20);
+            this.TxtEmail.Size = new System.Drawing.Size(162, 20);
             this.TxtEmail.TabIndex = 22;
             // 
             // LblContrasenha2
@@ -242,7 +242,7 @@
             this.TxtContrasenha2.Location = new System.Drawing.Point(145, 136);
             this.TxtContrasenha2.Name = "TxtContrasenha2";
             this.TxtContrasenha2.PasswordChar = '*';
-            this.TxtContrasenha2.Size = new System.Drawing.Size(330, 20);
+            this.TxtContrasenha2.Size = new System.Drawing.Size(162, 20);
             this.TxtContrasenha2.TabIndex = 26;
             // 
             // LblBloqueado
@@ -270,7 +270,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CbxBloqueado.Location = new System.Drawing.Point(145, 164);
             this.CbxBloqueado.Name = "CbxBloqueado";
-            this.CbxBloqueado.Size = new System.Drawing.Size(330, 20);
+            this.CbxBloqueado.Size = new System.Drawing.Size(162, 20);
             this.CbxBloqueado.TabIndex = 29;
             // 
             // LblActivo
@@ -298,7 +298,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CbxActivo.Location = new System.Drawing.Point(145, 192);
             this.CbxActivo.Name = "CbxActivo";
-            this.CbxActivo.Size = new System.Drawing.Size(330, 20);
+            this.CbxActivo.Size = new System.Drawing.Size(162, 20);
             this.CbxActivo.TabIndex = 32;
             // 
             // panel2
@@ -306,15 +306,15 @@
             this.panel2.Controls.Add(this.BtnSave);
             this.panel2.Controls.Add(this.BtnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 244);
+            this.panel2.Location = new System.Drawing.Point(3, 243);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(512, 54);
+            this.panel2.Size = new System.Drawing.Size(344, 44);
             this.panel2.TabIndex = 17;
             // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(375, 5);
+            this.BtnSave.Location = new System.Drawing.Point(235, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -325,7 +325,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(255, 5);
+            this.BtnCancel.Location = new System.Drawing.Point(129, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;
@@ -337,8 +337,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 301);
+            this.ClientSize = new System.Drawing.Size(350, 290);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
             this.Name = "FrmUsuarioMant";
             this.Text = "Mantenimiento de Usuario";
             this.tableLayoutPanel1.ResumeLayout(false);

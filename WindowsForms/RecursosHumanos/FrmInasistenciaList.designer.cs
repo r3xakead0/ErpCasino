@@ -54,13 +54,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvInasistencias.Location = new System.Drawing.Point(3, 3);
             this.dgvInasistencias.Name = "dgvInasistencias";
-            this.dgvInasistencias.Size = new System.Drawing.Size(938, 249);
+            this.dgvInasistencias.Size = new System.Drawing.Size(938, 254);
             this.dgvInasistencias.TabIndex = 0;
             // 
             // btnClasificar
             // 
-            this.btnClasificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClasificar.Location = new System.Drawing.Point(827, 11);
+            this.btnClasificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClasificar.Location = new System.Drawing.Point(835, 5);
             this.btnClasificar.Name = "btnClasificar";
             this.btnClasificar.Size = new System.Drawing.Size(100, 30);
             this.btnClasificar.TabIndex = 16;
@@ -81,7 +81,7 @@
             this.TlpPrincipal.RowCount = 3;
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(950, 376);
             this.TlpPrincipal.TabIndex = 19;
             // 
@@ -164,16 +164,16 @@
             this.PnlGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlGrilla.Location = new System.Drawing.Point(3, 63);
             this.PnlGrilla.Name = "PnlGrilla";
-            this.PnlGrilla.Size = new System.Drawing.Size(944, 255);
+            this.PnlGrilla.Size = new System.Drawing.Size(944, 260);
             this.PnlGrilla.TabIndex = 1;
             // 
             // PnlBotones
             // 
             this.PnlBotones.Controls.Add(this.btnClasificar);
             this.PnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlBotones.Location = new System.Drawing.Point(3, 324);
+            this.PnlBotones.Location = new System.Drawing.Point(3, 329);
             this.PnlBotones.Name = "PnlBotones";
-            this.PnlBotones.Size = new System.Drawing.Size(944, 49);
+            this.PnlBotones.Size = new System.Drawing.Size(944, 44);
             this.PnlBotones.TabIndex = 2;
             // 
             // FrmInasistenciaList
