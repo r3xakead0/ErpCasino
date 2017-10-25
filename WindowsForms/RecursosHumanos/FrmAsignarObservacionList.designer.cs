@@ -40,6 +40,9 @@
             this.cboMes = new System.Windows.Forms.ComboBox();
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
+            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
+            this.lblEmpleado = new System.Windows.Forms.Label();
+            this.cboEmpleado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObservaciones)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -129,6 +132,9 @@
             // 
             // pnlFiltro
             // 
+            this.pnlFiltro.Controls.Add(this.txtEmpleadoCodigo);
+            this.pnlFiltro.Controls.Add(this.lblEmpleado);
+            this.pnlFiltro.Controls.Add(this.cboEmpleado);
             this.pnlFiltro.Controls.Add(this.label1);
             this.pnlFiltro.Controls.Add(this.cboMes);
             this.pnlFiltro.Controls.Add(this.cboAnho);
@@ -177,6 +183,34 @@
             this.LblFechaHora.TabIndex = 55;
             this.LblFechaHora.Text = "Año y Mes :";
             // 
+            // txtEmpleadoCodigo
+            // 
+            this.txtEmpleadoCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(523, 8);
+            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
+            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
+            this.txtEmpleadoCodigo.TabIndex = 95;
+            // 
+            // lblEmpleado
+            // 
+            this.lblEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEmpleado.AutoSize = true;
+            this.lblEmpleado.Location = new System.Drawing.Point(454, 11);
+            this.lblEmpleado.Name = "lblEmpleado";
+            this.lblEmpleado.Size = new System.Drawing.Size(60, 13);
+            this.lblEmpleado.TabIndex = 93;
+            this.lblEmpleado.Text = "Empleado :";
+            // 
+            // cboEmpleado
+            // 
+            this.cboEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmpleado.FormattingEnabled = true;
+            this.cboEmpleado.Location = new System.Drawing.Point(615, 7);
+            this.cboEmpleado.Name = "cboEmpleado";
+            this.cboEmpleado.Size = new System.Drawing.Size(261, 21);
+            this.cboEmpleado.TabIndex = 94;
+            // 
             // FrmAsignarObservacionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,5 +246,8 @@
         private System.Windows.Forms.ComboBox cboMes;
         private System.Windows.Forms.ComboBox cboAnho;
         internal System.Windows.Forms.Label LblFechaHora;
+        private System.Windows.Forms.TextBox txtEmpleadoCodigo;
+        internal System.Windows.Forms.Label lblEmpleado;
+        private System.Windows.Forms.ComboBox cboEmpleado;
     }
 }

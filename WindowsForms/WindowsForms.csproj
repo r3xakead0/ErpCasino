@@ -49,6 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecursosHumanos\FrmReciboDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReciboDetalle.designer.cs">
+      <DependentUpon>FrmReciboDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReciboCalcular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReciboCalcular.designer.cs">
+      <DependentUpon>FrmReciboCalcular.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmSalaMant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +383,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecursosHumanos\FrmReciboDetalle.resx">
+      <DependentUpon>FrmReciboDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmReciboCalcular.resx">
+      <DependentUpon>FrmReciboCalcular.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmSalaMant.resx">
       <DependentUpon>FrmSalaMant.cs</DependentUpon>
     </EmbeddedResource>
@@ -563,6 +581,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logistica\" />
+    <Folder Include="RecursosHumanos\Impresos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />

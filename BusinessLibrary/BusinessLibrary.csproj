@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BE\Adelanto.cs" />
+    <Compile Include="BE\Recibo.cs" />
     <Compile Include="BE\BonoEmpleado.cs" />
     <Compile Include="BE\DescuentoEmpleado.cs" />
     <Compile Include="BE\Gratificacion.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="BE\UI\Bono.cs" />
     <Compile Include="BE\UI\ObservacionEmpleado.cs" />
     <Compile Include="BE\UI\Observacion.cs" />
+    <Compile Include="BE\UI\Recibo.cs" />
     <Compile Include="BE\UI\Sala.cs" />
     <Compile Include="BE\UI\Asistencia.cs" />
     <Compile Include="BE\UI\Gratificacion.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="BE\UI\Planilla.cs" />
     <Compile Include="BE\UI\Cuota.cs" />
     <Compile Include="BE\UI\Prestamo.cs" />
+    <Compile Include="DA\Recibo.cs" />
     <Compile Include="DA\Comprometido.cs" />
     <Compile Include="DA\MetaSala.cs" />
     <Compile Include="DA\Adelanto.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="DA\Sala.cs" />
     <Compile Include="DA\Turno.cs" />
     <Compile Include="DA\ConnectionManager.cs" />
+    <Compile Include="LN\Recibo.cs" />
     <Compile Include="LN\BonoEmpleado.cs" />
     <Compile Include="LN\DescuentoEmpleado.cs" />
     <Compile Include="LN\Comprometido.cs" />

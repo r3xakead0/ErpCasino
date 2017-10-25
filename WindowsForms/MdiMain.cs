@@ -536,6 +536,19 @@ namespace ErpCasino.WindowsForms
             }
         }
 
-        
+        private void tsmRecibosCalcular_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmReciboCalcular = new FrmReciboCalcular();
+                frmReciboCalcular.MdiParent = this;
+                frmReciboCalcular.StartPosition = FormStartPosition.CenterScreen;
+                frmReciboCalcular.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
     }
 }

@@ -353,5 +353,12 @@
     <Build Include="dbo\Stored Procedures\SpTbComprometidoActualizar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbHorarioListarColaboradores.sql" />
     <Build Include="dbo\Stored Procedures\SpTbBonoEmpleadoExisteCalculo.sql" />
+    <Build Include="dbo\Tables\TbRecibo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbReciboResumen.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbReciboListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbReciboInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarReciboResumen.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarReciboDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\SpImpresionBoleta.sql" />
   </ItemGroup>
 </Project>

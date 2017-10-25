@@ -61,6 +61,8 @@
             this.tsmAsignarBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAsignarDescuentos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAsignarObservaciones = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmRecibosCalcular = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHorarios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHorariosSemanales = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHorariosMensuales = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,8 +92,6 @@
             this.stsPrincipal = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.stlUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmRecibosCalcular = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrincipal.SuspendLayout();
             this.stsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -123,33 +123,33 @@
             // tsmUsuarios
             // 
             this.tsmUsuarios.Name = "tsmUsuarios";
-            this.tsmUsuarios.Size = new System.Drawing.Size(152, 22);
+            this.tsmUsuarios.Size = new System.Drawing.Size(151, 22);
             this.tsmUsuarios.Text = "Usuarios";
             this.tsmUsuarios.Click += new System.EventHandler(this.tsmUsuarios_Click);
             // 
             // tsmPerfiles
             // 
             this.tsmPerfiles.Name = "tsmPerfiles";
-            this.tsmPerfiles.Size = new System.Drawing.Size(152, 22);
+            this.tsmPerfiles.Size = new System.Drawing.Size(151, 22);
             this.tsmPerfiles.Text = "Perfiles";
             this.tsmPerfiles.Click += new System.EventHandler(this.tsmPerfiles_Click);
             // 
             // tsmPermisos
             // 
             this.tsmPermisos.Name = "tsmPermisos";
-            this.tsmPermisos.Size = new System.Drawing.Size(152, 22);
+            this.tsmPermisos.Size = new System.Drawing.Size(151, 22);
             this.tsmPermisos.Text = "Permisos";
             this.tsmPermisos.Click += new System.EventHandler(this.tsmPermisos_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
             // 
             // tsmCambiarClave
             // 
             this.tsmCambiarClave.Name = "tsmCambiarClave";
-            this.tsmCambiarClave.Size = new System.Drawing.Size(152, 22);
+            this.tsmCambiarClave.Size = new System.Drawing.Size(151, 22);
             this.tsmCambiarClave.Text = "Cambiar Clave";
             this.tsmCambiarClave.Click += new System.EventHandler(this.tsmCambiarClave_Click);
             // 
@@ -321,14 +321,14 @@
             // tsmPlanillasCalcular
             // 
             this.tsmPlanillasCalcular.Name = "tsmPlanillasCalcular";
-            this.tsmPlanillasCalcular.Size = new System.Drawing.Size(152, 22);
+            this.tsmPlanillasCalcular.Size = new System.Drawing.Size(117, 22);
             this.tsmPlanillasCalcular.Text = "Calcular";
             this.tsmPlanillasCalcular.Click += new System.EventHandler(this.tsmPlanillasCalcular_Click);
             // 
             // tsmPlanillasRevisar
             // 
             this.tsmPlanillasRevisar.Name = "tsmPlanillasRevisar";
-            this.tsmPlanillasRevisar.Size = new System.Drawing.Size(152, 22);
+            this.tsmPlanillasRevisar.Size = new System.Drawing.Size(117, 22);
             this.tsmPlanillasRevisar.Text = "Revisar";
             this.tsmPlanillasRevisar.Click += new System.EventHandler(this.tsmPlanillasRevisar_Click);
             // 
@@ -365,6 +365,18 @@
             this.tsmAsignarObservaciones.Text = "Asignar Observaciones";
             this.tsmAsignarObservaciones.Click += new System.EventHandler(this.tsmAsignarObservaciones_Click);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(191, 6);
+            // 
+            // tsmRecibosCalcular
+            // 
+            this.tsmRecibosCalcular.Name = "tsmRecibosCalcular";
+            this.tsmRecibosCalcular.Size = new System.Drawing.Size(194, 22);
+            this.tsmRecibosCalcular.Text = "Calcular";
+            this.tsmRecibosCalcular.Click += new System.EventHandler(this.tsmRecibosCalcular_Click);
+            // 
             // tsmHorarios
             // 
             this.tsmHorarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -377,14 +389,14 @@
             // tsmHorariosSemanales
             // 
             this.tsmHorariosSemanales.Name = "tsmHorariosSemanales";
-            this.tsmHorariosSemanales.Size = new System.Drawing.Size(130, 22);
+            this.tsmHorariosSemanales.Size = new System.Drawing.Size(152, 22);
             this.tsmHorariosSemanales.Text = "Semanales";
             this.tsmHorariosSemanales.Click += new System.EventHandler(this.tsmHorariosSemanales_Click);
             // 
             // tsmHorariosMensuales
             // 
             this.tsmHorariosMensuales.Name = "tsmHorariosMensuales";
-            this.tsmHorariosMensuales.Size = new System.Drawing.Size(130, 22);
+            this.tsmHorariosMensuales.Size = new System.Drawing.Size(152, 22);
             this.tsmHorariosMensuales.Text = "Mensuales";
             this.tsmHorariosMensuales.Click += new System.EventHandler(this.tsmHorariosMensuales_Click);
             // 
@@ -565,17 +577,6 @@
             // 
             this.stlUsuario.Name = "stlUsuario";
             this.stlUsuario.Size = new System.Drawing.Size(0, 17);
-            // 
-            // tsmRecibosCalcular
-            // 
-            this.tsmRecibosCalcular.Name = "tsmRecibosCalcular";
-            this.tsmRecibosCalcular.Size = new System.Drawing.Size(194, 22);
-            this.tsmRecibosCalcular.Text = "Calcular";
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(191, 6);
             // 
             // MdiMain
             // 
