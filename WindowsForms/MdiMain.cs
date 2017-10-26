@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using ErpCasino.WindowsForms.RecursosHumanos;
 using ErpCasino.WindowsForms.Seguridad;
+using ErpCasino.WindowsForms.Configuracion;
 
 namespace ErpCasino.WindowsForms
 {
@@ -544,6 +545,21 @@ namespace ErpCasino.WindowsForms
                 frmReciboCalcular.MdiParent = this;
                 frmReciboCalcular.StartPosition = FormStartPosition.CenterScreen;
                 frmReciboCalcular.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void tsmConfiguracionEmpresa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmEmpresa = new FrmEmpresaMant();
+                frmEmpresa.MdiParent = this;
+                frmEmpresa.StartPosition = FormStartPosition.CenterScreen;
+                frmEmpresa.Show();
             }
             catch (Exception ex)
             {

@@ -337,6 +337,12 @@
     <Compile Include="RecursosHumanos\FrmAsistenciaMant.designer.cs">
       <DependentUpon>FrmAsistenciaMant.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\Impresos\FrmImpresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\Impresos\FrmImpresion.Designer.cs">
+      <DependentUpon>FrmImpresion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\FrmCambioClave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +354,12 @@
     </Compile>
     <Compile Include="Seguridad\FrmPerfilMant.designer.cs">
       <DependentUpon>FrmPerfilMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\FrmEmpresaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion\FrmEmpresaMant.designer.cs">
+      <DependentUpon>FrmEmpresaMant.cs</DependentUpon>
     </Compile>
     <Compile Include="SortableBindingList.cs" />
     <Compile Include="Util.cs" />
@@ -524,6 +536,9 @@
     <EmbeddedResource Include="RecursosHumanos\FrmEmpleadoMant.resx">
       <DependentUpon>FrmEmpleadoMant.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\Impresos\FrmImpresion.resx">
+      <DependentUpon>FrmImpresion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -541,6 +556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FrmCambioClave.resx">
       <DependentUpon>FrmCambioClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion\FrmEmpresaMant.resx">
+      <DependentUpon>FrmEmpresaMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FrmUsuarioMant.resx">
       <DependentUpon>FrmUsuarioMant.cs</DependentUpon>
@@ -581,7 +599,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logistica\" />
-    <Folder Include="RecursosHumanos\Impresos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />

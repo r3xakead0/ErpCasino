@@ -360,5 +360,9 @@
     <Build Include="dbo\Stored Procedures\SpListarReciboResumen.sql" />
     <Build Include="dbo\Stored Procedures\SpListarReciboDetalle.sql" />
     <Build Include="dbo\Stored Procedures\SpImpresionBoleta.sql" />
+    <Build Include="dbo\Tables\TbEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpresaObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpresaInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpresaActualizar.sql" />
   </ItemGroup>
 </Project>
