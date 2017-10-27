@@ -229,7 +229,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmAdelanto = new FrmAsignarObservacionList();
+                var frmAdelanto = new FrmAdelantoList();
                 frmAdelanto.MdiParent = this;
                 frmAdelanto.StartPosition = FormStartPosition.CenterScreen;
                 frmAdelanto.Show();

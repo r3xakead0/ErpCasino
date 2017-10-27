@@ -586,5 +586,30 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 Util.ErrorMessage(ex.Message);
             }
         }
+
+        private void btnBoleta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.dgvPlanilla.CurrentRow != null)
+                {
+
+                    var uiPlanillaDetalle = (BE.UI.PlanillaDetalle)this.dgvPlanilla.CurrentRow.DataBoundItem;
+
+                    int anho = int.Parse(this.CboAnho.SelectedValue.ToString());
+                    int mes = int.Parse(this.CbxMes.SelectedValue.ToString());
+
+                    var frmPlanillaVista = new FrmImpresion();
+                    frmPlanillaVista.MdiParent = this.MdiParent;
+                    frmPlanillaVista.Show();
+                    frmPlanillaVista.ImpresionBoleta(anho, mes, uiPlanillaDetalle.EmpleadoCodigo);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
     }
 }

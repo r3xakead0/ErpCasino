@@ -123,6 +123,7 @@
     <Compile Include="BE\UI\Planilla.cs" />
     <Compile Include="BE\UI\Cuota.cs" />
     <Compile Include="BE\UI\Prestamo.cs" />
+    <Compile Include="DA\Conexion.cs" />
     <Compile Include="DA\Empresa.cs" />
     <Compile Include="DA\Recibo.cs" />
     <Compile Include="DA\Comprometido.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="DA\Sala.cs" />
     <Compile Include="DA\Turno.cs" />
     <Compile Include="DA\ConnectionManager.cs" />
+    <Compile Include="LN\Conexion.cs" />
     <Compile Include="LN\Empresa.cs" />
     <Compile Include="LN\Recibo.cs" />
     <Compile Include="LN\BonoEmpleado.cs" />

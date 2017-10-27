@@ -79,6 +79,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnGenerate = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.btnBoleta = new System.Windows.Forms.Button();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.tbcPlanilla.SuspendLayout();
@@ -475,6 +476,7 @@
             // 
             // tbpDetalle
             // 
+            this.tbpDetalle.Controls.Add(this.btnBoleta);
             this.tbpDetalle.Controls.Add(this.txtEmpleadoCodigo);
             this.tbpDetalle.Controls.Add(this.cboEmpleado);
             this.tbpDetalle.Controls.Add(this.label6);
@@ -485,7 +487,7 @@
             this.tbpDetalle.Location = new System.Drawing.Point(4, 22);
             this.tbpDetalle.Name = "tbpDetalle";
             this.tbpDetalle.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpDetalle.Size = new System.Drawing.Size(910, 257);
+            this.tbpDetalle.Size = new System.Drawing.Size(910, 267);
             this.tbpDetalle.TabIndex = 1;
             this.tbpDetalle.Text = "Detalle";
             this.tbpDetalle.UseVisualStyleBackColor = true;
@@ -646,6 +648,17 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // btnBoleta
+            // 
+            this.btnBoleta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBoleta.Location = new System.Drawing.Point(698, 230);
+            this.btnBoleta.Name = "btnBoleta";
+            this.btnBoleta.Size = new System.Drawing.Size(100, 21);
+            this.btnBoleta.TabIndex = 88;
+            this.btnBoleta.Text = "Boleta";
+            this.btnBoleta.UseVisualStyleBackColor = true;
+            this.btnBoleta.Click += new System.EventHandler(this.btnBoleta_Click);
+            // 
             // FrmPlanillaRevisar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,5 +735,6 @@
         private System.Windows.Forms.TextBox txtEmpleadoCodigo;
         private System.Windows.Forms.ComboBox cboEmpleado;
         internal System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Button btnBoleta;
     }
 }
