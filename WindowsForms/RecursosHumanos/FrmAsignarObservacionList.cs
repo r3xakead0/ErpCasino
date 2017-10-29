@@ -8,6 +8,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmAsignarObservacionList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmAsignarObservacionList frmInstance = null;
+
+        public static FrmAsignarObservacionList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsignarObservacionList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmAsignarObservacionList()
         {
             InitializeComponent();
@@ -86,10 +106,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmObservacionEmpleadoMant = new FrmAsignarObservacionMant(this);
+                var frmObservacionEmpleadoMant = FrmAsignarObservacionMant.Instance();
                 frmObservacionEmpleadoMant.MdiParent = this.MdiParent;
                 frmObservacionEmpleadoMant.Show();
-                
+                frmObservacionEmpleadoMant.frmList = this;
+
             }
             catch (Exception ex)
             {
@@ -152,9 +173,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmObservacionEmpleadoMant = new FrmAsignarObservacionMant(this);
+                var frmObservacionEmpleadoMant = FrmAsignarObservacionMant.Instance();
                 frmObservacionEmpleadoMant.MdiParent = this.MdiParent;
                 frmObservacionEmpleadoMant.Show();
+
+                frmObservacionEmpleadoMant.frmList = this;
                 frmObservacionEmpleadoMant.Cargar(uiObservacionEmpleado);
             }
             catch (Exception ex)

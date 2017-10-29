@@ -7,6 +7,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmSueldoMinimoMant : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmSueldoMinimoMant frmInstance = null;
+
+        public static FrmSueldoMinimoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmSueldoMinimoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
         public FrmSueldoMinimoMant()
         {
             InitializeComponent();

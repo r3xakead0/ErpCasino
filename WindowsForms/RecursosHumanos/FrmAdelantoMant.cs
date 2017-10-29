@@ -4,22 +4,41 @@ using System.Data;
 using System.Linq;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.Collections.Generic;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmAdelantoMant : Form
     {
 
-        private FrmAdelantoList frmList = null;
+        #region "Patron Singleton"
+
+        private static FrmAdelantoMant frmInstance = null;
+
+        public static FrmAdelantoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAdelantoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
+        public FrmAdelantoList frmList = null;
 
         private BE.UI.Adelanto beAdelanto = new BE.UI.Adelanto();
 
-        public FrmAdelantoMant(FrmAdelantoList frmList)
+        public FrmAdelantoMant()
         {
             try
             {
                 InitializeComponent();
-                this.frmList = frmList;
             }
             catch (Exception ex)
             {
@@ -301,6 +320,53 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         }
 
         #endregion
+
+        private void cboEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboEmpleado.SelectedIndex > 0)
+                {
+                    string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void txtEmpleadoCodigo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string codigoEmpleado = this.txtEmpleadoCodigo.Text.Trim();
+
+                var lst = (List<BE.Record>)this.cboEmpleado.DataSource;
+
+                var beEmpleado = lst.FirstOrDefault(x => x.Codigo.Contains(codigoEmpleado));
+
+                if (beEmpleado != null)
+                {
+                    this.txtEmpleadoCodigo.Text = beEmpleado.Codigo;
+                    this.cboEmpleado.SelectedValue = beEmpleado.Codigo;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                    this.cboEmpleado.SelectedIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
 
     }
 }

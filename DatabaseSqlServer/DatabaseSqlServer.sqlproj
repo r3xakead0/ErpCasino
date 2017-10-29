@@ -214,10 +214,6 @@
     <Build Include="dbo\Stored Procedures\SpTbAfpComisionActualizar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralValidarDocumento.sql" />
     <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralValidarCodigo.sql" />
-    <Build Include="dbo\Tables\TbPlantillaHorario.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbPlantillaHorarioListar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbPlantillaHorarioInsertar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbPlantillaHorarioEliminar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbHorarioDetalle.sql" />
     <Build Include="dbo\Stored Procedures\SpObtenerNombreCompleto.sql" />
     <Build Include="dbo\Tables\TbPlanillaDetalle.sql" />
@@ -242,7 +238,6 @@
     <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleCostoInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbPlanillaDetalleCantidadInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbFeriadoObtener.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbFeriadoListar.sql" />
     <Build Include="dbo\Stored Procedures\SpListarSueldosEmpleado.sql" />
     <Build Include="dbo\Tables\TbPrestamoCuota.sql" />
     <Build Include="dbo\Tables\TbPrestamo.sql" />
@@ -364,5 +359,12 @@
     <Build Include="dbo\Stored Procedures\SpTbEmpresaObtener.sql" />
     <Build Include="dbo\Stored Procedures\SpTbEmpresaInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbEmpresaActualizar.sql" />
+    <Build Include="dbo\Functions\FnCantidadConLetra.sql" />
+    <Build Include="dbo\Stored Procedures\SpReporteCumpleanhos.sql" />
+    <Build Include="dbo\Stored Procedures\SpReporteAsistencias.sql" />
+    <Build Include="dbo\Stored Procedures\SpImpresionGratificacion.sql" />
+    <Build Include="dbo\Stored Procedures\SpImpresionCTS.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbFeriadoListarMes.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbFeriadoListarAnho.sql" />
   </ItemGroup>
 </Project>

@@ -1,18 +1,57 @@
-﻿
-CREATE PROCEDURE SpTbCtsActualizar
+﻿CREATE PROCEDURE SpTbCtsActualizar
 @IdCts AS INT,
-@CodigoEmpleado AS VARCHAR(10),
-@Monto AS DECIMAL(9,4),
-@FechaPeriodoInicial AS DATE,
-@FechaPeriodoFinal AS DATE,
-@FechaDeposito AS DATE
+@Anho AS SMALLINT,
+@Periodo AS TINYINT,
+@PeriodoFechaInicial AS DATE,
+@PeriodoFechaFinal AS DATE,
+@EmpleadoCodigo AS VARCHAR(10),
+@EmpleadoFechaIngreso AS DATE,
+@EmpleadoSueldo AS DECIMAL(9,2),
+@EmpleadoAsigFam AS DECIMAL(9,2),
+@TotalBonificacion AS DECIMAL(9,2),
+@TotalHorasExtras AS DECIMAL(9,2),
+@TotalGratificacion AS DECIMAL(9,2),
+@PromedioBonificacion AS DECIMAL(9,2),
+@PromedioHorasExtras AS DECIMAL(9,2),
+@PromedioGratificacion AS DECIMAL(9,2),
+@ComputableTotal AS DECIMAL(9,2),
+@ComputableFechaInicial AS DATE,
+@ComputableFechaFinal AS DATE,
+@ComputableMeses AS TINYINT,
+@ComputableDias AS TINYINT,
+@ComputablePagar AS DECIMAL(9,2),
+@BancoId AS INT,
+@BancoCuenta AS VARCHAR(50),
+@DepositoFecha AS DATE,
+@DepositoMonto AS DECIMAL(9,2),
+@DepositoOperacion AS VARCHAR(50)
 AS
 BEGIN
-UPDATE TbCts
-SET CodigoEmpleado = @CodigoEmpleado,
-Monto = @Monto,
-FechaPeriodoInicial = @FechaPeriodoInicial,
-FechaPeriodoFinal = @FechaPeriodoFinal,
-FechaDeposito = @FechaDeposito
-WHERE IdCts = @IdCts
+	UPDATE	TbCts
+	SET		Anho = @Anho,
+			Periodo = @Periodo,
+			PeriodoFechaInicial = @PeriodoFechaInicial,
+			PeriodoFechaFinal = @PeriodoFechaFinal,
+			EmpleadoCodigo = @EmpleadoCodigo,
+			EmpleadoFechaIngreso = @EmpleadoFechaIngreso,
+			EmpleadoSueldo = @EmpleadoSueldo,
+			EmpleadoAsigFam = @EmpleadoAsigFam,
+			TotalBonificacion = @TotalBonificacion,
+			TotalHorasExtras = @TotalHorasExtras,
+			TotalGratificacion = @TotalGratificacion,
+			PromedioBonificacion = @PromedioBonificacion,
+			PromedioHorasExtras = @PromedioHorasExtras,
+			PromedioGratificacion = @PromedioGratificacion,
+			ComputableTotal = @ComputableTotal,
+			ComputableFechaInicial = @ComputableFechaInicial,
+			ComputableFechaFinal = @ComputableFechaFinal,
+			ComputableMeses = @ComputableMeses,
+			ComputableDias = @ComputableDias,
+			ComputablePagar = @ComputablePagar,
+			BancoId = @BancoId,
+			BancoCuenta = @BancoCuenta,
+			DepositoFecha = @DepositoFecha,
+			DepositoMonto = @DepositoMonto,
+			DepositoOperacion = @DepositoOperacion
+	WHERE	IdCts = @IdCts
 END

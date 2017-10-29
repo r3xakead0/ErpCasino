@@ -6,11 +6,31 @@ using System.Collections.Generic;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
 using System.Linq;
+using System.ComponentModel;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmHorarioMensualMant : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmHorarioMensualMant frmInstance = null;
+
+        public static FrmHorarioMensualMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmHorarioMensualMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
 
         public FrmHorarioMensualList frmList = null;
 
@@ -67,10 +87,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                                          select uiHorario).ToList();
                 }
 
-                var sourceRegistros = new BindingSource();
-                sourceRegistros.DataSource = this.lstUiHorarios;
+                //var source = new BindingSource();
+                //source.DataSource = this.lstUiHorarios;
+                //this.dgvHorarioMensual.DataSource = source;
 
-                this.dgvHorarioMensual.DataSource = sourceRegistros;
+                var sorted = new SortableBindingList<BE.UI.Horario>(this.lstUiHorarios);
+                this.dgvHorarioMensual.DataSource = sorted;
             }
             catch (Exception ex)
             {
@@ -165,10 +187,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.CargarHorarioMensual();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
@@ -384,6 +405,42 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 Util.PointerReady(this);
             }
         }
-        
+
+        private void FrmHorarioMensualMant_ResizeEnd(object sender, EventArgs e)
+        {
+            try
+            {
+                Util.AutoWidthColumn(ref this.dgvHorarioMensual, "EmpleadoNombreCompleto");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void dgvHorarioMensual_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                var col = this.dgvHorarioMensual.Columns[e.ColumnIndex];
+                ListSortDirection dir;
+
+                switch (col.HeaderCell.SortGlyphDirection)
+                {
+                    case SortOrder.Ascending:
+                        dir = ListSortDirection.Ascending;
+                        break;
+                    default:
+                        dir = ListSortDirection.Descending;
+                        break;
+                }
+
+                this.dgvHorarioMensual.Sort(col, dir);
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
     }
 }

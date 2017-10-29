@@ -11,16 +11,34 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmAsignarDescuentoMant : Form
     {
 
-        private FrmAsignarDescuentoList frmList = null;
+        #region "Patron Singleton"
+
+        private static FrmAsignarDescuentoMant frmInstance = null;
+
+        public static FrmAsignarDescuentoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsignarDescuentoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
+        public FrmAsignarDescuentoList frmList = null;
 
         private BE.UI.DescuentoEmpleado uiDescuentoEmpleado = null;
 
-        public FrmAsignarDescuentoMant(FrmAsignarDescuentoList frmList)
+        public FrmAsignarDescuentoMant()
         {
             try
             {
                 InitializeComponent();
-                this.frmList = frmList;
             }
             catch (Exception ex)
             {
@@ -238,10 +256,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var lst = (List<BE.Record>)this.cboEmpleado.DataSource;
 
-                if (lst.Where(x => x.Codigo == codigoEmpleado).Count() > 0)
+                var beEmpleado = lst.FirstOrDefault(x => x.Codigo.Contains(codigoEmpleado));
+
+                if (beEmpleado != null)
                 {
-                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
-                    this.cboEmpleado.SelectedValue = codigoEmpleado;
+                    this.txtEmpleadoCodigo.Text = beEmpleado.Codigo;
+                    this.cboEmpleado.SelectedValue = beEmpleado.Codigo;
                 }
                 else
                 {
@@ -307,12 +327,19 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                double monto = 0.0;
+
+                if (double.TryParse(this.txtMonto.Text, out monto))
+                {
+                    if (monto > 0)
+                        return;
+                }
+
                 if (this.cboDescuento.SelectedIndex > 0)
                 {
                     int idDescuento = int.Parse(this.cboDescuento.SelectedValue.ToString());
                     var beDescuento = new LN.Descuento().Obtener(idDescuento);
 
-                    double monto = 0.0;
                     if (beDescuento != null)
                         monto = beDescuento.Monto;
 

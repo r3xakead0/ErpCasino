@@ -2,15 +2,34 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
-using ErpCasino.BusinessLibrary.BE;
-using ErpCasino.BusinessLibrary.LN;
+using BE = ErpCasino.BusinessLibrary.BE;
+using LN = ErpCasino.BusinessLibrary.LN;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmPostulanteMant : Form
     {
 
-        public ClsBeTbPostulante bePostulante = null;
+        #region "Patron Singleton"
+
+        private static FrmPostulanteMant frmInstance = null;
+
+        public static FrmPostulanteMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmPostulanteMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
+        public BE.ClsBeTbPostulante bePostulante = null;
 
         public FrmPostulanteList frmList = null;
 
@@ -33,7 +52,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #region Metodos
 
-        public void Cargar(ClsBeTbPostulante bePostulante = null)
+        public void Cargar(BE.ClsBeTbPostulante bePostulante = null)
         {
             try
             {
@@ -135,11 +154,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         this.CargarReclutamientoEstado(this.bePostulante.IdPostulante);
 
                         //Historial
-                        var lstResultadoHistorial = new List<ClsBeResult>();
+                        var lstResultadoHistorial = new List<BE.ClsBeResult>();
                         var historiales = this.bePostulante.Reclutamiento.Historial;
                         foreach (var historial in historiales)
                         {
-                            var result = new ClsBeResult()
+                            var result = new BE.ClsBeResult()
                             {
                                 Id = historial.Estado.Nivel,
                                 Campo01 = historial.Estado.Nombre,
@@ -433,10 +452,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         private void CargarReclutamientoEstado(int? IdPostulante = null, bool Seleccione = true)
         {
-            var lstEstados = new Postulante().ListarEstadosReclutamiento(IdPostulante);
+            var lstEstados = new LN.Postulante().ListarEstadosReclutamiento(IdPostulante);
 
             if (Seleccione == true)
-                lstEstados.Insert(0, new ClsBeTbPostulanteEstado() { IdPostulanteEstado = 0, Nombre = "Seleccione" });
+                lstEstados.Insert(0, new BE.ClsBeTbPostulanteEstado() { IdPostulanteEstado = 0, Nombre = "Seleccione" });
 
             this.CbxEstadoReclutamiento.DataSource = lstEstados;
             this.CbxEstadoReclutamiento.DisplayMember = "Nombre";
@@ -446,7 +465,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         private void CargarReclutamientoDetalle()
         {
 
-            this.DgvHistorial.DataSource = new List<ClsBeResult>();
+            this.DgvHistorial.DataSource = new List<BE.ClsBeResult>();
 
             this.DgvHistorial.Columns["Id"].Visible = false;
 
@@ -485,7 +504,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                this.bePostulante = new ClsBeTbPostulante();
+                this.bePostulante = new BE.ClsBeTbPostulante();
             }
             catch (Exception ex)
             {
@@ -562,7 +581,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 }
                 else
                 {
-                    this.bePostulante.UbigeoNacimiento = null;
+                    this.bePostulante.UbigeoNacimiento = new BE.Ubigeo()
+                    {
+                        Codigo = ""
+                    };
                 }
 
                 this.bePostulante.Nombres = this.TxtNombres.Text;
@@ -580,7 +602,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #region Contacto
                 if (this.bePostulante.Contacto == null)
-                    this.bePostulante.Contacto = new ClsBeTbPostulanteContacto();
+                    this.bePostulante.Contacto = new BE.ClsBeTbPostulanteContacto();
 
                 int codDepartamento = int.Parse(((BusinessLibrary.BE.Record)this.CbxDepartamento.SelectedItem).Codigo);
                 int codProvincia = int.Parse(((BusinessLibrary.BE.Record)this.CbxProvincia.SelectedItem).Codigo);
@@ -607,7 +629,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 }
                 else
                 {
-                    this.bePostulante.Telefonos.Add(new ClsBeTbPostulanteTelefono()
+                    this.bePostulante.Telefonos.Add(new BE.ClsBeTbPostulanteTelefono()
                     {
                         CodTipoTelefono = this.CbxTelefono.SelectedValue.ToString(),
                         Numero = this.TxtTelefono.Text,
@@ -618,7 +640,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #region Reclutamiento
                 if (this.bePostulante.Reclutamiento == null)
-                    this.bePostulante.Reclutamiento = new ClsBeTbPostulanteReclutamiento();
+                    this.bePostulante.Reclutamiento = new BE.ClsBeTbPostulanteReclutamiento();
 
                 this.bePostulante.Reclutamiento.CargoCurriculum = this.TxtCargoCurriculum.Text;
                 this.bePostulante.Reclutamiento.FechaRecepcion = this.DtpFechaRecepcion.Value;
@@ -628,9 +650,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.bePostulante.Reclutamiento.Historial.Clear();
                 if (this.CbxEstadoReclutamiento.SelectedIndex > 0)
                 {
-                    var estadoPostulante = (ClsBeTbPostulanteEstado)this.CbxEstadoReclutamiento.SelectedItem;
+                    var estadoPostulante = (BE.ClsBeTbPostulanteEstado)this.CbxEstadoReclutamiento.SelectedItem;
 
-                    this.bePostulante.Reclutamiento.Historial.Add(new ClsBeTbPostulanteHistorial()
+                    this.bePostulante.Reclutamiento.Historial.Add(new BE.ClsBeTbPostulanteHistorial()
                     {
                         IdPostulante = bePostulante.IdPostulante,
                         Estado = estadoPostulante,
@@ -646,13 +668,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (bePostulante.IdPostulante == 0)
                 {
                     bePostulante.IdUsuarioCreador = idUsuarioSesion;
-                    rpta = new Postulante().Insertar(ref bePostulante);
+                    rpta = new LN.Postulante().Insertar(ref bePostulante);
 
                 }
                 else
                 {
                     bePostulante.IdUsuarioModificador = idUsuarioSesion;
-                    rpta = new Postulante().Actualizar(bePostulante);
+                    rpta = new LN.Postulante().Actualizar(bePostulante);
                 }
 
                 if (rpta)

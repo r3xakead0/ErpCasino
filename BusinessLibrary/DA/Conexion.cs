@@ -21,8 +21,8 @@ namespace ErpCasino.BusinessLibrary.DA
 
             Usuario = builder.UserID;
             Clave = builder.Password;
-            Servidor = builder.InitialCatalog;
-            BaseDatos = builder.Password;
+            Servidor = builder.DataSource;
+            BaseDatos = builder.InitialCatalog;
         }
     }
 

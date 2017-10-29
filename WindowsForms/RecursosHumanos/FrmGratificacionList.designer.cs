@@ -35,6 +35,7 @@
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.pnlSuperior = new System.Windows.Forms.Panel();
+            this.btnImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGratificaciones)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnImprimir);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Controls.Add(this.btnEditar);
@@ -117,6 +119,16 @@
             this.pnlSuperior.Name = "pnlSuperior";
             this.pnlSuperior.Size = new System.Drawing.Size(786, 241);
             this.pnlSuperior.TabIndex = 0;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImprimir.Location = new System.Drawing.Point(365, 5);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(100, 30);
+            this.btnImprimir.TabIndex = 19;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
             // 
             // FrmGratificacionList
             // 
@@ -145,5 +157,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
         private System.Windows.Forms.Panel pnlInferior;
         private System.Windows.Forms.Panel pnlSuperior;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }

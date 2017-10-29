@@ -13,6 +13,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmAsistenciaMant : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmAsistenciaMant frmInstance = null;
+
+        public static FrmAsistenciaMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsistenciaMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         private List<BE.UI.Asistencia> lstUiAsistencias = null;
 
         public FrmAsistenciaList frmList = null;
@@ -98,6 +117,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     {
                         var line = reader.ReadLine();
                         var values = line.Split(',');
+
+                        if (values.Length != 4)
+                            throw new Exception("El registro debe contener Codigo de Empleado, Fecha y Hora Ingreso, Fecha y Hora Salida y Turno");
 
                         string codigoEmpleado = values[0].ToString();
                         string nombreEmpleado = "";

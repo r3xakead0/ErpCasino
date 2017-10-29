@@ -7,6 +7,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmCtsList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmCtsList frmInstance = null;
+
+        public static FrmCtsList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmCtsList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmCtsList()
         {
             InitializeComponent();
@@ -19,7 +39,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
 
                 this.CargarListadoCts();
+                this.FormatoListadoCts();
 
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void FrmCtsList_ResizeEnd(object sender, EventArgs e)
+        {
+            try
+            {
+                Util.AutoWidthColumn(ref this.dgvCts, "EmpleadoNombreCompleto");
             }
             catch (Exception ex)
             {
@@ -31,10 +64,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmCtsMant = new FrmCtsMant(this);
+                var frmCtsMant = FrmCtsMant.Instance();
                 frmCtsMant.MdiParent = this.MdiParent;
                 frmCtsMant.Show();
-                frmCtsMant.Cargar(null);
+
+                frmCtsMant.frmList = this;
+
             }
             catch (Exception ex)
             {
@@ -51,9 +86,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     var beCts = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
 
-                    var frmCtsMant = new FrmCtsMant(this);
+                    var frmCtsMant = FrmCtsMant.Instance();
                     frmCtsMant.MdiParent = this.MdiParent;
                     frmCtsMant.Show();
+
+                    frmCtsMant.frmList = this;
                     frmCtsMant.Cargar(beCts);
                 }
             }
@@ -75,7 +112,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     var uiAdelato = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
 
-                    int idCts = uiAdelato.IdCts;
+                    int idCts = uiAdelato.Id;
                     bool rpta = new LN.CTS().Eliminar(idCts);
 
                     if (rpta == true)
@@ -91,11 +128,35 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.dgvCts.CurrentRow != null)
+                {
+
+                    var uiCTS = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
+
+                    int anho = uiCTS.Anho;
+                    int periodo = uiCTS.PeriodoNumero;
+                    string codigoEmpleado = uiCTS.EmpleadoCodigo;
+
+                    var imprimir = FrmImpresion.Instance();
+                    imprimir.MdiParent = this.MdiParent;
+                    imprimir.Show();
+                    imprimir.ImpresionCts(anho, periodo, codigoEmpleado);
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
 
         #endregion
 
         #region Metodos
-        
+
         public void CargarListadoCts()
         {
             try
@@ -106,8 +167,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 source.DataSource = lstCts;
 
                 this.dgvCts.DataSource = source;
-
-                this.FormatoListadoCtss();
             }
             catch (Exception ex)
             {
@@ -115,49 +174,64 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void FormatoListadoCtss()
+        private void FormatoListadoCts()
         {
             try
             {
                 Util.FormatDatagridview(ref this.dgvCts);
 
-                this.dgvCts.Columns["IdCts"].Visible = false;
+                for (int i = 0; i < this.dgvCts.Columns.Count; i++)
+                    this.dgvCts.Columns[i].Visible = false;
 
-                this.dgvCts.Columns["FechaDeposito"].Visible = true;
-                this.dgvCts.Columns["FechaDeposito"].HeaderText = "Fecha";
-                this.dgvCts.Columns["FechaDeposito"].Width = 100;
-                this.dgvCts.Columns["FechaDeposito"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                this.dgvCts.Columns["FechaDeposito"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                this.dgvCts.Columns["Anho"].Visible = true;
+                this.dgvCts.Columns["Anho"].HeaderText = "Año";
+                this.dgvCts.Columns["Anho"].Width = 50;
+                this.dgvCts.Columns["Anho"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                this.dgvCts.Columns["PeriodoNombre"].Visible = true;
+                this.dgvCts.Columns["PeriodoNombre"].HeaderText = "Periodo";
+                this.dgvCts.Columns["PeriodoNombre"].Width = 50;
+                this.dgvCts.Columns["PeriodoNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 this.dgvCts.Columns["EmpleadoCodigo"].Visible = true;
                 this.dgvCts.Columns["EmpleadoCodigo"].HeaderText = "Codigo";
                 this.dgvCts.Columns["EmpleadoCodigo"].Width = 100;
                 this.dgvCts.Columns["EmpleadoCodigo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-                this.dgvCts.Columns["EmpleadoNombre"].Visible = true;
-                this.dgvCts.Columns["EmpleadoNombre"].HeaderText = "Nombre";
-                this.dgvCts.Columns["EmpleadoNombre"].Width = 200;
-                this.dgvCts.Columns["EmpleadoNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                this.dgvCts.Columns["EmpleadoNombreCompleto"].Visible = true;
+                this.dgvCts.Columns["EmpleadoNombreCompleto"].HeaderText = "Nombre Completo";
+                this.dgvCts.Columns["EmpleadoNombreCompleto"].Width = 200;
+                this.dgvCts.Columns["EmpleadoNombreCompleto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-                this.dgvCts.Columns["Monto"].Visible = true;
-                this.dgvCts.Columns["Monto"].HeaderText = "Monto";
-                this.dgvCts.Columns["Monto"].Width = 100;
-                this.dgvCts.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvCts.Columns["Monto"].DefaultCellStyle.Format = "N2";
+                this.dgvCts.Columns["ComputableFechaInicial"].Visible = true;
+                this.dgvCts.Columns["ComputableFechaInicial"].HeaderText = "Fecha Inicial";
+                this.dgvCts.Columns["ComputableFechaInicial"].Width = 100;
+                this.dgvCts.Columns["ComputableFechaInicial"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.dgvCts.Columns["ComputableFechaInicial"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
-                this.dgvCts.Columns["FechaPeriodoInicial"].Visible = true;
-                this.dgvCts.Columns["FechaPeriodoInicial"].HeaderText = "Inicio Periodo";
-                this.dgvCts.Columns["FechaPeriodoInicial"].Width = 100;
-                this.dgvCts.Columns["FechaPeriodoInicial"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                this.dgvCts.Columns["FechaPeriodoInicial"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                this.dgvCts.Columns["ComputableFechaFinal"].Visible = true;
+                this.dgvCts.Columns["ComputableFechaFinal"].HeaderText = "Fecha Final";
+                this.dgvCts.Columns["ComputableFechaFinal"].Width = 100;
+                this.dgvCts.Columns["ComputableFechaFinal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.dgvCts.Columns["ComputableFechaFinal"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
-                this.dgvCts.Columns["FechaPeriodoFinal"].Visible = true;
-                this.dgvCts.Columns["FechaPeriodoFinal"].HeaderText = "Final Periodo";
-                this.dgvCts.Columns["FechaPeriodoFinal"].Width = 100;
-                this.dgvCts.Columns["FechaPeriodoFinal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                this.dgvCts.Columns["FechaPeriodoFinal"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                this.dgvCts.Columns["ComputableMeses"].Visible = true;
+                this.dgvCts.Columns["ComputableMeses"].HeaderText = "Meses";
+                this.dgvCts.Columns["ComputableMeses"].Width = 50;
+                this.dgvCts.Columns["ComputableMeses"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                Util.AutoWidthColumn(ref this.dgvCts, "EmpleadoNombre");
+                this.dgvCts.Columns["ComputableDias"].Visible = true;
+                this.dgvCts.Columns["ComputableDias"].HeaderText = "Dias";
+                this.dgvCts.Columns["ComputableDias"].Width = 50;
+                this.dgvCts.Columns["ComputableDias"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                this.dgvCts.Columns["ComputablePagar"].Visible = true;
+                this.dgvCts.Columns["ComputablePagar"].HeaderText = "Total";
+                this.dgvCts.Columns["ComputablePagar"].Width = 100;
+                this.dgvCts.Columns["ComputablePagar"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                this.dgvCts.Columns["ComputablePagar"].DefaultCellStyle.Format = "N2";
+
+                Util.AutoWidthColumn(ref this.dgvCts, "EmpleadoNombreCompleto");
             }
             catch (Exception ex)
             {

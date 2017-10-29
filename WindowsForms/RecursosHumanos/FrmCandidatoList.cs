@@ -9,6 +9,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmCandidatoList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmCandidatoList frmInstance = null;
+
+        public static FrmCandidatoList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmCandidatoList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmCandidatoList()
         {
             InitializeComponent();
@@ -35,7 +55,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                var frmCandidatoNew = new FrmCandidatoMant();
+                var frmCandidatoNew = FrmCandidatoMant.Instance();
                 frmCandidatoNew.MdiParent = this.MdiParent;
                 frmCandidatoNew.Show();
 
@@ -57,7 +77,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     var uiCandidato = (BE.UI.Candidato)this.dgvCandidatos.CurrentRow.DataBoundItem;
 
-                    var frmCandidatoEdit = new FrmCandidatoMant();
+                    var frmCandidatoEdit = FrmCandidatoMant.Instance();
                     frmCandidatoEdit.MdiParent = this.MdiParent;
                     frmCandidatoEdit.Show();
 

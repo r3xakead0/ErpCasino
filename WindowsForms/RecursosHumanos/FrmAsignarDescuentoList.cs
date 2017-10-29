@@ -8,6 +8,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmAsignarDescuentoList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmAsignarDescuentoList frmInstance = null;
+
+        public static FrmAsignarDescuentoList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsignarDescuentoList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmAsignarDescuentoList()
         {
             InitializeComponent();
@@ -86,10 +106,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmDescuentoMant = new FrmAsignarDescuentoMant(this);
+                var frmDescuentoMant = FrmAsignarDescuentoMant.Instance();
                 frmDescuentoMant.MdiParent = this.MdiParent;
                 frmDescuentoMant.Show();
-                
+                frmDescuentoMant.frmList = this;
             }
             catch (Exception ex)
             {
@@ -152,9 +172,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmDescuentoMant = new FrmAsignarDescuentoMant(this);
+                var frmDescuentoMant = FrmAsignarDescuentoMant.Instance();
                 frmDescuentoMant.MdiParent = this.MdiParent;
                 frmDescuentoMant.Show();
+                frmDescuentoMant.frmList = this;
                 frmDescuentoMant.Cargar(uiDescuentoEmpleado);
             }
             catch (Exception ex)

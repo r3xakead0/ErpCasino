@@ -11,16 +11,34 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmAsignarObservacionMant : Form
     {
 
-        private FrmAsignarObservacionList frmList = null;
+        #region "Patron Singleton"
+
+        private static FrmAsignarObservacionMant frmInstance = null;
+
+        public static FrmAsignarObservacionMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsignarObservacionMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
+        public FrmAsignarObservacionList frmList = null;
 
         private BE.UI.ObservacionEmpleado uiObservacionEmpleado = null;
 
-        public FrmAsignarObservacionMant(FrmAsignarObservacionList frmList)
+        public FrmAsignarObservacionMant()
         {
             try
             {
                 InitializeComponent();
-                this.frmList = frmList;
             }
             catch (Exception ex)
             {

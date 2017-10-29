@@ -3,11 +3,32 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.Linq;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmAdelantoList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmAdelantoList frmInstance = null;
+
+        public static FrmAdelantoList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAdelantoList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmAdelantoList()
         {
             InitializeComponent();
@@ -86,10 +107,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmAdelantoMant = new FrmAdelantoMant(this);
+                var frmAdelantoMant = FrmAdelantoMant.Instance();
                 frmAdelantoMant.MdiParent = this.MdiParent;
                 frmAdelantoMant.Show();
-                
+
+                frmAdelantoMant.frmList = this;
             }
             catch (Exception ex)
             {
@@ -152,9 +174,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmAdelantoMant = new FrmAdelantoMant(this);
+                var frmAdelantoMant = FrmAdelantoMant.Instance();
                 frmAdelantoMant.MdiParent = this.MdiParent;
                 frmAdelantoMant.Show();
+
+                frmAdelantoMant.frmList = this;
                 frmAdelantoMant.Cargar(uiAdelanto);
             }
             catch (Exception ex)
@@ -171,12 +195,18 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
                 int mes = int.Parse(this.cboMes.SelectedValue.ToString());
 
-                var lstAdelantos = new LN.Adelanto().Listar(anho, mes);
+                var lstUiAdelantos = new LN.Adelanto().Listar(anho, mes);
 
                 var source = new BindingSource();
-                source.DataSource = lstAdelantos;
+                source.DataSource = lstUiAdelantos;
 
                 this.dgvAdelantos.DataSource = source;
+
+                int nroRegistros = lstUiAdelantos.Count;
+                double totalAdelantos = lstUiAdelantos.Sum(x => x.Monto);
+
+                this.txtNroRegistros.Text = nroRegistros.ToString();
+                this.txtTotalAdelantos.Text = totalAdelantos.ToString("N2");
 
             }
             catch (Exception ex)
@@ -202,7 +232,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.dgvAdelantos.Columns["CodigoEmpleado"].Visible = true;
                 this.dgvAdelantos.Columns["CodigoEmpleado"].HeaderText = "Codigo";
-                this.dgvAdelantos.Columns["CodigoEmpleado"].Width = 100;
+                this.dgvAdelantos.Columns["CodigoEmpleado"].Width = 80;
                 this.dgvAdelantos.Columns["CodigoEmpleado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvAdelantos.Columns["NombreCompletoEmpleado"].Visible = true;
@@ -217,17 +247,17 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.dgvAdelantos.Columns["NombreBanco"].Visible = true;
                 this.dgvAdelantos.Columns["NombreBanco"].HeaderText = "Banco";
-                this.dgvAdelantos.Columns["NombreBanco"].Width = 200;
+                this.dgvAdelantos.Columns["NombreBanco"].Width = 100;
                 this.dgvAdelantos.Columns["NombreBanco"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvAdelantos.Columns["Numero"].Visible = true;
                 this.dgvAdelantos.Columns["Numero"].HeaderText = "Numero";
-                this.dgvAdelantos.Columns["Numero"].Width = 100;
+                this.dgvAdelantos.Columns["Numero"].Width = 80;
                 this.dgvAdelantos.Columns["Numero"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvAdelantos.Columns["Monto"].Visible = true;
                 this.dgvAdelantos.Columns["Monto"].HeaderText = "Monto";
-                this.dgvAdelantos.Columns["Monto"].Width = 100;
+                this.dgvAdelantos.Columns["Monto"].Width = 80;
                 this.dgvAdelantos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvAdelantos.Columns["Monto"].DefaultCellStyle.Format = "N2";
 
@@ -296,5 +326,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #endregion
 
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmAdelantoCargar = FrmAdelantoCarga.Instance();
+                frmAdelantoCargar.MdiParent = this.MdiParent;
+                frmAdelantoCargar.Show();
+
+                frmAdelantoCargar.frmList = this;
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
     }
 }

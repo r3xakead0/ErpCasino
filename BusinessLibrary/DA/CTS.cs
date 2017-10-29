@@ -9,31 +9,54 @@ namespace ErpCasino.BusinessLibrary.DA
     public class CTS
     {
 
-        public bool Insertar(ref BE.CTS beCTS)
+        public int Insertar(ref BE.CTS beCTS)
         {
             try
             {
                 string sp = "SpTbCtsInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCTS", beCTS.IdCts));
-                cmd.Parameters["@IDCTS"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beCTS.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", beCTS.Monto));
-                cmd.Parameters.Add(new SqlParameter("@FECHAPERIODOINICIAL", beCTS.FechaPeriodoInicial));
-                cmd.Parameters.Add(new SqlParameter("@FECHAPERIODOFINAL", beCTS.FechaPeriodoFinal));
-                cmd.Parameters.Add(new SqlParameter("@FECHADEPOSITO", beCTS.FechaDeposito));
-
                 int rowsAffected = 0;
-                rowsAffected = cmd.ExecuteNonQuery();
-                beCTS.IdCts = int.Parse(cmd.Parameters["@IDCTS"].Value.ToString());
 
-                return (rowsAffected > 0);
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCTS", beCTS.IdCts));
+                    cmd.Parameters["@IDCTS"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", beCTS.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@PERIODO", beCTS.Periodo));
+                    cmd.Parameters.Add(new SqlParameter("@PERIODOFECHAINICIAL", beCTS.PeriodoFechaInicial));
+                    cmd.Parameters.Add(new SqlParameter("@PERIODOFECHAFINAL", beCTS.PeriodoFechaFinal));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOCODIGO", beCTS.EmpleadoCodigo));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOFECHAINGRESO", beCTS.EmpleadoFechaIngreso));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOSUELDO", beCTS.EmpleadoSueldo));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOASIGFAM", beCTS.EmpleadoAsigFam));
+                    cmd.Parameters.Add(new SqlParameter("@TOTALBONIFICACION", beCTS.TotalBonificacion));
+                    cmd.Parameters.Add(new SqlParameter("@TOTALHORASEXTRAS", beCTS.TotalHorasExtras));
+                    cmd.Parameters.Add(new SqlParameter("@TOTALGRATIFICACION", beCTS.TotalGratificacion));
+                    cmd.Parameters.Add(new SqlParameter("@PROMEDIOBONIFICACION", beCTS.PromedioBonificacion));
+                    cmd.Parameters.Add(new SqlParameter("@PROMEDIOHORASEXTRAS", beCTS.PromedioHorasExtras));
+                    cmd.Parameters.Add(new SqlParameter("@PROMEDIOGRATIFICACION", beCTS.PromedioGratificacion));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLETOTAL", beCTS.ComputableTotal));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEFECHAINICIAL", beCTS.ComputableFechaInicial));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEFECHAFINAL", beCTS.ComputableFechaFinal));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEMESES", beCTS.ComputableMeses));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEDIAS", beCTS.ComputableDias));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEPAGAR", beCTS.ComputablePagar));
+                    cmd.Parameters.Add(new SqlParameter("@BANCOID", beCTS.Banco.IdBanco));
+                    cmd.Parameters.Add(new SqlParameter("@BANCOCUENTA", beCTS.Cuenta));
+                    cmd.Parameters.Add(new SqlParameter("@DEPOSITOFECHA", beCTS.DepositoFecha));
+                    cmd.Parameters.Add(new SqlParameter("@DEPOSITOMONTO", beCTS.DepositoMonto));
+                    cmd.Parameters.Add(new SqlParameter("@DEPOSITOOPERACION", beCTS.DepositoOperacion));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beCTS.IdCts = int.Parse(cmd.Parameters["@IDCTS"].Value.ToString());
+                }
+
+                return rowsAffected;
 
             }
             catch (Exception ex)
@@ -42,28 +65,51 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public bool Actualizar(BE.CTS beCTS)
+        public int Actualizar(BE.CTS beCTS)
         {
             try
             {
                 string sp = "SpTbCtsActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCTS", beCTS.IdCts));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beCTS.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", beCTS.Monto));
-                cmd.Parameters.Add(new SqlParameter("@FECHAPERIODOINICIAL", beCTS.FechaPeriodoInicial));
-                cmd.Parameters.Add(new SqlParameter("@FECHAPERIODOFINAL", beCTS.FechaPeriodoFinal));
-                cmd.Parameters.Add(new SqlParameter("@FECHADEPOSITO", beCTS.FechaDeposito));
-
                 int rowsAffected = 0;
-                rowsAffected = cmd.ExecuteNonQuery();
 
-                return (rowsAffected > 0);
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCTS", beCTS.IdCts));
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", beCTS.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@PERIODO", beCTS.Periodo));
+                    cmd.Parameters.Add(new SqlParameter("@PERIODOFECHAINICIAL", beCTS.PeriodoFechaInicial));
+                    cmd.Parameters.Add(new SqlParameter("@PERIODOFECHAFINAL", beCTS.PeriodoFechaFinal));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOCODIGO", beCTS.EmpleadoCodigo));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOFECHAINGRESO", beCTS.EmpleadoFechaIngreso));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOSUELDO", beCTS.EmpleadoSueldo));
+                    cmd.Parameters.Add(new SqlParameter("@EMPLEADOASIGFAM", beCTS.EmpleadoAsigFam));
+                    cmd.Parameters.Add(new SqlParameter("@TOTALBONIFICACION", beCTS.TotalBonificacion));
+                    cmd.Parameters.Add(new SqlParameter("@TOTALHORASEXTRAS", beCTS.TotalHorasExtras));
+                    cmd.Parameters.Add(new SqlParameter("@TOTALGRATIFICACION", beCTS.TotalGratificacion));
+                    cmd.Parameters.Add(new SqlParameter("@PROMEDIOBONIFICACION", beCTS.PromedioBonificacion));
+                    cmd.Parameters.Add(new SqlParameter("@PROMEDIOHORASEXTRAS", beCTS.PromedioHorasExtras));
+                    cmd.Parameters.Add(new SqlParameter("@PROMEDIOGRATIFICACION", beCTS.PromedioGratificacion));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLETOTAL", beCTS.ComputableTotal));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEFECHAINICIAL", beCTS.ComputableFechaInicial));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEFECHAFINAL", beCTS.ComputableFechaFinal));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEMESES", beCTS.ComputableMeses));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEDIAS", beCTS.ComputableDias));
+                    cmd.Parameters.Add(new SqlParameter("@COMPUTABLEPAGAR", beCTS.ComputablePagar));
+                    cmd.Parameters.Add(new SqlParameter("@BANCOID", beCTS.Banco.IdBanco));
+                    cmd.Parameters.Add(new SqlParameter("@BANCOCUENTA", beCTS.Cuenta));
+                    cmd.Parameters.Add(new SqlParameter("@DEPOSITOFECHA", beCTS.DepositoFecha));
+                    cmd.Parameters.Add(new SqlParameter("@DEPOSITOMONTO", beCTS.DepositoMonto));
+                    cmd.Parameters.Add(new SqlParameter("@DEPOSITOOPERACION", beCTS.DepositoOperacion));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+
+                return rowsAffected;
 
             }
             catch (Exception ex)
@@ -72,24 +118,27 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public bool Eliminar(int idCts)
+        public int Eliminar(int idCTS)
         {
             try
             {
                 string sp = "SpTbCtsEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCTS", idCts));
-
                 int rowsAffected = 0;
-                rowsAffected = cmd.ExecuteNonQuery();
 
-                return (rowsAffected > 0);
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCTS", idCTS));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+
+                }
+
+                return rowsAffected;
             }
             catch (Exception ex)
             {
@@ -113,16 +162,42 @@ namespace ErpCasino.BusinessLibrary.DA
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var beCts = new BE.CTS();
+                    var beCTS = new BE.CTS();
 
-                    beCts.IdCts = int.Parse(reader["IdCts"].ToString());
-                    beCts.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
-                    beCts.Monto = double.Parse(reader["Monto"].ToString());
-                    beCts.FechaPeriodoInicial = DateTime.Parse(reader["FechaPeriodoInicial"].ToString());
-                    beCts.FechaPeriodoFinal = DateTime.Parse(reader["FechaPeriodoFinal"].ToString());
-                    beCts.FechaDeposito = DateTime.Parse(reader["FechaDeposito"].ToString());
+                    beCTS.IdCts = reader["IdCts"] == DBNull.Value ? 0 : int.Parse(reader["IdCts"].ToString());
+                    beCTS.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                    beCTS.Periodo = reader["Periodo"] == DBNull.Value ? 0 : int.Parse(reader["Periodo"].ToString());
+                    beCTS.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
+                    beCTS.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
+                    beCTS.EmpleadoCodigo = reader["EmpleadoCodigo"] == DBNull.Value ? "" : reader["EmpleadoCodigo"].ToString();
+                    beCTS.EmpleadoFechaIngreso = reader["EmpleadoFechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["EmpleadoFechaIngreso"].ToString());
+                    beCTS.EmpleadoSueldo = reader["EmpleadoSueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoSueldo"].ToString());
+                    beCTS.EmpleadoAsigFam = reader["EmpleadoAsigFam"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoAsigFam"].ToString());
+                    beCTS.TotalBonificacion = reader["TotalBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBonificacion"].ToString());
+                    beCTS.TotalHorasExtras = reader["TotalHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalHorasExtras"].ToString());
+                    beCTS.TotalGratificacion = reader["TotalGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalGratificacion"].ToString());
+                    beCTS.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
+                    beCTS.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
+                    beCTS.PromedioGratificacion = reader["PromedioGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioGratificacion"].ToString());
+                    beCTS.ComputableTotal = reader["ComputableTotal"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputableTotal"].ToString());
+                    beCTS.ComputableFechaInicial = reader["ComputableFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaInicial"].ToString());
+                    beCTS.ComputableFechaFinal = reader["ComputableFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaFinal"].ToString());
+                    beCTS.ComputableMeses = reader["ComputableMeses"] == DBNull.Value ? 0 : int.Parse(reader["ComputableMeses"].ToString());
+                    beCTS.ComputableDias = reader["ComputableDias"] == DBNull.Value ? 0 : int.Parse(reader["ComputableDias"].ToString());
+                    beCTS.ComputablePagar = reader["ComputablePagar"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputablePagar"].ToString());
 
-                    lstCts.Add(beCts);
+                    beCTS.Banco = new BE.Banco()
+                    {
+                        IdBanco = reader["BancoId"] == DBNull.Value ? 0 : int.Parse(reader["BancoId"].ToString()),
+                    };
+
+                    beCTS.Cuenta = reader["BancoCuenta"] == DBNull.Value ? "" : reader["BancoCuenta"].ToString();
+
+                    beCTS.DepositoFecha = reader["DepositoFecha"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["DepositoFecha"].ToString());
+                    beCTS.DepositoMonto = reader["DepositoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["DepositoMonto"].ToString());
+                    beCTS.DepositoOperacion = reader["DepositoOperacion"] == DBNull.Value ? "" : reader["DepositoOperacion"].ToString();
+
+                    lstCts.Add(beCTS);
                 }
 
                 return lstCts;
@@ -134,9 +209,9 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public BE.CTS Obtener(int idCts)
+        public BE.CTS Obtener(int idCTS)
         {
-            BE.CTS beCts = null;
+            BE.CTS beCTS = null;
             try
             {
                 string sp = "SpTbCtsObtener";
@@ -146,22 +221,50 @@ namespace ErpCasino.BusinessLibrary.DA
 
                 SqlCommand cmd = new SqlCommand(sp, cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCTS", idCts));
+                cmd.Parameters.Add(new SqlParameter("@IDCTS", idCTS));
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    beCts = new BE.CTS();
+                    beCTS = new BE.CTS();
 
-                    beCts.IdCts = int.Parse(reader["IdCts"].ToString());
-                    beCts.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
-                    beCts.Monto = double.Parse(reader["Monto"].ToString());
-                    beCts.FechaPeriodoInicial = DateTime.Parse(reader["FechaPeriodoInicial"].ToString());
-                    beCts.FechaPeriodoFinal = DateTime.Parse(reader["FechaPeriodoFinal"].ToString());
-                    beCts.FechaDeposito = DateTime.Parse(reader["FechaDeposito"].ToString());
+                    beCTS.IdCts = reader["IdCts"] == DBNull.Value ? 0 : int.Parse(reader["IdCts"].ToString());
+                    beCTS.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                    beCTS.Periodo = reader["Periodo"] == DBNull.Value ? 0 : int.Parse(reader["Periodo"].ToString());
+                    beCTS.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
+                    beCTS.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
+                    beCTS.EmpleadoCodigo = reader["EmpleadoCodigo"] == DBNull.Value ? "" : reader["EmpleadoCodigo"].ToString();
+                    beCTS.EmpleadoFechaIngreso = reader["EmpleadoFechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["EmpleadoFechaIngreso"].ToString());
+                    beCTS.EmpleadoSueldo = reader["EmpleadoSueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoSueldo"].ToString());
+                    beCTS.EmpleadoAsigFam = reader["EmpleadoAsigFam"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoAsigFam"].ToString());
+                    beCTS.TotalBonificacion = reader["TotalBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBonificacion"].ToString());
+                    beCTS.TotalHorasExtras = reader["TotalHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalHorasExtras"].ToString());
+                    beCTS.TotalGratificacion = reader["TotalGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalGratificacion"].ToString());
+                    beCTS.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
+                    beCTS.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
+                    beCTS.PromedioGratificacion = reader["PromedioGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioGratificacion"].ToString());
+                    beCTS.ComputableTotal = reader["ComputableTotal"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputableTotal"].ToString());
+                    beCTS.ComputableFechaInicial = reader["ComputableFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaInicial"].ToString());
+                    beCTS.ComputableFechaFinal = reader["ComputableFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaFinal"].ToString());
+                    beCTS.ComputableMeses = reader["ComputableMeses"] == DBNull.Value ? 0 : int.Parse(reader["ComputableMeses"].ToString());
+                    beCTS.ComputableDias = reader["ComputableDias"] == DBNull.Value ? 0 : int.Parse(reader["ComputableDias"].ToString());
+                    beCTS.ComputablePagar = reader["ComputablePagar"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputablePagar"].ToString());
+
+                    beCTS.Banco = new BE.Banco()
+                    {
+                        IdBanco = reader["BancoId"] == DBNull.Value ? 0 : int.Parse(reader["BancoId"].ToString()),
+                    };
+
+                    beCTS.Cuenta = reader["BancoCuenta"] == DBNull.Value ? "" : reader["BancoCuenta"].ToString();
+
+                    beCTS.DepositoFecha = reader["DepositoFecha"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["DepositoFecha"].ToString());
+                    beCTS.DepositoMonto = reader["DepositoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["DepositoMonto"].ToString());
+                    beCTS.DepositoOperacion = reader["DepositoOperacion"] == DBNull.Value ? "" : reader["DepositoOperacion"].ToString();
+
+
                 }
 
-                return beCts;
+                return beCTS;
             }
             catch (Exception ex)
             {

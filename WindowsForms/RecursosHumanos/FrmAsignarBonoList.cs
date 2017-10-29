@@ -9,6 +9,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmAsignarBonoList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmAsignarBonoList frmInstance = null;
+
+        public static FrmAsignarBonoList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsignarBonoList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmAsignarBonoList()
         {
             InitializeComponent();
@@ -104,10 +124,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmBonoMant = new FrmAsignarBonoMant(this);
+                var frmBonoMant = FrmAsignarBonoMant.Instance();
                 frmBonoMant.MdiParent = this.MdiParent;
                 frmBonoMant.Show();
-
+                frmBonoMant.frmList = this;
             }
             catch (Exception ex)
             {
@@ -220,9 +240,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmBonoMant = new FrmAsignarBonoMant(this);
+                var frmBonoMant = FrmAsignarBonoMant.Instance();
                 frmBonoMant.MdiParent = this.MdiParent;
                 frmBonoMant.Show();
+                frmBonoMant.frmList = this;
                 frmBonoMant.Cargar(uiBonoEmpleado);
             }
             catch (Exception ex)

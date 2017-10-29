@@ -94,107 +94,109 @@ namespace ErpCasino.BusinessLibrary.DA
                 int rowsAffected = 0;
                 string sp = "";
 
-                cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                tns = cnn.BeginTransaction();
-
-                #region General
-
-                sp = "SpTbCandidatoGeneralInsertar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
-                cmd.Parameters["@IDCANDIDATO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", beCandidato.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRES", beCandidato.Nombres));
-                cmd.Parameters.Add(new SqlParameter("@APELLIDOPATERNO", beCandidato.ApellidoPaterno));
-                cmd.Parameters.Add(new SqlParameter("@APELLIDOMATERNO", beCandidato.ApellidoMaterno));
-                cmd.Parameters.Add(new SqlParameter("@FECHANACIMIENTO", beCandidato.FechaNacimiento));
-                cmd.Parameters.Add(new SqlParameter("@CODSEXO", beCandidato.Sexo.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@CODDOCUMENTOIDENTIDAD", beCandidato.TipoDocumento.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NUMERODOCUMENTO", beCandidato.NumeroDocumento));
-                cmd.Parameters.Add(new SqlParameter("@CODPAIS", beCandidato.PaisNacimiento.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@CODESTADOCIVIL", beCandidato.EstadoCivil.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beCandidato.Activo));
-                cmd.Parameters.Add(new SqlParameter("@CONTRATADO", beCandidato.Contratado));
-                cmd.Parameters.Add(new SqlParameter("@CODNACIMIENTO", beCandidato.UbigeoNacimiento.Codigo));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-                beCandidato.IdCandidato = int.Parse(cmd.Parameters["@IDCANDIDATO"].Value.ToString());
-
-                #endregion
-
-                #region Contacto
-
-                sp = "SpTbCandidatoContactoInsertar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contacto.IdCandidato));
-                cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beCandidato.Contacto.Ubigeo.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@ZONA", beCandidato.Contacto.Zona));
-                cmd.Parameters.Add(new SqlParameter("@DIRECCION", beCandidato.Contacto.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beCandidato.Contacto.Referencia));
-                cmd.Parameters.Add(new SqlParameter("@EMAIL", beCandidato.Contacto.Email));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                #region Telefonos
-
-                sp = "SpTbCandidatoTelefonoInsertar";
-
-                foreach (var telefono in beCandidato.Telefonos)
+                using (cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
+
+                    tns = cnn.BeginTransaction();
+
+                    #region General
+
+                    sp = "SpTbCandidatoGeneralInsertar";
 
                     cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tns;
 
-                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATOTELEFONO", telefono.IdCandidatoTelefono));
-                    cmd.Parameters["@IDCANDIDATOTELEFONO"].Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", telefono.IdCandidato));
-                    cmd.Parameters.Add(new SqlParameter("@CODTIPOTELEFONO", telefono.CodTipoTelefono));
-                    cmd.Parameters.Add(new SqlParameter("@NUMERO", telefono.Numero));
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
+                    cmd.Parameters["@IDCANDIDATO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", beCandidato.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRES", beCandidato.Nombres));
+                    cmd.Parameters.Add(new SqlParameter("@APELLIDOPATERNO", beCandidato.ApellidoPaterno));
+                    cmd.Parameters.Add(new SqlParameter("@APELLIDOMATERNO", beCandidato.ApellidoMaterno));
+                    cmd.Parameters.Add(new SqlParameter("@FECHANACIMIENTO", beCandidato.FechaNacimiento));
+                    cmd.Parameters.Add(new SqlParameter("@CODSEXO", beCandidato.Sexo.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@CODDOCUMENTOIDENTIDAD", beCandidato.TipoDocumento.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NUMERODOCUMENTO", beCandidato.NumeroDocumento));
+                    cmd.Parameters.Add(new SqlParameter("@CODPAIS", beCandidato.PaisNacimiento.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@CODESTADOCIVIL", beCandidato.EstadoCivil.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beCandidato.Activo));
+                    cmd.Parameters.Add(new SqlParameter("@CONTRATADO", beCandidato.Contratado));
+                    cmd.Parameters.Add(new SqlParameter("@CODNACIMIENTO", beCandidato.UbigeoNacimiento.Codigo));
 
                     rowsAffected += cmd.ExecuteNonQuery();
-                    telefono.IdCandidatoTelefono = Convert.ToInt32(cmd.Parameters["@IDCANDIDATOTELEFONO"].Value.ToString());
+                    beCandidato.IdCandidato = int.Parse(cmd.Parameters["@IDCANDIDATO"].Value.ToString());
 
+                    #endregion
+
+                    #region Contacto
+
+                    sp = "SpTbCandidatoContactoInsertar";
+
+                    cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tns;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contacto.IdCandidato));
+                    cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beCandidato.Contacto.Ubigeo.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@ZONA", beCandidato.Contacto.Zona));
+                    cmd.Parameters.Add(new SqlParameter("@DIRECCION", beCandidato.Contacto.Direccion));
+                    cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beCandidato.Contacto.Referencia));
+                    cmd.Parameters.Add(new SqlParameter("@EMAIL", beCandidato.Contacto.Email));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+
+                    #region Telefonos
+
+                    sp = "SpTbCandidatoTelefonoInsertar";
+
+                    foreach (var telefono in beCandidato.Telefonos)
+                    {
+
+                        cmd = new SqlCommand(sp, cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Transaction = tns;
+
+                        cmd.Parameters.Add(new SqlParameter("@IDCANDIDATOTELEFONO", telefono.IdCandidatoTelefono));
+                        cmd.Parameters["@IDCANDIDATOTELEFONO"].Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", telefono.IdCandidato));
+                        cmd.Parameters.Add(new SqlParameter("@CODTIPOTELEFONO", telefono.CodTipoTelefono));
+                        cmd.Parameters.Add(new SqlParameter("@NUMERO", telefono.Numero));
+
+                        rowsAffected += cmd.ExecuteNonQuery();
+                        telefono.IdCandidatoTelefono = Convert.ToInt32(cmd.Parameters["@IDCANDIDATOTELEFONO"].Value.ToString());
+
+                    }
+
+                    #endregion
+
+                    #endregion
+
+                    #region Contratacion
+
+                    sp = "SpTbCandidatoContratacionInsertar";
+
+                    cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tns;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contratacion.IdCandidato));
+                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAINICIO", beCandidato.Contratacion.InduccionFechaInicio));
+                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAFIN", beCandidato.Contratacion.InduccionFechaFin));
+                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONEstado", beCandidato.Contratacion.Induccion));
+                    cmd.Parameters.Add(new SqlParameter("@INFORMEDISCIPLINARIOESTADO", beCandidato.Contratacion.Disciplina));
+                    cmd.Parameters.Add(new SqlParameter("@INFORMEADMINISTRATIVOESTADO", beCandidato.Contratacion.Informe));
+                    cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONEstado", beCandidato.Contratacion.Documentacion));
+                    cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+
+                    #endregion
+
+                    if (tns != null)
+                        tns.Commit();
                 }
-
-                #endregion
-
-                #endregion
-
-                #region Contratacion
-
-                sp = "SpTbCandidatoContratacionInsertar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contratacion.IdCandidato));
-                cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAINICIO", beCandidato.Contratacion.InduccionFechaInicio));
-                cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAFIN", beCandidato.Contratacion.InduccionFechaFin));
-                cmd.Parameters.Add(new SqlParameter("@INDUCCIONEstado", beCandidato.Contratacion.Induccion));
-                cmd.Parameters.Add(new SqlParameter("@INFORMEDISCIPLINARIOESTADO", beCandidato.Contratacion.Disciplina));
-                cmd.Parameters.Add(new SqlParameter("@INFORMEADMINISTRATIVOESTADO", beCandidato.Contratacion.Informe));
-                cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONEstado", beCandidato.Contratacion.Documentacion));
-                cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                #endregion
-
-                if (tns != null)
-                    tns.Commit();
-
+                
                 return rowsAffected > 0;
 
             }
@@ -220,95 +222,97 @@ namespace ErpCasino.BusinessLibrary.DA
                 int rowsAffected = 0;
                 string sp = "";
 
-                cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-                tns = cnn.BeginTransaction();
-
-                SqlCommand cmd = null;
-
-                //General
-                sp = "SpTbCandidatoGeneralActualizar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", beCandidato.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRES", beCandidato.Nombres));
-                cmd.Parameters.Add(new SqlParameter("@APELLIDOPATERNO", beCandidato.ApellidoPaterno));
-                cmd.Parameters.Add(new SqlParameter("@APELLIDOMATERNO", beCandidato.ApellidoMaterno));
-                cmd.Parameters.Add(new SqlParameter("@FECHANACIMIENTO", beCandidato.FechaNacimiento));
-                cmd.Parameters.Add(new SqlParameter("@CODSEXO", beCandidato.Sexo.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@CODDOCUMENTOIDENTIDAD", beCandidato.TipoDocumento.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NUMERODOCUMENTO", beCandidato.NumeroDocumento));
-                cmd.Parameters.Add(new SqlParameter("@CODPAIS", beCandidato.PaisNacimiento.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@CODESTADOCIVIL", beCandidato.EstadoCivil.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beCandidato.Activo));
-                cmd.Parameters.Add(new SqlParameter("@CONTRATADO", beCandidato.Contratado));
-                cmd.Parameters.Add(new SqlParameter("@CODNACIMIENTO", beCandidato.UbigeoNacimiento.Codigo));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                //Contacto
-                sp = "SpTbCandidatoContactoActualizar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contacto.IdCandidato));
-                cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beCandidato.Contacto.Ubigeo.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@ZONA", beCandidato.Contacto.Zona));
-                cmd.Parameters.Add(new SqlParameter("@DIRECCION", beCandidato.Contacto.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beCandidato.Contacto.Referencia));
-                cmd.Parameters.Add(new SqlParameter("@EMAIL", beCandidato.Contacto.Email));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-                //Telefonos
-                sp = "SpTbCandidatoTelefonoActualizar";
-                foreach (var telefono in beCandidato.Telefonos)
+                using (cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
+
+                    tns = cnn.BeginTransaction();
+
+                    SqlCommand cmd = null;
+
+                    //General
+                    sp = "SpTbCandidatoGeneralActualizar";
 
                     cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tns;
 
-                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATOTELEFONO", telefono.IdCandidatoTelefono));
-                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", telefono.IdCandidato));
-                    cmd.Parameters.Add(new SqlParameter("@CODTIPOTELEFONO", telefono.CodTipoTelefono));
-                    cmd.Parameters.Add(new SqlParameter("@NUMERO", telefono.Numero));
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.IdCandidato));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", beCandidato.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRES", beCandidato.Nombres));
+                    cmd.Parameters.Add(new SqlParameter("@APELLIDOPATERNO", beCandidato.ApellidoPaterno));
+                    cmd.Parameters.Add(new SqlParameter("@APELLIDOMATERNO", beCandidato.ApellidoMaterno));
+                    cmd.Parameters.Add(new SqlParameter("@FECHANACIMIENTO", beCandidato.FechaNacimiento));
+                    cmd.Parameters.Add(new SqlParameter("@CODSEXO", beCandidato.Sexo.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@CODDOCUMENTOIDENTIDAD", beCandidato.TipoDocumento.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NUMERODOCUMENTO", beCandidato.NumeroDocumento));
+                    cmd.Parameters.Add(new SqlParameter("@CODPAIS", beCandidato.PaisNacimiento.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@CODESTADOCIVIL", beCandidato.EstadoCivil.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beCandidato.Activo));
+                    cmd.Parameters.Add(new SqlParameter("@CONTRATADO", beCandidato.Contratado));
+                    cmd.Parameters.Add(new SqlParameter("@CODNACIMIENTO", beCandidato.UbigeoNacimiento.Codigo));
 
                     rowsAffected += cmd.ExecuteNonQuery();
-                    
+
+                    //Contacto
+                    sp = "SpTbCandidatoContactoActualizar";
+
+                    cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tns;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contacto.IdCandidato));
+                    cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beCandidato.Contacto.Ubigeo.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@ZONA", beCandidato.Contacto.Zona));
+                    cmd.Parameters.Add(new SqlParameter("@DIRECCION", beCandidato.Contacto.Direccion));
+                    cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beCandidato.Contacto.Referencia));
+                    cmd.Parameters.Add(new SqlParameter("@EMAIL", beCandidato.Contacto.Email));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+
+                    //Telefonos
+                    sp = "SpTbCandidatoTelefonoActualizar";
+                    foreach (var telefono in beCandidato.Telefonos)
+                    {
+
+                        cmd = new SqlCommand(sp, cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Transaction = tns;
+
+                        cmd.Parameters.Add(new SqlParameter("@IDCANDIDATOTELEFONO", telefono.IdCandidatoTelefono));
+                        cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", telefono.IdCandidato));
+                        cmd.Parameters.Add(new SqlParameter("@CODTIPOTELEFONO", telefono.CodTipoTelefono));
+                        cmd.Parameters.Add(new SqlParameter("@NUMERO", telefono.Numero));
+
+                        rowsAffected += cmd.ExecuteNonQuery();
+
+                    }
+
+                    //Contratacion
+                    sp = "SpTbCandidatoContratacionActualizar";
+
+                    cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tns;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contratacion.IdCandidato));
+                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAINICIO", beCandidato.Contratacion.InduccionFechaInicio));
+                    if (beCandidato.Contratacion.InduccionFechaFin == null)
+                        cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAFIN", DBNull.Value));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAFIN", beCandidato.Contratacion.InduccionFechaFin));
+                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONESTADO", beCandidato.Contratacion.Induccion));
+                    cmd.Parameters.Add(new SqlParameter("@INFORMEDISCIPLINARIOESTADO", beCandidato.Contratacion.Disciplina));
+                    cmd.Parameters.Add(new SqlParameter("@INFORMEADMINISTRATIVOESTADO", beCandidato.Contratacion.Informe));
+                    cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONESTADO", beCandidato.Contratacion.Documentacion));
+                    cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+
+                    if (tns != null)
+                        tns.Commit();
                 }
-
-                //Contratacion
-                sp = "SpTbCandidatoContratacionActualizar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", beCandidato.Contratacion.IdCandidato));
-                cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAINICIO", beCandidato.Contratacion.InduccionFechaInicio));
-                if (beCandidato.Contratacion.InduccionFechaFin == null)
-                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAFIN", DBNull.Value));
-                else
-                    cmd.Parameters.Add(new SqlParameter("@INDUCCIONFECHAFIN", beCandidato.Contratacion.InduccionFechaFin));
-                cmd.Parameters.Add(new SqlParameter("@INDUCCIONESTADO", beCandidato.Contratacion.Induccion));
-                cmd.Parameters.Add(new SqlParameter("@INFORMEDISCIPLINARIOESTADO", beCandidato.Contratacion.Disciplina));
-                cmd.Parameters.Add(new SqlParameter("@INFORMEADMINISTRATIVOESTADO", beCandidato.Contratacion.Informe));
-                cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONESTADO", beCandidato.Contratacion.Documentacion));
-                cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-
-
-                if (tns != null)
-                    tns.Commit();
-
+  
                 return rowsAffected > 0;
 
             }
@@ -402,8 +406,6 @@ namespace ErpCasino.BusinessLibrary.DA
                     rowsAffected += cmd.ExecuteNonQuery();
 
                     #endregion
-
-                    cnn.Close();
 
                     if (tns != null)
                         tns.Commit();

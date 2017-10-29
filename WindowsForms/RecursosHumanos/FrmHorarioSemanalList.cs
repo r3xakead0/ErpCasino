@@ -38,9 +38,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmHorarioNew = new FrmHorarioSemanalMant(this);
+                var frmHorarioNew = FrmHorarioSemanalMant.Instance();
                 frmHorarioNew.MdiParent = this.MdiParent;
                 frmHorarioNew.Show();
+                frmHorarioNew.frmList = this;
             }
             catch (Exception ex)
             {
@@ -56,9 +57,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (this.dgvHorarios.CurrentRow != null)
                 {
 
-                    var frmHorarioEdit = new FrmHorarioSemanalMant(this);
+                    var frmHorarioEdit = FrmHorarioSemanalMant.Instance();
                     frmHorarioEdit.MdiParent = this.MdiParent;
                     frmHorarioEdit.Show();
+                    frmHorarioEdit.frmList = this;
 
                     var uiHorarioSemanal = (BE.UI.HorarioSemanal)this.dgvHorarios.CurrentRow.DataBoundItem;
 
@@ -211,9 +213,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var uiHorarioSemanal = (BE.UI.HorarioSemanal)this.dgvHorarios.Rows[e.RowIndex].DataBoundItem;
 
-                var frmHorarioEdit = new FrmHorarioSemanalMant(this);
+                var frmHorarioEdit = FrmHorarioSemanalMant.Instance();
                 frmHorarioEdit.MdiParent = this.MdiParent;
                 frmHorarioEdit.Show();
+                frmHorarioEdit.frmList = this;
 
                 frmHorarioEdit.cboAnho.SelectedValue = uiHorarioSemanal.Anho.ToString();
                 frmHorarioEdit.cboSemana.SelectedValue = uiHorarioSemanal.Semana.ToString();

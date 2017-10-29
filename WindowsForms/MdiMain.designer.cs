@@ -69,8 +69,8 @@
             this.tsmGratificaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLiquidaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeAsistenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeCumpleañosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReporteAsistencias = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReporteCumpleanhos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAsistencias = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInsistencias = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,12 +88,13 @@
             this.tsmMovimientosIngresos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMovimientosSalidas = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMovimientosTransferencias = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmConfiguracionEmpresa = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAyuda = new System.Windows.Forms.ToolStripMenuItem();
             this.stsPrincipal = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.stlUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmConfiguracionEmpresa = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmFeriados = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.stsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -125,33 +126,33 @@
             // tsmUsuarios
             // 
             this.tsmUsuarios.Name = "tsmUsuarios";
-            this.tsmUsuarios.Size = new System.Drawing.Size(152, 22);
+            this.tsmUsuarios.Size = new System.Drawing.Size(151, 22);
             this.tsmUsuarios.Text = "Usuarios";
             this.tsmUsuarios.Click += new System.EventHandler(this.tsmUsuarios_Click);
             // 
             // tsmPerfiles
             // 
             this.tsmPerfiles.Name = "tsmPerfiles";
-            this.tsmPerfiles.Size = new System.Drawing.Size(152, 22);
+            this.tsmPerfiles.Size = new System.Drawing.Size(151, 22);
             this.tsmPerfiles.Text = "Perfiles";
             this.tsmPerfiles.Click += new System.EventHandler(this.tsmPerfiles_Click);
             // 
             // tsmPermisos
             // 
             this.tsmPermisos.Name = "tsmPermisos";
-            this.tsmPermisos.Size = new System.Drawing.Size(152, 22);
+            this.tsmPermisos.Size = new System.Drawing.Size(151, 22);
             this.tsmPermisos.Text = "Permisos";
             this.tsmPermisos.Click += new System.EventHandler(this.tsmPermisos_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
             // 
             // tsmCambiarClave
             // 
             this.tsmCambiarClave.Name = "tsmCambiarClave";
-            this.tsmCambiarClave.Size = new System.Drawing.Size(152, 22);
+            this.tsmCambiarClave.Size = new System.Drawing.Size(151, 22);
             this.tsmCambiarClave.Text = "Cambiar Clave";
             this.tsmCambiarClave.Click += new System.EventHandler(this.tsmCambiarClave_Click);
             // 
@@ -172,6 +173,7 @@
             this.tsmCargos,
             this.tsmSalas,
             this.tsmSueldoMinimo,
+            this.tsmFeriados,
             this.tsmCts,
             this.tsmPensiones,
             this.toolStripSeparator5,
@@ -210,33 +212,33 @@
             // tsmPostulantesPensiones
             // 
             this.tsmPostulantesPensiones.Name = "tsmPostulantesPensiones";
-            this.tsmPostulantesPensiones.Size = new System.Drawing.Size(152, 22);
+            this.tsmPostulantesPensiones.Size = new System.Drawing.Size(149, 22);
             this.tsmPostulantesPensiones.Text = "Postulantes";
             this.tsmPostulantesPensiones.Click += new System.EventHandler(this.tsmPostulantesPensiones_Click);
             // 
             // tsmPostulantesCandidatos
             // 
             this.tsmPostulantesCandidatos.Name = "tsmPostulantesCandidatos";
-            this.tsmPostulantesCandidatos.Size = new System.Drawing.Size(152, 22);
+            this.tsmPostulantesCandidatos.Size = new System.Drawing.Size(149, 22);
             this.tsmPostulantesCandidatos.Text = "Candidatos";
             this.tsmPostulantesCandidatos.Click += new System.EventHandler(this.tsmPostulantesCandidatos_Click);
             // 
             // tsmPostulantesEmpleados
             // 
             this.tsmPostulantesEmpleados.Name = "tsmPostulantesEmpleados";
-            this.tsmPostulantesEmpleados.Size = new System.Drawing.Size(152, 22);
+            this.tsmPostulantesEmpleados.Size = new System.Drawing.Size(149, 22);
             this.tsmPostulantesEmpleados.Text = "Empleados";
             this.tsmPostulantesEmpleados.Click += new System.EventHandler(this.tsmPostulantesEmpleados_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(146, 6);
             // 
             // tsmColaboradoresCompromisos
             // 
             this.tsmColaboradoresCompromisos.Name = "tsmColaboradoresCompromisos";
-            this.tsmColaboradoresCompromisos.Size = new System.Drawing.Size(152, 22);
+            this.tsmColaboradoresCompromisos.Size = new System.Drawing.Size(149, 22);
             this.tsmColaboradoresCompromisos.Text = "Compromisos";
             this.tsmColaboradoresCompromisos.Click += new System.EventHandler(this.tsmColaboradoresCompromisos_Click);
             // 
@@ -420,23 +422,25 @@
             // tsmReportes
             // 
             this.tsmReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reporteDeAsistenciasToolStripMenuItem,
-            this.reporteDeCumpleañosToolStripMenuItem});
+            this.tsmReporteAsistencias,
+            this.tsmReporteCumpleanhos});
             this.tsmReportes.Name = "tsmReportes";
             this.tsmReportes.Size = new System.Drawing.Size(199, 22);
             this.tsmReportes.Text = "Reportes";
             // 
-            // reporteDeAsistenciasToolStripMenuItem
+            // tsmReporteAsistencias
             // 
-            this.reporteDeAsistenciasToolStripMenuItem.Name = "reporteDeAsistenciasToolStripMenuItem";
-            this.reporteDeAsistenciasToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.reporteDeAsistenciasToolStripMenuItem.Text = "Reporte de Asistencias";
+            this.tsmReporteAsistencias.Name = "tsmReporteAsistencias";
+            this.tsmReporteAsistencias.Size = new System.Drawing.Size(201, 22);
+            this.tsmReporteAsistencias.Text = "Reporte de Asistencias";
+            this.tsmReporteAsistencias.Click += new System.EventHandler(this.tsmReporteAsistencias_Click);
             // 
-            // reporteDeCumpleañosToolStripMenuItem
+            // tsmReporteCumpleanhos
             // 
-            this.reporteDeCumpleañosToolStripMenuItem.Name = "reporteDeCumpleañosToolStripMenuItem";
-            this.reporteDeCumpleañosToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.reporteDeCumpleañosToolStripMenuItem.Text = "Reporte de Cumpleaños";
+            this.tsmReporteCumpleanhos.Name = "tsmReporteCumpleanhos";
+            this.tsmReporteCumpleanhos.Size = new System.Drawing.Size(201, 22);
+            this.tsmReporteCumpleanhos.Text = "Reporte de Cumpleaños";
+            this.tsmReporteCumpleanhos.Click += new System.EventHandler(this.tsmReporteCumpleanhos_Click);
             // 
             // toolStripSeparator3
             // 
@@ -511,17 +515,18 @@
             this.tsmInventario.Name = "tsmInventario";
             this.tsmInventario.Size = new System.Drawing.Size(176, 22);
             this.tsmInventario.Text = "Inventario";
+            this.tsmInventario.Visible = false;
             // 
             // tsmAlmacenes
             // 
             this.tsmAlmacenes.Name = "tsmAlmacenes";
-            this.tsmAlmacenes.Size = new System.Drawing.Size(152, 22);
+            this.tsmAlmacenes.Size = new System.Drawing.Size(144, 22);
             this.tsmAlmacenes.Text = "Almacenes";
             // 
             // tsmArticulos
             // 
             this.tsmArticulos.Name = "tsmArticulos";
-            this.tsmArticulos.Size = new System.Drawing.Size(152, 22);
+            this.tsmArticulos.Size = new System.Drawing.Size(144, 22);
             this.tsmArticulos.Text = "Articulos";
             // 
             // tsmMovimientos
@@ -531,7 +536,7 @@
             this.tsmMovimientosSalidas,
             this.tsmMovimientosTransferencias});
             this.tsmMovimientos.Name = "tsmMovimientos";
-            this.tsmMovimientos.Size = new System.Drawing.Size(152, 22);
+            this.tsmMovimientos.Size = new System.Drawing.Size(144, 22);
             this.tsmMovimientos.Text = "Movimientos";
             // 
             // tsmMovimientosIngresos
@@ -551,6 +556,21 @@
             this.tsmMovimientosTransferencias.Name = "tsmMovimientosTransferencias";
             this.tsmMovimientosTransferencias.Size = new System.Drawing.Size(149, 22);
             this.tsmMovimientosTransferencias.Text = "Transferencias";
+            // 
+            // tsmConfiguracion
+            // 
+            this.tsmConfiguracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmConfiguracionEmpresa});
+            this.tsmConfiguracion.Name = "tsmConfiguracion";
+            this.tsmConfiguracion.Size = new System.Drawing.Size(176, 22);
+            this.tsmConfiguracion.Text = "Configuracion";
+            // 
+            // tsmConfiguracionEmpresa
+            // 
+            this.tsmConfiguracionEmpresa.Name = "tsmConfiguracionEmpresa";
+            this.tsmConfiguracionEmpresa.Size = new System.Drawing.Size(119, 22);
+            this.tsmConfiguracionEmpresa.Text = "Empresa";
+            this.tsmConfiguracionEmpresa.Click += new System.EventHandler(this.tsmConfiguracionEmpresa_Click);
             // 
             // tsmAyuda
             // 
@@ -581,20 +601,12 @@
             this.stlUsuario.Name = "stlUsuario";
             this.stlUsuario.Size = new System.Drawing.Size(0, 17);
             // 
-            // tsmConfiguracion
+            // tsmFeriados
             // 
-            this.tsmConfiguracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmConfiguracionEmpresa});
-            this.tsmConfiguracion.Name = "tsmConfiguracion";
-            this.tsmConfiguracion.Size = new System.Drawing.Size(176, 22);
-            this.tsmConfiguracion.Text = "Configuracion";
-            // 
-            // tsmConfiguracionEmpresa
-            // 
-            this.tsmConfiguracionEmpresa.Name = "tsmConfiguracionEmpresa";
-            this.tsmConfiguracionEmpresa.Size = new System.Drawing.Size(152, 22);
-            this.tsmConfiguracionEmpresa.Text = "Empresa";
-            this.tsmConfiguracionEmpresa.Click += new System.EventHandler(this.tsmConfiguracionEmpresa_Click);
+            this.tsmFeriados.Name = "tsmFeriados";
+            this.tsmFeriados.Size = new System.Drawing.Size(199, 22);
+            this.tsmFeriados.Text = "Feriados";
+            this.tsmFeriados.Click += new System.EventHandler(this.tsmFeriados_Click);
             // 
             // MdiMain
             // 
@@ -632,7 +644,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmHorarios;
         private System.Windows.Forms.ToolStripMenuItem tsmAsistencias;
         private System.Windows.Forms.ToolStripMenuItem tsmReportes;
-        private System.Windows.Forms.ToolStripMenuItem reporteDeAsistenciasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmReporteAsistencias;
         private System.Windows.Forms.ToolStripMenuItem tsmInventario;
         private System.Windows.Forms.ToolStripMenuItem tsmAlmacenes;
         private System.Windows.Forms.ToolStripMenuItem tsmMovimientos;
@@ -674,7 +686,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmHorariosMensuales;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarBonos;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarDescuentos;
-        private System.Windows.Forms.ToolStripMenuItem reporteDeCumpleañosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmReporteCumpleanhos;
         private System.Windows.Forms.ToolStripMenuItem tsmTiposObservaciones;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarObservaciones;
         private System.Windows.Forms.ToolStripMenuItem tsmSalasMantenimiento;
@@ -685,5 +697,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmRecibosCalcular;
         private System.Windows.Forms.ToolStripMenuItem tsmConfiguracion;
         private System.Windows.Forms.ToolStripMenuItem tsmConfiguracionEmpresa;
+        private System.Windows.Forms.ToolStripMenuItem tsmFeriados;
     }
 }

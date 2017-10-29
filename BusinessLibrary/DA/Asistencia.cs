@@ -36,26 +36,29 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAsistenciaInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDASISTENCIA", beAsistencia.IdAsistencia));
-                cmd.Parameters["@IDASISTENCIA"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", beAsistencia.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@FECHAHORAENTRADA", beAsistencia.FechaHoraEntrada));
-                cmd.Parameters.Add(new SqlParameter("@FECHAHORASALIDA", beAsistencia.FechaHoraSalida));
-                cmd.Parameters.Add(new SqlParameter("@ORIGEN", beAsistencia.Origen));
-                cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", beAsistencia.FechaRegistro));
-                cmd.Parameters.Add(new SqlParameter("@TURNO", beAsistencia.Turno));
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIOCREADOR", beAsistencia.IdUsuarioCreador));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beAsistencia.IdAsistencia = int.Parse(cmd.Parameters["@IDASISTENCIA"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDASISTENCIA", beAsistencia.IdAsistencia));
+                    cmd.Parameters["@IDASISTENCIA"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", beAsistencia.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAHORAENTRADA", beAsistencia.FechaHoraEntrada));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAHORASALIDA", beAsistencia.FechaHoraSalida));
+                    cmd.Parameters.Add(new SqlParameter("@ORIGEN", beAsistencia.Origen));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", beAsistencia.FechaRegistro));
+                    cmd.Parameters.Add(new SqlParameter("@TURNO", beAsistencia.Turno));
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIOCREADOR", beAsistencia.IdUsuarioCreador));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beAsistencia.IdAsistencia = int.Parse(cmd.Parameters["@IDASISTENCIA"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -71,17 +74,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAsistenciaEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDASISTENCIA", idAsistencia));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDASISTENCIA", idAsistencia));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -97,17 +102,18 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAsistenciaListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", fecha));
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", fecha));
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+                }
 
                 return dt;
 
@@ -123,15 +129,18 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAsistenciaResumenEliminar";
+                int rowsAffected = 0;
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@FECHA", fecha));
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", fecha));
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
             }
@@ -146,19 +155,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAsistenciaResumenListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", mes));
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+                }
 
                 return dt;
 
@@ -176,22 +186,23 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAsistenciaObtener";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDASISTENCIA", beAsistencia.IdAsistencia));
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beAsistencia, ref dr);
-                    flag = true;
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDASISTENCIA", beAsistencia.IdAsistencia));
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        Cargar(ref beAsistencia, ref dr);
+                        flag = true;
+                    }
                 }
 
                 return flag;

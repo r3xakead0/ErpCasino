@@ -43,6 +43,7 @@
             this.crvVisorInforme.ShowLogo = false;
             this.crvVisorInforme.Size = new System.Drawing.Size(622, 496);
             this.crvVisorInforme.TabIndex = 0;
+            this.crvVisorInforme.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // FrmImpresion
             // 
@@ -51,7 +52,7 @@
             this.ClientSize = new System.Drawing.Size(622, 496);
             this.Controls.Add(this.crvVisorInforme);
             this.Name = "FrmImpresion";
-            this.Text = "Vista de Informe";
+            this.Text = "Vista de Impresión";
             this.Load += new System.EventHandler(this.FrmImpresion_Load);
             this.ResumeLayout(false);
 

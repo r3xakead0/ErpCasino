@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
+            this.grpListadoHorarioMensual = new System.Windows.Forms.GroupBox();
             this.dgvHorarioMensual = new System.Windows.Forms.DataGridView();
             this.grpCargarHorarioMensual = new System.Windows.Forms.GroupBox();
             this.cboSala = new System.Windows.Forms.ComboBox();
@@ -41,13 +42,12 @@
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.ss = new System.Windows.Forms.Button();
-            this.grpListadoHorarioMensual = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
+            this.grpListadoHorarioMensual.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorarioMensual)).BeginInit();
             this.grpCargarHorarioMensual.SuspendLayout();
             this.pnlBotones.SuspendLayout();
-            this.grpListadoHorarioMensual.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,7 +61,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(991, 499);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
@@ -72,8 +72,21 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(985, 433);
+            this.pnlPrincipal.Size = new System.Drawing.Size(985, 443);
             this.pnlPrincipal.TabIndex = 16;
+            // 
+            // grpListadoHorarioMensual
+            // 
+            this.grpListadoHorarioMensual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpListadoHorarioMensual.Controls.Add(this.dgvHorarioMensual);
+            this.grpListadoHorarioMensual.Location = new System.Drawing.Point(9, 101);
+            this.grpListadoHorarioMensual.Name = "grpListadoHorarioMensual";
+            this.grpListadoHorarioMensual.Size = new System.Drawing.Size(967, 339);
+            this.grpListadoHorarioMensual.TabIndex = 41;
+            this.grpListadoHorarioMensual.TabStop = false;
+            this.grpListadoHorarioMensual.Text = "Lista Horario Mensual";
             // 
             // dgvHorarioMensual
             // 
@@ -83,8 +96,9 @@
             this.dgvHorarioMensual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHorarioMensual.Location = new System.Drawing.Point(6, 19);
             this.dgvHorarioMensual.Name = "dgvHorarioMensual";
-            this.dgvHorarioMensual.Size = new System.Drawing.Size(955, 304);
+            this.dgvHorarioMensual.Size = new System.Drawing.Size(955, 314);
             this.dgvHorarioMensual.TabIndex = 0;
+            this.dgvHorarioMensual.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHorarioMensual_ColumnHeaderMouseClick);
             // 
             // grpCargarHorarioMensual
             // 
@@ -166,15 +180,15 @@
             this.pnlBotones.Controls.Add(this.btnGuardar);
             this.pnlBotones.Controls.Add(this.ss);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBotones.Location = new System.Drawing.Point(3, 442);
+            this.pnlBotones.Location = new System.Drawing.Point(3, 452);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(985, 54);
+            this.pnlBotones.Size = new System.Drawing.Size(985, 44);
             this.pnlBotones.TabIndex = 17;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(876, 11);
+            this.btnGuardar.Location = new System.Drawing.Point(876, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 17;
@@ -185,26 +199,13 @@
             // ss
             // 
             this.ss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ss.Location = new System.Drawing.Point(770, 11);
+            this.ss.Location = new System.Drawing.Point(770, 5);
             this.ss.Name = "ss";
             this.ss.Size = new System.Drawing.Size(100, 30);
             this.ss.TabIndex = 18;
             this.ss.Text = "Cancelar";
             this.ss.UseVisualStyleBackColor = true;
             this.ss.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // grpListadoHorarioMensual
-            // 
-            this.grpListadoHorarioMensual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpListadoHorarioMensual.Controls.Add(this.dgvHorarioMensual);
-            this.grpListadoHorarioMensual.Location = new System.Drawing.Point(9, 101);
-            this.grpListadoHorarioMensual.Name = "grpListadoHorarioMensual";
-            this.grpListadoHorarioMensual.Size = new System.Drawing.Size(967, 329);
-            this.grpListadoHorarioMensual.TabIndex = 41;
-            this.grpListadoHorarioMensual.TabStop = false;
-            this.grpListadoHorarioMensual.Text = "Lista Horario Mensual";
             // 
             // FrmHorarioMensualMant
             // 
@@ -216,13 +217,14 @@
             this.Name = "FrmHorarioMensualMant";
             this.Text = "Mantenimiento de Horario Mensual";
             this.Load += new System.EventHandler(this.FrmHorarioMensualMant_Load);
+            this.ResizeEnd += new System.EventHandler(this.FrmHorarioMensualMant_ResizeEnd);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.pnlPrincipal.ResumeLayout(false);
+            this.grpListadoHorarioMensual.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorarioMensual)).EndInit();
             this.grpCargarHorarioMensual.ResumeLayout(false);
             this.grpCargarHorarioMensual.PerformLayout();
             this.pnlBotones.ResumeLayout(false);
-            this.grpListadoHorarioMensual.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

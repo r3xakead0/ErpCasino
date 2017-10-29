@@ -11,19 +11,45 @@ namespace ErpCasino.BusinessLibrary.LN
     public class Adelanto
     {
 
+        private BE.Adelanto UiToBe(BE.UI.Adelanto uiAdelanto)
+        {
+            var beAdelanto = new BE.Adelanto();
+            beAdelanto.CodigoEmpleado = uiAdelanto.CodigoEmpleado;
+            beAdelanto.IdBanco = uiAdelanto.IdBanco;
+            beAdelanto.Tipo = uiAdelanto.CodigoTipo;
+            beAdelanto.Fecha = uiAdelanto.Fecha;
+            beAdelanto.Numero = uiAdelanto.Numero;
+            beAdelanto.Monto = uiAdelanto.Monto;
+            return beAdelanto;
+        }
+
+        public bool Insertar(ref List<BE.UI.Adelanto> lstUiAdelantos)
+        {
+            try
+            {
+                var lstBeAdelanto = new List<BE.Adelanto>();
+                foreach (BE.UI.Adelanto uiAdelanto in lstUiAdelantos)
+                {
+                    var beAdelanto = this.UiToBe(uiAdelanto);
+                    lstBeAdelanto.Add(beAdelanto);
+                }
+
+                int rowsAffected = new DA.Adelanto().Insertar(ref lstBeAdelanto);
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Insertar(ref BE.UI.Adelanto uiAdelanto)
         {
             try
             {
-                BE.Adelanto beAdelanto = new BE.Adelanto();
-                beAdelanto.CodigoEmpleado = uiAdelanto.CodigoEmpleado;
-                beAdelanto.IdBanco = uiAdelanto.IdBanco;
-                beAdelanto.Tipo = uiAdelanto.CodigoTipo;
-                beAdelanto.Fecha = uiAdelanto.Fecha;
-                beAdelanto.Numero = uiAdelanto.Numero;
-                beAdelanto.Monto = uiAdelanto.Monto;
-
-                return new DA.Adelanto().Insertar(ref beAdelanto);
+                var beAdelanto = this.UiToBe(uiAdelanto);
+                int rowsAffected = new DA.Adelanto().Insertar(ref beAdelanto);
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -35,16 +61,9 @@ namespace ErpCasino.BusinessLibrary.LN
         {
             try
             {
-                BE.Adelanto beAdelanto = new BE.Adelanto();
-                beAdelanto.IdAdelanto = uiAdelanto.IdAdelanto;
-                beAdelanto.CodigoEmpleado = uiAdelanto.CodigoEmpleado;
-                beAdelanto.IdBanco = uiAdelanto.IdBanco;
-                beAdelanto.Tipo = uiAdelanto.CodigoTipo;
-                beAdelanto.Fecha = uiAdelanto.Fecha;
-                beAdelanto.Numero = uiAdelanto.Numero;
-                beAdelanto.Monto = uiAdelanto.Monto;
-
-                return new DA.Adelanto().Actualizar(beAdelanto);
+                var beAdelanto = this.UiToBe(uiAdelanto);
+                int rowsAffected = new DA.Adelanto().Actualizar(beAdelanto);
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {

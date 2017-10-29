@@ -10,6 +10,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmTipoDescuentoMant : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmTipoDescuentoMant frmInstance = null;
+
+        public static FrmTipoDescuentoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmTipoDescuentoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         private string valorInicialNombre = "";
         private string valorInicialDescripcion = "";
 

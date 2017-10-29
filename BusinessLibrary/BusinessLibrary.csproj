@@ -94,6 +94,7 @@
     <Compile Include="BE\UI\Activo.cs" />
     <Compile Include="BE\UI\Comprometido.cs" />
     <Compile Include="BE\UI\Descuento.cs" />
+    <Compile Include="BE\UI\Feriado.cs" />
     <Compile Include="BE\UI\MetaSala.cs" />
     <Compile Include="BE\UI\Cargo.cs" />
     <Compile Include="BE\UI\BonoEmpleado.cs" />
@@ -154,7 +155,6 @@
     <Compile Include="DA\ClsDaTbCandidato.cs" />
     <Compile Include="DA\ClsDaTbCandidatoContacto.cs" />
     <Compile Include="DA\ClsDaTbCandidatoTelefono.cs" />
-    <Compile Include="DA\ClsDaTbHorarioPlantilla.cs" />
     <Compile Include="DA\ClsDaTbPostulante.cs" />
     <Compile Include="DA\ClsDaTbEmpleado.cs" />
     <Compile Include="DA\ClsDaTbPostulanteHistorial.cs" />
@@ -201,7 +201,6 @@
     <Compile Include="LN\Cargo.cs" />
     <Compile Include="LN\Area.cs" />
     <Compile Include="LN\Candidato.cs" />
-    <Compile Include="LN\ClsLnTbPlantillaHorario.cs" />
     <Compile Include="LN\Postulante.cs" />
     <Compile Include="LN\Empleado.cs" />
     <Compile Include="LN\Record.cs" />

@@ -601,51 +601,53 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbEmpleadoGeneralObtenerCodigo";
 
-                cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@CODIGO", codigo));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
+                    cnn.Open();
 
-                    beEmpleado = new BE.ClsBeTbEmpleado();
-                    beEmpleado.IdEmpleado = dr["IdEmpleado"] == DBNull.Value ? 0 : int.Parse(dr["IdEmpleado"].ToString());
-                    beEmpleado.Codigo = dr["Codigo"] == DBNull.Value ? "" : dr["Codigo"].ToString();
-                    beEmpleado.Nombres = dr["Nombres"] == DBNull.Value ? "" : dr["Nombres"].ToString();
-                    beEmpleado.ApellidoPaterno = dr["ApellidoPaterno"] == DBNull.Value ? "" : dr["ApellidoPaterno"].ToString();
-                    beEmpleado.ApellidoMaterno = dr["ApellidoMaterno"] == DBNull.Value ? "" : dr["ApellidoMaterno"].ToString();
-                    beEmpleado.FechaNacimiento = dr["FechaNacimiento"] == DBNull.Value ? DateTime.Now.AddYears(-18) : DateTime.Parse(dr["FechaNacimiento"].ToString());
-                    beEmpleado.NumeroDocumento = dr["NumeroDocumento"] == DBNull.Value ? "" : dr["NumeroDocumento"].ToString();
-                    beEmpleado.Activo = dr["Activo"] == DBNull.Value ? false : bool.Parse(dr["Activo"].ToString());
-                    beEmpleado.UbigeoNacimiento = new BE.Ubigeo()
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@CODIGO", codigo));
+
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
                     {
-                        Codigo = dr["CodNacimiento"] == DBNull.Value ? "" : dr["CodNacimiento"].ToString()
-                    };
-                    beEmpleado.PaisNacimiento = new BE.Pais()
-                    {
-                        Codigo = dr["CodPais"] == DBNull.Value ? "" : dr["CodPais"].ToString()
-                    };
-                    beEmpleado.Sexo = new BE.Record()
-                    {
-                        Codigo = dr["CodSexo"] == DBNull.Value ? "" : dr["CodSexo"].ToString()
-                    };
-                    beEmpleado.EstadoCivil = new BE.Record()
-                    {
-                        Codigo = dr["CodEstadoCivil"] == DBNull.Value ? "" : dr["CodEstadoCivil"].ToString()
-                    };
-                    beEmpleado.TipoDocumento = new BE.Record()
-                    {
-                        Codigo = dr["CodDocumentoIdentidad"] == DBNull.Value ? "" : dr["CodDocumentoIdentidad"].ToString()
-                    };
+                        DataRow dr = dt.Rows[0];
+
+                        beEmpleado = new BE.ClsBeTbEmpleado();
+                        beEmpleado.IdEmpleado = dr["IdEmpleado"] == DBNull.Value ? 0 : int.Parse(dr["IdEmpleado"].ToString());
+                        beEmpleado.Codigo = dr["Codigo"] == DBNull.Value ? "" : dr["Codigo"].ToString();
+                        beEmpleado.Nombres = dr["Nombres"] == DBNull.Value ? "" : dr["Nombres"].ToString();
+                        beEmpleado.ApellidoPaterno = dr["ApellidoPaterno"] == DBNull.Value ? "" : dr["ApellidoPaterno"].ToString();
+                        beEmpleado.ApellidoMaterno = dr["ApellidoMaterno"] == DBNull.Value ? "" : dr["ApellidoMaterno"].ToString();
+                        beEmpleado.FechaNacimiento = dr["FechaNacimiento"] == DBNull.Value ? DateTime.Now.AddYears(-18) : DateTime.Parse(dr["FechaNacimiento"].ToString());
+                        beEmpleado.NumeroDocumento = dr["NumeroDocumento"] == DBNull.Value ? "" : dr["NumeroDocumento"].ToString();
+                        beEmpleado.Activo = dr["Activo"] == DBNull.Value ? false : bool.Parse(dr["Activo"].ToString());
+                        beEmpleado.UbigeoNacimiento = new BE.Ubigeo()
+                        {
+                            Codigo = dr["CodNacimiento"] == DBNull.Value ? "" : dr["CodNacimiento"].ToString()
+                        };
+                        beEmpleado.PaisNacimiento = new BE.Pais()
+                        {
+                            Codigo = dr["CodPais"] == DBNull.Value ? "" : dr["CodPais"].ToString()
+                        };
+                        beEmpleado.Sexo = new BE.Record()
+                        {
+                            Codigo = dr["CodSexo"] == DBNull.Value ? "" : dr["CodSexo"].ToString()
+                        };
+                        beEmpleado.EstadoCivil = new BE.Record()
+                        {
+                            Codigo = dr["CodEstadoCivil"] == DBNull.Value ? "" : dr["CodEstadoCivil"].ToString()
+                        };
+                        beEmpleado.TipoDocumento = new BE.Record()
+                        {
+                            Codigo = dr["CodDocumentoIdentidad"] == DBNull.Value ? "" : dr["CodDocumentoIdentidad"].ToString()
+                        };
+                    }
                 }
 
                 return beEmpleado;

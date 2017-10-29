@@ -48,27 +48,29 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbEmpleadoContactoObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDEMPLEADO", idEmpleado));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    beEmpleadoContacto = this.Cargar(dr);
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    var oBeUbigeo = beEmpleadoContacto.Ubigeo;
-                    new Ubigeo().Obtener(ref oBeUbigeo);
-                    beEmpleadoContacto.Ubigeo = oBeUbigeo;
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDEMPLEADO", idEmpleado));
 
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        beEmpleadoContacto = this.Cargar(dr);
+
+                        var oBeUbigeo = beEmpleadoContacto.Ubigeo;
+                        new Ubigeo().Obtener(ref oBeUbigeo);
+                        beEmpleadoContacto.Ubigeo = oBeUbigeo;
+
+                    }
                 }
-               
+
                 return beEmpleadoContacto;
 
             }

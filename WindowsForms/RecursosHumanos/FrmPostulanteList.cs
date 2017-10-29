@@ -9,6 +9,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmPostulanteList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmPostulanteList frmInstance = null;
+
+        public static FrmPostulanteList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmPostulanteList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmPostulanteList()
         {
             InitializeComponent();
@@ -33,7 +53,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmPostulanteNew = new FrmPostulanteMant();
+                var frmPostulanteNew = FrmPostulanteMant.Instance();
                 frmPostulanteNew.MdiParent = this.MdiParent;
                 frmPostulanteNew.Show();
 
@@ -57,7 +77,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     var bePostulante = new LN.Postulante().Obtener(uiPostulante.Id);
 
-                    var frmPostulanteEdit = new FrmPostulanteMant();
+                    var frmPostulanteEdit = FrmPostulanteMant.Instance();
                     frmPostulanteEdit.MdiParent = this.MdiParent;
                     frmPostulanteEdit.Show();
 

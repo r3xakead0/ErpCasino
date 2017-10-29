@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.Linq;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
@@ -173,7 +174,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 source.DataSource = lstUiPrestamos;
 
                 this.dgvPrestamos.DataSource = source;
-                
+
+                int nroRegistros = lstUiPrestamos.Count;
+                double totalAdelantos = lstUiPrestamos.Sum(x => x.Monto);
+
+                this.txtNroRegistros.Text = nroRegistros.ToString();
+                this.txtTotalPrestamos.Text = totalAdelantos.ToString("N2");
+
             }
             catch (Exception ex)
             {

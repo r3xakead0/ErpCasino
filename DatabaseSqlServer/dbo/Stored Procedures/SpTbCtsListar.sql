@@ -1,12 +1,31 @@
-﻿
-CREATE PROCEDURE SpTbCtsListar
+﻿CREATE PROCEDURE SpTbCtsListar
 AS
 BEGIN
-SELECT IdCts,
-CodigoEmpleado,
-Monto,
-FechaPeriodoInicial,
-FechaPeriodoFinal,
-FechaDeposito
-FROM TbCts
+	SELECT	IdCts,
+			Anho,
+			Periodo,
+			PeriodoFechaInicial,
+			PeriodoFechaFinal,
+			EmpleadoCodigo,
+			EmpleadoFechaIngreso,
+			EmpleadoSueldo,
+			EmpleadoAsigFam,
+			TotalBonificacion,
+			TotalHorasExtras,
+			TotalGratificacion,
+			PromedioBonificacion,
+			PromedioHorasExtras,
+			PromedioGratificacion,
+			ComputableTotal,
+			ComputableFechaInicial,
+			ComputableFechaFinal,
+			ComputableMeses,
+			ComputableDias,
+			ComputablePagar,
+			BancoId,
+			BancoCuenta,
+			DepositoFecha,
+			DepositoMonto,
+			DepositoOperacion
+	FROM	TbCts WITH(NOLOCK)
 END

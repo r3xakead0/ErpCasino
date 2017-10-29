@@ -10,6 +10,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmEmpleadoList : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmEmpleadoList frmInstance = null;
+
+        public static FrmEmpleadoList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmEmpleadoList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmEmpleadoList()
         {
             InitializeComponent();
@@ -88,7 +108,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmEmpleadoNew = new FrmEmpleadoMant();
+                var frmEmpleadoNew = FrmEmpleadoMant.Instance();
                 frmEmpleadoNew.MdiParent = this.MdiParent;
                 frmEmpleadoNew.Show();
                 frmEmpleadoNew.Cargar(null);
@@ -195,7 +215,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 var beEmpleado = new LN.Empleado().Obtener(uiEmpleado.Id);
 
-                var frmEmpleadoEdit = new FrmEmpleadoMant();
+                var frmEmpleadoEdit = FrmEmpleadoMant.Instance();
                 frmEmpleadoEdit.MdiParent = this.MdiParent;
                 frmEmpleadoEdit.Show();
                 frmEmpleadoEdit.Cargar(beEmpleado);

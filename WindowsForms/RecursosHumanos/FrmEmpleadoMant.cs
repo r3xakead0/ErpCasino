@@ -6,8 +6,28 @@ using LN = ErpCasino.BusinessLibrary.LN;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
+
     public partial class FrmEmpleadoMant : Form
     {
+
+        #region "Patron Singleton"
+
+        private static FrmEmpleadoMant frmInstance = null;
+
+        public static FrmEmpleadoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmEmpleadoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
 
         public BE.ClsBeTbEmpleado beEmpleadoGeneral = null;
 
@@ -795,17 +815,27 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 var estadocivil = (BE.Record)this.CbxEstadoCivil.SelectedItem;
                 var paisnacimiento = (BE.Pais)this.CbxPaisNacimiento.SelectedItem;
 
-                int codDepartamentoNacimiento = int.Parse(((BE.Record)this.CbxDepartamentoNacimiento.SelectedItem).Codigo);
-                int codProvinciaNacimiento = int.Parse(((BE.Record)this.CbxProvinciaNacimiento.SelectedItem).Codigo);
-                int codDistritoNacimiento = 0;
-                var oBeTbUbigeoNacimiento = new BE.Ubigeo()
+                if (paisnacimiento.Codigo == "PER")
                 {
-                    Departamento = codDepartamentoNacimiento,
-                    Provincia = codProvinciaNacimiento,
-                    Distrito = codDistritoNacimiento
-                };
-                new LN.Ubigeo().Obtener(ref oBeTbUbigeoNacimiento);
-                this.beEmpleadoGeneral.UbigeoNacimiento = oBeTbUbigeoNacimiento;
+                    int codDepartamentoNacimiento = int.Parse(((BE.Record)this.CbxDepartamentoNacimiento.SelectedItem).Codigo);
+                    int codProvinciaNacimiento = int.Parse(((BE.Record)this.CbxProvinciaNacimiento.SelectedItem).Codigo);
+                    int codDistritoNacimiento = 0;
+                    var oBeTbUbigeoNacimiento = new BE.Ubigeo()
+                    {
+                        Departamento = codDepartamentoNacimiento,
+                        Provincia = codProvinciaNacimiento,
+                        Distrito = codDistritoNacimiento
+                    };
+                    new LN.Ubigeo().Obtener(ref oBeTbUbigeoNacimiento);
+                    this.beEmpleadoGeneral.UbigeoNacimiento = oBeTbUbigeoNacimiento;
+                }
+                else
+                {
+                    this.beEmpleadoGeneral.UbigeoNacimiento = new BE.Ubigeo()
+                    {
+                        Codigo = ""
+                    };
+                }
 
                 this.beEmpleadoGeneral.Codigo = this.TxtCodigo.Text;
                 this.beEmpleadoGeneral.Nombres = this.TxtNombres.Text;

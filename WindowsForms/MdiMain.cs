@@ -94,7 +94,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmPlanillaCalcular = new FrmPlanillaCalcular();
+                var frmPlanillaCalcular = FrmPlanillaCalcular.Instance();
                 frmPlanillaCalcular.MdiParent = this;
                 frmPlanillaCalcular.StartPosition = FormStartPosition.CenterScreen;
                 frmPlanillaCalcular.Show();
@@ -154,7 +154,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmPostulante = new FrmPostulanteList();
+                var frmPostulante = FrmPostulanteList.Instance();
                 frmPostulante.MdiParent = this;
                 frmPostulante.StartPosition = FormStartPosition.CenterScreen;
                 frmPostulante.Show();
@@ -169,7 +169,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmCandidato = new FrmCandidatoList();
+                var frmCandidato = FrmCandidatoList.Instance();
                 frmCandidato.MdiParent = this;
                 frmCandidato.StartPosition = FormStartPosition.CenterScreen;
                 frmCandidato.Show();
@@ -184,7 +184,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmEmpleado = new FrmEmpleadoList();
+                var frmEmpleado = FrmEmpleadoList.Instance();
                 frmEmpleado.MdiParent = this;
                 frmEmpleado.StartPosition = FormStartPosition.CenterScreen;
                 frmEmpleado.Show();
@@ -214,7 +214,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmTipoDescuento = new FrmTipoDescuentoMant();
+                var frmTipoDescuento = FrmTipoDescuentoMant.Instance();
                 frmTipoDescuento.MdiParent = this;
                 frmTipoDescuento.StartPosition = FormStartPosition.CenterScreen;
                 frmTipoDescuento.Show();
@@ -229,7 +229,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmAdelanto = new FrmAdelantoList();
+                var frmAdelanto = FrmAdelantoList.Instance();
                 frmAdelanto.MdiParent = this;
                 frmAdelanto.StartPosition = FormStartPosition.CenterScreen;
                 frmAdelanto.Show();
@@ -289,7 +289,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmCts = new FrmCtsList();
+                var frmCts = FrmCtsList.Instance();
                 frmCts.MdiParent = this;
                 frmCts.StartPosition = FormStartPosition.CenterScreen;
                 frmCts.Show();
@@ -319,7 +319,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmSueldoMinimo = new FrmSueldoMinimoMant();
+                var frmSueldoMinimo = FrmSueldoMinimoMant.Instance();
                 frmSueldoMinimo.MdiParent = this;
                 frmSueldoMinimo.StartPosition = FormStartPosition.CenterScreen;
                 frmSueldoMinimo.Show();
@@ -330,6 +330,20 @@ namespace ErpCasino.WindowsForms
             }
         }
 
+        private void tsmFeriados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmFeriado = FrmFeriadoMant.Instance();
+                frmFeriado.MdiParent = this;
+                frmFeriado.StartPosition = FormStartPosition.CenterScreen;
+                frmFeriado.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
         private void tsmCambiarClave_Click(object sender, EventArgs e)
         {
             try
@@ -391,7 +405,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmAsistencia = new FrmAsistenciaList();
+                var frmAsistencia = FrmAsistenciaList.Instance();
                 frmAsistencia.MdiParent = this;
                 frmAsistencia.StartPosition = FormStartPosition.CenterScreen;
                 frmAsistencia.Show();
@@ -421,7 +435,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmHorario = new FrmHorarioMensualList();
+                var frmHorario = FrmHorarioMensualList.Instance();
                 frmHorario.MdiParent = this;
                 frmHorario.StartPosition = FormStartPosition.CenterScreen;
                 frmHorario.Show();
@@ -451,7 +465,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmObs= new FrmAsignarObservacionList();
+                var frmObs = FrmAsignarObservacionList.Instance();
                 frmObs.MdiParent = this;
                 frmObs.StartPosition = FormStartPosition.CenterScreen;
                 frmObs.Show();
@@ -466,7 +480,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmDescuento = new FrmAsignarDescuentoList();
+                var frmDescuento = FrmAsignarDescuentoList.Instance();
                 frmDescuento.MdiParent = this;
                 frmDescuento.StartPosition = FormStartPosition.CenterScreen;
                 frmDescuento.Show();
@@ -481,7 +495,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmBono = new FrmAsignarBonoList();
+                var frmBono = FrmAsignarBonoList.Instance();
                 frmBono.MdiParent = this;
                 frmBono.StartPosition = FormStartPosition.CenterScreen;
                 frmBono.Show();
@@ -566,5 +580,37 @@ namespace ErpCasino.WindowsForms
                 Util.ErrorMessage(ex.Message);
             }
         }
+
+        private void tsmReporteCumpleanhos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmReporte = FrmReporteCumpleanhos.Instance();
+                frmReporte.MdiParent = this;
+                frmReporte.StartPosition = FormStartPosition.CenterScreen;
+                frmReporte.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void tsmReporteAsistencias_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmReporte = FrmReporteAsistencias.Instance();
+                frmReporte.MdiParent = this;
+                frmReporte.StartPosition = FormStartPosition.CenterScreen;
+                frmReporte.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        
     }
 }

@@ -84,7 +84,7 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(986, 462);
             this.tlpPrincipal.TabIndex = 16;
             // 
@@ -95,7 +95,7 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(980, 396);
+            this.pnlPrincipal.Size = new System.Drawing.Size(980, 406);
             this.pnlPrincipal.TabIndex = 16;
             // 
             // tbcPlanilla
@@ -108,7 +108,7 @@
             this.tbcPlanilla.Location = new System.Drawing.Point(9, 69);
             this.tbcPlanilla.Name = "tbcPlanilla";
             this.tbcPlanilla.SelectedIndex = 0;
-            this.tbcPlanilla.Size = new System.Drawing.Size(964, 324);
+            this.tbcPlanilla.Size = new System.Drawing.Size(964, 334);
             this.tbcPlanilla.TabIndex = 41;
             // 
             // tbpAsistencias
@@ -125,7 +125,7 @@
             this.tbpAsistencias.Location = new System.Drawing.Point(4, 22);
             this.tbpAsistencias.Name = "tbpAsistencias";
             this.tbpAsistencias.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpAsistencias.Size = new System.Drawing.Size(956, 298);
+            this.tbpAsistencias.Size = new System.Drawing.Size(956, 308);
             this.tbpAsistencias.TabIndex = 0;
             this.tbpAsistencias.Text = "Asistencias";
             this.tbpAsistencias.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             this.cboCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCalculoPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCalculoPor.FormattingEnabled = true;
-            this.cboCalculoPor.Location = new System.Drawing.Point(839, 232);
+            this.cboCalculoPor.Location = new System.Drawing.Point(839, 242);
             this.cboCalculoPor.Name = "cboCalculoPor";
             this.cboCalculoPor.Size = new System.Drawing.Size(111, 21);
             this.cboCalculoPor.TabIndex = 55;
@@ -194,7 +194,7 @@
             // 
             this.lblCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCalculoPor.AutoSize = true;
-            this.lblCalculoPor.Location = new System.Drawing.Point(839, 216);
+            this.lblCalculoPor.Location = new System.Drawing.Point(839, 226);
             this.lblCalculoPor.Name = "lblCalculoPor";
             this.lblCalculoPor.Size = new System.Drawing.Size(66, 13);
             this.lblCalculoPor.TabIndex = 53;
@@ -204,7 +204,7 @@
             // 
             this.txtRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegistrosAsistencias.Location = new System.Drawing.Point(839, 272);
+            this.txtRegistrosAsistencias.Location = new System.Drawing.Point(839, 282);
             this.txtRegistrosAsistencias.Name = "txtRegistrosAsistencias";
             this.txtRegistrosAsistencias.Size = new System.Drawing.Size(111, 20);
             this.txtRegistrosAsistencias.TabIndex = 56;
@@ -216,7 +216,7 @@
             this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRegistrosAsistencias.AutoSize = true;
             this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(839, 256);
+            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(839, 266);
             this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
             this.lblRegistrosAsistencias.Size = new System.Drawing.Size(57, 13);
             this.lblRegistrosAsistencias.TabIndex = 54;
@@ -230,7 +230,7 @@
             this.dgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAsistencias.Location = new System.Drawing.Point(6, 6);
             this.dgvAsistencias.Name = "dgvAsistencias";
-            this.dgvAsistencias.Size = new System.Drawing.Size(827, 286);
+            this.dgvAsistencias.Size = new System.Drawing.Size(827, 296);
             this.dgvAsistencias.TabIndex = 40;
             // 
             // tbpCostos
@@ -452,15 +452,15 @@
             this.pnlBotones.Controls.Add(this.BtnGenerate);
             this.pnlBotones.Controls.Add(this.BtnCancel);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBotones.Location = new System.Drawing.Point(3, 405);
+            this.pnlBotones.Location = new System.Drawing.Point(3, 415);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(980, 54);
+            this.pnlBotones.Size = new System.Drawing.Size(980, 44);
             this.pnlBotones.TabIndex = 17;
             // 
             // BtnGenerate
             // 
             this.BtnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnGenerate.Location = new System.Drawing.Point(869, 11);
+            this.BtnGenerate.Location = new System.Drawing.Point(871, 5);
             this.BtnGenerate.Name = "BtnGenerate";
             this.BtnGenerate.Size = new System.Drawing.Size(100, 30);
             this.BtnGenerate.TabIndex = 17;
@@ -471,7 +471,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(749, 11);
+            this.BtnCancel.Location = new System.Drawing.Point(765, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;

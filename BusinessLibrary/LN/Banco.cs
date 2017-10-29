@@ -3,12 +3,28 @@ using DA = ErpCasino.BusinessLibrary.DA;
 using System.Data;
 using System.Collections.Generic;
 using System;
-
 namespace ErpCasino.BusinessLibrary.LN
 {
 
     public class Banco
     {
+
+        public BE.Banco Obtener(int idBanco)
+        {
+            try
+            {
+                var beBanco = new BE.Banco() { IdBanco = idBanco };
+
+                if (new DA.Banco().Obtener(ref beBanco) == false)
+                    beBanco = null;
+
+                return beBanco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// Obtiene la lista de bancos

@@ -4,90 +4,32 @@ namespace ErpCasino.BusinessLibrary.BE
 {
     public class CTS
     {
-
-        private int mIdCts = 0;
-        private string mCodigoEmpleado = "";
-        private double mMonto = 0.0;
-        private DateTime mFechaPeriodoInicial = DateTime.Now;
-        private DateTime mFechaPeriodoFinal = DateTime.Now;
-        private DateTime mFechaDeposito = DateTime.Now;
-
-        public int IdCts
-        {
-            get
-            {
-                return mIdCts;
-            }
-            set
-            {
-                mIdCts = value;
-            }
-        }
-
-        public string CodigoEmpleado
-        {
-            get
-            {
-                return mCodigoEmpleado;
-            }
-            set
-            {
-                mCodigoEmpleado = value;
-            }
-        }
-
-        public double Monto
-        {
-            get
-            {
-                return mMonto;
-            }
-            set
-            {
-                mMonto = value;
-            }
-        }
-
-        public DateTime FechaPeriodoInicial
-        {
-            get
-            {
-                return mFechaPeriodoInicial;
-            }
-            set
-            {
-                mFechaPeriodoInicial = value;
-            }
-        }
-
-        public DateTime FechaPeriodoFinal
-        {
-            get
-            {
-                return mFechaPeriodoFinal;
-            }
-            set
-            {
-                mFechaPeriodoFinal = value;
-            }
-        }
-
-        public DateTime FechaDeposito
-        {
-            get
-            {
-                return mFechaDeposito;
-            }
-            set
-            {
-                mFechaDeposito = value;
-            }
-        }
-
-        public CTS()
-        {
-        }
-        
+        public int IdCts { get; set; }
+        public int Anho { get; set; }
+        public int Periodo { get; set; }
+        public DateTime PeriodoFechaInicial { get; set; }
+        public DateTime PeriodoFechaFinal { get; set; }
+        public string EmpleadoCodigo { get; set; }
+        public DateTime EmpleadoFechaIngreso { get; set; }
+        public double EmpleadoSueldo { get; set; }
+        public double EmpleadoAsigFam { get; set; }
+        public double TotalBonificacion { get; set; }
+        public double TotalHorasExtras { get; set; }
+        public double TotalGratificacion { get; set; }
+        public double PromedioBonificacion { get; set; }
+        public double PromedioHorasExtras { get; set; }
+        public double PromedioGratificacion { get; set; }
+        public double ComputableTotal { get; set; }
+        public DateTime ComputableFechaInicial { get; set; }
+        public DateTime ComputableFechaFinal { get; set; }
+        public int ComputableMeses { get; set; }
+        public int ComputableDias { get; set; }
+        public double ComputablePagar { get; set; }
+        public Banco Banco { get; set; }
+        public string Cuenta { get; set; }
+        public DateTime DepositoFecha { get; set; }
+        public double DepositoMonto { get; set; }
+        public string DepositoOperacion { get; set; }
 
     }
 }

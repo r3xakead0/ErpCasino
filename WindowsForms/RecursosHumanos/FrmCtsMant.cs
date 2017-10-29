@@ -4,22 +4,41 @@ using System.Data;
 using System.Linq;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.Collections.Generic;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
     public partial class FrmCtsMant : Form
     {
 
-        private FrmCtsList frmList = null;
+        #region "Patron Singleton"
 
-        private BE.UI.CTS beCts = new BE.UI.CTS();
+        private static FrmCtsMant frmInstance = null;
 
-        public FrmCtsMant(FrmCtsList frmList)
+        public static FrmCtsMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmCtsMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
+        public FrmCtsList frmList = null;
+
+        private BE.UI.CTS uiCts = new BE.UI.CTS();
+
+        public FrmCtsMant()
         {
             try
             {
                 InitializeComponent();
-                this.frmList = frmList;
             }
             catch (Exception ex)
             {
@@ -36,14 +55,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (beCts != null)
                 {
 
-                    this.beCts = beCts;
+                    this.uiCts = beCts;
 
-                    this.dtpFecha.Value = this.beCts.FechaDeposito;
-                    this.txtEmpleado.Text = this.beCts.EmpleadoCodigo;
-                    this.cboEmpleado.SelectedValue = this.beCts.EmpleadoCodigo;
-                    this.txtMonto.Text = this.beCts.Monto.ToString("N2");
-                    this.dtpPeriodoInicial.Value = this.beCts.FechaPeriodoInicial;
-                    this.dtpPeriodoFinal.Value = this.beCts.FechaPeriodoFinal;
+                    //FALTA
 
                 }
             }
@@ -52,30 +66,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 Util.ErrorMessage(ex.Message);
             }
 
-        }
-
-        private void Limpiar()
-        {
-            try
-            {
-                //Limpiar objeto
-                this.beCts = new BE.UI.CTS();
-
-                //Limpiar controles de edicion
-                this.dtpFecha.Value = DateTime.Now;
-                this.dtpPeriodoInicial.Value = DateTime.Now;
-                this.dtpPeriodoFinal.Value = DateTime.Now;
-
-                this.txtEmpleado.Clear();
-                this.txtMonto.Text = "0.00";
-
-                this.CargarEmpleados();
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         private void CargarEmpleados()
@@ -92,13 +82,61 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             this.cboEmpleado.ValueMember = "Codigo";
         }
 
+        private void CargarAnhos()
+        {
+            try
+            {
+                int anhoInicio = 2017;
+                int anhoFinal = DateTime.Now.Year + 5;
+
+                var lstAnhos = new List<BE.Record>();
+                for (int i = anhoInicio; i < anhoFinal; i++)
+                {
+                    lstAnhos.Add(new BE.Record() { Codigo = i.ToString(), Nombre = i.ToString() });
+                }
+
+                this.cboAnho.DataSource = lstAnhos;
+                this.cboAnho.DisplayMember = "Nombre";
+                this.cboAnho.ValueMember = "Codigo";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void CargarPeriodos()
+        {
+            try
+            {
+                var lstAnhos = new List<BE.Record>();
+
+                lstAnhos.Add(new BE.Record() { Codigo = "1", Nombre = "Mayo - Octubre" });
+                lstAnhos.Add(new BE.Record() { Codigo = "2", Nombre = "Noviembre - Abril" });
+
+                this.cboPeriodo.DataSource = lstAnhos;
+                this.cboPeriodo.DisplayMember = "Nombre";
+                this.cboPeriodo.ValueMember = "Codigo";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #region Formulario
 
         private void FrmCtsMant_Load(object sender, EventArgs e)
         {
             try
             {
-                this.Limpiar();
+                this.uiCts = new BE.UI.CTS();
+
+                this.dtpDepositoFecha.Value = DateTime.Now;
+
+                this.CargarEmpleados();
+                this.CargarAnhos();
+                this.CargarPeriodos();
             }
             catch (Exception ex)
             {
@@ -118,47 +156,41 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     throw new Exception("Seleccione un empleado");
                 }
 
-                if (this.txtEmpleado.Text.Trim().Length == 0)
+                if (this.txtEmpleadoCodigo.Text.Trim().Length == 0)
                 {
                     this.cboEmpleado.Focus();
                     throw new Exception("Seleccione un empleado");
                 }
 
-                if (this.txtMonto.Text.Trim().Length == 0)
+                if (this.txtDepositoMonto.Text.Trim().Length == 0)
                 {
-                    this.txtMonto.Focus();
+                    this.txtDepositoMonto.Focus();
                     throw new Exception("Ingrese el monto del cts");
                 }
 
-                if (double.Parse(this.txtMonto.Text) == 0.0)
+                if (double.Parse(this.txtDepositoMonto.Text) == 0.0)
                 {
-                    this.txtMonto.Focus();
+                    this.txtDepositoMonto.Focus();
                     throw new Exception("Ingrese el monto del cts");
                 }
                 #endregion
 
                 #region Guardar
  
-                this.beCts.FechaDeposito = this.dtpFecha.Value;
-                var beRecord = (BE.Record)this.cboEmpleado.SelectedItem;
-                this.beCts.EmpleadoCodigo = beRecord.Codigo;
-                this.beCts.EmpleadoNombre = beRecord.Nombre;
-                this.beCts.Monto = double.Parse(this.txtMonto.Text);
-                this.beCts.FechaPeriodoInicial = this.dtpPeriodoInicial.Value;
-                this.beCts.FechaPeriodoFinal = this.dtpPeriodoFinal.Value;
+                //falta
 
                 bool rpta = false;
                 string msg = "";
                 var lnCts = new LN.CTS();
-                if (this.beCts.IdCts == 0) //Nuevo
+                if (this.uiCts.Id == 0) //Nuevo
                 {
-                    rpta = lnCts.Insertar(ref this.beCts);
+                    rpta = lnCts.Insertar(ref this.uiCts);
                     if (true)
                         msg = "Se registro la CTS";
                 }
                 else  //Actualizar
                 {
-                    rpta = lnCts.Actualizar(this.beCts);
+                    rpta = lnCts.Actualizar(this.uiCts);
                     if (true)
                         msg = "Se actualizo la CTS";
                 }
@@ -226,10 +258,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 double monto = 0.0;
 
-                if (this.txtMonto.Text.Length > 0)
-                    monto = double.Parse(this.txtMonto.Text);
+                if (this.txtDepositoMonto.Text.Length > 0)
+                    monto = double.Parse(this.txtDepositoMonto.Text);
 
-                this.txtMonto.Text = monto.ToString("N2");
+                this.txtDepositoMonto.Text = monto.ToString("N2");
             }
             catch (Exception ex)
             {
@@ -241,7 +273,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             BeginInvoke((Action)delegate
             {
-                txtMonto.SelectAll();
+                txtDepositoMonto.SelectAll();
             });
         }
 
@@ -249,8 +281,77 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var beRecord = (BE.Record)this.cboEmpleado.SelectedItem;
-                this.txtEmpleado.Text = beRecord.Codigo;
+                if (this.cboEmpleado.SelectedIndex == 0)
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                    this.txtEmpleadoFechaIngreso.Clear();
+                    this.txtEmpleadoSueldo.Text = "0.00";
+                    this.txtEmpleadoAsignacionFamilar.Text = "0.00";
+
+                    this.txtBancoNombre.Clear();
+                    this.txtBancoCuenta.Clear();
+                }
+                else
+                {
+                    var beRecord = (BE.Record)this.cboEmpleado.SelectedItem;
+
+                    var beEmpleado = new LN.Empleado().Obtener(beRecord.Codigo, true);
+
+                    if (beEmpleado != null && beEmpleado.Recurso != null)
+                    {
+                        this.txtEmpleadoCodigo.Text = beEmpleado.Codigo;
+
+                        this.txtEmpleadoFechaIngreso.Text = beEmpleado.Recurso.FechaInicio.ToString("dd/MM/yyyy");
+                        this.txtEmpleadoSueldo.Text = beEmpleado.Recurso.Sueldo.ToString("N2");
+
+                        double asigFam = 0.0;
+                        if (beEmpleado.Recurso.NumeroHijos > 0)
+                        {
+                            var beSueldo = new LN.SueldoMinimo().Actual(DateTime.Now);
+                            if (beSueldo != null)
+                                asigFam = beSueldo.Monto / 10;
+                        }
+                        this.txtEmpleadoAsignacionFamilar.Text = asigFam.ToString("N2");
+
+                        this.txtBancoNombre.Text = beEmpleado.Recurso.BancoCTS.Nombre;
+                        this.txtBancoCuenta.Text = beEmpleado.Recurso.CuentaCTS;
+                    }
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void cboAnhoPeriodo_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboPeriodo.SelectedIndex == 0)
+                {
+                    this.txtRangoFechas.Clear();
+                }
+                else
+                {
+                    int periodo = int.Parse(this.cboPeriodo.SelectedValue.ToString());
+                    int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
+
+                    switch (periodo)
+                    {
+                        case 1:
+                            this.txtRangoFechas.Text = "01/05/" + anho.ToString() + " AL 30/09/" + anho.ToString();
+                            break;
+                        case 2:
+                            this.txtRangoFechas.Text = "01/10/" + anho.ToString() + " AL 30/04/" + (anho + 1).ToString();
+                            break;
+                        default:
+                            this.txtRangoFechas.Clear();
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -259,5 +360,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         }
 
         #endregion
+
+
     }
 }

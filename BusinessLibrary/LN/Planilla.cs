@@ -11,7 +11,7 @@ namespace ErpCasino.BusinessLibrary.LN
     public class Planilla
     {
 
-        private List<BE.Feriado> lstFeriados = null;
+        private List<BE.Feriado> lstBeFeriados = null;
         private int anho = DateTime.Now.Year;
         private int mes = DateTime.Now.Month;
 
@@ -67,7 +67,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 this.anho = anho;
                 this.mes = mes;
 
-                lstFeriados = new LN.Feriado().Listar(anho, mes);
+                this.lstBeFeriados = new DA.Feriado().ListarMes(anho, mes);
             }
             catch (Exception ex)
             {
@@ -553,7 +553,15 @@ namespace ErpCasino.BusinessLibrary.LN
                     DateTime fechaHoraHorarioFinal = DateTime.Parse(drItem["FechaHoraHorarioFinal"].ToString());
                     int horasHorario = int.Parse(drItem["HorasHorario"].ToString());
 
+                    //Fecha y Hora segun horario Asistencia
                     int horasAsistencia = int.Parse(drItem["HorasAsistencia"].ToString());
+                    DateTime fechaHoraAsistenciaInicio = new DateTime(1900, 01, 01);
+                    DateTime fechaHoraAsistenciaFinal = new DateTime(1900, 01, 01);
+                    if (horasAsistencia > 0) //Si Asistio
+                    {
+                        fechaHoraAsistenciaInicio = DateTime.Parse(drItem["FechaHoraAsistenciaInicial"].ToString());
+                        fechaHoraAsistenciaFinal = DateTime.Parse(drItem["FechaHoraAsistenciaFinal"].ToString());
+                    }
 
                     #endregion
 
@@ -619,10 +627,11 @@ namespace ErpCasino.BusinessLibrary.LN
                                                          + minutosAsistenciaFeriadosNocturnasPosterioresExtras;
 
                         #region Calcular Minutos de Tardanza
+
                         this.ObtenerMinutosTardanza(fechaHoraNocturnoInicio,
                             fechaHoraNocturnoFinal,
                             fechaHoraHorarioInicio,
-                            fechaHoraHorarioInicio,
+                            fechaHoraAsistenciaInicio,
                             out minutosTardanzaNormalesDiurnas,
                             out minutosTardanzaNormalesNocturnas,
                             out minutosTardanzaFeriadosDiurnas,
@@ -633,6 +642,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                         minutosTardanzaFeriadosTotales = minutosTardanzaFeriadosDiurnas
                                                        + minutosTardanzaFeriadosNocturnas;
+
                     }
                     else
                     {
@@ -1007,10 +1017,10 @@ namespace ErpCasino.BusinessLibrary.LN
                         minutosNormalDiurnas = TiempoTardanza.Minutes;
                 }
 
-                minutosTardanzaNormalDiurnas = minutosNormalDiurnas;
-                minutosTardanzaNormalNocturnas = minutosNormalNocturas;
-                minutosTardanzaFeriadoDiurnas = minutosFeriadoDiurnas;
-                minutosTardanzaFeriadoNocturnas = minutosFeriadoNocturas;
+                minutosTardanzaNormalDiurnas = minutosNormalDiurnas > 0 ? minutosNormalDiurnas : 0;
+                minutosTardanzaNormalNocturnas = minutosNormalNocturas > 0 ? minutosNormalNocturas : 0;
+                minutosTardanzaFeriadoDiurnas = minutosFeriadoDiurnas > 0 ? minutosFeriadoDiurnas : 0;
+                minutosTardanzaFeriadoNocturnas = minutosFeriadoNocturas > 0 ? minutosFeriadoNocturas : 0;
 
             }
             catch (Exception ex)
@@ -1025,7 +1035,7 @@ namespace ErpCasino.BusinessLibrary.LN
             try
             {
 
-                int countRows = this.lstFeriados.Where(x => x.Fecha.ToString("yyyyMMdd").Equals(fecha.ToString("yyyyMMdd"))).Count();
+                int countRows = this.lstBeFeriados.Where(x => x.Fecha.ToString("yyyyMMdd").Equals(fecha.ToString("yyyyMMdd"))).Count();
                 rpta = countRows > 0 ? true : false;
 
                 return rpta;

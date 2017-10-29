@@ -12,6 +12,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmAsistenciaList : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmAsistenciaList frmInstance = null;
+
+        public static FrmAsistenciaList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsistenciaList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         private int anchoInicial = 0;
 
         public FrmAsistenciaList()
@@ -45,7 +64,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmAsistenciaNew = new FrmAsistenciaMant();
+                var frmAsistenciaNew = FrmAsistenciaMant.Instance();
                 frmAsistenciaNew.MdiParent = this.MdiParent;
                 frmAsistenciaNew.Show();
                 frmAsistenciaNew.Cargar(null);
@@ -101,7 +120,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     List<BE.UI.Asistencia> lstUiAsistencias = new LN.Asistencia().Listar(fecha);
 
-                    var frmAsistenciaEdit = new FrmAsistenciaMant();
+                    var frmAsistenciaEdit = FrmAsistenciaMant.Instance();
                     frmAsistenciaEdit.MdiParent = this.MdiParent;
                     frmAsistenciaEdit.Show();
 

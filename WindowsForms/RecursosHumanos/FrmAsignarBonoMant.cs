@@ -11,16 +11,34 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmAsignarBonoMant : Form
     {
 
-        private FrmAsignarBonoList frmList = null;
+        #region "Patron Singleton"
+
+        private static FrmAsignarBonoMant frmInstance = null;
+
+        public static FrmAsignarBonoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmAsignarBonoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
+        public FrmAsignarBonoList frmList = null;
 
         private BE.UI.BonoEmpleado uiBonoEmpleado = null;
 
-        public FrmAsignarBonoMant(FrmAsignarBonoList frmList)
+        public FrmAsignarBonoMant()
         {
             try
             {
                 InitializeComponent();
-                this.frmList = frmList;
             }
             catch (Exception ex)
             {
@@ -232,6 +250,22 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         }
 
+        private void cboBono_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboBono.SelectedIndex > 0)
+                {
+                    var uiBono = (BE.UI.Bono)this.cboBono.SelectedItem;
+                    this.txtMonto.Text = uiBono.Monto.ToString("N2");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void txtEmpleadoCodigo_Leave(object sender, EventArgs e)
         {
             try
@@ -240,10 +274,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var lst = (List<BE.Record>)this.cboEmpleado.DataSource;
 
-                if (lst.Where(x => x.Codigo == codigoEmpleado).Count() > 0)
+                var beEmpleado = lst.FirstOrDefault(x => x.Codigo.Contains(codigoEmpleado));
+
+                if (beEmpleado != null)
                 {
-                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
-                    this.cboEmpleado.SelectedValue = codigoEmpleado;
+                    this.txtEmpleadoCodigo.Text = beEmpleado.Codigo;
+                    this.cboEmpleado.SelectedValue = beEmpleado.Codigo;
                 }
                 else
                 {

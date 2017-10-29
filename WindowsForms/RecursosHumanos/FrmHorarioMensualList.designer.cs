@@ -47,7 +47,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.Location = new System.Drawing.Point(177, 10);
+            this.btnNuevo.Location = new System.Drawing.Point(177, 5);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 30);
             this.btnNuevo.TabIndex = 16;
@@ -68,8 +68,7 @@
             this.TlpPrincipal.RowCount = 3;
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(292, 382);
             this.TlpPrincipal.TabIndex = 19;
             // 
@@ -78,15 +77,15 @@
             this.PnlBotones.Controls.Add(this.btnEliminar);
             this.PnlBotones.Controls.Add(this.btnNuevo);
             this.PnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlBotones.Location = new System.Drawing.Point(3, 325);
+            this.PnlBotones.Location = new System.Drawing.Point(3, 335);
             this.PnlBotones.Name = "PnlBotones";
-            this.PnlBotones.Size = new System.Drawing.Size(286, 54);
+            this.PnlBotones.Size = new System.Drawing.Size(286, 44);
             this.PnlBotones.TabIndex = 1;
             // 
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(71, 10);
+            this.btnEliminar.Location = new System.Drawing.Point(71, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 19;
@@ -100,7 +99,7 @@
             this.PnlGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlGrilla.Location = new System.Drawing.Point(3, 53);
             this.PnlGrilla.Name = "PnlGrilla";
-            this.PnlGrilla.Size = new System.Drawing.Size(286, 266);
+            this.PnlGrilla.Size = new System.Drawing.Size(286, 276);
             this.PnlGrilla.TabIndex = 0;
             // 
             // dgvHorariosMensuales
@@ -109,7 +108,7 @@
             this.dgvHorariosMensuales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHorariosMensuales.Location = new System.Drawing.Point(0, 0);
             this.dgvHorariosMensuales.Name = "dgvHorariosMensuales";
-            this.dgvHorariosMensuales.Size = new System.Drawing.Size(286, 266);
+            this.dgvHorariosMensuales.Size = new System.Drawing.Size(286, 276);
             this.dgvHorariosMensuales.TabIndex = 1;
             // 
             // pnlFiltro

@@ -9,6 +9,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmCandidatoMant : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmCandidatoMant frmInstance = null;
+
+        public static FrmCandidatoMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmCandidatoMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public BE.Candidato beCandidatoGeneral = null;
 
         public FrmCandidatoList frmList = null;
@@ -639,7 +658,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 }
                 else
                 {
-                    this.beCandidatoGeneral.UbigeoNacimiento = null;
+                    this.beCandidatoGeneral.UbigeoNacimiento = new BE.Ubigeo()
+                    {
+                        Codigo = ""
+                    };
                 }
 
                 this.beCandidatoGeneral.Codigo = this.TxtCodigo.Text;

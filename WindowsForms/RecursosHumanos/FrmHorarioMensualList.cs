@@ -13,6 +13,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmHorarioMensualList : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmHorarioMensualList frmInstance = null;
+
+        public static FrmHorarioMensualList Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmHorarioMensualList();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         public FrmHorarioMensualList()
         {
             InitializeComponent();
@@ -38,7 +57,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var frmHorarioNew = new FrmHorarioMensualMant();
+                var frmHorarioNew = FrmHorarioMensualMant.Instance();
                 frmHorarioNew.MdiParent = this.MdiParent;
                 frmHorarioNew.Show();
                 frmHorarioNew.frmList = this;
@@ -59,9 +78,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     if (Util.ConfirmationMessage("¿Desea eliminar al Horario mensual seleccionado?") == false)
                         return;
 
-                    var uiHorarioSemanal = (BE.UI.HorarioSemanal)this.dgvHorariosMensuales.CurrentRow.DataBoundItem;
+                    var uiHorarioMensual = (BE.UI.HorarioMensual)this.dgvHorariosMensuales.CurrentRow.DataBoundItem;
 
-                    new LN.Horario().EliminarMes(uiHorarioSemanal);
+                    new LN.Horario().EliminarMes(uiHorarioMensual);
 
                     this.CargarListadoHorarioMensual();
                 }

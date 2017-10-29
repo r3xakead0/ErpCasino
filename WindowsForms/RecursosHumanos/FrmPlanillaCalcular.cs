@@ -12,6 +12,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmPlanillaCalcular : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmPlanillaCalcular frmInstance = null;
+
+        public static FrmPlanillaCalcular Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmPlanillaCalcular();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         private List<BE.UI.PlanillaAsistencia> lstAsistencias = null;
         private List<BE.UI.PlanillaCosto> lstCostos = null;
 

@@ -58,6 +58,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecursosHumanos\FrmAdelantoCarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAdelantoCarga.designer.cs">
+      <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReporte.Designer.cs">
+      <DependentUpon>FrmReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReporteAsistencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReporteAsistencias.designer.cs">
+      <DependentUpon>FrmReporteAsistencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReporteCumpleanhos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmReporteCumpleanhos.designer.cs">
+      <DependentUpon>FrmReporteCumpleanhos.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmReciboDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +159,12 @@
     </Compile>
     <Compile Include="RecursosHumanos\FrmCargoMant.designer.cs">
       <DependentUpon>FrmCargoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmFeriadoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmFeriadoMant.designer.cs">
+      <DependentUpon>FrmFeriadoMant.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmTipoBonoMant.cs">
       <SubType>Form</SubType>
@@ -357,6 +387,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImpresionBoleta.rpt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\Impresos\ImpresionCts.cs">
+      <DependentUpon>ImpresionCts.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="RecursosHumanos\Impresos\ImpresionGratificacion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImpresionGratificacion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="RecursosHumanos\Reportes\ReporteCumpleanhos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteCumpleanhos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Seguridad\FrmCambioClave.cs">
       <SubType>Form</SubType>
@@ -410,6 +462,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecursosHumanos\FrmAdelantoCarga.resx">
+      <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmReporte.resx">
+      <DependentUpon>FrmReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmReporteAsistencias.resx">
+      <DependentUpon>FrmReporteAsistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmReporteCumpleanhos.resx">
+      <DependentUpon>FrmReporteCumpleanhos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmReciboDetalle.resx">
       <DependentUpon>FrmReciboDetalle.cs</DependentUpon>
     </EmbeddedResource>
@@ -448,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmCargoMant.resx">
       <DependentUpon>FrmCargoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmFeriadoMant.resx">
+      <DependentUpon>FrmFeriadoMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmTipoBonoMant.resx">
       <DependentUpon>FrmTipoBonoMant.cs</DependentUpon>
@@ -557,6 +624,21 @@
     <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionBoleta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImpresionBoleta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionCts.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImpresionCts.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionGratificacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImpresionGratificacion.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\Reportes\ReporteCumpleanhos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteCumpleanhos.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FrmLogin.resx">

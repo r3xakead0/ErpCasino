@@ -14,10 +14,29 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     public partial class FrmHorarioSemanalMant : Form
     {
 
+        #region "Patron Singleton"
+
+        private static FrmHorarioSemanalMant frmInstance = null;
+
+        public static FrmHorarioSemanalMant Instance()
+        {
+
+            if (frmInstance == null || frmInstance.IsDisposed == true)
+            {
+                frmInstance = new FrmHorarioSemanalMant();
+            }
+
+            frmInstance.BringToFront();
+
+            return frmInstance;
+        }
+
+        #endregion
+
         private DateTime fechaInicio;
         private DateTime fechaFin;
 
-        private FrmHorarioSemanalList frmList = null;
+        public FrmHorarioSemanalList frmList = null;
 
         private BE.UI.HorarioSemanal uiHorarioSemanal = new BE.UI.HorarioSemanal();
         private List<BE.UI.Horario> lstUiHorario = new List<BE.UI.Horario>();
@@ -27,13 +46,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         private int idHorario = 0;
 
-        public FrmHorarioSemanalMant(FrmHorarioSemanalList frmList)
+        public FrmHorarioSemanalMant()
         {
             try
             {
                 InitializeComponent();
-
-                this.frmList = frmList;
 
                 this.CargarAnhos();
                 this.CargarSemanas(DateTime.Now.Year);

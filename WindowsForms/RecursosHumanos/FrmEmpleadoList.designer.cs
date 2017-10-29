@@ -56,15 +56,15 @@
             this.dgvEmpleados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmpleados.Location = new System.Drawing.Point(0, 0);
             this.dgvEmpleados.Name = "dgvEmpleados";
-            this.dgvEmpleados.Size = new System.Drawing.Size(851, 249);
+            this.dgvEmpleados.Size = new System.Drawing.Size(851, 259);
             this.dgvEmpleados.TabIndex = 0;
             this.dgvEmpleados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellDoubleClick);
             this.dgvEmpleados.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpleado_ColumnHeaderMouseClick);
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNuevo.Location = new System.Drawing.Point(494, 10);
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.Location = new System.Drawing.Point(742, 5);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 30);
             this.btnNuevo.TabIndex = 16;
@@ -74,8 +74,8 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEditar.Location = new System.Drawing.Point(376, 10);
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.Location = new System.Drawing.Point(636, 5);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 30);
             this.btnEditar.TabIndex = 17;
@@ -85,8 +85,8 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEliminar.Location = new System.Drawing.Point(255, 10);
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Location = new System.Drawing.Point(530, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 18;
@@ -94,7 +94,7 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // tableLayoutPanel1
+            // tlpPrincipal
             // 
             this.tlpPrincipal.ColumnCount = 1;
             this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -104,12 +104,12 @@
             this.tlpPrincipal.Controls.Add(this.pnlFiltros, 0, 0);
             this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tlpPrincipal.Name = "tableLayoutPanel1";
+            this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 4;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(857, 385);
             this.tlpPrincipal.TabIndex = 19;
             // 
@@ -119,9 +119,9 @@
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnEditar);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBotones.Location = new System.Drawing.Point(3, 328);
+            this.pnlBotones.Location = new System.Drawing.Point(3, 338);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(851, 54);
+            this.pnlBotones.Size = new System.Drawing.Size(851, 44);
             this.pnlBotones.TabIndex = 1;
             // 
             // pnlPrincipal
@@ -130,7 +130,7 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 43);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(851, 249);
+            this.pnlPrincipal.Size = new System.Drawing.Size(851, 259);
             this.pnlPrincipal.TabIndex = 0;
             // 
             // pnlResumen
@@ -138,7 +138,7 @@
             this.pnlResumen.Controls.Add(this.txtNroEmpleados);
             this.pnlResumen.Controls.Add(this.lblRegistrosAsistencias);
             this.pnlResumen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlResumen.Location = new System.Drawing.Point(3, 298);
+            this.pnlResumen.Location = new System.Drawing.Point(3, 308);
             this.pnlResumen.Name = "pnlResumen";
             this.pnlResumen.Size = new System.Drawing.Size(851, 24);
             this.pnlResumen.TabIndex = 2;

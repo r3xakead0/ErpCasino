@@ -46,6 +46,7 @@
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.GrpDetalleBono.SuspendLayout();
@@ -63,8 +64,8 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(498, 210);
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(498, 205);
             this.tlpPrincipal.TabIndex = 16;
             // 
             // pnlPrincipal
@@ -73,13 +74,14 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(492, 144);
+            this.pnlPrincipal.Size = new System.Drawing.Size(492, 149);
             this.pnlPrincipal.TabIndex = 16;
             // 
             // GrpDetalleBono
             // 
             this.GrpDetalleBono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrpDetalleBono.Controls.Add(this.txtEmpleadoCodigo);
             this.GrpDetalleBono.Controls.Add(this.txtNumero);
             this.GrpDetalleBono.Controls.Add(this.lblNumero);
             this.GrpDetalleBono.Controls.Add(this.lblBanco);
@@ -101,7 +103,8 @@
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(78, 103);
+            this.txtNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNumero.Location = new System.Drawing.Point(357, 103);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(118, 20);
             this.txtNumero.TabIndex = 71;
@@ -109,12 +112,13 @@
             // 
             // lblNumero
             // 
+            this.lblNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNumero.AutoSize = true;
-            this.lblNumero.Location = new System.Drawing.Point(9, 106);
+            this.lblNumero.Location = new System.Drawing.Point(288, 106);
             this.lblNumero.Name = "lblNumero";
             this.lblNumero.Size = new System.Drawing.Size(50, 13);
             this.lblNumero.TabIndex = 70;
-            this.lblNumero.Text = "Numero :";
+            this.lblNumero.Text = "Número :";
             // 
             // lblBanco
             // 
@@ -162,10 +166,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEmpleado.FormattingEnabled = true;
-            this.cboEmpleado.Location = new System.Drawing.Point(78, 49);
+            this.cboEmpleado.Location = new System.Drawing.Point(170, 49);
             this.cboEmpleado.Name = "cboEmpleado";
-            this.cboEmpleado.Size = new System.Drawing.Size(397, 21);
+            this.cboEmpleado.Size = new System.Drawing.Size(305, 21);
             this.cboEmpleado.TabIndex = 49;
+            this.cboEmpleado.SelectionChangeCommitted += new System.EventHandler(this.cboEmpleado_SelectionChangeCommitted);
             // 
             // dtpFecha
             // 
@@ -173,15 +178,14 @@
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFecha.Location = new System.Drawing.Point(78, 20);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(118, 20);
+            this.dtpFecha.Size = new System.Drawing.Size(86, 20);
             this.dtpFecha.TabIndex = 38;
             // 
             // txtMonto
             // 
-            this.txtMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMonto.Location = new System.Drawing.Point(357, 103);
+            this.txtMonto.Location = new System.Drawing.Point(78, 103);
             this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(118, 20);
+            this.txtMonto.Size = new System.Drawing.Size(86, 20);
             this.txtMonto.TabIndex = 23;
             this.txtMonto.Text = "0.00";
             this.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -191,9 +195,8 @@
             // 
             // lblMonto
             // 
-            this.lblMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMonto.AutoSize = true;
-            this.lblMonto.Location = new System.Drawing.Point(288, 106);
+            this.lblMonto.Location = new System.Drawing.Point(9, 106);
             this.lblMonto.Name = "lblMonto";
             this.lblMonto.Size = new System.Drawing.Size(43, 13);
             this.lblMonto.TabIndex = 22;
@@ -222,15 +225,15 @@
             this.pnlInferior.Controls.Add(this.BtnSave);
             this.pnlInferior.Controls.Add(this.BtnCancel);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 153);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 158);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(492, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(492, 44);
             this.pnlInferior.TabIndex = 17;
             // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(378, 5);
+            this.BtnSave.Location = new System.Drawing.Point(383, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -241,7 +244,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(257, 5);
+            this.BtnCancel.Location = new System.Drawing.Point(277, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;
@@ -249,12 +252,21 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // txtEmpleadoCodigo
+            // 
+            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(78, 49);
+            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
+            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
+            this.txtEmpleadoCodigo.TabIndex = 90;
+            this.txtEmpleadoCodigo.Leave += new System.EventHandler(this.txtEmpleadoCodigo_Leave);
+            // 
             // FrmAdelantoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 210);
+            this.ClientSize = new System.Drawing.Size(498, 205);
             this.Controls.Add(this.tlpPrincipal);
+            this.MaximizeBox = false;
             this.Name = "FrmAdelantoMant";
             this.Text = "Mantenimiento de Adelanto";
             this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);
@@ -286,5 +298,6 @@
         internal System.Windows.Forms.ComboBox cboBancos;
         private System.Windows.Forms.TextBox txtNumero;
         internal System.Windows.Forms.Label lblNumero;
+        private System.Windows.Forms.TextBox txtEmpleadoCodigo;
     }
 }
