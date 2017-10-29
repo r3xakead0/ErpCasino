@@ -64,6 +64,18 @@
     <Compile Include="RecursosHumanos\FrmAdelantoCarga.designer.cs">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\FrmVacacionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmVacacionMant.designer.cs">
+      <DependentUpon>FrmVacacionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmVacacionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmVacacionList.designer.cs">
+      <DependentUpon>FrmVacacionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmReporte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -464,6 +476,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="RecursosHumanos\FrmAdelantoCarga.resx">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmVacacionMant.resx">
+      <DependentUpon>FrmVacacionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmVacacionList.resx">
+      <DependentUpon>FrmVacacionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmReporte.resx">
       <DependentUpon>FrmReporte.cs</DependentUpon>

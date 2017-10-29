@@ -366,5 +366,8 @@
     <Build Include="dbo\Stored Procedures\SpImpresionCTS.sql" />
     <Build Include="dbo\Stored Procedures\SpTbFeriadoListarMes.sql" />
     <Build Include="dbo\Stored Procedures\SpTbFeriadoListarAnho.sql" />
+    <Build Include="dbo\Tables\TbVacacionDetalle.sql" />
+    <Build Include="dbo\Tables\TbVacacion.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoListarVacaciones.sql" />
   </ItemGroup>
 </Project>

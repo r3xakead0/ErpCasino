@@ -452,6 +452,36 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+        public DataTable ListarVacaciones(DateTime fecha)
+        {
+            try
+            {
+                string sp = "SpTbEmpleadoListarVacaciones";
+                DataTable dt = new DataTable();
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", fecha));
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataTable Listar()
         {
             try

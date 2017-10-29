@@ -72,6 +72,30 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        public List<BE.UI.Empleado> ListarVacaciones(DateTime fecha)
+        {
+            var lstUiEmpleados = new List<BE.UI.Empleado>();
+            try
+            {
+                DataTable dtEmpleados = new DA.ClsDaTbEmpleado().ListarVacaciones(fecha);
+
+                foreach (DataRow drEmpleado in dtEmpleados.Rows)
+                {
+                    var uiEmpleado = new BE.UI.Empleado();
+
+                   // FALTA
+                    lstUiEmpleados.Add(uiEmpleado);
+                }
+
+                return lstUiEmpleados;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public List<BE.UI.Empleado> Listar()
         {
 

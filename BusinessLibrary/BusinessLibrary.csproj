@@ -92,6 +92,7 @@
     <Compile Include="BE\Tipo.cs" />
     <Compile Include="BE\Parametros.cs" />
     <Compile Include="BE\UI\Activo.cs" />
+    <Compile Include="BE\UI\Vacacion.cs" />
     <Compile Include="BE\UI\Comprometido.cs" />
     <Compile Include="BE\UI\Descuento.cs" />
     <Compile Include="BE\UI\Feriado.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="DA\Sala.cs" />
     <Compile Include="DA\Turno.cs" />
     <Compile Include="DA\ConnectionManager.cs" />
+    <Compile Include="LN\Vacacion.cs" />
     <Compile Include="LN\Conexion.cs" />
     <Compile Include="LN\Empresa.cs" />
     <Compile Include="LN\Recibo.cs" />

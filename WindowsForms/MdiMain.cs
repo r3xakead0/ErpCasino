@@ -315,6 +315,21 @@ namespace ErpCasino.WindowsForms
             }
         }
 
+        private void tsmVacaciones_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmVacacion = FrmVacacionList.Instance();
+                frmVacacion.MdiParent = this;
+                frmVacacion.StartPosition = FormStartPosition.CenterScreen;
+                frmVacacion.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void tsmSueldoMinimo_Click(object sender, EventArgs e)
         {
             try
