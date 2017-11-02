@@ -9,7 +9,34 @@ namespace ErpCasino.BusinessLibrary.DA
 
     public class Planilla
     {
-        
+
+        public int Eliminar(int anho, int mes)
+        {
+            int rowsAffected = 0;
+            try
+            {
+                string sp = "SpTbPlanillaEliminar";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+                }
+
+                return rowsAffected;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public bool Existe(int anho, int mes)
         {
@@ -279,6 +306,10 @@ namespace ErpCasino.BusinessLibrary.DA
                         beDetalle.EsSaludTotal = double.Parse(reader["EsSaludTotal"].ToString());
                         #endregion
 
+                        #region Movilidad
+                        beDetalle.MovilidadTotal = double.Parse(reader["MovilidadTotal"].ToString());
+                        #endregion
+
                         lstUiPlanillaDetalle.Add(beDetalle);
 
                     }
@@ -534,7 +565,6 @@ namespace ErpCasino.BusinessLibrary.DA
 
                 #endregion
 
-
                 #region Bonos (Nocturno, Extras y Feriado)
 
                 #region Bono Nocturno
@@ -684,6 +714,10 @@ namespace ErpCasino.BusinessLibrary.DA
 
                 #region Salud (EsSalud)
                 cmd.Parameters.Add(new SqlParameter("@ESSALUDTOTAL", bePlanillaDetalle.EsSaludTotal));
+                #endregion
+
+                #region Movilidad
+                cmd.Parameters.Add(new SqlParameter("@MOVILIDADTOTAL", bePlanillaDetalle.MovilidadTotal));
                 #endregion
 
                 rowsAffected += cmd.ExecuteNonQuery();

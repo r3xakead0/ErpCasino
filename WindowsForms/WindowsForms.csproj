@@ -64,6 +64,24 @@
     <Compile Include="RecursosHumanos\FrmAdelantoCarga.designer.cs">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadMant.designer.cs">
+      <DependentUpon>FrmPlanillaMovilidadMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmEmpleadoMantHijos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmEmpleadoMantHijos.designer.cs">
+      <DependentUpon>FrmEmpleadoMantHijos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadList.designer.cs">
+      <DependentUpon>FrmPlanillaMovilidadList.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmVacacionMant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -476,6 +494,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="RecursosHumanos\FrmAdelantoCarga.resx">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaMovilidadMant.resx">
+      <DependentUpon>FrmPlanillaMovilidadMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmEmpleadoMantHijos.resx">
+      <DependentUpon>FrmEmpleadoMantHijos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaMovilidadList.resx">
+      <DependentUpon>FrmPlanillaMovilidadList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmVacacionMant.resx">
       <DependentUpon>FrmVacacionMant.cs</DependentUpon>

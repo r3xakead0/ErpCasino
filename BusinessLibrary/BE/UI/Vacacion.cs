@@ -32,13 +32,13 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         {
             Detalle = new List<VacacionDetalle>();
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 6; i++)
             {
                 var detalle = new VacacionDetalle();
                 detalle.Id = 0;
-                detalle.Anho = 0;
                 detalle.Numero = i + 1;
-                detalle.Mes = 0;
+                detalle.Anho = DateTime.Now.AddMonths(i - 6).Year;
+                detalle.Mes = DateTime.Now.AddMonths(i - 6).Month;
                 detalle.HorasExtrasMonto = 0.0;
                 detalle.BonificacionMonto = 0.0;
                 Detalle.Add(detalle);
@@ -50,8 +50,8 @@ namespace ErpCasino.BusinessLibrary.BE.UI
     public class VacacionDetalle
     {
         public int Id { get; set; }
+        public int Numero { get; set; }
         public int Anho { get; set; }
-        public int Numero { get; set; } 
         public int Mes { get; set; }
         public double HorasExtrasMonto { get; set; }
         public double BonificacionMonto { get; set; }

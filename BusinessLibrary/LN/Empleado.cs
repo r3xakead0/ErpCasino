@@ -72,22 +72,27 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        public List<BE.UI.Empleado> ListarVacaciones(DateTime fecha)
+        public List<BE.UI.EmpleadoVacacion> ListarVacaciones(DateTime fecha)
         {
-            var lstUiEmpleados = new List<BE.UI.Empleado>();
+            var lstUiEmpleadosVacaciones = new List<BE.UI.EmpleadoVacacion>();
             try
             {
                 DataTable dtEmpleados = new DA.ClsDaTbEmpleado().ListarVacaciones(fecha);
 
                 foreach (DataRow drEmpleado in dtEmpleados.Rows)
                 {
-                    var uiEmpleado = new BE.UI.Empleado();
+                    var uiEmpleadoVacacion = new BE.UI.EmpleadoVacacion();
 
-                   // FALTA
-                    lstUiEmpleados.Add(uiEmpleado);
+                    uiEmpleadoVacacion.Id = drEmpleado["IdEmpleado"] == DBNull.Value ? 0 : int.Parse(drEmpleado["IdEmpleado"].ToString());
+                    uiEmpleadoVacacion.EmpleadoCodigo = drEmpleado["Codigo"] == DBNull.Value ? "" : drEmpleado["Codigo"].ToString();
+                    uiEmpleadoVacacion.EmpleadoApellidosNombres = drEmpleado["ApellidosNombres"] == DBNull.Value ? "" : drEmpleado["ApellidosNombres"].ToString();
+                    uiEmpleadoVacacion.EmpleadoFechaIngreso = drEmpleado["FechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(drEmpleado["FechaIngreso"].ToString());
+                    uiEmpleadoVacacion.EmpleadoFechaVacacion = drEmpleado["FechaVacacion"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(drEmpleado["FechaVacacion"].ToString());
+
+                    lstUiEmpleadosVacaciones.Add(uiEmpleadoVacacion);
                 }
 
-                return lstUiEmpleados;
+                return lstUiEmpleadosVacaciones;
             }
             catch (Exception ex)
             {

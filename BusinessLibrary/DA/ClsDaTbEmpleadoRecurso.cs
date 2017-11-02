@@ -29,6 +29,7 @@ namespace ErpCasino.BusinessLibrary.DA
                 beEmpleadoRecurso.Sueldo = dr["Sueldo"] == DBNull.Value ? 0.0 : Double.Parse(dr["Sueldo"].ToString());
                 beEmpleadoRecurso.RetencionJudicialNominal = dr["RetencionJudicialNominal"] == DBNull.Value ? 0.0 : Double.Parse(dr["RetencionJudicialNominal"].ToString());
                 beEmpleadoRecurso.RetencionJudicialPorcentual = dr["RetencionJudicialPorcentual"] == DBNull.Value ? 0.0 : Double.Parse(dr["RetencionJudicialPorcentual"].ToString());
+                beEmpleadoRecurso.FechaUltimaVacacion = dr["FechaUltimaVacacion"] == DBNull.Value ? null : (DateTime?)dr["FechaUltimaVacacion"];
 
                 if (dr["IdArea"] != DBNull.Value)
                 {

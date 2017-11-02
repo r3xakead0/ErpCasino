@@ -26,6 +26,7 @@ namespace ErpCasino.BusinessLibrary.BE
         private double mSueldo = 0.0;
         private double mRetencionJudicialNominal = 0.0;
         private double mRetencionJudicialPorcentual = 0.0;
+        private DateTime? mFechaUltimaVacacion = null;
 
         public int IdEmpleado
         {
@@ -269,6 +270,19 @@ namespace ErpCasino.BusinessLibrary.BE
             set
             {
                 mRetencionJudicialPorcentual = value;
+            }
+        }
+
+        public DateTime? FechaUltimaVacacion
+        {
+            get
+            {
+                return mFechaUltimaVacacion;
+            }
+
+            set
+            {
+                mFechaUltimaVacacion = value;
             }
         }
 

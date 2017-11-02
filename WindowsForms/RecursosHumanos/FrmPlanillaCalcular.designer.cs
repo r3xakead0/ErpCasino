@@ -250,7 +250,7 @@
             this.tbpCostos.Location = new System.Drawing.Point(4, 22);
             this.tbpCostos.Name = "tbpCostos";
             this.tbpCostos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpCostos.Size = new System.Drawing.Size(956, 298);
+            this.tbpCostos.Size = new System.Drawing.Size(956, 308);
             this.tbpCostos.TabIndex = 1;
             this.tbpCostos.Text = "Costos";
             this.tbpCostos.UseVisualStyleBackColor = true;
@@ -426,7 +426,7 @@
             this.CbxMes.FormattingEnabled = true;
             this.CbxMes.Location = new System.Drawing.Point(192, 23);
             this.CbxMes.Name = "CbxMes";
-            this.CbxMes.Size = new System.Drawing.Size(72, 21);
+            this.CbxMes.Size = new System.Drawing.Size(241, 21);
             this.CbxMes.TabIndex = 50;
             // 
             // CboAnho

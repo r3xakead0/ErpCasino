@@ -64,6 +64,7 @@
             this.txtAnho = new System.Windows.Forms.TextBox();
             this.lblAnho = new System.Windows.Forms.Label();
             this.tbpDetalle = new System.Windows.Forms.TabPage();
+            this.btnBoleta = new System.Windows.Forms.Button();
             this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.cboEmpleado = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,9 +78,8 @@
             this.CboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.BtnGenerate = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.btnBoleta = new System.Windows.Forms.Button();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.tbcPlanilla.SuspendLayout();
@@ -492,6 +492,17 @@
             this.tbpDetalle.Text = "Detalle";
             this.tbpDetalle.UseVisualStyleBackColor = true;
             // 
+            // btnBoleta
+            // 
+            this.btnBoleta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBoleta.Location = new System.Drawing.Point(698, 230);
+            this.btnBoleta.Name = "btnBoleta";
+            this.btnBoleta.Size = new System.Drawing.Size(100, 21);
+            this.btnBoleta.TabIndex = 88;
+            this.btnBoleta.Text = "Boleta";
+            this.btnBoleta.UseVisualStyleBackColor = true;
+            this.btnBoleta.Click += new System.EventHandler(this.btnBoleta_Click);
+            // 
             // txtEmpleadoCodigo
             // 
             this.txtEmpleadoCodigo.Location = new System.Drawing.Point(75, 6);
@@ -595,7 +606,7 @@
             this.CbxMes.FormattingEnabled = true;
             this.CbxMes.Location = new System.Drawing.Point(192, 23);
             this.CbxMes.Name = "CbxMes";
-            this.CbxMes.Size = new System.Drawing.Size(72, 21);
+            this.CbxMes.Size = new System.Drawing.Size(241, 21);
             this.CbxMes.TabIndex = 50;
             // 
             // CboAnho
@@ -618,7 +629,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.BtnGenerate);
+            this.panel2.Controls.Add(this.btnEliminar);
             this.panel2.Controls.Add(this.BtnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 377);
@@ -626,16 +637,16 @@
             this.panel2.Size = new System.Drawing.Size(934, 44);
             this.panel2.TabIndex = 17;
             // 
-            // BtnGenerate
+            // btnEliminar
             // 
-            this.BtnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnGenerate.Location = new System.Drawing.Point(825, 5);
-            this.BtnGenerate.Name = "BtnGenerate";
-            this.BtnGenerate.Size = new System.Drawing.Size(100, 30);
-            this.BtnGenerate.TabIndex = 17;
-            this.BtnGenerate.Text = "Generar";
-            this.BtnGenerate.UseVisualStyleBackColor = true;
-            this.BtnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Location = new System.Drawing.Point(825, 5);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminar.TabIndex = 17;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // BtnCancel
             // 
@@ -647,17 +658,6 @@
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // btnBoleta
-            // 
-            this.btnBoleta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBoleta.Location = new System.Drawing.Point(698, 230);
-            this.btnBoleta.Name = "btnBoleta";
-            this.btnBoleta.Size = new System.Drawing.Size(100, 21);
-            this.btnBoleta.TabIndex = 88;
-            this.btnBoleta.Text = "Boleta";
-            this.btnBoleta.UseVisualStyleBackColor = true;
-            this.btnBoleta.Click += new System.EventHandler(this.btnBoleta_Click);
             // 
             // FrmPlanillaRevisar
             // 
@@ -688,7 +688,7 @@
         private System.Windows.Forms.Panel pnlPrincipal;
         internal System.Windows.Forms.Label LblFechaHora;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Button BtnGenerate;
+        public System.Windows.Forms.Button btnEliminar;
         public System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.GroupBox GrpPeriodo;
         private System.Windows.Forms.ComboBox CbxMes;

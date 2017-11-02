@@ -893,7 +893,7 @@ namespace ErpCasino.BusinessLibrary.BE
 
         
         public double EsSaludTotal { get; set; }
-
+        public double MovilidadTotal { get; set; }
     }
 
 }

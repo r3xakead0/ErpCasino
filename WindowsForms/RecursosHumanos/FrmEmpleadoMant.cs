@@ -39,6 +39,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             InitializeComponent();
 
+            this.beEmpleadoGeneral = new BE.ClsBeTbEmpleado();
             this.DtpFechaNacimiento.Value = DateTime.Now.AddYears(-18);
         }
 
@@ -251,18 +252,37 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     if (this.beEmpleadoGeneral.Recurso != null)
                     {
-                        this.CbxArea.SelectedValue = this.beEmpleadoGeneral.Recurso.Area.IdArea;
-                        this.CbxCargo.SelectedValue = this.beEmpleadoGeneral.Recurso.Cargo.IdCargo;
-                        this.cboSala.SelectedValue = this.beEmpleadoGeneral.Recurso.Sala.IdSala;
+                        if (this.beEmpleadoGeneral.Recurso.Area != null)
+                            this.CbxArea.SelectedValue = this.beEmpleadoGeneral.Recurso.Area.IdArea;
+                        if (this.beEmpleadoGeneral.Recurso.Cargo != null)
+                            this.CbxCargo.SelectedValue = this.beEmpleadoGeneral.Recurso.Cargo.IdCargo;
+                        if (this.beEmpleadoGeneral.Recurso.Sala != null)
+                            this.cboSala.SelectedValue = this.beEmpleadoGeneral.Recurso.Sala.IdSala;
                         this.DtpFechaInicio.Value = this.beEmpleadoGeneral.Recurso.FechaInicio;
                         this.CbxCesado.Checked = this.beEmpleadoGeneral.Recurso.Cesado;
                         this.DtpFechaCese.Value = this.beEmpleadoGeneral.Recurso.FechaCese == null ? DateTime.Now : (DateTime)this.beEmpleadoGeneral.Recurso.FechaCese;
                         this.TxtNumeroHijos.Text = this.beEmpleadoGeneral.Recurso.NumeroHijos.ToString();
                         this.TxtSueldo.Text = this.beEmpleadoGeneral.Recurso.Sueldo.ToString("N2");
 
+                        #region Vacacion
+                        if (this.beEmpleadoGeneral.Recurso.FechaUltimaVacacion == null)
+                        {
+                            this.dtpVacaciones.Value = DateTime.Now;
+                            this.dtpVacaciones.Enabled = false;
+                            this.chkVacaciones.Checked = false;
+                        }
+                        else
+                        {
+                            this.dtpVacaciones.Value = (DateTime)this.beEmpleadoGeneral.Recurso.FechaUltimaVacacion;
+                            this.dtpVacaciones.Enabled = true;
+                            this.chkVacaciones.Checked = true;
+                        }
+                        #endregion
+
                         #region Banco
 
-                        this.CbxBanco.SelectedValue = this.beEmpleadoGeneral.Recurso.Banco.IdBanco;
+                        if (this.beEmpleadoGeneral.Recurso.Banco != null)
+                            this.CbxBanco.SelectedValue = this.beEmpleadoGeneral.Recurso.Banco.IdBanco;
                         this.TxtCuentaBanco.Text = this.beEmpleadoGeneral.Recurso.CuentaBanco;
                         this.TxtCci.Text = this.beEmpleadoGeneral.Recurso.CCI;
 
@@ -273,7 +293,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         this.CbxOnp.Checked = this.beEmpleadoGeneral.Recurso.ONP;
                         if (this.beEmpleadoGeneral.Recurso.ONP == false)
                         {
-                            this.CbxAfp.SelectedValue = this.beEmpleadoGeneral.Recurso.Afp.IdAfp;
+                            if (this.beEmpleadoGeneral.Recurso.Afp != null)
+                                this.CbxAfp.SelectedValue = this.beEmpleadoGeneral.Recurso.Afp.IdAfp;
                             this.TxtCuspp.Text = this.beEmpleadoGeneral.Recurso.CUSPP;
                             this.CbxComisionAFP.SelectedValue = this.beEmpleadoGeneral.Recurso.CodComision;
                         }
@@ -761,7 +782,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                this.beEmpleadoGeneral = new BE.ClsBeTbEmpleado();
+                
             }
             catch (Exception ex)
             {
@@ -793,7 +814,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                this.Close();
+                if (Util.ConfirmationMessage("¿Desea salir del mantenimiento de empleado?") == true)
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -920,6 +944,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 else
                     this.beEmpleadoGeneral.Recurso.FechaCese = null;
 
+                if (this.chkVacaciones.Checked == true)
+                    this.beEmpleadoGeneral.Recurso.FechaUltimaVacacion = this.dtpVacaciones.Value;
+                else
+                    this.beEmpleadoGeneral.Recurso.FechaUltimaVacacion = null;
+
                 this.beEmpleadoGeneral.Recurso.NumeroHijos = int.Parse(this.TxtNumeroHijos.Text);
                 this.beEmpleadoGeneral.Recurso.Banco = beBancoPago;
                 this.beEmpleadoGeneral.Recurso.CuentaBanco = this.TxtCuentaBanco.Text;
@@ -1019,6 +1048,18 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 this.DtpFechaCese.Enabled = this.CbxCesado.Checked;
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void chkVacaciones_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.dtpVacaciones.Enabled = this.chkVacaciones.Checked;
             }
             catch (Exception ex)
             {
@@ -1246,6 +1287,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
                     this.txtRetencionJudicial.Text = "0.00";
                 }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnVerHijos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmHijos = FrmEmpleadoMantHijos.Instance();
+                frmHijos.MdiParent = this.MdiParent;
+                frmHijos.Show();
             }
             catch (Exception ex)
             {

@@ -70,24 +70,22 @@ namespace ErpCasino.WindowsForms
             }
         }
 
-        private void tsmEmpleados_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void tsmPostulantes_Click(object sender, EventArgs e)
-        {
-            
-        }
+        #region Planilla
 
-        private void tsmCandidatos_Click(object sender, EventArgs e)
+        private void tsmPlanillasMovilidad_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void tsmAfp_Click(object sender, EventArgs e)
-        {
-            
+            try
+            {
+                var frmPlanillaMovilidad = FrmPlanillaMovilidadList.Instance();
+                frmPlanillaMovilidad.MdiParent = this;
+                frmPlanillaMovilidad.StartPosition = FormStartPosition.CenterScreen;
+                frmPlanillaMovilidad.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
         }
 
         private void tsmPlanillasCalcular_Click(object sender, EventArgs e)
@@ -119,6 +117,8 @@ namespace ErpCasino.WindowsForms
                 Util.ErrorMessage(ex.Message);
             }
         }
+
+        #endregion
 
         private void tsmInsistencias_Click(object sender, EventArgs e)
         {

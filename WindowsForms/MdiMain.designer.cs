@@ -48,6 +48,7 @@
             this.tsmSalas = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalasMantenimiento = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalasMeta = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVacaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSueldoMinimo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFeriados = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCts = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,8 @@
             this.stsPrincipal = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.stlUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmVacaciones = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmPlanillasMovilidad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.stsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -273,6 +275,13 @@
             this.tsmSalasMeta.Text = "Meta";
             this.tsmSalasMeta.Click += new System.EventHandler(this.tsmSalasMeta_Click);
             // 
+            // tsmVacaciones
+            // 
+            this.tsmVacaciones.Name = "tsmVacaciones";
+            this.tsmVacaciones.Size = new System.Drawing.Size(155, 22);
+            this.tsmVacaciones.Text = "Vacaciones";
+            this.tsmVacaciones.Click += new System.EventHandler(this.tsmVacaciones_Click);
+            // 
             // tsmSueldoMinimo
             // 
             this.tsmSueldoMinimo.Name = "tsmSueldoMinimo";
@@ -326,7 +335,9 @@
             // 
             this.tsmPlanillas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmPlanillasCalcular,
-            this.tsmPlanillasRevisar});
+            this.tsmPlanillasRevisar,
+            this.toolStripSeparator8,
+            this.tsmPlanillasMovilidad});
             this.tsmPlanillas.Name = "tsmPlanillas";
             this.tsmPlanillas.Size = new System.Drawing.Size(155, 22);
             this.tsmPlanillas.Text = "Planillas";
@@ -334,14 +345,14 @@
             // tsmPlanillasCalcular
             // 
             this.tsmPlanillasCalcular.Name = "tsmPlanillasCalcular";
-            this.tsmPlanillasCalcular.Size = new System.Drawing.Size(117, 22);
+            this.tsmPlanillasCalcular.Size = new System.Drawing.Size(152, 22);
             this.tsmPlanillasCalcular.Text = "Calcular";
             this.tsmPlanillasCalcular.Click += new System.EventHandler(this.tsmPlanillasCalcular_Click);
             // 
             // tsmPlanillasRevisar
             // 
             this.tsmPlanillasRevisar.Name = "tsmPlanillasRevisar";
-            this.tsmPlanillasRevisar.Size = new System.Drawing.Size(117, 22);
+            this.tsmPlanillasRevisar.Size = new System.Drawing.Size(152, 22);
             this.tsmPlanillasRevisar.Text = "Revisar";
             this.tsmPlanillasRevisar.Click += new System.EventHandler(this.tsmPlanillasRevisar_Click);
             // 
@@ -619,12 +630,17 @@
             this.stlUsuario.Name = "stlUsuario";
             this.stlUsuario.Size = new System.Drawing.Size(0, 17);
             // 
-            // tsmVacaciones
+            // toolStripSeparator8
             // 
-            this.tsmVacaciones.Name = "tsmVacaciones";
-            this.tsmVacaciones.Size = new System.Drawing.Size(155, 22);
-            this.tsmVacaciones.Text = "Vacaciones";
-            this.tsmVacaciones.Click += new System.EventHandler(this.tsmVacaciones_Click);
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(149, 6);
+            // 
+            // tsmPlanillasMovilidad
+            // 
+            this.tsmPlanillasMovilidad.Name = "tsmPlanillasMovilidad";
+            this.tsmPlanillasMovilidad.Size = new System.Drawing.Size(152, 22);
+            this.tsmPlanillasMovilidad.Text = "Movilidad";
+            this.tsmPlanillasMovilidad.Click += new System.EventHandler(this.tsmPlanillasMovilidad_Click);
             // 
             // MdiMain
             // 
@@ -718,5 +734,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmTiposDescuentos;
         private System.Windows.Forms.ToolStripMenuItem tsmTiposObservaciones;
         private System.Windows.Forms.ToolStripMenuItem tsmVacaciones;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem tsmPlanillasMovilidad;
     }
 }

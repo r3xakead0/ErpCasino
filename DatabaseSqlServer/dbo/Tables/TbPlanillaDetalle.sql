@@ -113,8 +113,11 @@
     [TotalDeduccion]                           DECIMAL (9, 4) NOT NULL,
     [TotaPago]                                 DECIMAL (9, 4) NOT NULL,
     [EsSaludTotal]                             DECIMAL (9, 4) NOT NULL,
+    [MovilidadTotal]                           DECIMAL (9, 4) CONSTRAINT [DF_TbPlanillaDetalle_Movilidad] DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_TbPlanillaDetalle] PRIMARY KEY CLUSTERED ([IdPlanillaDetalle] ASC)
 );
+
+
 
 
 

@@ -99,6 +99,19 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        public bool Eliminar()
+        {
+            try
+            {
+                int rowsAffected = new DA.Planilla().Eliminar(this.anho, this.mes);
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public BE.Planilla Obtener()
         {
             BE.Planilla bePlanilla = null;
@@ -429,6 +442,7 @@ namespace ErpCasino.BusinessLibrary.LN
                         uiPlanillaDetalle.PrestamoTotal = beDetalle.PrestamoTotal;
                         uiPlanillaDetalle.GratificacionTotal = 0.0;
                         uiPlanillaDetalle.EsSaludTotal = beDetalle.EsSaludTotal;
+                        uiPlanillaDetalle.MovilidadTotal = beDetalle.MovilidadTotal;
 
                         uiPlanillaDetalle.TotalBase = beDetalle.TotalSueldoBase;
                         uiPlanillaDetalle.TotalBruto = beDetalle.TotalSueldoBruto;

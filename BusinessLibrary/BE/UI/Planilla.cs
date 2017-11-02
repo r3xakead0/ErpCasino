@@ -166,6 +166,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public double PrestamoTotal { get; set; }
         public double GratificacionTotal { get; set; }
         public double EsSaludTotal { get; set; }
+        public double MovilidadTotal { get; set; }
 
         #region Totales
         public double TotalBase { get; set; }

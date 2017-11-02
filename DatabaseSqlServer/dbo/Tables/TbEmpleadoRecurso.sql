@@ -19,6 +19,7 @@
     [IdSala]                      INT             NOT NULL,
     [RetencionJudicialNominal]    DECIMAL (10, 2) NULL,
     [RetencionJudicialPorcentual] DECIMAL (10, 2) NULL,
+    [FechaUltimaVacacion]         DATE            NULL,
     CONSTRAINT [PK_TbEmpleadoRecurso_1] PRIMARY KEY CLUSTERED ([IdEmpleado] ASC),
     CONSTRAINT [FK_TbEmpleadoRecurso_TbAfp] FOREIGN KEY ([IdAfp]) REFERENCES [dbo].[TbAfp] ([IdAfp]),
     CONSTRAINT [FK_TbEmpleadoRecurso_TbArea] FOREIGN KEY ([IdArea]) REFERENCES [dbo].[TbArea] ([IdArea]),
@@ -26,6 +27,8 @@
     CONSTRAINT [FK_TbEmpleadoRecurso_TbCargo] FOREIGN KEY ([IdCargo]) REFERENCES [dbo].[TbCargo] ([IdCargo]),
     CONSTRAINT [FK_TbEmpleadoRecurso_TbEmpleado] FOREIGN KEY ([IdEmpleado]) REFERENCES [dbo].[TbEmpleado] ([IdEmpleado])
 );
+
+
 
 
 

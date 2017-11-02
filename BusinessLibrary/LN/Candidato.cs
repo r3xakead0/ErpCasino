@@ -142,7 +142,7 @@ namespace ErpCasino.BusinessLibrary.LN
                     bool codDocumentacion = bool.Parse(dr["Documentacion"].ToString());
                     string nomDocumentacion = codDocumentacion == true ? "Si" : "No";
 
-                    bool codContratado = bool.Parse(dr["Activo"].ToString());
+                    bool codContratado = bool.Parse(dr["Contratado"].ToString());
                     string nomContratado = codContratado == true ? "Si" : "No";
 
                     var uiCandidato = new BE.UI.Candidato();

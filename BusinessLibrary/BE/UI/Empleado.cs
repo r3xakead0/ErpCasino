@@ -21,7 +21,27 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public string CargoNombre { get; set; }
         public string SexoCodigo { get; set; }
         public string SexoNombre { get; set; }
-        public string Activo { get; set; } //SI|NO
+        public string Activo { get; set; } //Si|No
+    }
+
+    public class EmpleadoHijo
+    {
+        public int Id { get; set; }
+        public string HijoNombre { get; set; }
+        public string HijoApellidoPaterno { get; set; }
+        public string HijoApellidoMaterno { get; set; }
+        public DateTime HijoFechaNacimiento { get; set; }
+        public int HijoEdad { get; set; }
+        public bool HijoEstudia { get; set; } 
+    }
+
+    public class EmpleadoVacacion
+    {
+        public int Id { get; set; }
+        public string EmpleadoCodigo { get; set; }
+        public string EmpleadoApellidosNombres { get; set; }
+        public DateTime EmpleadoFechaIngreso { get; set; }
+        public DateTime? EmpleadoFechaVacacion { get; set; }
     }
 
 }

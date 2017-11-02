@@ -11,6 +11,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     {
 
         private int idPlanilla = 0;
+        private int anho = 0;
+        private int mes = 0;
 
         private List<BE.UI.PlanillaDetalle> lstUiPlanillaDetalle = null;
 
@@ -33,6 +35,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                this.idPlanilla = 0;
+                this.anho = 0;
+                this.mes = 0;
+
                 this.txtAnho.Clear();
                 this.txtMes.Clear();
                 this.txtDias.Clear();
@@ -225,12 +231,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void CalcularPlanillaResumen(int anho, int mes)
+        private void CalcularPlanillaResumen()
         {
             try
             {
 
-                var lnPlanilla = new LN.Planilla(anho, mes);
+                var lnPlanilla = new LN.Planilla(this.anho, this.mes);
 
                 BE.Planilla objPlanilla = lnPlanilla.Obtener();
                 if (objPlanilla == null)
@@ -278,7 +284,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void CalcularPlanillaDetalle(int anho, int mes)
+        private void CalcularPlanillaDetalle()
         {
             try
             {
@@ -287,7 +293,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 #endregion
 
                 //Obtiene calculo por minuto
-                this.lstUiPlanillaDetalle = new LN.Planilla(anho, mes).ListarPlantillaDetalle();
+                this.lstUiPlanillaDetalle = new LN.Planilla(this.anho, this.mes).ListarPlantillaDetalle();
 
                 string calcular = this.cboCalculoPor.SelectedValue.ToString();
                 switch (calcular)
@@ -435,7 +441,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 this.Close();
-
             }
             catch (Exception ex)
             {
@@ -443,12 +448,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnGenerate_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
 
-                
+                if (this.idPlanilla == 0)
+                    throw new Exception("Elija una planilla");
+
+                string anho = this.txtAnho.Text.Trim();
+                string mes = this.txtMes.Text.Trim();
+
+                if (Util.ConfirmationMessage($"¿Desea eliminar la planilla de {mes} del {anho}?") == false)
+                    return;
+
+                bool rpta = new LN.Planilla(this.anho, this.mes).Eliminar();
+                if (rpta == true)
+                {
+                    Util.InformationMessage($"Se eliminó la planilla de {mes} del {anho}");
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -460,11 +479,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                int anho = int.Parse(this.CboAnho.SelectedValue.ToString());
-                int mes = int.Parse(this.CbxMes.SelectedValue.ToString());
+                this.anho = int.Parse(this.CboAnho.SelectedValue.ToString());
+                this.mes = int.Parse(this.CbxMes.SelectedValue.ToString());
 
-                this.CalcularPlanillaResumen(anho, mes);
-                this.CalcularPlanillaDetalle(anho, mes);
+                this.CalcularPlanillaResumen();
+                this.CalcularPlanillaDetalle();
             }
             catch (Exception ex)
             {
@@ -498,10 +517,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                int anho = int.Parse(this.CboAnho.SelectedValue.ToString());
-                int mes = int.Parse(this.CbxMes.SelectedValue.ToString());
+                this.anho = int.Parse(this.CboAnho.SelectedValue.ToString());
+                this.mes = int.Parse(this.CbxMes.SelectedValue.ToString());
 
-                this.CalcularPlanillaDetalle(anho, mes);
+                this.CalcularPlanillaDetalle();
             }
             catch (Exception ex)
             {
@@ -596,13 +615,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     var uiPlanillaDetalle = (BE.UI.PlanillaDetalle)this.dgvPlanilla.CurrentRow.DataBoundItem;
 
-                    int anho = int.Parse(this.CboAnho.SelectedValue.ToString());
-                    int mes = int.Parse(this.CbxMes.SelectedValue.ToString());
-
                     var frmPlanillaVista = new FrmImpresion();
                     frmPlanillaVista.MdiParent = this.MdiParent;
                     frmPlanillaVista.Show();
-                    frmPlanillaVista.ImpresionBoleta(anho, mes, uiPlanillaDetalle.EmpleadoCodigo);
+                    frmPlanillaVista.ImpresionBoleta(this.anho, this.mes, uiPlanillaDetalle.EmpleadoCodigo);
 
                 }
             }

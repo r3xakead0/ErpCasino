@@ -116,7 +116,6 @@
             this.LblFechaInicio = new System.Windows.Forms.Label();
             this.LblFechaInicioAsterisk = new System.Windows.Forms.Label();
             this.DtpFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.LblFechaCese = new System.Windows.Forms.Label();
             this.DtpFechaCese = new System.Windows.Forms.DateTimePicker();
             this.CbxCesado = new System.Windows.Forms.CheckBox();
             this.LblNumeroHijos = new System.Windows.Forms.Label();
@@ -135,8 +134,11 @@
             this.TxtCuspp = new System.Windows.Forms.TextBox();
             this.LblCodComision = new System.Windows.Forms.Label();
             this.PnlPrincipal = new System.Windows.Forms.Panel();
-            this.BtnSave = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.dtpVacaciones = new System.Windows.Forms.DateTimePicker();
+            this.chkVacaciones = new System.Windows.Forms.CheckBox();
+            this.btnVerHijos = new System.Windows.Forms.Button();
             this.TlpPrincipal.SuspendLayout();
             this.TbcMantenimiento.SuspendLayout();
             this.TbpGeneral.SuspendLayout();
@@ -157,7 +159,7 @@
             this.TlpPrincipal.Name = "TlpPrincipal";
             this.TlpPrincipal.RowCount = 2;
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(518, 509);
             this.TlpPrincipal.TabIndex = 0;
             // 
@@ -172,7 +174,7 @@
             this.TbcMantenimiento.Location = new System.Drawing.Point(3, 3);
             this.TbcMantenimiento.Name = "TbcMantenimiento";
             this.TbcMantenimiento.SelectedIndex = 0;
-            this.TbcMantenimiento.Size = new System.Drawing.Size(512, 443);
+            this.TbcMantenimiento.Size = new System.Drawing.Size(512, 453);
             this.TbcMantenimiento.TabIndex = 0;
             // 
             // TbpGeneral
@@ -210,7 +212,7 @@
             this.TbpGeneral.Location = new System.Drawing.Point(4, 22);
             this.TbpGeneral.Name = "TbpGeneral";
             this.TbpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpGeneral.Size = new System.Drawing.Size(504, 417);
+            this.TbpGeneral.Size = new System.Drawing.Size(504, 427);
             this.TbpGeneral.TabIndex = 0;
             this.TbpGeneral.Text = "General";
             this.TbpGeneral.UseVisualStyleBackColor = true;
@@ -623,7 +625,7 @@
             this.TbpConctacto.Location = new System.Drawing.Point(4, 22);
             this.TbpConctacto.Name = "TbpConctacto";
             this.TbpConctacto.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpConctacto.Size = new System.Drawing.Size(504, 417);
+            this.TbpConctacto.Size = new System.Drawing.Size(504, 427);
             this.TbpConctacto.TabIndex = 1;
             this.TbpConctacto.Text = "Contacto";
             this.TbpConctacto.UseVisualStyleBackColor = true;
@@ -836,6 +838,9 @@
             // 
             // TbpRecurso
             // 
+            this.TbpRecurso.Controls.Add(this.btnVerHijos);
+            this.TbpRecurso.Controls.Add(this.chkVacaciones);
+            this.TbpRecurso.Controls.Add(this.dtpVacaciones);
             this.TbpRecurso.Controls.Add(this.txtRetencionJudicial);
             this.TbpRecurso.Controls.Add(this.cboRetencionJudicial);
             this.TbpRecurso.Controls.Add(this.lblRetencionJudicial);
@@ -857,7 +862,6 @@
             this.TbpRecurso.Controls.Add(this.LblFechaInicio);
             this.TbpRecurso.Controls.Add(this.LblFechaInicioAsterisk);
             this.TbpRecurso.Controls.Add(this.DtpFechaInicio);
-            this.TbpRecurso.Controls.Add(this.LblFechaCese);
             this.TbpRecurso.Controls.Add(this.DtpFechaCese);
             this.TbpRecurso.Controls.Add(this.CbxCesado);
             this.TbpRecurso.Controls.Add(this.LblNumeroHijos);
@@ -877,7 +881,7 @@
             this.TbpRecurso.Controls.Add(this.LblCodComision);
             this.TbpRecurso.Location = new System.Drawing.Point(4, 22);
             this.TbpRecurso.Name = "TbpRecurso";
-            this.TbpRecurso.Size = new System.Drawing.Size(504, 417);
+            this.TbpRecurso.Size = new System.Drawing.Size(504, 427);
             this.TbpRecurso.TabIndex = 2;
             this.TbpRecurso.Text = "Recurso";
             this.TbpRecurso.UseVisualStyleBackColor = true;
@@ -946,10 +950,9 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(361, 161);
+            this.label2.Location = new System.Drawing.Point(131, 133);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(11, 13);
             this.label2.TabIndex = 66;
@@ -967,18 +970,16 @@
             // 
             // LblSueldo
             // 
-            this.LblSueldo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblSueldo.AutoSize = true;
-            this.LblSueldo.Location = new System.Drawing.Point(258, 161);
+            this.LblSueldo.Location = new System.Drawing.Point(28, 133);
             this.LblSueldo.Name = "LblSueldo";
-            this.LblSueldo.Size = new System.Drawing.Size(43, 13);
+            this.LblSueldo.Size = new System.Drawing.Size(97, 13);
             this.LblSueldo.TabIndex = 64;
             this.LblSueldo.Text = "Sueldo:";
+            this.LblSueldo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TxtSueldo
             // 
-            this.TxtSueldo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtSueldo.Location = new System.Drawing.Point(375, 158);
+            this.TxtSueldo.Location = new System.Drawing.Point(145, 130);
             this.TxtSueldo.Name = "TxtSueldo";
             this.TxtSueldo.Size = new System.Drawing.Size(100, 20);
             this.TxtSueldo.TabIndex = 63;
@@ -1092,31 +1093,22 @@
             this.DtpFechaInicio.Size = new System.Drawing.Size(100, 20);
             this.DtpFechaInicio.TabIndex = 24;
             // 
-            // LblFechaCese
-            // 
-            this.LblFechaCese.AutoSize = true;
-            this.LblFechaCese.Location = new System.Drawing.Point(28, 133);
-            this.LblFechaCese.Name = "LblFechaCese";
-            this.LblFechaCese.Size = new System.Drawing.Size(67, 13);
-            this.LblFechaCese.TabIndex = 38;
-            this.LblFechaCese.Text = "Fecha Cese:";
-            // 
             // DtpFechaCese
             // 
+            this.DtpFechaCese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DtpFechaCese.CustomFormat = "dd/MM/yyyy";
             this.DtpFechaCese.Enabled = false;
             this.DtpFechaCese.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpFechaCese.Location = new System.Drawing.Point(145, 130);
+            this.DtpFechaCese.Location = new System.Drawing.Point(373, 130);
             this.DtpFechaCese.Name = "DtpFechaCese";
             this.DtpFechaCese.Size = new System.Drawing.Size(100, 20);
             this.DtpFechaCese.TabIndex = 25;
             // 
             // CbxCesado
             // 
-            this.CbxCesado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbxCesado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CbxCesado.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CbxCesado.Location = new System.Drawing.Point(410, 130);
+            this.CbxCesado.Location = new System.Drawing.Point(305, 130);
             this.CbxCesado.Name = "CbxCesado";
             this.CbxCesado.Size = new System.Drawing.Size(64, 20);
             this.CbxCesado.TabIndex = 26;
@@ -1148,7 +1140,7 @@
             this.TxtNumeroHijos.Location = new System.Drawing.Point(145, 158);
             this.TxtNumeroHijos.Name = "TxtNumeroHijos";
             this.TxtNumeroHijos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.TxtNumeroHijos.Size = new System.Drawing.Size(100, 20);
+            this.TxtNumeroHijos.Size = new System.Drawing.Size(44, 20);
             this.TxtNumeroHijos.TabIndex = 27;
             this.TxtNumeroHijos.Text = "0";
             this.TxtNumeroHijos.Enter += new System.EventHandler(this.TxtNumeroHijos_Enter);
@@ -1267,35 +1259,67 @@
             // 
             // PnlPrincipal
             // 
-            this.PnlPrincipal.Controls.Add(this.BtnSave);
-            this.PnlPrincipal.Controls.Add(this.BtnCancel);
+            this.PnlPrincipal.Controls.Add(this.btnGuardar);
+            this.PnlPrincipal.Controls.Add(this.btnCancelar);
             this.PnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlPrincipal.Location = new System.Drawing.Point(3, 452);
+            this.PnlPrincipal.Location = new System.Drawing.Point(3, 462);
             this.PnlPrincipal.Name = "PnlPrincipal";
-            this.PnlPrincipal.Size = new System.Drawing.Size(512, 54);
+            this.PnlPrincipal.Size = new System.Drawing.Size(512, 44);
             this.PnlPrincipal.TabIndex = 1;
             // 
-            // BtnSave
+            // btnGuardar
             // 
-            this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(377, 5);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(100, 30);
-            this.BtnSave.TabIndex = 35;
-            this.BtnSave.Text = "Guardar";
-            this.BtnSave.UseVisualStyleBackColor = true;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Location = new System.Drawing.Point(403, 5);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
+            this.btnGuardar.TabIndex = 35;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // BtnCancel
+            // btnCancelar
             // 
-            this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(261, 5);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(100, 30);
-            this.BtnCancel.TabIndex = 36;
-            this.BtnCancel.Text = "Cancelar";
-            this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(297, 5);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.TabIndex = 36;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // dtpVacaciones
+            // 
+            this.dtpVacaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpVacaciones.CustomFormat = "dd/MM/yyyy";
+            this.dtpVacaciones.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpVacaciones.Location = new System.Drawing.Point(373, 104);
+            this.dtpVacaciones.Name = "dtpVacaciones";
+            this.dtpVacaciones.Size = new System.Drawing.Size(100, 20);
+            this.dtpVacaciones.TabIndex = 74;
+            // 
+            // chkVacaciones
+            // 
+            this.chkVacaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkVacaciones.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkVacaciones.Location = new System.Drawing.Point(257, 104);
+            this.chkVacaciones.Name = "chkVacaciones";
+            this.chkVacaciones.Size = new System.Drawing.Size(112, 20);
+            this.chkVacaciones.TabIndex = 75;
+            this.chkVacaciones.Text = "Vacaciones:";
+            this.chkVacaciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkVacaciones.CheckedChanged += new System.EventHandler(this.chkVacaciones_CheckedChanged);
+            // 
+            // btnVerHijos
+            // 
+            this.btnVerHijos.Location = new System.Drawing.Point(195, 158);
+            this.btnVerHijos.Name = "btnVerHijos";
+            this.btnVerHijos.Size = new System.Drawing.Size(50, 20);
+            this.btnVerHijos.TabIndex = 37;
+            this.btnVerHijos.Text = "Ver";
+            this.btnVerHijos.UseVisualStyleBackColor = true;
+            this.btnVerHijos.Click += new System.EventHandler(this.btnVerHijos_Click);
             // 
             // FrmEmpleadoMant
             // 
@@ -1371,7 +1395,6 @@
         internal System.Windows.Forms.Label LblFechaInicio;
         internal System.Windows.Forms.Label LblFechaInicioAsterisk;
         internal System.Windows.Forms.DateTimePicker DtpFechaInicio;
-        internal System.Windows.Forms.Label LblFechaCese;
         internal System.Windows.Forms.DateTimePicker DtpFechaCese;
         internal System.Windows.Forms.CheckBox CbxCesado;
         internal System.Windows.Forms.Label LblNumeroHijos;
@@ -1390,8 +1413,8 @@
         internal System.Windows.Forms.TextBox TxtCuspp;
         internal System.Windows.Forms.Label LblCodComision;
         private System.Windows.Forms.Panel PnlPrincipal;
-        public System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.Button BtnCancel;
+        public System.Windows.Forms.Button btnGuardar;
+        public System.Windows.Forms.Button btnCancelar;
         internal System.Windows.Forms.ComboBox CbxProvincia;
         internal System.Windows.Forms.Label LblProvincia;
         internal System.Windows.Forms.Label LblProvinciaAsterisk;
@@ -1433,5 +1456,8 @@
         internal System.Windows.Forms.Label lblRetencionJudicial;
         internal System.Windows.Forms.TextBox txtRetencionJudicial;
         internal System.Windows.Forms.ComboBox cboRetencionJudicial;
+        internal System.Windows.Forms.CheckBox chkVacaciones;
+        internal System.Windows.Forms.DateTimePicker dtpVacaciones;
+        public System.Windows.Forms.Button btnVerHijos;
     }
 }

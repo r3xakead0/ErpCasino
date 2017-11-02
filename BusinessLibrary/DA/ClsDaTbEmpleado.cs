@@ -202,6 +202,11 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@RETENCIONJUDICIALNOMINAL", beEmpleado.Recurso.RetencionJudicialNominal));
                     cmd.Parameters.Add(new SqlParameter("@RETENCIONJUDICIALPORCENTUAL", beEmpleado.Recurso.RetencionJudicialPorcentual));
 
+                    if (beEmpleado.Recurso.FechaUltimaVacacion != null)
+                        cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", beEmpleado.Recurso.FechaUltimaVacacion));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", DBNull.Value));
+
                     rowsAffected += cmd.ExecuteNonQuery();
 
                     if (tns != null)
@@ -349,6 +354,11 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@SUELDO", beEmpleado.Recurso.Sueldo));
                     cmd.Parameters.Add(new SqlParameter("@RETENCIONJUDICIALNOMINAL", beEmpleado.Recurso.RetencionJudicialNominal));
                     cmd.Parameters.Add(new SqlParameter("@RETENCIONJUDICIALPORCENTUAL", beEmpleado.Recurso.RetencionJudicialPorcentual));
+
+                    if (beEmpleado.Recurso.FechaUltimaVacacion != null)
+                        cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", beEmpleado.Recurso.FechaUltimaVacacion));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", DBNull.Value));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 

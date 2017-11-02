@@ -911,7 +911,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     #region Datos de Empleado
                     string codEmpleado = uiPlanillaCosto.CodigoEmpleado.ToString();
-                    var beEmpleado = new LN.Empleado().Obtener(codEmpleado);
+                    var beEmpleado = new LN.Empleado().Obtener(codEmpleado, true);
 
                     bePlanillaDetalle.CodigoEmpleado = beEmpleado.Codigo;
                     bePlanillaDetalle.IdCargo = beEmpleado.Recurso.Cargo.IdCargo;
@@ -1140,6 +1140,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     double prestamoTotal = new LN.Prestamo().ObtenerTotal(bePlanilla.Anho, bePlanilla.Mes, bePlanillaDetalle.CodigoEmpleado);
                     bePlanillaDetalle.PrestamoTotal = Math.Round(prestamoTotal, 2);
+
+                    #endregion
+
+                    #region Movilidad
+
+                    double movilidadTotal = new LN.Movilidad().ObtenerTotal(bePlanilla.Anho, bePlanilla.Mes, bePlanillaDetalle.CodigoEmpleado);
+                    bePlanillaDetalle.MovilidadTotal = Math.Round(movilidadTotal, 2);
 
                     #endregion
 

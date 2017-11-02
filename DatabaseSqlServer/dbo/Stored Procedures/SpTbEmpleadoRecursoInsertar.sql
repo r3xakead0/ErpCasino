@@ -19,9 +19,10 @@ CREATE PROCEDURE [dbo].[SpTbEmpleadoRecursoInsertar]
 @CuentaCTS AS VARCHAR(50),
 @Sueldo AS DECIMAL(10,2),
 @RetencionJudicialNominal AS DECIMAL(10,2),
-@RetencionJudicialPorcentual AS DECIMAL(10,2)
+@RetencionJudicialPorcentual AS DECIMAL(10,2),
+@FechaUltimaVacacion AS DATE
 AS
 BEGIN
-	INSERT INTO TbEmpleadoRecurso (IdEmpleado,IdArea,IdCargo,IdSala,FechaInicio,FechaCese,Cesado,NumeroHijos,IdBanco,CuentaBanco,CCI,ONP,IdAfp,CUSPP,CodComision,IdBancoCTS,CuentaCTS,Sueldo,RetencionJudicialNominal,RetencionJudicialPorcentual)
-	VALUES (@IdEmpleado,@IdArea,@IdCargo,@IdSala,@FechaInicio,@FechaCese,@Cesado,@NumeroHijos,@IdBanco,@CuentaBanco,@CCI,@ONP,@IdAfp,@CUSPP,@CodComision,@IdBancoCTS,@CuentaCTS,@Sueldo,@RetencionJudicialNominal,@RetencionJudicialPorcentual)
+	INSERT INTO TbEmpleadoRecurso (IdEmpleado,IdArea,IdCargo,IdSala,FechaInicio,FechaCese,Cesado,NumeroHijos,IdBanco,CuentaBanco,CCI,ONP,IdAfp,CUSPP,CodComision,IdBancoCTS,CuentaCTS,Sueldo,RetencionJudicialNominal,RetencionJudicialPorcentual,FechaUltimaVacacion)
+	VALUES (@IdEmpleado,@IdArea,@IdCargo,@IdSala,@FechaInicio,@FechaCese,@Cesado,@NumeroHijos,@IdBanco,@CuentaBanco,@CCI,@ONP,@IdAfp,@CUSPP,@CodComision,@IdBancoCTS,@CuentaCTS,@Sueldo,@RetencionJudicialNominal,@RetencionJudicialPorcentual,@FechaUltimaVacacion)
 END

@@ -116,7 +116,8 @@ BEGIN
 			PrestamoTotal,
 			TotalDeduccion,
 			TotaPago,
-			EsSaludTotal
+			EsSaludTotal,
+			MovilidadTotal
 	FROM	TbPlanillaDetalle
 	WHERE	IdPlanilla = @IdPlanilla
 END

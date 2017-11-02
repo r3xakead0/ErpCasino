@@ -209,10 +209,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var lstCandidatos = new LN.Candidato().Listar();
-                var nroCandidatos = lstCandidatos.Count.ToString();
+                var lstUiCandidatos = new LN.Candidato().Listar();
+                var nroCandidatos = lstUiCandidatos.Count.ToString();
 
-                var sorted = new SortableBindingList<BE.UI.Candidato>(lstCandidatos);
+                var sorted = new SortableBindingList<BE.UI.Candidato>(lstUiCandidatos);
 
                 this.dgvCandidatos.DataSource = sorted;
                 this.txtNroCandidatos.Text = nroCandidatos;

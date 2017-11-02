@@ -29,7 +29,8 @@ BEGIN
 			T0.CuentaCTS,
 			T0.Sueldo,
 			T0.RetencionJudicialNominal,
-			T0.RetencionJudicialPorcentual
+			T0.RetencionJudicialPorcentual,
+			T0.FechaUltimaVacacion
 	FROM	TbEmpleadoRecurso T0
 	INNER JOIN TbArea T1 ON T1.IdArea = T0.IdArea 
 	INNER JOIN TbCargo T2 ON T2.IdCargo = T0.IdCargo 
