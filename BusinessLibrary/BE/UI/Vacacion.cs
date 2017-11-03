@@ -26,24 +26,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public double RetencionJudicialMonto { get; set; }
         public double TotalDescuento { get; set; }
         public double TotalNeto { get; set; }
-        public List<VacacionDetalle> Detalle { get; set; }
-
-        public Vacacion()
-        {
-            Detalle = new List<VacacionDetalle>();
-
-            for (int i = 0; i < 6; i++)
-            {
-                var detalle = new VacacionDetalle();
-                detalle.Id = 0;
-                detalle.Numero = i + 1;
-                detalle.Anho = DateTime.Now.AddMonths(i - 6).Year;
-                detalle.Mes = DateTime.Now.AddMonths(i - 6).Month;
-                detalle.HorasExtrasMonto = 0.0;
-                detalle.BonificacionMonto = 0.0;
-                Detalle.Add(detalle);
-            }
-        }
+        public List<VacacionDetalle> Detalle { get; set; } = new List<VacacionDetalle>();
 
     }
 
@@ -52,7 +35,8 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public int Id { get; set; }
         public int Numero { get; set; }
         public int Anho { get; set; }
-        public int Mes { get; set; }
+        public int MesNumero { get; set; }
+        public string MesNombre { get; set; }
         public double HorasExtrasMonto { get; set; }
         public double BonificacionMonto { get; set; }
 

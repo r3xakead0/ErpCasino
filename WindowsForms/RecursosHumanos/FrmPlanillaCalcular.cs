@@ -31,8 +31,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #endregion
 
-        private List<BE.UI.PlanillaAsistencia> lstAsistencias = null;
-        private List<BE.UI.PlanillaCosto> lstCostos = null;
+        private List<BE.UI.PlanillaAsistencia> lstUiAsistencias = null;
+        private List<BE.UI.PlanillaCosto> lstUiCostos = null;
 
         private int anho = DateTime.Now.Year;
         private int mes = DateTime.Now.Month;
@@ -47,8 +47,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.beParametros = new BE.Parametros();
 
-                this.lstCostos = new List<BE.UI.PlanillaCosto>();
-                this.lstAsistencias = new List<BE.UI.PlanillaAsistencia>();
+                this.lstUiCostos = new List<BE.UI.PlanillaCosto>();
+                this.lstUiAsistencias = new List<BE.UI.PlanillaAsistencia>();
             }
             catch (Exception ex)
             {
@@ -203,11 +203,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                if (this.lstAsistencias == null)
+                if (this.lstUiAsistencias == null)
                     return;
 
                 var source = new BindingSource();
-                source.DataSource = this.lstAsistencias;
+                source.DataSource = this.lstUiAsistencias;
                 this.dgvAsistencias.DataSource = source;
 
                 Util.FormatDatagridview(ref this.dgvAsistencias);
@@ -319,71 +319,71 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 #region Limpiar
-                this.lstAsistencias.Clear();
+                this.lstUiAsistencias.Clear();
                 #endregion
 
                 //Obtiene asistencia por minuto
-                this.lstAsistencias = new LN.Planilla(anho, mes).ListarAsistencia();
+                this.lstUiAsistencias = new LN.Planilla(anho, mes).ListarAsistencia();
 
                 string calcular = this.cboCalculoPor.SelectedValue.ToString();
                 switch (calcular)
                 {
                     case "H": //Costo por Hora
-                        for (int i = 0; i < this.lstAsistencias.Count; i++)
+                        for (int i = 0; i < this.lstUiAsistencias.Count; i++)
                         {
-                            this.lstAsistencias[i].CalcularPor = calcular;
+                            this.lstUiAsistencias[i].CalcularPor = calcular;
 
-                            this.lstAsistencias[i].AsistenciaNormalDiurna /= 60;
-                            this.lstAsistencias[i].AsistenciaNormalDiurnaExtra1 /= 60;
-                            this.lstAsistencias[i].AsistenciaNormalDiurnaExtra2 /= 60;
-                            this.lstAsistencias[i].AsistenciaNormalNocturna /= 60;
-                            this.lstAsistencias[i].AsistenciaNormalNocturnaExtra1 /= 60;
-                            this.lstAsistencias[i].AsistenciaNormalNocturnaExtra2 /= 60;
-                            this.lstAsistencias[i].AsistenciaNormalTotal /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalDiurna /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra1 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra2 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalNocturna /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra1 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra2 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaNormalTotal /= 60;
 
-                            this.lstAsistencias[i].AsistenciaFeriadoDiurna /= 60;
-                            this.lstAsistencias[i].AsistenciaFeriadoDiurnaExtra1 /= 60;
-                            this.lstAsistencias[i].AsistenciaFeriadoDiurnaExtra2 /= 60;
-                            this.lstAsistencias[i].AsistenciaFeriadoNocturna /= 60;
-                            this.lstAsistencias[i].AsistenciaFeriadoNocturnaExtra1 /= 60;
-                            this.lstAsistencias[i].AsistenciaFeriadoNocturnaExtra2 /= 60;
-                            this.lstAsistencias[i].AsistenciaFeriadoTotal /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurna /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra1 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra2 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturna /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra1 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra2 /= 60;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoTotal /= 60;
 
-                            this.lstAsistencias[i].TardanzaFeriadoDiurna /= 60;
-                            this.lstAsistencias[i].TardanzaFeriadoNocturna /= 60;
-                            this.lstAsistencias[i].TardanzaFeriadoDiurna /= 60;
-                            this.lstAsistencias[i].TardanzaFeriadoNocturna /= 60;
+                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60;
+                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60;
+                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60;
+                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60;
 
-                            this.lstAsistencias[i].InasistenciaTotal /= 60;
+                            this.lstUiAsistencias[i].InasistenciaTotal /= 60;
                         }
                         break;
                     case "D": //Costo por Hora
-                        for (int i = 0; i < this.lstAsistencias.Count; i++)
+                        for (int i = 0; i < this.lstUiAsistencias.Count; i++)
                         {
-                            this.lstAsistencias[i].CalcularPor = calcular;
+                            this.lstUiAsistencias[i].CalcularPor = calcular;
 
-                            this.lstAsistencias[i].AsistenciaNormalDiurna /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaNormalDiurnaExtra1 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaNormalDiurnaExtra2 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaNormalNocturna /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaNormalNocturnaExtra1 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaNormalNocturnaExtra2 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaNormalTotal /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalDiurna /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra1 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra2 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalNocturna /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra1 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra2 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaNormalTotal /= 60 / 8;
 
-                            this.lstAsistencias[i].AsistenciaFeriadoDiurna /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaFeriadoDiurnaExtra1 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaFeriadoDiurnaExtra2 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaFeriadoNocturna /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaFeriadoNocturnaExtra1 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaFeriadoNocturnaExtra2 /= 60 / 8;
-                            this.lstAsistencias[i].AsistenciaFeriadoTotal /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurna /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra1 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra2 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturna /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra1 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra2 /= 60 / 8;
+                            this.lstUiAsistencias[i].AsistenciaFeriadoTotal /= 60 / 8;
 
-                            this.lstAsistencias[i].TardanzaFeriadoDiurna /= 60 / 8;
-                            this.lstAsistencias[i].TardanzaFeriadoNocturna /= 60 / 8;
-                            this.lstAsistencias[i].TardanzaFeriadoDiurna /= 60 / 8;
-                            this.lstAsistencias[i].TardanzaFeriadoNocturna /= 60 / 8;
+                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60 / 8;
+                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60 / 8;
+                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60 / 8;
+                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60 / 8;
 
-                            this.lstAsistencias[i].InasistenciaTotal /= 60 / 8;
+                            this.lstUiAsistencias[i].InasistenciaTotal /= 60 / 8;
                         }
                         break;
                     default:
@@ -392,11 +392,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #region Mostrar
 
-                var source = new BindingSource();
-                source.DataSource = this.lstAsistencias;
-                this.dgvAsistencias.DataSource = source;
+                var sorted = new SortableBindingList<BE.UI.PlanillaAsistencia>(lstUiAsistencias);
+                this.dgvAsistencias.DataSource = sorted;
 
-                this.txtRegistrosAsistencias.Text = this.lstAsistencias.Count.ToString();
+                this.txtRegistrosAsistencias.Text = this.lstUiAsistencias.Count.ToString();
                 #endregion
             }
             catch (Exception ex)
@@ -411,7 +410,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
 
                 #region Limpiar
-                this.lstCostos.Clear();
+                this.lstUiCostos.Clear();
                 #endregion
 
                 #region Cargar Parametros Iniciales
@@ -494,17 +493,16 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     objCosto.TardanzaFeriadoNocturno = tardanzaFeriadoNocturno;
                     objCosto.Dominical = dominical;
                     objCosto.Inasistencia = inasistencia;
-                    this.lstCostos.Add(objCosto);
+                    this.lstUiCostos.Add(objCosto);
                     #endregion
 
                 }
 
                 #region Mostar
-                var source = new BindingSource();
-                source.DataSource = this.lstCostos;
-                this.dgvCostos.DataSource = source;
+                var sorted = new SortableBindingList<BE.UI.PlanillaCosto>(this.lstUiCostos);
+                this.dgvCostos.DataSource = sorted;
                 
-                this.txtRegistrosCostos.Text = this.lstCostos.Count.ToString();
+                this.txtRegistrosCostos.Text = this.lstUiCostos.Count.ToString();
                 #endregion
             }
             catch (Exception ex)
@@ -518,11 +516,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                if (this.lstCostos == null)
+                if (this.lstUiCostos == null)
                     return;
 
                 var source = new BindingSource();
-                source.DataSource = this.lstCostos;
+                source.DataSource = this.lstUiCostos;
                 this.dgvCostos.DataSource = source;
 
                 this.dgvCostos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -705,12 +703,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #region Validaciones de Formulario
 
-                if (this.lstAsistencias.Count == 0)
+                if (this.lstUiAsistencias.Count == 0)
                 {
                     return;
                 }
 
-                if (this.lstCostos.Count == 0)
+                if (this.lstUiCostos.Count == 0)
                 {
                     return;
                 }
@@ -752,8 +750,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 var lstCostosMinutos = new List<BE.UI.PlanillaCosto>();
                 var lstAsistenciasMinutos = new List<BE.UI.PlanillaAsistencia>();
 
-                lstCostosMinutos = this.lstCostos.Select(uiPlanillaCosto => (BE.UI.PlanillaCosto)uiPlanillaCosto.Clone()).ToList();
-                lstAsistenciasMinutos = this.lstAsistencias.Select(uiPlanillaAsistencia => (BE.UI.PlanillaAsistencia)uiPlanillaAsistencia.Clone()).ToList();
+                lstCostosMinutos = this.lstUiCostos.Select(uiPlanillaCosto => (BE.UI.PlanillaCosto)uiPlanillaCosto.Clone()).ToList();
+                lstAsistenciasMinutos = this.lstUiAsistencias.Select(uiPlanillaAsistencia => (BE.UI.PlanillaAsistencia)uiPlanillaAsistencia.Clone()).ToList();
 
                 #endregion
 

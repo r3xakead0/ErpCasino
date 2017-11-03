@@ -5,6 +5,7 @@ using System.Linq;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
@@ -118,24 +119,31 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 Util.FormatDatagridview(ref this.dgvDetalles);
+                this.dgvDetalles.ReadOnly = false;
 
                 for (int col = 0; col < this.dgvDetalles.Columns.Count; col++)
                     this.dgvDetalles.Columns[col].Visible = false;
 
                 this.dgvDetalles.Columns["Numero"].Visible = true;
-                this.dgvDetalles.Columns["Numero"].HeaderText = "Numero";
-                this.dgvDetalles.Columns["Numero"].Width = 50;
+                this.dgvDetalles.Columns["Numero"].HeaderText = "Nro.";
+                this.dgvDetalles.Columns["Numero"].Width = 30;
                 this.dgvDetalles.Columns["Numero"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                this.dgvDetalles.Columns["Numero"].DefaultCellStyle.BackColor = Color.LightGray;
+                this.dgvDetalles.Columns["Numero"].ReadOnly = true;
 
                 this.dgvDetalles.Columns["Anho"].Visible = true;
                 this.dgvDetalles.Columns["Anho"].HeaderText = "Año";
                 this.dgvDetalles.Columns["Anho"].Width = 50;
                 this.dgvDetalles.Columns["Anho"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.dgvDetalles.Columns["Anho"].DefaultCellStyle.BackColor = Color.LightGray;
+                this.dgvDetalles.Columns["Anho"].ReadOnly = true;
 
-                this.dgvDetalles.Columns["Mes"].Visible = true;
-                this.dgvDetalles.Columns["Mes"].HeaderText = "Mes";
-                this.dgvDetalles.Columns["Mes"].Width = 50;
-                this.dgvDetalles.Columns["Mes"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.dgvDetalles.Columns["MesNombre"].Visible = true;
+                this.dgvDetalles.Columns["MesNombre"].HeaderText = "Mes";
+                this.dgvDetalles.Columns["MesNombre"].Width = 100;
+                this.dgvDetalles.Columns["MesNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.dgvDetalles.Columns["MesNombre"].DefaultCellStyle.BackColor = Color.LightGray;
+                this.dgvDetalles.Columns["MesNombre"].ReadOnly = true;
 
                 this.dgvDetalles.Columns["HorasExtrasMonto"].Visible = true;
                 this.dgvDetalles.Columns["HorasExtrasMonto"].HeaderText = "Horas Extras";
@@ -149,7 +157,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvDetalles.Columns["BonificacionMonto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvDetalles.Columns["BonificacionMonto"].DefaultCellStyle.Format = "N2";
 
-                Util.AutoWidthColumn(ref this.dgvDetalles, "Numero");
+                Util.AutoWidthColumn(ref this.dgvDetalles, "MesNombre");
             }
             catch (Exception ex)
             {
@@ -190,18 +198,85 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
 
                 #region Validaciones
+
                 if (this.cboEmpleado.SelectedIndex == 0)
                 {
                     this.cboEmpleado.Focus();
                     throw new Exception("Seleccione un empleado");
                 }
 
-                
+                if (this.txtDiasVacacion.Text.Length == 0)
+                {
+                    this.txtDiasVacacion.Focus();
+                    throw new Exception("Ingrese la cantidad de días de vacaciones");
+                }
+                else 
+                {
+                    int dias = 0;
+                    if (int.TryParse(this.txtDiasVacacion.Text, out dias) == false)
+                    {
+                        this.txtDiasVacacion.Focus();
+                        throw new Exception("Ingrese el número de días de vacaciones");
+                    }
+                    else if (dias < 0 || dias > 30)
+                    {
+                        this.txtDiasVacacion.Focus();
+                        throw new Exception("Ingrese solo entre 1 y 30 días de vacaciones");
+                    }
+                }
+
                 #endregion
 
                 #region Guardar
- 
-               
+
+                #region Obtener datos
+
+                var lnEmpleado = new LN.Empleado();
+
+                string codigoEmpleado = this.txtEmpleadoCodigo.Text;
+                string nombreCompletoEmpleado = lnEmpleado.ObtenerNombreCompleto(codigoEmpleado);
+                double sueldo = 0.0;
+                double asignacionFamiliar = 0.0;
+                var beEmpleadoRecurso = lnEmpleado.ObtenerRecurso(codigoEmpleado);
+                if (beEmpleadoRecurso != null)
+                {
+                    sueldo = beEmpleadoRecurso.Sueldo;
+                    asignacionFamiliar = lnEmpleado.ObtenerAsignacionFamiliar(codigoEmpleado);
+                }
+                lnEmpleado = null;
+                beEmpleadoRecurso = null;
+
+                DateTime vacacionFechaInicio = this.dtpInicioVacacion.Value.Date;
+                DateTime vacacionFechaFinal = Util.ParseStringToDatetime(this.txtFinVacacion.Text);
+                int vacacionDias = int.Parse(this.txtDiasVacacion.Text);
+
+                #endregion
+
+                this.uiVacacion.PeriodoFechaInicial = DateTime.Now;
+                this.uiVacacion.PeriodoFechaFinal = DateTime.Now;
+                this.uiVacacion.PeriodoDias = 0;
+
+                this.uiVacacion.VacacionFechaInicial = vacacionFechaInicio.Date;
+                this.uiVacacion.VacacionFechaFinal = vacacionFechaFinal.Date;
+                this.uiVacacion.VacacionDias = vacacionDias;
+
+                this.uiVacacion.EmpleadoCodigo = codigoEmpleado;
+                this.uiVacacion.EmpleadoNombreCompleto = nombreCompletoEmpleado;
+                this.uiVacacion.EmpleadoSueldo = sueldo;
+                this.uiVacacion.EmpleadoAsignacionFamiliar = asignacionFamiliar;
+
+                this.uiVacacion.PromedioHorasExtras = 0.0;
+                this.uiVacacion.PromedioBonificacion = 0.0;
+                this.uiVacacion.OtrosMonto = 0.0;
+                this.uiVacacion.TotalBruto = 0.0;
+                this.uiVacacion.PensionTipo = "";
+                this.uiVacacion.PensionPorcentaje = 0.0;
+                this.uiVacacion.PensionTotal = 0.0;
+                this.uiVacacion.RetencionJudicialMonto = 0.0;
+                this.uiVacacion.TotalDescuento = 0.0;
+                this.uiVacacion.TotalNeto = 0.0;
+
+
                 bool rpta = false;
                 string msg = "";
                 var lnVacacion = new LN.Vacacion();
@@ -298,7 +373,38 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        #endregion
+        private void dgvDetalles_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                int colBonificacion = this.dgvDetalles.Columns["BonificacionMonto"].Index;
+                int colHorasExtras = this.dgvDetalles.Columns["HorasExtrasMonto"].Index;
+                if (this.dgvDetalles.CurrentCell.ColumnIndex == colBonificacion 
+                    || this.dgvDetalles.CurrentCell.ColumnIndex == colHorasExtras)
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(dgvDetalles_KeyPress);
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void dgvDetalles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
 
         private void cboEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -364,7 +470,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                Util.AutoWidthColumn(ref this.dgvDetalles, "Numero");
+                Util.AutoWidthColumn(ref this.dgvDetalles, "MesNombre");
             }
             catch (Exception ex)
             {
@@ -376,13 +482,35 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                DateTime fechaInicioVacacion = this.dtpInicioVacacion.Value.Date;
+                int cntMeses = 6;
 
+                this.uiVacacion.Detalle.Clear();
+
+                for (int i = 0; i < cntMeses; i++)
+                {
+                    var uiDetalle = new BE.UI.VacacionDetalle();
+
+                    uiDetalle.Id = 0;
+                    uiDetalle.Numero = i + 1;
+                    uiDetalle.Anho = fechaInicioVacacion.AddMonths(i - cntMeses).Year;
+                    uiDetalle.MesNumero = fechaInicioVacacion.AddMonths(i - cntMeses).Month;
+                    uiDetalle.MesNombre = Util.GetNameOfMonth(uiDetalle.MesNumero);
+                    uiDetalle.HorasExtrasMonto = 0.0;
+                    uiDetalle.BonificacionMonto = 0.0;
+
+                    this.uiVacacion.Detalle.Add(uiDetalle);
+                }
+
+                this.CargarListadoVacaciones();
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
             }
         }
+
+        #endregion
 
     }
 }

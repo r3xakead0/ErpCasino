@@ -136,7 +136,7 @@
             this.TlpPrincipal.Name = "TlpPrincipal";
             this.TlpPrincipal.RowCount = 2;
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(518, 509);
             this.TlpPrincipal.TabIndex = 0;
             // 
@@ -151,7 +151,7 @@
             this.TbcMantenimiento.Location = new System.Drawing.Point(3, 3);
             this.TbcMantenimiento.Name = "TbcMantenimiento";
             this.TbcMantenimiento.SelectedIndex = 0;
-            this.TbcMantenimiento.Size = new System.Drawing.Size(512, 443);
+            this.TbcMantenimiento.Size = new System.Drawing.Size(512, 453);
             this.TbcMantenimiento.TabIndex = 0;
             // 
             // TbpGeneral
@@ -189,7 +189,7 @@
             this.TbpGeneral.Location = new System.Drawing.Point(4, 22);
             this.TbpGeneral.Name = "TbpGeneral";
             this.TbpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpGeneral.Size = new System.Drawing.Size(504, 417);
+            this.TbpGeneral.Size = new System.Drawing.Size(504, 427);
             this.TbpGeneral.TabIndex = 0;
             this.TbpGeneral.Text = "General";
             this.TbpGeneral.UseVisualStyleBackColor = true;
@@ -996,15 +996,15 @@
             this.PnlPrincipal.Controls.Add(this.BtnSave);
             this.PnlPrincipal.Controls.Add(this.BtnCancel);
             this.PnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlPrincipal.Location = new System.Drawing.Point(3, 452);
+            this.PnlPrincipal.Location = new System.Drawing.Point(3, 462);
             this.PnlPrincipal.Name = "PnlPrincipal";
-            this.PnlPrincipal.Size = new System.Drawing.Size(512, 54);
+            this.PnlPrincipal.Size = new System.Drawing.Size(512, 44);
             this.PnlPrincipal.TabIndex = 1;
             // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(377, 5);
+            this.BtnSave.Location = new System.Drawing.Point(403, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 32;
@@ -1015,7 +1015,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(261, 5);
+            this.BtnCancel.Location = new System.Drawing.Point(297, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 33;

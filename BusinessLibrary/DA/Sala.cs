@@ -40,26 +40,30 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbSalaInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", beSala.IdSala));
-                cmd.Parameters["@IDSALA"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beSala.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beSala.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beSala.Ubigeo.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@ZONA", beSala.Zona));
-                cmd.Parameters.Add(new SqlParameter("@DIRECCION", beSala.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beSala.Referencia));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beSala.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beSala.IdSala = int.Parse(cmd.Parameters["@IDSALA"].Value.ToString());
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", beSala.IdSala));
+                    cmd.Parameters["@IDSALA"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beSala.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beSala.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beSala.Ubigeo.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@ZONA", beSala.Zona));
+                    cmd.Parameters.Add(new SqlParameter("@DIRECCION", beSala.Direccion));
+                    cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beSala.Referencia));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beSala.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beSala.IdSala = int.Parse(cmd.Parameters["@IDSALA"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -75,24 +79,26 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbSalaActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", beSala.IdSala));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beSala.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beSala.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beSala.Ubigeo.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@ZONA", beSala.Zona));
-                cmd.Parameters.Add(new SqlParameter("@DIRECCION", beSala.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beSala.Referencia));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beSala.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", beSala.IdSala));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beSala.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beSala.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@CODUBIGEO", beSala.Ubigeo.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@ZONA", beSala.Zona));
+                    cmd.Parameters.Add(new SqlParameter("@DIRECCION", beSala.Direccion));
+                    cmd.Parameters.Add(new SqlParameter("@REFERENCIA", beSala.Referencia));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beSala.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -108,16 +114,18 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbSalaEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDSALA", idSala));
-
                 int rowsAffected = 0;
-                rowsAffected = cmd.ExecuteNonQuery();
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDSALA", idSala));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -136,38 +144,40 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbSalaListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
 
-                    var beSala = new BE.Sala();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    beSala.IdSala = int.Parse(reader["IdSala"].ToString());
-                    beSala.Nombre = reader["Nombre"].ToString();
-                    beSala.Descripcion = reader["Descripcion"].ToString();
-                    beSala.Zona = reader["Zona"].ToString();
-                    beSala.Direccion = reader["Direccion"].ToString();
-                    beSala.Referencia = reader["Referencia"].ToString();
-                    beSala.Activo = bool.Parse(reader["Activo"].ToString());
-
-                    if (reader["CodUbigeo"] != DBNull.Value)
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        var beUbigeo = new BE.Ubigeo();
-                        beUbigeo.Codigo = reader["CodUbigeo"].ToString();
 
-                        if (new DA.Ubigeo().Obtener(ref beUbigeo))
+                        var beSala = new BE.Sala();
+
+                        beSala.IdSala = int.Parse(reader["IdSala"].ToString());
+                        beSala.Nombre = reader["Nombre"].ToString();
+                        beSala.Descripcion = reader["Descripcion"].ToString();
+                        beSala.Zona = reader["Zona"].ToString();
+                        beSala.Direccion = reader["Direccion"].ToString();
+                        beSala.Referencia = reader["Referencia"].ToString();
+                        beSala.Activo = bool.Parse(reader["Activo"].ToString());
+
+                        if (reader["CodUbigeo"] != DBNull.Value)
                         {
-                            beSala.Ubigeo = beUbigeo;
-                        } 
-                    }
+                            var beUbigeo = new BE.Ubigeo();
+                            beUbigeo.Codigo = reader["CodUbigeo"].ToString();
 
-                    lstBeSalas.Add(beSala);
+                            if (new DA.Ubigeo().Obtener(ref beUbigeo))
+                            {
+                                beSala.Ubigeo = beUbigeo;
+                            }
+                        }
+
+                        lstBeSalas.Add(beSala);
+                    }
                 }
 
                 return lstBeSalas;
@@ -186,21 +196,25 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbSalaObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDSALA", beSala.IdSala));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beSala, ref dr);
-                    rpta = true;
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDSALA", beSala.IdSala));
+
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        Cargar(ref beSala, ref dr);
+                        rpta = true;
+                    }
                 }
 
                 return rpta;

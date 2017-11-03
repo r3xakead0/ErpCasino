@@ -84,11 +84,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var lstAdelantos = new LN.OnpComision().Listar();
 
-                this.dgvComisiones.DataSource = lstAdelantos;
+                var lstUiComisiones = new LN.OnpComision().Listar();
+                this.txtNroRegistros.Text = lstUiComisiones.Count.ToString();
 
-                this.FormatoListadoComisionesONP();
+                var sorted = new SortableBindingList<BE.UI.OnpComision>(lstUiComisiones);
+                this.dgvComisiones.DataSource = sorted;
+
             }
             catch (Exception ex)
             {
@@ -140,12 +142,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
 
                 this.CargarAnhos();
-                this.CargarMes();
-
                 this.cboAnho.SelectedValue = DateTime.Now.Year.ToString();
+
+                this.CargarMes();
                 this.cboMes.SelectedValue = DateTime.Now.Month.ToString();
 
                 this.CargarListadoComisionesONP();
+                this.FormatoListadoComisionesONP();
             }
             catch (Exception ex)
             {
@@ -180,7 +183,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (this.dgvComisiones.CurrentRow != null)
                 {
 
-                    if (Util.ConfirmationMessage("¿Desea eliminar la comision seleccionada?") == false)
+                    if (Util.ConfirmationMessage("¿Desea eliminar la comision de ONP seleccionada?") == false)
                         return;
 
                     var uiAdelato = (BE.UI.OnpComision)this.dgvComisiones.CurrentRow.DataBoundItem;
@@ -190,7 +193,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     if (rpta == true)
                     {
-                        Util.InformationMessage("Se eliminó la comisión");
+                        Util.InformationMessage("Se eliminó la comisión de la ONP");
                         this.CargarListadoComisionesONP();
                     }
                 }

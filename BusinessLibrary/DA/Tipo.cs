@@ -37,23 +37,25 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTipoInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
-                cmd.Parameters["@IDTIPO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beTipo.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beTipo.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTipo.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beTipo.IdTipo = int.Parse(cmd.Parameters["@IDTIPO"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
+                    cmd.Parameters["@IDTIPO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beTipo.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beTipo.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTipo.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beTipo.IdTipo = int.Parse(cmd.Parameters["@IDTIPO"].Value.ToString());
+                }
+  
                 return rowsAffected;
 
             }
@@ -68,20 +70,22 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTipoActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beTipo.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beTipo.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTipo.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beTipo.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beTipo.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTipo.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -97,17 +101,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTipoEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -123,15 +129,18 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTipoListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+                }
 
                 return dt;
 
@@ -147,25 +156,28 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTipoObtener";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beTipo, ref dr);
-                }
-                else
-                {
-                    throw new Exception("No se pudo obtener el registro");
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDTIPO", beTipo.IdTipo));
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        Cargar(ref beTipo, ref dr);
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
 
                 return true;

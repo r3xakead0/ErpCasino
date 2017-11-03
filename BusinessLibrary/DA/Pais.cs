@@ -31,15 +31,18 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbPaisListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+                }
 
                 return dt;
 
@@ -56,26 +59,30 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbPaisObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@CODPAIS", bePais.Codigo));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref bePais, ref dr);
-                }
-                else
-                {
-                    throw new Exception("No se pudo obtener el registro");
-                }
+                    cnn.Open();
 
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@CODPAIS", bePais.Codigo));
+
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        Cargar(ref bePais, ref dr);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                    
                 return true;
 
             }

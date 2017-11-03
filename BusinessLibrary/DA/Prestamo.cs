@@ -21,58 +21,61 @@ namespace ErpCasino.BusinessLibrary.DA
                 int rowsAffected = 0;
                 string sp = "";
 
-                cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-                tns = cnn.BeginTransaction();
-
-                SqlCommand cmd = null;
-
-                #region Cabecera
-
-                sp = "SpTbPrestamoInsertar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", bePrestamo.IdPrestamo));
-                cmd.Parameters["@IDPRESTAMO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@FECHA", bePrestamo.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", bePrestamo.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@MOTIVO", bePrestamo.Motivo));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", bePrestamo.Monto));
-                cmd.Parameters.Add(new SqlParameter("@CUOTAS", bePrestamo.NumeroCuotas));
-                cmd.Parameters.Add(new SqlParameter("@PAGADO", bePrestamo.Pagado));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-                bePrestamo.IdPrestamo = int.Parse(cmd.Parameters["@IDPRESTAMO"].Value.ToString());
-
-                #endregion
-
-                #region Detalles
-
-                sp = "SpTbPrestamoCuotaInsertar";
-                for (int i = 0; i < bePrestamo.Cuotas.Count; i++)
+                using (cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
+                    tns = cnn.BeginTransaction();
+
+                    SqlCommand cmd = null;
+
+                    #region Cabecera
+
+                    sp = "SpTbPrestamoInsertar";
+
                     cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tns;
 
-                    cmd.Parameters.Add(new SqlParameter("@IDPRESTAMOCUOTA", bePrestamo.Cuotas[i].IdPrestamoCuota));
-                    cmd.Parameters["@IDPRESTAMOCUOTA"].Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", bePrestamo.IdPrestamo));
-                    cmd.Parameters.Add(new SqlParameter("@FECHA", bePrestamo.Cuotas[i].Fecha));
-                    cmd.Parameters.Add(new SqlParameter("@MONTO", bePrestamo.Cuotas[i].Importe));
-                    cmd.Parameters.Add(new SqlParameter("@PAGADO", bePrestamo.Cuotas[i].Pagado));
+                    cmd.Parameters["@IDPRESTAMO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", bePrestamo.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", bePrestamo.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@MOTIVO", bePrestamo.Motivo));
+                    cmd.Parameters.Add(new SqlParameter("@MONTO", bePrestamo.Monto));
+                    cmd.Parameters.Add(new SqlParameter("@CUOTAS", bePrestamo.NumeroCuotas));
+                    cmd.Parameters.Add(new SqlParameter("@PAGADO", bePrestamo.Pagado));
 
                     rowsAffected += cmd.ExecuteNonQuery();
-                    bePrestamo.Cuotas[i].IdPrestamoCuota = int.Parse(cmd.Parameters["@IDPRESTAMOCUOTA"].Value.ToString());
+                    bePrestamo.IdPrestamo = int.Parse(cmd.Parameters["@IDPRESTAMO"].Value.ToString());
+
+                    #endregion
+
+                    #region Detalles
+
+                    sp = "SpTbPrestamoCuotaInsertar";
+                    for (int i = 0; i < bePrestamo.Cuotas.Count; i++)
+                    {
+                        cmd = new SqlCommand(sp, cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Transaction = tns;
+
+                        cmd.Parameters.Add(new SqlParameter("@IDPRESTAMOCUOTA", bePrestamo.Cuotas[i].IdPrestamoCuota));
+                        cmd.Parameters["@IDPRESTAMOCUOTA"].Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", bePrestamo.IdPrestamo));
+                        cmd.Parameters.Add(new SqlParameter("@FECHA", bePrestamo.Cuotas[i].Fecha));
+                        cmd.Parameters.Add(new SqlParameter("@MONTO", bePrestamo.Cuotas[i].Importe));
+                        cmd.Parameters.Add(new SqlParameter("@PAGADO", bePrestamo.Cuotas[i].Pagado));
+
+                        rowsAffected += cmd.ExecuteNonQuery();
+                        bePrestamo.Cuotas[i].IdPrestamoCuota = int.Parse(cmd.Parameters["@IDPRESTAMOCUOTA"].Value.ToString());
+                    }
+
+                    #endregion
+
+                    if (tns != null)
+                        tns.Commit();
+
                 }
-
-                #endregion
-
-                if (tns != null)
-                    tns.Commit();
 
                 return (rowsAffected > 0);
 
@@ -99,70 +102,73 @@ namespace ErpCasino.BusinessLibrary.DA
                 int rowsAffected = 0;
                 string sp = "";
 
-                cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-                tns = cnn.BeginTransaction();
-
-                SqlCommand cmd = null;
-
-                #region Cabecera
-                sp = "SpTbPrestamoActualizar";
-
-                cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Transaction = tns;
-
-                cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", bePrestamo.IdPrestamo));
-                cmd.Parameters.Add(new SqlParameter("@FECHA", bePrestamo.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", bePrestamo.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@MOTIVO", bePrestamo.Motivo));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", bePrestamo.Monto));
-                cmd.Parameters.Add(new SqlParameter("@CUOTAS", bePrestamo.NumeroCuotas));
-                cmd.Parameters.Add(new SqlParameter("@PAGADO", bePrestamo.Pagado));
-
-                rowsAffected += cmd.ExecuteNonQuery();
-                #endregion
-
-                #region Agregar cuotas
-
-                sp = "SpTbPrestamoCuotaInsertar";
-                for (int i = 0; i < lstBeCuotasNuevas.Count; i++)
+                using (cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
+
+                    tns = cnn.BeginTransaction();
+
+                    SqlCommand cmd = null;
+
+                    #region Cabecera
+                    sp = "SpTbPrestamoActualizar";
+
                     cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tns;
 
-                    cmd.Parameters.Add(new SqlParameter("@IDPRESTAMOCUOTA", lstBeCuotasNuevas[i].IdPrestamoCuota));
-                    cmd.Parameters["@IDPRESTAMOCUOTA"].Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", bePrestamo.IdPrestamo));
-                    cmd.Parameters.Add(new SqlParameter("@FECHA", lstBeCuotasNuevas[i].Fecha));
-                    cmd.Parameters.Add(new SqlParameter("@MONTO", lstBeCuotasNuevas[i].Importe));
-                    cmd.Parameters.Add(new SqlParameter("@PAGADO", lstBeCuotasNuevas[i].Pagado));
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", bePrestamo.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", bePrestamo.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@MOTIVO", bePrestamo.Motivo));
+                    cmd.Parameters.Add(new SqlParameter("@MONTO", bePrestamo.Monto));
+                    cmd.Parameters.Add(new SqlParameter("@CUOTAS", bePrestamo.NumeroCuotas));
+                    cmd.Parameters.Add(new SqlParameter("@PAGADO", bePrestamo.Pagado));
 
                     rowsAffected += cmd.ExecuteNonQuery();
-                    lstBeCuotasNuevas[i].IdPrestamoCuota = int.Parse(cmd.Parameters["@IDPRESTAMOCUOTA"].Value.ToString());
+                    #endregion
+
+                    #region Agregar cuotas
+
+                    sp = "SpTbPrestamoCuotaInsertar";
+                    for (int i = 0; i < lstBeCuotasNuevas.Count; i++)
+                    {
+                        cmd = new SqlCommand(sp, cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Transaction = tns;
+
+                        cmd.Parameters.Add(new SqlParameter("@IDPRESTAMOCUOTA", lstBeCuotasNuevas[i].IdPrestamoCuota));
+                        cmd.Parameters["@IDPRESTAMOCUOTA"].Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", bePrestamo.IdPrestamo));
+                        cmd.Parameters.Add(new SqlParameter("@FECHA", lstBeCuotasNuevas[i].Fecha));
+                        cmd.Parameters.Add(new SqlParameter("@MONTO", lstBeCuotasNuevas[i].Importe));
+                        cmd.Parameters.Add(new SqlParameter("@PAGADO", lstBeCuotasNuevas[i].Pagado));
+
+                        rowsAffected += cmd.ExecuteNonQuery();
+                        lstBeCuotasNuevas[i].IdPrestamoCuota = int.Parse(cmd.Parameters["@IDPRESTAMOCUOTA"].Value.ToString());
+                    }
+
+                    #endregion
+
+                    #region Eliminar cuotas
+
+                    sp = "SpTbPrestamoCuotaEliminar";
+                    for (int i = 0; i < lstBeCuotasEliminadas.Count; i++)
+                    {
+                        cmd = new SqlCommand(sp, cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Transaction = tns;
+
+                        cmd.Parameters.Add(new SqlParameter("@IDPRESTAMOCUOTA", lstBeCuotasEliminadas[i].IdPrestamoCuota));
+
+                        rowsAffected += cmd.ExecuteNonQuery();
+                    }
+
+                    #endregion
+
+                    if (tns != null)
+                        tns.Commit();
                 }
-
-                #endregion
-
-                #region Eliminar cuotas
-
-                sp = "SpTbPrestamoCuotaEliminar";
-                for (int i = 0; i < lstBeCuotasEliminadas.Count; i++)
-                {
-                    cmd = new SqlCommand(sp, cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Transaction = tns;
-
-                    cmd.Parameters.Add(new SqlParameter("@IDPRESTAMOCUOTA", lstBeCuotasEliminadas[i].IdPrestamoCuota));
-                   
-                    rowsAffected += cmd.ExecuteNonQuery();
-                }
-
-                #endregion
-
-                if (tns != null)
-                    tns.Commit();
 
                 return (rowsAffected > 0);
 
@@ -186,18 +192,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbPrestamoEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+  
                 return (rowsAffected > 0); 
 
             }
@@ -214,33 +222,35 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbPrestamoListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", mes));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    var bePrestamo = new BE.Prestamo();
+                    cnn.Open();
 
-                    bePrestamo.IdPrestamo = int.Parse(reader["IdPrestamo"].ToString());
-                    bePrestamo.Fecha = DateTime.Parse(reader["Fecha"].ToString());
-                    bePrestamo.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
-                    bePrestamo.Motivo = reader["Motivo"].ToString();
-                    bePrestamo.Monto = double.Parse(reader["Monto"].ToString());
-                    bePrestamo.NumeroCuotas = int.Parse(reader["Cuotas"].ToString());
-                    bePrestamo.Pagado = bool.Parse(reader["Pagado"].ToString());
-                   
-                    if (conCuotas == true)
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        bePrestamo.Cuotas = this.ListarCuotas(bePrestamo.IdPrestamo);
-                    }
+                        var bePrestamo = new BE.Prestamo();
 
-                    lstPrestamos.Add(bePrestamo);
+                        bePrestamo.IdPrestamo = int.Parse(reader["IdPrestamo"].ToString());
+                        bePrestamo.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                        bePrestamo.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
+                        bePrestamo.Motivo = reader["Motivo"].ToString();
+                        bePrestamo.Monto = double.Parse(reader["Monto"].ToString());
+                        bePrestamo.NumeroCuotas = int.Parse(reader["Cuotas"].ToString());
+                        bePrestamo.Pagado = bool.Parse(reader["Pagado"].ToString());
+
+                        if (conCuotas == true)
+                        {
+                            bePrestamo.Cuotas = this.ListarCuotas(bePrestamo.IdPrestamo);
+                        }
+
+                        lstPrestamos.Add(bePrestamo);
+                    }
                 }
 
                 return lstPrestamos;
@@ -259,31 +269,34 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbPrestamoObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
 
-                    bePrestamo = new BE.Prestamo();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
 
-                    bePrestamo.IdPrestamo = int.Parse(reader["IdPrestamo"].ToString());
-                    bePrestamo.Fecha = DateTime.Parse(reader["Fecha"].ToString());
-                    bePrestamo.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
-                    bePrestamo.Motivo = reader["Motivo"].ToString();
-                    bePrestamo.Monto = double.Parse(reader["Monto"].ToString());
-                    bePrestamo.Pagado = bool.Parse(reader["Pagado"].ToString());
-                    bePrestamo.NumeroCuotas = int.Parse(reader["Cuotas"].ToString());
-
-                    if (conCuotas == true)
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        bePrestamo.Cuotas = this.ListarCuotas(idPrestamo);
+
+                        bePrestamo = new BE.Prestamo();
+
+                        bePrestamo.IdPrestamo = int.Parse(reader["IdPrestamo"].ToString());
+                        bePrestamo.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                        bePrestamo.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
+                        bePrestamo.Motivo = reader["Motivo"].ToString();
+                        bePrestamo.Monto = double.Parse(reader["Monto"].ToString());
+                        bePrestamo.Pagado = bool.Parse(reader["Pagado"].ToString());
+                        bePrestamo.NumeroCuotas = int.Parse(reader["Cuotas"].ToString());
+
+                        if (conCuotas == true)
+                        {
+                            bePrestamo.Cuotas = this.ListarCuotas(idPrestamo);
+                        }
                     }
+
                 }
 
                 return bePrestamo;
@@ -307,25 +320,27 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbPrestamoCuotaListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
 
-                    var bePrestamoCuota = new BE.PrestamoCuota();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
 
-                    bePrestamoCuota.IdPrestamoCuota = int.Parse(reader["IdPrestamoCuota"].ToString());
-                    bePrestamoCuota.Fecha = DateTime.Parse(reader["Fecha"].ToString());
-                    bePrestamoCuota.Importe = double.Parse(reader["Monto"].ToString());
-                    bePrestamoCuota.Pagado = bool.Parse(reader["Pagado"].ToString());
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
 
-                    lstPrestamoCuota.Add(bePrestamoCuota);
+                        var bePrestamoCuota = new BE.PrestamoCuota();
+
+                        bePrestamoCuota.IdPrestamoCuota = int.Parse(reader["IdPrestamoCuota"].ToString());
+                        bePrestamoCuota.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                        bePrestamoCuota.Importe = double.Parse(reader["Monto"].ToString());
+                        bePrestamoCuota.Pagado = bool.Parse(reader["Pagado"].ToString());
+
+                        lstPrestamoCuota.Add(bePrestamoCuota);
+                    }
                 }
 
                 return lstPrestamoCuota;

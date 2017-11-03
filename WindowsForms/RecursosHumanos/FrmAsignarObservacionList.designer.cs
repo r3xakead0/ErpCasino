@@ -36,13 +36,13 @@
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
+            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
+            this.lblEmpleado = new System.Windows.Forms.Label();
+            this.cboEmpleado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboMes = new System.Windows.Forms.ComboBox();
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
-            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
-            this.lblEmpleado = new System.Windows.Forms.Label();
-            this.cboEmpleado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObservaciones)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -56,14 +56,14 @@
             this.dgvObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvObservaciones.Location = new System.Drawing.Point(0, 0);
             this.dgvObservaciones.Name = "dgvObservaciones";
-            this.dgvObservaciones.Size = new System.Drawing.Size(885, 249);
+            this.dgvObservaciones.Size = new System.Drawing.Size(885, 259);
             this.dgvObservaciones.TabIndex = 0;
             this.dgvObservaciones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdelantos_CellDoubleClick);
             // 
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.Location = new System.Drawing.Point(776, 10);
+            this.btnNuevo.Location = new System.Drawing.Point(776, 5);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 30);
             this.btnNuevo.TabIndex = 16;
@@ -74,7 +74,7 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Location = new System.Drawing.Point(670, 10);
+            this.btnEditar.Location = new System.Drawing.Point(670, 5);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 30);
             this.btnEditar.TabIndex = 17;
@@ -85,7 +85,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(564, 10);
+            this.btnEliminar.Location = new System.Drawing.Point(564, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 18;
@@ -106,7 +106,7 @@
             this.tlpPrincipal.RowCount = 3;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(891, 355);
             this.tlpPrincipal.TabIndex = 19;
             // 
@@ -116,9 +116,9 @@
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Controls.Add(this.btnEditar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 298);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 308);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(885, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(885, 44);
             this.pnlInferior.TabIndex = 1;
             // 
             // pnlSuperior
@@ -127,7 +127,7 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSuperior.Location = new System.Drawing.Point(3, 43);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(885, 249);
+            this.pnlSuperior.Size = new System.Drawing.Size(885, 259);
             this.pnlSuperior.TabIndex = 0;
             // 
             // pnlFiltro
@@ -144,6 +144,34 @@
             this.pnlFiltro.Name = "pnlFiltro";
             this.pnlFiltro.Size = new System.Drawing.Size(885, 34);
             this.pnlFiltro.TabIndex = 2;
+            // 
+            // txtEmpleadoCodigo
+            // 
+            this.txtEmpleadoCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(523, 8);
+            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
+            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
+            this.txtEmpleadoCodigo.TabIndex = 95;
+            // 
+            // lblEmpleado
+            // 
+            this.lblEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEmpleado.AutoSize = true;
+            this.lblEmpleado.Location = new System.Drawing.Point(454, 11);
+            this.lblEmpleado.Name = "lblEmpleado";
+            this.lblEmpleado.Size = new System.Drawing.Size(60, 13);
+            this.lblEmpleado.TabIndex = 93;
+            this.lblEmpleado.Text = "Empleado :";
+            // 
+            // cboEmpleado
+            // 
+            this.cboEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmpleado.FormattingEnabled = true;
+            this.cboEmpleado.Location = new System.Drawing.Point(615, 7);
+            this.cboEmpleado.Name = "cboEmpleado";
+            this.cboEmpleado.Size = new System.Drawing.Size(261, 21);
+            this.cboEmpleado.TabIndex = 94;
             // 
             // label1
             // 
@@ -182,34 +210,6 @@
             this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
             this.LblFechaHora.TabIndex = 55;
             this.LblFechaHora.Text = "Año y Mes :";
-            // 
-            // txtEmpleadoCodigo
-            // 
-            this.txtEmpleadoCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(523, 8);
-            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
-            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
-            this.txtEmpleadoCodigo.TabIndex = 95;
-            // 
-            // lblEmpleado
-            // 
-            this.lblEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEmpleado.AutoSize = true;
-            this.lblEmpleado.Location = new System.Drawing.Point(454, 11);
-            this.lblEmpleado.Name = "lblEmpleado";
-            this.lblEmpleado.Size = new System.Drawing.Size(60, 13);
-            this.lblEmpleado.TabIndex = 93;
-            this.lblEmpleado.Text = "Empleado :";
-            // 
-            // cboEmpleado
-            // 
-            this.cboEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEmpleado.FormattingEnabled = true;
-            this.cboEmpleado.Location = new System.Drawing.Point(615, 7);
-            this.cboEmpleado.Name = "cboEmpleado";
-            this.cboEmpleado.Size = new System.Drawing.Size(261, 21);
-            this.cboEmpleado.TabIndex = 94;
             // 
             // FrmAsignarObservacionList
             // 

@@ -16,47 +16,45 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbCandidatoContactoObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
+                    cnn.Open();
 
-                    beCandidatoContacto = new BE.ClsBeTbCandidatoContacto();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    beCandidatoContacto.IdCandidato = dr["IdCandidato"] == DBNull.Value ? 0 : int.Parse(dr["IdCandidato"].ToString());
-                    beCandidatoContacto.Zona = dr["Zona"] == DBNull.Value ? "" : dr["Zona"].ToString();
-                    beCandidatoContacto.Direccion = dr["Direccion"] == DBNull.Value ? "" : dr["Direccion"].ToString();
-                    beCandidatoContacto.Referencia = dr["Referencia"] == DBNull.Value ? "" : dr["Referencia"].ToString();
-                    beCandidatoContacto.Email = dr["Email"] == DBNull.Value ? "" : dr["Email"].ToString();
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
 
-                    if (dr["CodUbigeo"] == DBNull.Value)
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        beCandidatoContacto.Ubigeo = null;
-                    }
-                    else
-                    {
-                        var oBeUbigeo = new BE.Ubigeo();
-                        oBeUbigeo.Codigo = dr["CodUbigeo"].ToString();
+                        beCandidatoContacto = new BE.ClsBeTbCandidatoContacto();
 
-                        if (new Ubigeo().Obtener(ref oBeUbigeo))
-                            beCandidatoContacto.Ubigeo = oBeUbigeo;
-                        else
+                        beCandidatoContacto.IdCandidato = reader["IdCandidato"] == DBNull.Value ? 0 : int.Parse(reader["IdCandidato"].ToString());
+                        beCandidatoContacto.Zona = reader["Zona"] == DBNull.Value ? "" : reader["Zona"].ToString();
+                        beCandidatoContacto.Direccion = reader["Direccion"] == DBNull.Value ? "" : reader["Direccion"].ToString();
+                        beCandidatoContacto.Referencia = reader["Referencia"] == DBNull.Value ? "" : reader["Referencia"].ToString();
+                        beCandidatoContacto.Email = reader["Email"] == DBNull.Value ? "" : reader["Email"].ToString();
+
+                        if (reader["CodUbigeo"] == DBNull.Value)
+                        {
                             beCandidatoContacto.Ubigeo = null;
+                        }
+                        else
+                        {
+                            var oBeUbigeo = new BE.Ubigeo();
+                            oBeUbigeo.Codigo = reader["CodUbigeo"].ToString();
+
+                            if (new Ubigeo().Obtener(ref oBeUbigeo))
+                                beCandidatoContacto.Ubigeo = oBeUbigeo;
+                            else
+                                beCandidatoContacto.Ubigeo = null;
+                        }
                     }
 
+         
                 }
-
+ 
                 return beCandidatoContacto;
 
             }

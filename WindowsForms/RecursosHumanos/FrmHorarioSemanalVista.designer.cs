@@ -34,14 +34,14 @@
             this.PnlGrilla = new System.Windows.Forms.Panel();
             this.dgvHorarioSemanal = new System.Windows.Forms.DataGridView();
             this.pnlCabecera = new System.Windows.Forms.Panel();
-            this.LblAnho = new System.Windows.Forms.Label();
-            this.LblSemana = new System.Windows.Forms.Label();
-            this.cboAnho = new System.Windows.Forms.ComboBox();
-            this.cboSemana = new System.Windows.Forms.ComboBox();
             this.LblSala = new System.Windows.Forms.Label();
             this.cboSala = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRangoFechas = new System.Windows.Forms.TextBox();
+            this.LblAnho = new System.Windows.Forms.Label();
+            this.LblSemana = new System.Windows.Forms.Label();
+            this.cboAnho = new System.Windows.Forms.ComboBox();
+            this.cboSemana = new System.Windows.Forms.ComboBox();
             this.TlpPrincipal.SuspendLayout();
             this.pnlBotones.SuspendLayout();
             this.PnlGrilla.SuspendLayout();
@@ -52,7 +52,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCancelar.Location = new System.Drawing.Point(610, 10);
+            this.btnCancelar.Location = new System.Drawing.Point(615, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
             this.btnCancelar.TabIndex = 16;
@@ -73,7 +73,7 @@
             this.TlpPrincipal.RowCount = 3;
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(730, 492);
             this.TlpPrincipal.TabIndex = 19;
             // 
@@ -81,9 +81,9 @@
             // 
             this.pnlBotones.Controls.Add(this.btnCancelar);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBotones.Location = new System.Drawing.Point(3, 435);
+            this.pnlBotones.Location = new System.Drawing.Point(3, 445);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(724, 54);
+            this.pnlBotones.Size = new System.Drawing.Size(724, 44);
             this.pnlBotones.TabIndex = 1;
             // 
             // PnlGrilla
@@ -92,7 +92,7 @@
             this.PnlGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlGrilla.Location = new System.Drawing.Point(3, 83);
             this.PnlGrilla.Name = "PnlGrilla";
-            this.PnlGrilla.Size = new System.Drawing.Size(724, 346);
+            this.PnlGrilla.Size = new System.Drawing.Size(724, 356);
             this.PnlGrilla.TabIndex = 0;
             // 
             // dgvHorarioSemanal
@@ -101,7 +101,7 @@
             this.dgvHorarioSemanal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHorarioSemanal.Location = new System.Drawing.Point(0, 0);
             this.dgvHorarioSemanal.Name = "dgvHorarioSemanal";
-            this.dgvHorarioSemanal.Size = new System.Drawing.Size(724, 346);
+            this.dgvHorarioSemanal.Size = new System.Drawing.Size(724, 356);
             this.dgvHorarioSemanal.TabIndex = 0;
             // 
             // pnlCabecera
@@ -119,42 +119,6 @@
             this.pnlCabecera.Name = "pnlCabecera";
             this.pnlCabecera.Size = new System.Drawing.Size(724, 74);
             this.pnlCabecera.TabIndex = 2;
-            // 
-            // LblAnho
-            // 
-            this.LblAnho.AutoSize = true;
-            this.LblAnho.Location = new System.Drawing.Point(17, 17);
-            this.LblAnho.Name = "LblAnho";
-            this.LblAnho.Size = new System.Drawing.Size(29, 13);
-            this.LblAnho.TabIndex = 45;
-            this.LblAnho.Text = "Año:";
-            // 
-            // LblSemana
-            // 
-            this.LblSemana.AutoSize = true;
-            this.LblSemana.Location = new System.Drawing.Point(17, 44);
-            this.LblSemana.Name = "LblSemana";
-            this.LblSemana.Size = new System.Drawing.Size(49, 13);
-            this.LblSemana.TabIndex = 46;
-            this.LblSemana.Text = "Semana:";
-            // 
-            // cboAnho
-            // 
-            this.cboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAnho.FormattingEnabled = true;
-            this.cboAnho.Location = new System.Drawing.Point(71, 14);
-            this.cboAnho.Name = "cboAnho";
-            this.cboAnho.Size = new System.Drawing.Size(84, 21);
-            this.cboAnho.TabIndex = 47;
-            // 
-            // cboSemana
-            // 
-            this.cboSemana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSemana.FormattingEnabled = true;
-            this.cboSemana.Location = new System.Drawing.Point(72, 41);
-            this.cboSemana.Name = "cboSemana";
-            this.cboSemana.Size = new System.Drawing.Size(84, 21);
-            this.cboSemana.TabIndex = 48;
             // 
             // LblSala
             // 
@@ -195,6 +159,42 @@
             this.txtRangoFechas.Size = new System.Drawing.Size(300, 20);
             this.txtRangoFechas.TabIndex = 60;
             this.txtRangoFechas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // LblAnho
+            // 
+            this.LblAnho.AutoSize = true;
+            this.LblAnho.Location = new System.Drawing.Point(17, 17);
+            this.LblAnho.Name = "LblAnho";
+            this.LblAnho.Size = new System.Drawing.Size(29, 13);
+            this.LblAnho.TabIndex = 45;
+            this.LblAnho.Text = "Año:";
+            // 
+            // LblSemana
+            // 
+            this.LblSemana.AutoSize = true;
+            this.LblSemana.Location = new System.Drawing.Point(17, 44);
+            this.LblSemana.Name = "LblSemana";
+            this.LblSemana.Size = new System.Drawing.Size(49, 13);
+            this.LblSemana.TabIndex = 46;
+            this.LblSemana.Text = "Semana:";
+            // 
+            // cboAnho
+            // 
+            this.cboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAnho.FormattingEnabled = true;
+            this.cboAnho.Location = new System.Drawing.Point(71, 14);
+            this.cboAnho.Name = "cboAnho";
+            this.cboAnho.Size = new System.Drawing.Size(84, 21);
+            this.cboAnho.TabIndex = 47;
+            // 
+            // cboSemana
+            // 
+            this.cboSemana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSemana.FormattingEnabled = true;
+            this.cboSemana.Location = new System.Drawing.Point(72, 41);
+            this.cboSemana.Name = "cboSemana";
+            this.cboSemana.Size = new System.Drawing.Size(84, 21);
+            this.cboSemana.TabIndex = 48;
             // 
             // FrmHorarioSemanalVista
             // 

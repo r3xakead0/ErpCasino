@@ -15,35 +15,32 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbCandidatoContratacionObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
+                    cnn.Open();
 
-                    beCandidatoContratacion = new BE.ClsBeTbCandidatoContratacion();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    beCandidatoContratacion.IdCandidato = dr["IdCandidato"] == DBNull.Value ? 0 : int.Parse(dr["IdCandidato"].ToString());
-                    beCandidatoContratacion.InduccionFechaInicio = dr["InduccionFechaInicio"] == DBNull.Value ? DateTime.Now : DateTime.Parse(dr["InduccionFechaInicio"].ToString());
-                    beCandidatoContratacion.InduccionFechaFin = dr["InduccionFechaFin"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(dr["InduccionFechaFin"].ToString());
-                    beCandidatoContratacion.Induccion = dr["InduccionEstado"] == DBNull.Value ? false : bool.Parse(dr["InduccionEstado"].ToString());
-                    beCandidatoContratacion.Disciplina = dr["InformeDisciplinarioEstado"] == DBNull.Value ? false : bool.Parse(dr["InformeDisciplinarioEstado"].ToString());
-                    beCandidatoContratacion.Informe = dr["InformeAdministrativoEstado"] == DBNull.Value ? false : bool.Parse(dr["InformeAdministrativoEstado"].ToString());
-                    beCandidatoContratacion.Documentacion = dr["DocumentacionEstado"] == DBNull.Value ? false : bool.Parse(dr["DocumentacionEstado"].ToString());
-                    beCandidatoContratacion.Observacion = dr["Observacion"] == DBNull.Value ? "" : dr["Observacion"].ToString();
+                    cmd.Parameters.Add(new SqlParameter("@IDCANDIDATO", idCandidato));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        beCandidatoContratacion = new BE.ClsBeTbCandidatoContratacion();
+
+                        beCandidatoContratacion.IdCandidato = reader["IdCandidato"] == DBNull.Value ? 0 : int.Parse(reader["IdCandidato"].ToString());
+                        beCandidatoContratacion.InduccionFechaInicio = reader["InduccionFechaInicio"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["InduccionFechaInicio"].ToString());
+                        beCandidatoContratacion.InduccionFechaFin = reader["InduccionFechaFin"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(reader["InduccionFechaFin"].ToString());
+                        beCandidatoContratacion.Induccion = reader["InduccionEstado"] == DBNull.Value ? false : bool.Parse(reader["InduccionEstado"].ToString());
+                        beCandidatoContratacion.Disciplina = reader["InformeDisciplinarioEstado"] == DBNull.Value ? false : bool.Parse(reader["InformeDisciplinarioEstado"].ToString());
+                        beCandidatoContratacion.Informe = reader["InformeAdministrativoEstado"] == DBNull.Value ? false : bool.Parse(reader["InformeAdministrativoEstado"].ToString());
+                        beCandidatoContratacion.Documentacion = reader["DocumentacionEstado"] == DBNull.Value ? false : bool.Parse(reader["DocumentacionEstado"].ToString());
+                        beCandidatoContratacion.Observacion = reader["Observacion"] == DBNull.Value ? "" : reader["Observacion"].ToString();
+                    }
 
                 }
-
+  
                 return beCandidatoContratacion;
 
             }

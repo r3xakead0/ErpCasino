@@ -14,25 +14,27 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbDescuentoEmpleadoInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDDESCUENTOEMPLEADO", beDescuentoEmpleado.IdDescuentoEmpleado));
-                cmd.Parameters["@IDDESCUENTOEMPLEADO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@FECHA", beDescuentoEmpleado.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beDescuentoEmpleado.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@IDDESCUENTO", beDescuentoEmpleado.Descuento.IdDescuento));
-                cmd.Parameters.Add(new SqlParameter("@MOTIVO", beDescuentoEmpleado.Motivo));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", beDescuentoEmpleado.Monto));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beDescuentoEmpleado.IdDescuentoEmpleado = int.Parse(cmd.Parameters["@IDDESCUENTOEMPLEADO"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDDESCUENTOEMPLEADO", beDescuentoEmpleado.IdDescuentoEmpleado));
+                    cmd.Parameters["@IDDESCUENTOEMPLEADO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", beDescuentoEmpleado.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beDescuentoEmpleado.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@IDDESCUENTO", beDescuentoEmpleado.Descuento.IdDescuento));
+                    cmd.Parameters.Add(new SqlParameter("@MOTIVO", beDescuentoEmpleado.Motivo));
+                    cmd.Parameters.Add(new SqlParameter("@MONTO", beDescuentoEmpleado.Monto));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beDescuentoEmpleado.IdDescuentoEmpleado = int.Parse(cmd.Parameters["@IDDESCUENTOEMPLEADO"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -48,23 +50,24 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbDescuentoEmpleadoActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDDESCUENTOEMPLEADO", beDescuentoEmpleado.IdDescuentoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@FECHA", beDescuentoEmpleado.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beDescuentoEmpleado.CodigoEmpleado));
-                cmd.Parameters.Add(new SqlParameter("@IDDESCUENTO", beDescuentoEmpleado.Descuento.IdDescuento));
-                cmd.Parameters.Add(new SqlParameter("@MOTIVO", beDescuentoEmpleado.Motivo));
-                cmd.Parameters.Add(new SqlParameter("@MONTO", beDescuentoEmpleado.Monto));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDDESCUENTOEMPLEADO", beDescuentoEmpleado.IdDescuentoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", beDescuentoEmpleado.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", beDescuentoEmpleado.CodigoEmpleado));
+                    cmd.Parameters.Add(new SqlParameter("@IDDESCUENTO", beDescuentoEmpleado.Descuento.IdDescuento));
+                    cmd.Parameters.Add(new SqlParameter("@MOTIVO", beDescuentoEmpleado.Motivo));
+                    cmd.Parameters.Add(new SqlParameter("@MONTO", beDescuentoEmpleado.Monto));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -80,18 +83,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbDescuentoEmpleadoEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDDESCUENTOEMPLEADO", idDescuentoEmpleado));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    cmd.Parameters.Add(new SqlParameter("@IDDESCUENTOEMPLEADO", idDescuentoEmpleado));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 

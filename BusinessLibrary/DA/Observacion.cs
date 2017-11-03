@@ -21,23 +21,25 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbObservacionInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacion.IdObservacion));
-                cmd.Parameters["@IDOBSERVACION"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beObservacion.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacion.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beObservacion.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beObservacion.IdObservacion = int.Parse(cmd.Parameters["@IDOBSERVACION"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacion.IdObservacion));
+                    cmd.Parameters["@IDOBSERVACION"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beObservacion.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacion.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beObservacion.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beObservacion.IdObservacion = int.Parse(cmd.Parameters["@IDOBSERVACION"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -53,21 +55,22 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbObservacionActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacion.IdObservacion));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beObservacion.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacion.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beObservacion.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", beObservacion.IdObservacion));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beObservacion.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beObservacion.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beObservacion.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -83,18 +86,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbObservacionEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                
-                cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", idObservacion));
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDOBSERVACION", idObservacion));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 

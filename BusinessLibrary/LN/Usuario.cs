@@ -17,29 +17,47 @@ namespace ErpCasino.BusinessLibrary.LN
             this.idSesion = idSesion;
         }
 
-        public bool Validar(ref BE.UI.Usuario uiUsuario)
+        private BE.UI.Usuario BeToUi (BE.Usuario beUsuario)
         {
-            bool exists = false;
+            var uiUsuario = new BE.UI.Usuario();
+
+            uiUsuario.ID = beUsuario.IdUsuario;
+            uiUsuario.Username = beUsuario.Username;
+            uiUsuario.Password = beUsuario.Password;
+            uiUsuario.Nombres = beUsuario.Nombre;
+            uiUsuario.Email = beUsuario.Email;
+            uiUsuario.Bloqueado = beUsuario.Bloqueado == true ? "Si" : "No";
+            uiUsuario.Activo = beUsuario.Activo == true ? "Si" : "No";
+
+            return uiUsuario;
+        }
+
+        private BE.Usuario UiToBe(BE.UI.Usuario uiUsuario)
+        {
+            var beUsuario = new BE.Usuario();
+
+            beUsuario.IdUsuario = uiUsuario.ID;
+            beUsuario.Username = uiUsuario.Username;
+            beUsuario.Password = uiUsuario.Password;
+            beUsuario.Nombre = uiUsuario.Nombres;
+            beUsuario.Email = uiUsuario.Email;
+            beUsuario.Bloqueado = (uiUsuario.Bloqueado == "Si");
+            beUsuario.Activo = (uiUsuario.Activo == "Si");
+
+            return beUsuario;
+        }
+
+        public BE.UI.Usuario Validar(string username, string password)
+        {
+            BE.UI.Usuario uiUsuario = null;
             try
             {
-                var beUsuario = new BE.Usuario();
-                beUsuario.Username = uiUsuario.Username;
-                beUsuario.Password = uiUsuario.Password;
+                var beUsuario = new DA.Usuario().Validar(username, password);
 
-                exists = new DA.Usuario().Validar(ref beUsuario);
-
-                if (exists)
-                {
-                    uiUsuario.ID = beUsuario.IdUsuario;
-                    uiUsuario.Username = beUsuario.Username;
-                    uiUsuario.Password = beUsuario.Password;
-                    uiUsuario.Nombres = beUsuario.Nombre;
-                    uiUsuario.Email = beUsuario.Email;
-                    uiUsuario.Bloqueado = beUsuario.Bloqueado == true ? "Si" : "No";
-                    uiUsuario.Activo = beUsuario.Activo == true ? "Si" : "No";
-                }
-
-                return exists;
+                if (beUsuario != null)
+                    uiUsuario = this.BeToUi(beUsuario);
+                
+                return uiUsuario;
             }
             catch (Exception ex)
             {
@@ -53,16 +71,11 @@ namespace ErpCasino.BusinessLibrary.LN
 
             try
             {
-                var beUsuario = new BE.Usuario();
-                beUsuario.Username = uiUsuario.Username;
-                beUsuario.Password = uiUsuario.Password;
-                beUsuario.Nombre = uiUsuario.Nombres;
-                beUsuario.Email = uiUsuario.Email;
-                beUsuario.Bloqueado = (uiUsuario.Bloqueado == "Si");
-                beUsuario.Activo = (uiUsuario.Activo == "Si");
+                var beUsuario = this.UiToBe(uiUsuario);
                 beUsuario.IdUsuarioCreador = this.idSesion;
 
                 rowsAffected = new DA.Usuario().Insertar(ref beUsuario);
+                uiUsuario.ID = beUsuario.IdUsuario;
 
                 return (rowsAffected > 0);
             }
@@ -79,17 +92,10 @@ namespace ErpCasino.BusinessLibrary.LN
             try
             {
 
-                var beUsuario = new BE.Usuario();
-                beUsuario.IdUsuario = uiUsuario.ID;
-                beUsuario.Username = uiUsuario.Username;
-                beUsuario.Password = uiUsuario.Password;
-                beUsuario.Nombre = uiUsuario.Nombres;
-                beUsuario.Email = uiUsuario.Email;
-                beUsuario.Bloqueado = (uiUsuario.Bloqueado == "Si");
-                beUsuario.Activo = (uiUsuario.Activo == "Si");
-                beUsuario.IdUsuarioCreador = this.idSesion;
+                var beUsuario = this.UiToBe(uiUsuario);
+                beUsuario.IdUsuarioModificador = this.idSesion;
 
-                rowsAffected = new DA.Usuario().Actualizar(ref beUsuario);
+                rowsAffected = new DA.Usuario().Actualizar(beUsuario);
 
                 return (rowsAffected > 0);
             }
@@ -128,20 +134,28 @@ namespace ErpCasino.BusinessLibrary.LN
                 var lstBeUsuarios = daUsuario.Listar();
                 foreach (BE.Usuario beUsuario in lstBeUsuarios)
                 {
-                    var uiUsuario = new BE.UI.Usuario();
-
-                    uiUsuario.ID = beUsuario.IdUsuario;
-                    uiUsuario.Username = beUsuario.Username;
-                    uiUsuario.Password = beUsuario.Password;
-                    uiUsuario.Nombres = beUsuario.Nombre;
-                    uiUsuario.Email = beUsuario.Email;
-                    uiUsuario.Bloqueado = beUsuario.Bloqueado == true ? "Si" : "No";
-                    uiUsuario.Activo = beUsuario.Activo == true ? "Si" : "No";
-
+                    var uiUsuario = this.BeToUi(beUsuario);
                     lstUiUsuarios.Add(uiUsuario);
                 }
 
                 return lstUiUsuarios;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BE.UI.Usuario Obtener(int idUsuario)
+        {
+
+            BE.UI.Usuario uiUsuario = null;
+            try
+            {
+                var beUsuario = new DA.Usuario().Obtener(idUsuario);
+                
+                return uiUsuario;
 
             }
             catch (Exception ex)

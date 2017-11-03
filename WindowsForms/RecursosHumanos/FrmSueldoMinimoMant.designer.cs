@@ -46,7 +46,7 @@
             this.dgvSueldosMinimos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSueldosMinimos.Location = new System.Drawing.Point(0, 0);
             this.dgvSueldosMinimos.Name = "dgvSueldosMinimos";
-            this.dgvSueldosMinimos.Size = new System.Drawing.Size(309, 291);
+            this.dgvSueldosMinimos.Size = new System.Drawing.Size(309, 260);
             this.dgvSueldosMinimos.TabIndex = 0;
             // 
             // btnGuardar
@@ -83,7 +83,7 @@
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(315, 347);
+            this.tlpPrincipal.Size = new System.Drawing.Size(315, 316);
             this.tlpPrincipal.TabIndex = 19;
             // 
             // pnlInferior
@@ -91,7 +91,7 @@
             this.pnlInferior.Controls.Add(this.btnGuardar);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 300);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 269);
             this.pnlInferior.Name = "pnlInferior";
             this.pnlInferior.Size = new System.Drawing.Size(309, 44);
             this.pnlInferior.TabIndex = 1;
@@ -102,14 +102,14 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSuperior.Location = new System.Drawing.Point(3, 3);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(309, 291);
+            this.pnlSuperior.Size = new System.Drawing.Size(309, 260);
             this.pnlSuperior.TabIndex = 0;
             // 
             // FrmSueldoMinimoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 347);
+            this.ClientSize = new System.Drawing.Size(315, 316);
             this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.Name = "FrmSueldoMinimoMant";

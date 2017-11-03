@@ -29,25 +29,27 @@ namespace ErpCasino.BusinessLibrary.DA
         {
             try
             {
+                int rowsAffected = 0;
                 string sp = "SpTbAfpInsertar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                int rowsAffected = 0;
-                cnn.Open();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfp.IdAfp));
-                cmd.Parameters["@IDAFP"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", beAfp.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beAfp.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beAfp.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beAfp.Activo));
+                    cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfp.IdAfp));
+                    cmd.Parameters["@IDAFP"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", beAfp.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beAfp.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beAfp.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beAfp.Activo));
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beAfp.IdAfp = int.Parse(cmd.Parameters["@IDAFP"].Value.ToString());
-
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beAfp.IdAfp = int.Parse(cmd.Parameters["@IDAFP"].Value.ToString());
+                }
+                    
                 return rowsAffected;
 
             }
@@ -62,22 +64,24 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAfpActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfp.IdAfp));
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", beAfp.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beAfp.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beAfp.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beAfp.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfp.IdAfp));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", beAfp.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beAfp.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", beAfp.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beAfp.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                    
                 return rowsAffected;
 
             }
@@ -87,22 +91,25 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public int Eliminar(BE.Afp beAfp)
+        public int Eliminar(int idAfp)
         {
             try
             {
+                int rowsAffected = 0;
                 string sp = "SpTbAfpEliminar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                int rowsAffected = 0;
-                cnn.Open();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfp.IdAfp));
+                    cmd.Parameters.Add(new SqlParameter("@IDAFP", idAfp));
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
+           
+                }
 
                 return rowsAffected;
 

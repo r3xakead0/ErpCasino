@@ -96,7 +96,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(991, 492);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
@@ -110,7 +110,7 @@
             this.PnlFormulario.Controls.Add(this.grpDatosSemana);
             this.PnlFormulario.Location = new System.Drawing.Point(3, 3);
             this.PnlFormulario.Name = "PnlFormulario";
-            this.PnlFormulario.Size = new System.Drawing.Size(985, 426);
+            this.PnlFormulario.Size = new System.Drawing.Size(985, 436);
             this.PnlFormulario.TabIndex = 16;
             // 
             // grpDatosHorario
@@ -137,7 +137,7 @@
             this.grpDatosHorario.Controls.Add(this.LblDia);
             this.grpDatosHorario.Controls.Add(this.dtpTurnoHasta);
             this.grpDatosHorario.Enabled = false;
-            this.grpDatosHorario.Location = new System.Drawing.Point(10, 310);
+            this.grpDatosHorario.Location = new System.Drawing.Point(10, 320);
             this.grpDatosHorario.Name = "grpDatosHorario";
             this.grpDatosHorario.Size = new System.Drawing.Size(966, 113);
             this.grpDatosHorario.TabIndex = 82;
@@ -356,7 +356,7 @@
             this.grpHorarios.Controls.Add(this.btnHorarioQuitar);
             this.grpHorarios.Location = new System.Drawing.Point(10, 106);
             this.grpHorarios.Name = "grpHorarios";
-            this.grpHorarios.Size = new System.Drawing.Size(966, 198);
+            this.grpHorarios.Size = new System.Drawing.Size(966, 208);
             this.grpHorarios.TabIndex = 81;
             this.grpHorarios.TabStop = false;
             this.grpHorarios.Text = "Horarios";
@@ -364,7 +364,7 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditar.Location = new System.Drawing.Point(93, 171);
+            this.btnEditar.Location = new System.Drawing.Point(93, 181);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(81, 21);
             this.btnEditar.TabIndex = 66;
@@ -388,7 +388,7 @@
             // txtNroRegistros
             // 
             this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNroRegistros.Location = new System.Drawing.Point(905, 172);
+            this.txtNroRegistros.Location = new System.Drawing.Point(905, 182);
             this.txtNroRegistros.Name = "txtNroRegistros";
             this.txtNroRegistros.ReadOnly = true;
             this.txtNroRegistros.Size = new System.Drawing.Size(55, 20);
@@ -400,7 +400,7 @@
             // 
             this.lblNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNroRegistros.AutoSize = true;
-            this.lblNroRegistros.Location = new System.Drawing.Point(822, 175);
+            this.lblNroRegistros.Location = new System.Drawing.Point(822, 185);
             this.lblNroRegistros.Name = "lblNroRegistros";
             this.lblNroRegistros.Size = new System.Drawing.Size(77, 13);
             this.lblNroRegistros.TabIndex = 63;
@@ -414,13 +414,13 @@
             this.dgvHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHorarios.Location = new System.Drawing.Point(6, 32);
             this.dgvHorarios.Name = "dgvHorarios";
-            this.dgvHorarios.Size = new System.Drawing.Size(954, 135);
+            this.dgvHorarios.Size = new System.Drawing.Size(954, 145);
             this.dgvHorarios.TabIndex = 54;
             // 
             // btnHorarioQuitar
             // 
             this.btnHorarioQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHorarioQuitar.Location = new System.Drawing.Point(6, 171);
+            this.btnHorarioQuitar.Location = new System.Drawing.Point(6, 181);
             this.btnHorarioQuitar.Name = "btnHorarioQuitar";
             this.btnHorarioQuitar.Size = new System.Drawing.Size(81, 21);
             this.btnHorarioQuitar.TabIndex = 62;
@@ -541,9 +541,9 @@
             // 
             this.panel2.Controls.Add(this.PnlBotones);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 435);
+            this.panel2.Location = new System.Drawing.Point(3, 445);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(985, 54);
+            this.panel2.Size = new System.Drawing.Size(985, 44);
             this.panel2.TabIndex = 17;
             // 
             // PnlBotones
@@ -554,13 +554,13 @@
             this.PnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlBotones.Location = new System.Drawing.Point(0, 0);
             this.PnlBotones.Name = "PnlBotones";
-            this.PnlBotones.Size = new System.Drawing.Size(985, 54);
+            this.PnlBotones.Size = new System.Drawing.Size(985, 44);
             this.PnlBotones.TabIndex = 20;
             // 
             // btnVista
             // 
             this.btnVista.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVista.Location = new System.Drawing.Point(623, 9);
+            this.btnVista.Location = new System.Drawing.Point(662, 5);
             this.btnVista.Name = "btnVista";
             this.btnVista.Size = new System.Drawing.Size(100, 30);
             this.btnVista.TabIndex = 19;
@@ -571,7 +571,7 @@
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(876, 9);
+            this.BtnSave.Location = new System.Drawing.Point(876, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -582,7 +582,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(752, 9);
+            this.BtnCancel.Location = new System.Drawing.Point(770, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;

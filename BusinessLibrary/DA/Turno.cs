@@ -29,23 +29,27 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTurnoInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
-                cmd.Parameters["@IDTURNO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@NUMERO", beTurno.Numero));
-                cmd.Parameters.Add(new SqlParameter("@HORAINICIAL", beTurno.HoraInicial));
-                cmd.Parameters.Add(new SqlParameter("@HORAFINAL", beTurno.HoraFinal));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTurno.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beTurno.IdTurno = int.Parse(cmd.Parameters["@IDTURNO"].Value.ToString());
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
+                    cmd.Parameters["@IDTURNO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@NUMERO", beTurno.Numero));
+                    cmd.Parameters.Add(new SqlParameter("@HORAINICIAL", beTurno.HoraInicial));
+                    cmd.Parameters.Add(new SqlParameter("@HORAFINAL", beTurno.HoraFinal));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTurno.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beTurno.IdTurno = int.Parse(cmd.Parameters["@IDTURNO"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -61,21 +65,24 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTurnoActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
-                cmd.Parameters.Add(new SqlParameter("@NUMERO", beTurno.Numero));
-                cmd.Parameters.Add(new SqlParameter("@HORAINICIAL", beTurno.HoraInicial));
-                cmd.Parameters.Add(new SqlParameter("@HORAFINAL", beTurno.HoraFinal));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTurno.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
+                    cmd.Parameters.Add(new SqlParameter("@NUMERO", beTurno.Numero));
+                    cmd.Parameters.Add(new SqlParameter("@HORAINICIAL", beTurno.HoraInicial));
+                    cmd.Parameters.Add(new SqlParameter("@HORAFINAL", beTurno.HoraFinal));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beTurno.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+
+                }
 
                 return rowsAffected;
 
@@ -91,17 +98,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTurnoEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -117,15 +126,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTurnoListar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                }
 
                 return dt;
 
@@ -142,26 +156,30 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbTurnoObtener";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beTurno, ref dr);
+                    cnn.Open();
 
-                    rpta = true;
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@IDTURNO", beTurno.IdTurno));
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        Cargar(ref beTurno, ref dr);
+
+                        rpta = true;
+                    }
+
+                    return rpta;
                 }
-
-                return rpta;
+                    
 
             }
             catch (Exception ex)

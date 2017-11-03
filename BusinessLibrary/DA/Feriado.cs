@@ -187,22 +187,24 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbFeriadoObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Fecha", fecha));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    beFeriado = new BE.Feriado();
+                    cnn.Open();
 
-                    beFeriado.Fecha = DateTime.Parse(reader["Fecha"].ToString());
-                    beFeriado.Motivo = reader["Motivo"].ToString();
-                    beFeriado.Festivo = bool.Parse(reader["Festivo"].ToString());
-                    beFeriado.Activo = bool.Parse(reader["Activo"].ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@FECHA", fecha));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        beFeriado = new BE.Feriado();
+
+                        beFeriado.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                        beFeriado.Motivo = reader["Motivo"].ToString();
+                        beFeriado.Festivo = bool.Parse(reader["Festivo"].ToString());
+                        beFeriado.Activo = bool.Parse(reader["Activo"].ToString());
+                    }
                 }
 
                 return beFeriado;

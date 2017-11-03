@@ -321,6 +321,37 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        /// <summary>
+        /// Obtener el monto de Asignación Familiar
+        /// </summary>
+        /// <param name="codigo">Codigo de Empleado</param>
+        /// <returns></returns>
+        public double ObtenerAsignacionFamiliar(string codigo)
+        {
+            try
+            {
+                double asignacionFamiliar = 0.0;
+                double porcentaje = 10.0;
+
+                var beEmpleadoRecurso = this.ObtenerRecurso(codigo);
+                if (beEmpleadoRecurso != null)
+                {
+                    if (beEmpleadoRecurso.NumeroHijos > 0)
+                    {
+                        var beSueldoMinimo = new LN.SueldoMinimo().Actual(DateTime.Now);
+                        if (beSueldoMinimo != null)
+                            asignacionFamiliar = beSueldoMinimo.Monto / porcentaje;
+                    }
+                }
+               
+                return asignacionFamiliar;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public string ObtenerNombreCompleto(string codigo, bool? activo = null)
         {
             return new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(codigo, activo);

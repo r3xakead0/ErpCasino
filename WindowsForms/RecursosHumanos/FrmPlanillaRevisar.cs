@@ -335,12 +335,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         break;
                 }
 
+                var sorted = new SortableBindingList<BE.UI.PlanillaDetalle>(lstUiPlanillaDetalle);
+                this.dgvPlanilla.DataSource = sorted;
 
-                BindingSource source = new BindingSource();
-                source.DataSource = this.lstUiPlanillaDetalle;
-                this.dgvPlanilla.DataSource = source;
- 
-                
             }
             catch (Exception ex)
             {

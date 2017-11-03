@@ -14,22 +14,25 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbOnpComisionInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDONPCOMISION", BeOnpComision.IdOnpComision));
-                cmd.Parameters["@IDONPCOMISION"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", BeOnpComision.Anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", BeOnpComision.Mes));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJEAPORTE", BeOnpComision.PorcentajeAporte));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                BeOnpComision.IdOnpComision = int.Parse(cmd.Parameters["@IDONPCOMISION"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDONPCOMISION", BeOnpComision.IdOnpComision));
+                    cmd.Parameters["@IDONPCOMISION"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", BeOnpComision.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", BeOnpComision.Mes));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJEAPORTE", BeOnpComision.PorcentajeAporte));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    BeOnpComision.IdOnpComision = int.Parse(cmd.Parameters["@IDONPCOMISION"].Value.ToString());
+
+                }
 
                 return (rowsAffected > 0);
 
@@ -45,17 +48,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbOnpComisionEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDONPCOMISION", idOnpComision));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDONPCOMISION", idOnpComision));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return (rowsAffected > 0);
 
@@ -73,24 +78,28 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbOnpComisionListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    var beOnpComision = new BE.OnpComision();
 
-                    beOnpComision.IdOnpComision = int.Parse(reader["IdOnpComision"].ToString());
-                    beOnpComision.Anho = int.Parse(reader["Anho"].ToString());
-                    beOnpComision.Mes = int.Parse(reader["Mes"].ToString());
-                    beOnpComision.PorcentajeAporte = double.Parse(reader["PorcentajeAporte"].ToString());
+                    cnn.Open();
 
-                    lstOnpComision.Add(beOnpComision);
-                }
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var beOnpComision = new BE.OnpComision();
+
+                        beOnpComision.IdOnpComision = int.Parse(reader["IdOnpComision"].ToString());
+                        beOnpComision.Anho = int.Parse(reader["Anho"].ToString());
+                        beOnpComision.Mes = int.Parse(reader["Mes"].ToString());
+                        beOnpComision.PorcentajeAporte = double.Parse(reader["PorcentajeAporte"].ToString());
+
+                        lstOnpComision.Add(beOnpComision);
+                    }
+
+                }                    
 
                 return lstOnpComision;
 
@@ -108,24 +117,27 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbOnpComisionObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", mes));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
+                    cnn.Open();
 
-                    beOnpComision = new BE.OnpComision();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
 
-                    beOnpComision.IdOnpComision = int.Parse(reader["IdOnpComision"].ToString());
-                    beOnpComision.Anho = int.Parse(reader["Anho"].ToString());
-                    beOnpComision.Mes = int.Parse(reader["Mes"].ToString());
-                    beOnpComision.PorcentajeAporte = double.Parse(reader["PorcentajeAporte"].ToString());
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+
+                        beOnpComision = new BE.OnpComision();
+
+                        beOnpComision.IdOnpComision = int.Parse(reader["IdOnpComision"].ToString());
+                        beOnpComision.Anho = int.Parse(reader["Anho"].ToString());
+                        beOnpComision.Mes = int.Parse(reader["Mes"].ToString());
+                        beOnpComision.PorcentajeAporte = double.Parse(reader["PorcentajeAporte"].ToString());
+
+                    }
 
                 }
 

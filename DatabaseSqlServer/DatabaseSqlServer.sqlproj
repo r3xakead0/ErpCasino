@@ -139,8 +139,6 @@
     <Build Include="dbo\Stored Procedures\SpTbAreaListar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbAfpObtener.sql" />
     <Build Include="dbo\Stored Procedures\SpTbAfpListar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbAfpInsertar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbAfpEliminar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbAfpActualizar.sql" />
     <Build Include="dbo\Tables\TbCandidatoTelefono.sql" />
     <Build Include="dbo\Tables\TbCandidatoContacto.sql" />
@@ -375,5 +373,7 @@
     <Build Include="dbo\Stored Procedures\SpTbMovilidadInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbMovilidadEliminar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbMovilidadActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbUsuarioObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaEliminar_1.sql" />
   </ItemGroup>
 </Project>

@@ -63,13 +63,13 @@
             this.dgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAsistencias.Location = new System.Drawing.Point(3, 22);
             this.dgvAsistencias.Name = "dgvAsistencias";
-            this.dgvAsistencias.Size = new System.Drawing.Size(747, 191);
+            this.dgvAsistencias.Size = new System.Drawing.Size(875, 191);
             this.dgvAsistencias.TabIndex = 0;
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCerrar.Location = new System.Drawing.Point(644, 5);
+            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerrar.Location = new System.Drawing.Point(772, 5);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 18;
@@ -91,7 +91,7 @@
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(759, 389);
+            this.tlpPrincipal.Size = new System.Drawing.Size(887, 389);
             this.tlpPrincipal.TabIndex = 19;
             // 
             // pnlInferior
@@ -100,7 +100,7 @@
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInferior.Location = new System.Drawing.Point(3, 342);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(753, 44);
+            this.pnlInferior.Size = new System.Drawing.Size(881, 44);
             this.pnlInferior.TabIndex = 1;
             // 
             // pnlSuperior
@@ -114,7 +114,7 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSuperior.Location = new System.Drawing.Point(3, 93);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(753, 243);
+            this.pnlSuperior.Size = new System.Drawing.Size(881, 243);
             this.pnlSuperior.TabIndex = 0;
             // 
             // lblTituloAsistencias
@@ -126,7 +126,7 @@
             this.lblTituloAsistencias.ForeColor = System.Drawing.Color.White;
             this.lblTituloAsistencias.Location = new System.Drawing.Point(3, 0);
             this.lblTituloAsistencias.Name = "lblTituloAsistencias";
-            this.lblTituloAsistencias.Size = new System.Drawing.Size(747, 19);
+            this.lblTituloAsistencias.Size = new System.Drawing.Size(875, 19);
             this.lblTituloAsistencias.TabIndex = 80;
             this.lblTituloAsistencias.Text = "Todas las Asistencias";
             this.lblTituloAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -134,7 +134,7 @@
             // txtNroRegistros
             // 
             this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNroRegistros.Location = new System.Drawing.Point(676, 219);
+            this.txtNroRegistros.Location = new System.Drawing.Point(804, 219);
             this.txtNroRegistros.Name = "txtNroRegistros";
             this.txtNroRegistros.ReadOnly = true;
             this.txtNroRegistros.Size = new System.Drawing.Size(74, 20);
@@ -146,7 +146,7 @@
             // 
             this.lblNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNroRegistros.AutoSize = true;
-            this.lblNroRegistros.Location = new System.Drawing.Point(590, 222);
+            this.lblNroRegistros.Location = new System.Drawing.Point(718, 222);
             this.lblNroRegistros.Name = "lblNroRegistros";
             this.lblNroRegistros.Size = new System.Drawing.Size(80, 13);
             this.lblNroRegistros.TabIndex = 78;
@@ -179,7 +179,7 @@
             this.pnlCabecera.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCabecera.Location = new System.Drawing.Point(3, 3);
             this.pnlCabecera.Name = "pnlCabecera";
-            this.pnlCabecera.Size = new System.Drawing.Size(753, 84);
+            this.pnlCabecera.Size = new System.Drawing.Size(881, 84);
             this.pnlCabecera.TabIndex = 2;
             // 
             // grpFiltro
@@ -195,7 +195,7 @@
             this.grpFiltro.Controls.Add(this.lblEmpleado);
             this.grpFiltro.Location = new System.Drawing.Point(3, 3);
             this.grpFiltro.Name = "grpFiltro";
-            this.grpFiltro.Size = new System.Drawing.Size(747, 75);
+            this.grpFiltro.Size = new System.Drawing.Size(875, 75);
             this.grpFiltro.TabIndex = 40;
             this.grpFiltro.TabStop = false;
             this.grpFiltro.Text = "Filtros";
@@ -205,7 +205,7 @@
             this.cboHorario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboHorario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboHorario.FormattingEnabled = true;
-            this.cboHorario.Location = new System.Drawing.Point(621, 45);
+            this.cboHorario.Location = new System.Drawing.Point(749, 45);
             this.cboHorario.Name = "cboHorario";
             this.cboHorario.Size = new System.Drawing.Size(114, 21);
             this.cboHorario.TabIndex = 79;
@@ -215,7 +215,7 @@
             // 
             this.lblHorario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHorario.AutoSize = true;
-            this.lblHorario.Location = new System.Drawing.Point(552, 48);
+            this.lblHorario.Location = new System.Drawing.Point(680, 48);
             this.lblHorario.Name = "lblHorario";
             this.lblHorario.Size = new System.Drawing.Size(47, 13);
             this.lblHorario.TabIndex = 78;
@@ -252,10 +252,12 @@
             // 
             // txtEmpleadoNombres
             // 
+            this.txtEmpleadoNombres.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmpleadoNombres.Location = new System.Drawing.Point(197, 19);
             this.txtEmpleadoNombres.Name = "txtEmpleadoNombres";
             this.txtEmpleadoNombres.ReadOnly = true;
-            this.txtEmpleadoNombres.Size = new System.Drawing.Size(538, 20);
+            this.txtEmpleadoNombres.Size = new System.Drawing.Size(666, 20);
             this.txtEmpleadoNombres.TabIndex = 72;
             this.txtEmpleadoNombres.Text = "Paterno Materno, Nombres";
             // 
@@ -272,7 +274,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 389);
+            this.ClientSize = new System.Drawing.Size(887, 389);
             this.Controls.Add(this.tlpPrincipal);
             this.Name = "FrmPlanillaDetalleAsistencia";
             this.Text = "Detalle de la Asistencia en Planilla";

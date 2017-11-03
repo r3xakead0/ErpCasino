@@ -75,7 +75,7 @@
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPrincipal.Size = new System.Drawing.Size(445, 501);
             this.tlpPrincipal.TabIndex = 16;
             // 
@@ -87,7 +87,7 @@
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(439, 435);
+            this.pnlPrincipal.Size = new System.Drawing.Size(439, 445);
             this.pnlPrincipal.TabIndex = 16;
             // 
             // grpDetalleCuota
@@ -100,7 +100,7 @@
             this.grpDetalleCuota.Controls.Add(this.txtMontoCuota);
             this.grpDetalleCuota.Controls.Add(this.lblMontoCuota);
             this.grpDetalleCuota.Controls.Add(this.lblFechaCuota);
-            this.grpDetalleCuota.Location = new System.Drawing.Point(3, 344);
+            this.grpDetalleCuota.Location = new System.Drawing.Point(3, 354);
             this.grpDetalleCuota.Name = "grpDetalleCuota";
             this.grpDetalleCuota.Size = new System.Drawing.Size(433, 82);
             this.grpDetalleCuota.TabIndex = 41;
@@ -181,7 +181,7 @@
             this.grpListaCuotas.Controls.Add(this.dgvCuotas);
             this.grpListaCuotas.Location = new System.Drawing.Point(3, 163);
             this.grpListaCuotas.Name = "grpListaCuotas";
-            this.grpListaCuotas.Size = new System.Drawing.Size(433, 175);
+            this.grpListaCuotas.Size = new System.Drawing.Size(433, 185);
             this.grpListaCuotas.TabIndex = 40;
             this.grpListaCuotas.TabStop = false;
             this.grpListaCuotas.Text = "Lista de Cuotas";
@@ -190,7 +190,7 @@
             // 
             this.btnCuotaEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCuotaEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCuotaEliminar.Location = new System.Drawing.Point(12, 146);
+            this.btnCuotaEliminar.Location = new System.Drawing.Point(12, 156);
             this.btnCuotaEliminar.Name = "btnCuotaEliminar";
             this.btnCuotaEliminar.Size = new System.Drawing.Size(95, 23);
             this.btnCuotaEliminar.TabIndex = 27;
@@ -201,7 +201,7 @@
             // txtCantidadCuotas
             // 
             this.txtCantidadCuotas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCantidadCuotas.Location = new System.Drawing.Point(359, 149);
+            this.txtCantidadCuotas.Location = new System.Drawing.Point(359, 159);
             this.txtCantidadCuotas.Name = "txtCantidadCuotas";
             this.txtCantidadCuotas.ReadOnly = true;
             this.txtCantidadCuotas.Size = new System.Drawing.Size(63, 20);
@@ -213,7 +213,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(284, 152);
+            this.label1.Location = new System.Drawing.Point(284, 162);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 24;
@@ -227,7 +227,7 @@
             this.dgvCuotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCuotas.Location = new System.Drawing.Point(12, 19);
             this.dgvCuotas.Name = "dgvCuotas";
-            this.dgvCuotas.Size = new System.Drawing.Size(410, 124);
+            this.dgvCuotas.Size = new System.Drawing.Size(410, 134);
             this.dgvCuotas.TabIndex = 0;
             // 
             // grpDatosPrestamo
@@ -346,15 +346,15 @@
             this.pnlInferior.Controls.Add(this.BtnSave);
             this.pnlInferior.Controls.Add(this.BtnCancel);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInferior.Location = new System.Drawing.Point(3, 444);
+            this.pnlInferior.Location = new System.Drawing.Point(3, 454);
             this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(439, 54);
+            this.pnlInferior.Size = new System.Drawing.Size(439, 44);
             this.pnlInferior.TabIndex = 17;
             // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(325, 12);
+            this.BtnSave.Location = new System.Drawing.Point(330, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -365,7 +365,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(204, 12);
+            this.BtnCancel.Location = new System.Drawing.Point(224, 5);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;

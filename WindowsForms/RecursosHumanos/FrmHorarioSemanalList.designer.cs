@@ -47,8 +47,8 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNuevo.Location = new System.Drawing.Point(248, 10);
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.Location = new System.Drawing.Point(249, 5);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 30);
             this.btnNuevo.TabIndex = 16;
@@ -58,8 +58,8 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEditar.Location = new System.Drawing.Point(130, 10);
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.Location = new System.Drawing.Point(143, 5);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 30);
             this.btnEditar.TabIndex = 17;
@@ -80,8 +80,7 @@
             this.TlpPrincipal.RowCount = 3;
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(364, 382);
             this.TlpPrincipal.TabIndex = 19;
             // 
@@ -91,15 +90,15 @@
             this.PnlBotones.Controls.Add(this.btnNuevo);
             this.PnlBotones.Controls.Add(this.btnEditar);
             this.PnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlBotones.Location = new System.Drawing.Point(3, 325);
+            this.PnlBotones.Location = new System.Drawing.Point(3, 335);
             this.PnlBotones.Name = "PnlBotones";
-            this.PnlBotones.Size = new System.Drawing.Size(358, 54);
+            this.PnlBotones.Size = new System.Drawing.Size(358, 44);
             this.PnlBotones.TabIndex = 1;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEliminar.Location = new System.Drawing.Point(10, 10);
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Location = new System.Drawing.Point(37, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 19;
@@ -113,7 +112,7 @@
             this.PnlGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlGrilla.Location = new System.Drawing.Point(3, 53);
             this.PnlGrilla.Name = "PnlGrilla";
-            this.PnlGrilla.Size = new System.Drawing.Size(358, 266);
+            this.PnlGrilla.Size = new System.Drawing.Size(358, 276);
             this.PnlGrilla.TabIndex = 0;
             // 
             // dgvHorarios
@@ -122,7 +121,7 @@
             this.dgvHorarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHorarios.Location = new System.Drawing.Point(0, 0);
             this.dgvHorarios.Name = "dgvHorarios";
-            this.dgvHorarios.Size = new System.Drawing.Size(358, 266);
+            this.dgvHorarios.Size = new System.Drawing.Size(358, 276);
             this.dgvHorarios.TabIndex = 1;
             this.dgvHorarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHorarios_CellDoubleClick);
             // 

@@ -127,10 +127,8 @@ namespace ErpCasino.WindowsForms.Seguridad
 
                 var lstUiUsuarios = new LN.Usuario(idUsuarioSesion).Listar();
 
-                var source = new BindingSource();
-                source.DataSource = lstUiUsuarios;
-
-                this.dgvUsuarios.DataSource = source;
+                var sorted = new SortableBindingList<BE.UI.Usuario>(lstUiUsuarios);
+                this.dgvUsuarios.DataSource = sorted;
             }
             catch (Exception ex)
             {

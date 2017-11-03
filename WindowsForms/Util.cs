@@ -184,5 +184,10 @@ namespace ErpCasino.WindowsForms
                 && Regex.IsMatch(email, @"^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*");
         }
 
+        public static DateTime ParseStringToDatetime(string dateString, string formatDate = "dd/MM/yyyy")
+        {
+            return DateTime.ParseExact(dateString, formatDate, CultureInfo.InvariantCulture);
+        }
+
     }
 }

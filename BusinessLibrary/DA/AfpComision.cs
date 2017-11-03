@@ -41,26 +41,30 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAfpComisionInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", beAfpComision.IdAfpComision));
-                cmd.Parameters["@IDAFPCOMISION"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", beAfpComision.Anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", beAfpComision.Mes));
-                cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfpComision.Afp.IdAfp));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJEFONDO", beAfpComision.PorcentajeFondo));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJESEGURO", beAfpComision.PorcentajeSeguro));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONFLUJO", beAfpComision.PorcentajeComisionFlujo));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONMIXTA", beAfpComision.PorcentajeComisionMixta));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beAfpComision.IdAfpComision = int.Parse(cmd.Parameters["@IDAfpComision"].Value.ToString());
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", beAfpComision.IdAfpComision));
+                    cmd.Parameters["@IDAFPCOMISION"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", beAfpComision.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", beAfpComision.Mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfpComision.Afp.IdAfp));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJEFONDO", beAfpComision.PorcentajeFondo));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJESEGURO", beAfpComision.PorcentajeSeguro));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONFLUJO", beAfpComision.PorcentajeComisionFlujo));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONMIXTA", beAfpComision.PorcentajeComisionMixta));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beAfpComision.IdAfpComision = int.Parse(cmd.Parameters["@IDAfpComision"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -76,25 +80,27 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAfpComisionActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", beAfpComision.IdAfpComision));
-                cmd.Parameters.Add(new SqlParameter("@ANHO", beAfpComision.Anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", beAfpComision.Mes));
-                cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfpComision.Afp.IdAfp));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJEFONDO", beAfpComision.PorcentajeFondo));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJESEGURO", beAfpComision.PorcentajeSeguro));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONFLUJO", beAfpComision.PorcentajeComisionFlujo));
-                cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONMIXTA", beAfpComision.PorcentajeComisionMixta));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", beAfpComision.IdAfpComision));
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", beAfpComision.Anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", beAfpComision.Mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDAFP", beAfpComision.Afp.IdAfp));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJEFONDO", beAfpComision.PorcentajeFondo));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJESEGURO", beAfpComision.PorcentajeSeguro));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONFLUJO", beAfpComision.PorcentajeComisionFlujo));
+                    cmd.Parameters.Add(new SqlParameter("@PORCENTAJECOMISIONMIXTA", beAfpComision.PorcentajeComisionMixta));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+ 
                 return rowsAffected;
 
             }
@@ -109,17 +115,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbAfpComisionEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", beAfpComision.IdAfpComision));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", beAfpComision.IdAfpComision));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 

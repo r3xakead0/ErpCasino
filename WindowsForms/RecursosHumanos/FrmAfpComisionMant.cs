@@ -81,8 +81,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 source.DataSource = lstUiComisiones;
 
                 this.dgvComisiones.DataSource = source;
-
-                this.FormatoComisiones();
+                
             }
             catch (Exception ex)
             {
@@ -213,16 +212,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.cboMes.SelectedValue = DateTime.Now.Month.ToString();
 
                 this.CargarComisiones();
+                this.FormatoComisiones();
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
             }
         }
-
-        #endregion
-
-        #region Botones
 
         private void BtnSave_Click(object sender, EventArgs e)
         {

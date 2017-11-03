@@ -224,9 +224,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
 
                 var lstUiAsistenciaResumen = new LN.Asistencia().ListarResumen(anho, mes);
+                this.txtNroBonos.Text = lstUiAsistenciaResumen.Count.ToString();
 
                 var sorted = new SortableBindingList<BE.UI.AsistenciaResumen>(lstUiAsistenciaResumen);
-
                 this.dgvAsistencias.DataSource = sorted;
 
                 this.cboAnho.SelectedValue = anho.ToString();

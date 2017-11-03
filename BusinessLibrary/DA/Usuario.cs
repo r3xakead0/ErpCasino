@@ -11,57 +11,44 @@ namespace ErpCasino.BusinessLibrary.DA
     {
 
 
-        public bool Validar(ref BE.Usuario beUsuario)
+        public BE.Usuario Validar(string username, string password)
         {
-            bool flag = false;
+            BE.Usuario beUsuario = null;
             try
             {
                 string sp = "SpTbUsuarioValidar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@USUARIO", beUsuario.Username));
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@CONTRASENHA", beUsuario.Password));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beUsuario, dr);
-                    flag = true;
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@USUARIO", username));
+                    cmd.Parameters.Add(new SqlParameter("@CONTRASENHA", password));
+    
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        beUsuario = new BE.Usuario();
+
+                        beUsuario.IdUsuario = reader["IdUsuario"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuario"].ToString());
+                        beUsuario.Username = reader["Usuario"] == DBNull.Value ? "" : reader["Usuario"].ToString();
+                        beUsuario.Nombre = reader["Nombre"] == DBNull.Value ? "" : reader["Nombre"].ToString();
+                        beUsuario.Email = reader["Email"] == DBNull.Value ? "" : reader["Email"].ToString();
+                        beUsuario.Password = reader["Contrasenha"] == DBNull.Value ? "" : reader["Contrasenha"].ToString();
+                        beUsuario.Bloqueado = reader["Bloqueado"] == DBNull.Value ? false : bool.Parse(reader["Bloqueado"].ToString());
+                        beUsuario.Activo = reader["Activo"] == DBNull.Value ? false : bool.Parse(reader["Activo"].ToString());
+                        beUsuario.IdUsuarioCreador = reader["IdUsuarioCreador"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuarioCreador"].ToString());
+                        beUsuario.FechaCreacion = reader["FechaCreacion"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaCreacion"].ToString());
+                        beUsuario.IdUsuarioModificador = reader["IdUsuarioModificador"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuarioModificador"].ToString());
+                        beUsuario.FechaModificacion = reader["FechaModificacion"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(reader["FechaModificacion"].ToString());
+                        
+                    }
                 }
-
-                return flag;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void Cargar(ref BE.Usuario beUsuario, DataRow dr)
-        {
-
-            try
-            {
-
-                beUsuario.IdUsuario = dr["IdUsuario"] == DBNull.Value ? 0 : int.Parse(dr["IdUsuario"].ToString());
-                beUsuario.Username = dr["Usuario"] == DBNull.Value ? "" : dr["Usuario"].ToString();
-                beUsuario.Nombre = dr["Nombre"] == DBNull.Value ? "" : dr["Nombre"].ToString();
-                beUsuario.Email = dr["Email"] == DBNull.Value ? "" : dr["Email"].ToString();
-                beUsuario.Password = dr["Contrasenha"] == DBNull.Value ? "" : dr["Contrasenha"].ToString();
-                beUsuario.Bloqueado = dr["Bloqueado"] == DBNull.Value ? false : bool.Parse(dr["Bloqueado"].ToString());
-                beUsuario.Activo = dr["Activo"] == DBNull.Value ? false : bool.Parse(dr["Activo"].ToString());
-                beUsuario.IdUsuarioCreador = dr["IdUsuarioCreador"] == DBNull.Value ? 0 : int.Parse(dr["IdUsuarioCreador"].ToString());
-                beUsuario.FechaCreacion = dr["FechaCreacion"] == DBNull.Value ? DateTime.Now : DateTime.Parse(dr["FechaCreacion"].ToString());
-                beUsuario.IdUsuarioModificador = dr["IdUsuarioModificador"] == DBNull.Value ? 0 : int.Parse(dr["IdUsuarioModificador"].ToString());
-                beUsuario.FechaModificacion = dr["FechaModificacion"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(dr["FechaModificacion"].ToString());
+                  
+                return beUsuario;
 
             }
             catch (Exception ex)
@@ -69,32 +56,35 @@ namespace ErpCasino.BusinessLibrary.DA
                 throw ex;
             }
         }
-
+        
         public int Insertar(ref BE.Usuario beUsuario)
         {
             try
             {
                 string sp = "SpTbUsuarioInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", beUsuario.IdUsuario));
-                cmd.Parameters["@IDUSUARIO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@USUARIO", beUsuario.Username));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beUsuario.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@EMAIL", beUsuario.Email));
-                cmd.Parameters.Add(new SqlParameter("@CONTRASENHA", beUsuario.Password));
-                cmd.Parameters.Add(new SqlParameter("@BLOQUEADO", beUsuario.Bloqueado));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beUsuario.Activo));
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIOCREADOR", beUsuario.IdUsuarioCreador));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                beUsuario.IdUsuario = int.Parse(cmd.Parameters["@IDUSUARIO"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", beUsuario.IdUsuario));
+                    cmd.Parameters["@IDUSUARIO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@USUARIO", beUsuario.Username));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beUsuario.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@EMAIL", beUsuario.Email));
+                    cmd.Parameters.Add(new SqlParameter("@CONTRASENHA", beUsuario.Password));
+                    cmd.Parameters.Add(new SqlParameter("@BLOQUEADO", beUsuario.Bloqueado));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beUsuario.Activo));
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIOCREADOR", beUsuario.IdUsuarioCreador));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    beUsuario.IdUsuario = int.Parse(cmd.Parameters["@IDUSUARIO"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -105,30 +95,32 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public int Actualizar(ref BE.Usuario beUsuario)
+        public int Actualizar(BE.Usuario beUsuario)
         {
             try
             {
                 string sp = "SpTbUsuarioActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", beUsuario.IdUsuario));
-                cmd.Parameters.Add(new SqlParameter("@USUARIO", beUsuario.Username));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", beUsuario.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@EMAIL", beUsuario.Email));
-                cmd.Parameters.Add(new SqlParameter("@CONTRASENHA", beUsuario.Password));
-                cmd.Parameters.Add(new SqlParameter("@BLOQUEADO", beUsuario.Bloqueado));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", beUsuario.Activo));
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIOMODIFICADOR", beUsuario.IdUsuarioModificador));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", beUsuario.IdUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@USUARIO", beUsuario.Username));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", beUsuario.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@EMAIL", beUsuario.Email));
+                    cmd.Parameters.Add(new SqlParameter("@CONTRASENHA", beUsuario.Password));
+                    cmd.Parameters.Add(new SqlParameter("@BLOQUEADO", beUsuario.Bloqueado));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", beUsuario.Activo));
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIOMODIFICADOR", beUsuario.IdUsuarioModificador));
+
+                    rowsAffected += cmd.ExecuteNonQuery();
+                }
+                   
                 return rowsAffected;
 
             }
@@ -143,18 +135,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbUsuarioEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", idUsuario));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", idUsuario));
 
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                   
                 return rowsAffected;
 
             }
@@ -173,20 +166,33 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbUsuarioListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                foreach (DataRow dr in dt.Rows)
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    var beUsuario = new BE.Usuario();
-                    this.Cargar(ref beUsuario, dr);
-                    lstBeUsuarios.Add(beUsuario);
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var beUsuario = new BE.Usuario();
+
+                        beUsuario.IdUsuario = reader["IdUsuario"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuario"].ToString());
+                        beUsuario.Username = reader["Usuario"] == DBNull.Value ? "" : reader["Usuario"].ToString();
+                        beUsuario.Nombre = reader["Nombre"] == DBNull.Value ? "" : reader["Nombre"].ToString();
+                        beUsuario.Email = reader["Email"] == DBNull.Value ? "" : reader["Email"].ToString();
+                        beUsuario.Password = reader["Contrasenha"] == DBNull.Value ? "" : reader["Contrasenha"].ToString();
+                        beUsuario.Bloqueado = reader["Bloqueado"] == DBNull.Value ? false : bool.Parse(reader["Bloqueado"].ToString());
+                        beUsuario.Activo = reader["Activo"] == DBNull.Value ? false : bool.Parse(reader["Activo"].ToString());
+                        beUsuario.IdUsuarioCreador = reader["IdUsuarioCreador"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuarioCreador"].ToString());
+                        beUsuario.FechaCreacion = reader["FechaCreacion"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaCreacion"].ToString());
+                        beUsuario.IdUsuarioModificador = reader["IdUsuarioModificador"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuarioModificador"].ToString());
+                        beUsuario.FechaModificacion = reader["FechaModificacion"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(reader["FechaModificacion"].ToString());
+
+                        lstBeUsuarios.Add(beUsuario);
+                    }
+
                 }
 
                 return lstBeUsuarios;
@@ -198,31 +204,42 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public bool Obtener(ref BE.Usuario beUsuario)
+        public BE.Usuario Obtener(int idUsuario)
         {
-            bool flag = false;
+            BE.Usuario beUsuario = null;
             try
             {
                 string sp = "SpTbUsuarioObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@IDUSUARIO", beUsuario.IdUsuario));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beUsuario, dr);
-                    flag = true;
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIO", idUsuario));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        beUsuario = new BE.Usuario();
+
+                        beUsuario.IdUsuario = reader["IdUsuario"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuario"].ToString());
+                        beUsuario.Username = reader["Usuario"] == DBNull.Value ? "" : reader["Usuario"].ToString();
+                        beUsuario.Nombre = reader["Nombre"] == DBNull.Value ? "" : reader["Nombre"].ToString();
+                        beUsuario.Email = reader["Email"] == DBNull.Value ? "" : reader["Email"].ToString();
+                        beUsuario.Password = reader["Contrasenha"] == DBNull.Value ? "" : reader["Contrasenha"].ToString();
+                        beUsuario.Bloqueado = reader["Bloqueado"] == DBNull.Value ? false : bool.Parse(reader["Bloqueado"].ToString());
+                        beUsuario.Activo = reader["Activo"] == DBNull.Value ? false : bool.Parse(reader["Activo"].ToString());
+                        beUsuario.IdUsuarioCreador = reader["IdUsuarioCreador"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuarioCreador"].ToString());
+                        beUsuario.FechaCreacion = reader["FechaCreacion"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaCreacion"].ToString());
+                        beUsuario.IdUsuarioModificador = reader["IdUsuarioModificador"] == DBNull.Value ? 0 : int.Parse(reader["IdUsuarioModificador"].ToString());
+                        beUsuario.FechaModificacion = reader["FechaModificacion"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(reader["FechaModificacion"].ToString());
+
+                    }
                 }
 
-                return flag;
+                return beUsuario;
 
             }
             catch (Exception ex)

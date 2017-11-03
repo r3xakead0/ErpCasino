@@ -120,24 +120,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (this.dgvVacaciones.CurrentRow != null)
-                {
-                    var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
-
-                    this.Editar(uiVacacion);
-                }
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try

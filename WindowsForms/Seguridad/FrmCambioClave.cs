@@ -65,8 +65,8 @@ namespace ErpCasino.WindowsForms.Seguridad
                 uiUsuario.Password = claveNueva;
 
                 var lnUsuario = new LN.Usuario(idUsuarioSesion);
-                bool existe = lnUsuario.Validar(ref uiUsuario);
-                if (!existe)
+                var beUsuario = lnUsuario.Validar(uiUsuario.Username, uiUsuario.Password);
+                if (beUsuario == null)
                 {
                     this.txtClaveActual.Focus();
                     throw new Exception("La clave actual es incorrecta");

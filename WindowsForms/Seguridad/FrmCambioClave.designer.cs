@@ -56,7 +56,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(315, 177);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(315, 172);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // panel1
@@ -70,7 +70,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(309, 121);
+            this.panel1.Size = new System.Drawing.Size(309, 116);
             this.panel1.TabIndex = 16;
             // 
             // lblClaveActual
@@ -91,6 +91,7 @@
             this.txtClaveActual.PasswordChar = '*';
             this.txtClaveActual.Size = new System.Drawing.Size(127, 20);
             this.txtClaveActual.TabIndex = 17;
+            this.txtClaveActual.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblClaveNueva
             // 
@@ -110,6 +111,7 @@
             this.txtClaveNueva.PasswordChar = '*';
             this.txtClaveNueva.Size = new System.Drawing.Size(127, 20);
             this.txtClaveNueva.TabIndex = 20;
+            this.txtClaveNueva.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblClaveRepetir
             // 
@@ -129,13 +131,14 @@
             this.txtClaveRepetir.PasswordChar = '*';
             this.txtClaveRepetir.Size = new System.Drawing.Size(127, 20);
             this.txtClaveRepetir.TabIndex = 22;
+            this.txtClaveRepetir.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.BtnSave);
             this.panel2.Controls.Add(this.BtnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 130);
+            this.panel2.Location = new System.Drawing.Point(3, 125);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(309, 44);
             this.panel2.TabIndex = 17;
@@ -166,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 177);
+            this.ClientSize = new System.Drawing.Size(315, 172);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "FrmCambioClave";

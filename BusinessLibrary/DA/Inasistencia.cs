@@ -14,30 +14,32 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbInasistenciaInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
 
-                cmd.Parameters.Add(new SqlParameter("@IDINASISTENCIA", BeInasistencia.IdInasistencia));
-                cmd.Parameters["@IDINASISTENCIA"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", BeInasistencia.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", BeInasistencia.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@FECHAHORAENTRADA", BeInasistencia.FechaHoraEntrada));
-                cmd.Parameters.Add(new SqlParameter("@FECHAHORASALIDA", BeInasistencia.FechaHoraSalida));
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIOCREADOR", BeInasistencia.IdUsuarioCreador));
-                cmd.Parameters.Add(new SqlParameter("@FECHACREACION", DateTime.Now));
-                cmd.Parameters.Add(new SqlParameter("@TIPO", BeInasistencia.Tipo));
-                cmd.Parameters.Add(new SqlParameter("@ASUNTO", BeInasistencia.Asunto));
-                cmd.Parameters.Add(new SqlParameter("@DETALLE", BeInasistencia.Detalle));
-                cmd.Parameters.Add(new SqlParameter("@CITT", BeInasistencia.Certificado));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                BeInasistencia.IdInasistencia = int.Parse(cmd.Parameters["@IDINASISTENCIA"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDINASISTENCIA", BeInasistencia.IdInasistencia));
+                    cmd.Parameters["@IDINASISTENCIA"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", BeInasistencia.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", BeInasistencia.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAHORAENTRADA", BeInasistencia.FechaHoraEntrada));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAHORASALIDA", BeInasistencia.FechaHoraSalida));
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIOCREADOR", BeInasistencia.IdUsuarioCreador));
+                    cmd.Parameters.Add(new SqlParameter("@FECHACREACION", DateTime.Now));
+                    cmd.Parameters.Add(new SqlParameter("@TIPO", BeInasistencia.Tipo));
+                    cmd.Parameters.Add(new SqlParameter("@ASUNTO", BeInasistencia.Asunto));
+                    cmd.Parameters.Add(new SqlParameter("@DETALLE", BeInasistencia.Detalle));
+                    cmd.Parameters.Add(new SqlParameter("@CITT", BeInasistencia.Certificado));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    BeInasistencia.IdInasistencia = int.Parse(cmd.Parameters["@IDINASISTENCIA"].Value.ToString());
+
+                }
 
                 return (rowsAffected > 0);
 
@@ -53,28 +55,29 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbInasistenciaActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
- 
-                cmd.Parameters.Add(new SqlParameter("@IDINASISTENCIA", BeInasistencia.IdInasistencia));
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", BeInasistencia.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", BeInasistencia.Fecha));
-                cmd.Parameters.Add(new SqlParameter("@FECHAHORAENTRADA", BeInasistencia.FechaHoraEntrada));
-                cmd.Parameters.Add(new SqlParameter("@FECHAHORASALIDA", BeInasistencia.FechaHoraSalida));
-                cmd.Parameters.Add(new SqlParameter("@IDUSUARIOMODIFICADOR", BeInasistencia.IdUsuarioModificador));
-                cmd.Parameters.Add(new SqlParameter("@FECHAMODIFICACION", DateTime.Now));
-                cmd.Parameters.Add(new SqlParameter("@TIPO", BeInasistencia.Tipo));
-                cmd.Parameters.Add(new SqlParameter("@ASUNTO", BeInasistencia.Asunto));
-                cmd.Parameters.Add(new SqlParameter("@DETALLE", BeInasistencia.Detalle));
-                cmd.Parameters.Add(new SqlParameter("@CITT", BeInasistencia.Certificado));
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDINASISTENCIA", BeInasistencia.IdInasistencia));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", BeInasistencia.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAREGISTRO", BeInasistencia.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAHORAENTRADA", BeInasistencia.FechaHoraEntrada));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAHORASALIDA", BeInasistencia.FechaHoraSalida));
+                    cmd.Parameters.Add(new SqlParameter("@IDUSUARIOMODIFICADOR", BeInasistencia.IdUsuarioModificador));
+                    cmd.Parameters.Add(new SqlParameter("@FECHAMODIFICACION", DateTime.Now));
+                    cmd.Parameters.Add(new SqlParameter("@TIPO", BeInasistencia.Tipo));
+                    cmd.Parameters.Add(new SqlParameter("@ASUNTO", BeInasistencia.Asunto));
+                    cmd.Parameters.Add(new SqlParameter("@DETALLE", BeInasistencia.Detalle));
+                    cmd.Parameters.Add(new SqlParameter("@CITT", BeInasistencia.Certificado));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return (rowsAffected > 0);
 
@@ -91,23 +94,26 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpListarInasistencias";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
-                cmd.Parameters.Add(new SqlParameter("@MES", mes));
-                if (idSala > 0)
-                    cmd.Parameters.Add(new SqlParameter("@IDSALA", idSala));
-                else
-                    cmd.Parameters.Add(new SqlParameter("@IDSALA", DBNull.Value));
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
 
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+                    if (idSala > 0)
+                        cmd.Parameters.Add(new SqlParameter("@IDSALA", idSala));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@IDSALA", DBNull.Value));
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);                    
+                    dad.Fill(dt);
+
+                }
+                
                 return dt;
 
             }

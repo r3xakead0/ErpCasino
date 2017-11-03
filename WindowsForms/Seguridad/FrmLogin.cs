@@ -17,13 +17,12 @@ namespace ErpCasino.WindowsForms.Seguridad
         {
             try
             {
-                var uiUsuario = new BE.UI.Usuario()
-                {
-                    Username = this.txtUsuario.Text.Trim(),
-                    Password = this.txtContrasena.Text.Trim()
-                };
+                string username = this.txtUsuario.Text.Trim();
+                string password = this.txtContrasena.Text.Trim();
 
-                if (new LN.Usuario(0).Validar(ref uiUsuario) != true)
+                var uiUsuario = new LN.Usuario(0).Validar(username, password);
+
+                if (uiUsuario == null)
                 {
                     Util.InformationMessage("Usuario o contraseña incorrectas");
                 }
@@ -61,6 +60,18 @@ namespace ErpCasino.WindowsForms.Seguridad
                 {
                     Application.Exit();
                 }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
             }
             catch (Exception ex)
             {

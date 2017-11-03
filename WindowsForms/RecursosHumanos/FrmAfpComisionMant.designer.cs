@@ -88,11 +88,13 @@
             // 
             // cboMes
             // 
+            this.cboMes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMes.FormattingEnabled = true;
-            this.cboMes.Location = new System.Drawing.Point(174, 23);
+            this.cboMes.Location = new System.Drawing.Point(189, 23);
             this.cboMes.Name = "cboMes";
-            this.cboMes.Size = new System.Drawing.Size(182, 21);
+            this.cboMes.Size = new System.Drawing.Size(358, 21);
             this.cboMes.TabIndex = 50;
             this.cboMes.SelectionChangeCommitted += new System.EventHandler(this.CbxAnhoMes_SelectionChangeCommitted);
             // 
@@ -102,14 +104,14 @@
             this.cboAnho.FormattingEnabled = true;
             this.cboAnho.Location = new System.Drawing.Point(105, 23);
             this.cboAnho.Name = "cboAnho";
-            this.cboAnho.Size = new System.Drawing.Size(63, 21);
+            this.cboAnho.Size = new System.Drawing.Size(78, 21);
             this.cboAnho.TabIndex = 49;
             this.cboAnho.SelectionChangeCommitted += new System.EventHandler(this.CbxAnhoMes_SelectionChangeCommitted);
             // 
             // LblFechaHora
             // 
             this.LblFechaHora.AutoSize = true;
-            this.LblFechaHora.Location = new System.Drawing.Point(9, 26);
+            this.LblFechaHora.Location = new System.Drawing.Point(6, 26);
             this.LblFechaHora.Name = "LblFechaHora";
             this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
             this.LblFechaHora.TabIndex = 18;

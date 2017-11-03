@@ -29,23 +29,26 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbBancoInsertar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDBANCO", oBeTbBanco.IdBanco));
-                cmd.Parameters["@IDBANCO"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", oBeTbBanco.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeTbBanco.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeTbBanco.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeTbBanco.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
-                oBeTbBanco.IdBanco = int.Parse(cmd.Parameters["@IDBANCO"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDBANCO", oBeTbBanco.IdBanco));
+                    cmd.Parameters["@IDBANCO"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", oBeTbBanco.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeTbBanco.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeTbBanco.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeTbBanco.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                    oBeTbBanco.IdBanco = int.Parse(cmd.Parameters["@IDBANCO"].Value.ToString());
+
+                }
 
                 return rowsAffected;
 
@@ -61,21 +64,23 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbBancoActualizar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDBANCO", oBeTbBanco.IdBanco));
-                cmd.Parameters.Add(new SqlParameter("@CODIGO", oBeTbBanco.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeTbBanco.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeTbBanco.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeTbBanco.Activo));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@IDBANCO", oBeTbBanco.IdBanco));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", oBeTbBanco.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeTbBanco.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeTbBanco.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeTbBanco.Activo));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
 
                 return rowsAffected;
 
@@ -91,18 +96,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbBancoEliminar";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 int rowsAffected = 0;
-                cnn.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@IDBANCO", oBeTbBanco.IdBanco));
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
 
-                rowsAffected = cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add(new SqlParameter("@IDBANCO", oBeTbBanco.IdBanco));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                    
                 return rowsAffected;
 
             }

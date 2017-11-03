@@ -41,7 +41,7 @@
             this.crvVisorInforme.Name = "crvVisorInforme";
             this.crvVisorInforme.ShowCloseButton = false;
             this.crvVisorInforme.ShowLogo = false;
-            this.crvVisorInforme.Size = new System.Drawing.Size(622, 496);
+            this.crvVisorInforme.Size = new System.Drawing.Size(708, 496);
             this.crvVisorInforme.TabIndex = 0;
             this.crvVisorInforme.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -49,7 +49,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 496);
+            this.ClientSize = new System.Drawing.Size(708, 496);
             this.Controls.Add(this.crvVisorInforme);
             this.Name = "FrmImpresion";
             this.Text = "Vista de Impresión";

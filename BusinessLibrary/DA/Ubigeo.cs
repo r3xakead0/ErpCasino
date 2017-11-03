@@ -32,15 +32,19 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbUbigeoListarDepartamentos";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                }
 
                 return dt;
 
@@ -56,16 +60,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbUbigeoListarProvincias";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@DEPARTAMENTO", beUbigeo.Departamento));
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@DEPARTAMENTO", beUbigeo.Departamento));
+                    dad.Fill(dt);
+
+                }
 
                 return dt;
 
@@ -81,17 +89,20 @@ namespace ErpCasino.BusinessLibrary.DA
             try
             {
                 string sp = "SpTbUbigeoListarDistritos";
-
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@DEPARTAMENTO", beUbigeo.Departamento));
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@PROVINCIA", beUbigeo.Provincia));
-
                 DataTable dt = new DataTable();
-                dad.Fill(dt);
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@DEPARTAMENTO", beUbigeo.Departamento));
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@PROVINCIA", beUbigeo.Provincia));
+                    dad.Fill(dt);
+                }
 
                 return dt;
 
@@ -109,23 +120,27 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbUbigeoObtenerDetalle";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@DEPARTAMENTO", beUbigeo.Departamento));
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@PROVINCIA", beUbigeo.Provincia));
-                dad.SelectCommand.Parameters.Add(new SqlParameter("@DISTRITO", beUbigeo.Distrito));
-
-                DataTable dt = new DataTable();
-                dad.Fill(dt);
-
-                if ((dt.Rows.Count == 1))
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    DataRow dr = dt.Rows[0];
-                    Cargar(ref beUbigeo, ref dr);
-                    flag = true;
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@DEPARTAMENTO", beUbigeo.Departamento));
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@PROVINCIA", beUbigeo.Provincia));
+                    dad.SelectCommand.Parameters.Add(new SqlParameter("@DISTRITO", beUbigeo.Distrito));
+
+                    DataTable dt = new DataTable();
+                    dad.Fill(dt);
+
+                    if ((dt.Rows.Count == 1))
+                    {
+                        DataRow dr = dt.Rows[0];
+                        Cargar(ref beUbigeo, ref dr);
+                        flag = true;
+                    }
                 }
 
                 return flag;

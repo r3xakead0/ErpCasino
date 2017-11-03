@@ -153,53 +153,57 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbCtsListar";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    var beCTS = new BE.CTS();
 
-                    beCTS.IdCts = reader["IdCts"] == DBNull.Value ? 0 : int.Parse(reader["IdCts"].ToString());
-                    beCTS.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
-                    beCTS.Periodo = reader["Periodo"] == DBNull.Value ? 0 : int.Parse(reader["Periodo"].ToString());
-                    beCTS.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
-                    beCTS.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
-                    beCTS.EmpleadoCodigo = reader["EmpleadoCodigo"] == DBNull.Value ? "" : reader["EmpleadoCodigo"].ToString();
-                    beCTS.EmpleadoFechaIngreso = reader["EmpleadoFechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["EmpleadoFechaIngreso"].ToString());
-                    beCTS.EmpleadoSueldo = reader["EmpleadoSueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoSueldo"].ToString());
-                    beCTS.EmpleadoAsigFam = reader["EmpleadoAsigFam"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoAsigFam"].ToString());
-                    beCTS.TotalBonificacion = reader["TotalBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBonificacion"].ToString());
-                    beCTS.TotalHorasExtras = reader["TotalHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalHorasExtras"].ToString());
-                    beCTS.TotalGratificacion = reader["TotalGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalGratificacion"].ToString());
-                    beCTS.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
-                    beCTS.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
-                    beCTS.PromedioGratificacion = reader["PromedioGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioGratificacion"].ToString());
-                    beCTS.ComputableTotal = reader["ComputableTotal"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputableTotal"].ToString());
-                    beCTS.ComputableFechaInicial = reader["ComputableFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaInicial"].ToString());
-                    beCTS.ComputableFechaFinal = reader["ComputableFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaFinal"].ToString());
-                    beCTS.ComputableMeses = reader["ComputableMeses"] == DBNull.Value ? 0 : int.Parse(reader["ComputableMeses"].ToString());
-                    beCTS.ComputableDias = reader["ComputableDias"] == DBNull.Value ? 0 : int.Parse(reader["ComputableDias"].ToString());
-                    beCTS.ComputablePagar = reader["ComputablePagar"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputablePagar"].ToString());
+                    cnn.Open();
 
-                    beCTS.Banco = new BE.Banco()
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        IdBanco = reader["BancoId"] == DBNull.Value ? 0 : int.Parse(reader["BancoId"].ToString()),
-                    };
+                        var beCTS = new BE.CTS();
 
-                    beCTS.Cuenta = reader["BancoCuenta"] == DBNull.Value ? "" : reader["BancoCuenta"].ToString();
+                        beCTS.IdCts = reader["IdCts"] == DBNull.Value ? 0 : int.Parse(reader["IdCts"].ToString());
+                        beCTS.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                        beCTS.Periodo = reader["Periodo"] == DBNull.Value ? 0 : int.Parse(reader["Periodo"].ToString());
+                        beCTS.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
+                        beCTS.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
+                        beCTS.EmpleadoCodigo = reader["EmpleadoCodigo"] == DBNull.Value ? "" : reader["EmpleadoCodigo"].ToString();
+                        beCTS.EmpleadoFechaIngreso = reader["EmpleadoFechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["EmpleadoFechaIngreso"].ToString());
+                        beCTS.EmpleadoSueldo = reader["EmpleadoSueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoSueldo"].ToString());
+                        beCTS.EmpleadoAsigFam = reader["EmpleadoAsigFam"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoAsigFam"].ToString());
+                        beCTS.TotalBonificacion = reader["TotalBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBonificacion"].ToString());
+                        beCTS.TotalHorasExtras = reader["TotalHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalHorasExtras"].ToString());
+                        beCTS.TotalGratificacion = reader["TotalGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalGratificacion"].ToString());
+                        beCTS.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
+                        beCTS.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
+                        beCTS.PromedioGratificacion = reader["PromedioGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioGratificacion"].ToString());
+                        beCTS.ComputableTotal = reader["ComputableTotal"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputableTotal"].ToString());
+                        beCTS.ComputableFechaInicial = reader["ComputableFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaInicial"].ToString());
+                        beCTS.ComputableFechaFinal = reader["ComputableFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaFinal"].ToString());
+                        beCTS.ComputableMeses = reader["ComputableMeses"] == DBNull.Value ? 0 : int.Parse(reader["ComputableMeses"].ToString());
+                        beCTS.ComputableDias = reader["ComputableDias"] == DBNull.Value ? 0 : int.Parse(reader["ComputableDias"].ToString());
+                        beCTS.ComputablePagar = reader["ComputablePagar"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputablePagar"].ToString());
 
-                    beCTS.DepositoFecha = reader["DepositoFecha"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["DepositoFecha"].ToString());
-                    beCTS.DepositoMonto = reader["DepositoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["DepositoMonto"].ToString());
-                    beCTS.DepositoOperacion = reader["DepositoOperacion"] == DBNull.Value ? "" : reader["DepositoOperacion"].ToString();
+                        beCTS.Banco = new BE.Banco()
+                        {
+                            IdBanco = reader["BancoId"] == DBNull.Value ? 0 : int.Parse(reader["BancoId"].ToString()),
+                        };
 
-                    lstCts.Add(beCTS);
+                        beCTS.Cuenta = reader["BancoCuenta"] == DBNull.Value ? "" : reader["BancoCuenta"].ToString();
+
+                        beCTS.DepositoFecha = reader["DepositoFecha"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["DepositoFecha"].ToString());
+                        beCTS.DepositoMonto = reader["DepositoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["DepositoMonto"].ToString());
+                        beCTS.DepositoOperacion = reader["DepositoOperacion"] == DBNull.Value ? "" : reader["DepositoOperacion"].ToString();
+
+                        lstCts.Add(beCTS);
+                    }
+
                 }
-
+                    
                 return lstCts;
 
             }
@@ -216,52 +220,53 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 string sp = "SpTbCtsObtener";
 
-                SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal);
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand(sp, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IDCTS", idCTS));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
                 {
-                    beCTS = new BE.CTS();
+                    cnn.Open();
 
-                    beCTS.IdCts = reader["IdCts"] == DBNull.Value ? 0 : int.Parse(reader["IdCts"].ToString());
-                    beCTS.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
-                    beCTS.Periodo = reader["Periodo"] == DBNull.Value ? 0 : int.Parse(reader["Periodo"].ToString());
-                    beCTS.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
-                    beCTS.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
-                    beCTS.EmpleadoCodigo = reader["EmpleadoCodigo"] == DBNull.Value ? "" : reader["EmpleadoCodigo"].ToString();
-                    beCTS.EmpleadoFechaIngreso = reader["EmpleadoFechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["EmpleadoFechaIngreso"].ToString());
-                    beCTS.EmpleadoSueldo = reader["EmpleadoSueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoSueldo"].ToString());
-                    beCTS.EmpleadoAsigFam = reader["EmpleadoAsigFam"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoAsigFam"].ToString());
-                    beCTS.TotalBonificacion = reader["TotalBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBonificacion"].ToString());
-                    beCTS.TotalHorasExtras = reader["TotalHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalHorasExtras"].ToString());
-                    beCTS.TotalGratificacion = reader["TotalGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalGratificacion"].ToString());
-                    beCTS.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
-                    beCTS.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
-                    beCTS.PromedioGratificacion = reader["PromedioGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioGratificacion"].ToString());
-                    beCTS.ComputableTotal = reader["ComputableTotal"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputableTotal"].ToString());
-                    beCTS.ComputableFechaInicial = reader["ComputableFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaInicial"].ToString());
-                    beCTS.ComputableFechaFinal = reader["ComputableFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaFinal"].ToString());
-                    beCTS.ComputableMeses = reader["ComputableMeses"] == DBNull.Value ? 0 : int.Parse(reader["ComputableMeses"].ToString());
-                    beCTS.ComputableDias = reader["ComputableDias"] == DBNull.Value ? 0 : int.Parse(reader["ComputableDias"].ToString());
-                    beCTS.ComputablePagar = reader["ComputablePagar"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputablePagar"].ToString());
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDCTS", idCTS));
 
-                    beCTS.Banco = new BE.Banco()
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        IdBanco = reader["BancoId"] == DBNull.Value ? 0 : int.Parse(reader["BancoId"].ToString()),
-                    };
+                        beCTS = new BE.CTS();
 
-                    beCTS.Cuenta = reader["BancoCuenta"] == DBNull.Value ? "" : reader["BancoCuenta"].ToString();
+                        beCTS.IdCts = reader["IdCts"] == DBNull.Value ? 0 : int.Parse(reader["IdCts"].ToString());
+                        beCTS.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                        beCTS.Periodo = reader["Periodo"] == DBNull.Value ? 0 : int.Parse(reader["Periodo"].ToString());
+                        beCTS.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
+                        beCTS.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
+                        beCTS.EmpleadoCodigo = reader["EmpleadoCodigo"] == DBNull.Value ? "" : reader["EmpleadoCodigo"].ToString();
+                        beCTS.EmpleadoFechaIngreso = reader["EmpleadoFechaIngreso"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["EmpleadoFechaIngreso"].ToString());
+                        beCTS.EmpleadoSueldo = reader["EmpleadoSueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoSueldo"].ToString());
+                        beCTS.EmpleadoAsigFam = reader["EmpleadoAsigFam"] == DBNull.Value ? 0.0 : double.Parse(reader["EmpleadoAsigFam"].ToString());
+                        beCTS.TotalBonificacion = reader["TotalBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBonificacion"].ToString());
+                        beCTS.TotalHorasExtras = reader["TotalHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalHorasExtras"].ToString());
+                        beCTS.TotalGratificacion = reader["TotalGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalGratificacion"].ToString());
+                        beCTS.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
+                        beCTS.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
+                        beCTS.PromedioGratificacion = reader["PromedioGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioGratificacion"].ToString());
+                        beCTS.ComputableTotal = reader["ComputableTotal"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputableTotal"].ToString());
+                        beCTS.ComputableFechaInicial = reader["ComputableFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaInicial"].ToString());
+                        beCTS.ComputableFechaFinal = reader["ComputableFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["ComputableFechaFinal"].ToString());
+                        beCTS.ComputableMeses = reader["ComputableMeses"] == DBNull.Value ? 0 : int.Parse(reader["ComputableMeses"].ToString());
+                        beCTS.ComputableDias = reader["ComputableDias"] == DBNull.Value ? 0 : int.Parse(reader["ComputableDias"].ToString());
+                        beCTS.ComputablePagar = reader["ComputablePagar"] == DBNull.Value ? 0.0 : double.Parse(reader["ComputablePagar"].ToString());
 
-                    beCTS.DepositoFecha = reader["DepositoFecha"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["DepositoFecha"].ToString());
-                    beCTS.DepositoMonto = reader["DepositoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["DepositoMonto"].ToString());
-                    beCTS.DepositoOperacion = reader["DepositoOperacion"] == DBNull.Value ? "" : reader["DepositoOperacion"].ToString();
+                        beCTS.Banco = new BE.Banco()
+                        {
+                            IdBanco = reader["BancoId"] == DBNull.Value ? 0 : int.Parse(reader["BancoId"].ToString()),
+                        };
 
+                        beCTS.Cuenta = reader["BancoCuenta"] == DBNull.Value ? "" : reader["BancoCuenta"].ToString();
 
+                        beCTS.DepositoFecha = reader["DepositoFecha"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["DepositoFecha"].ToString());
+                        beCTS.DepositoMonto = reader["DepositoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["DepositoMonto"].ToString());
+                        beCTS.DepositoOperacion = reader["DepositoOperacion"] == DBNull.Value ? "" : reader["DepositoOperacion"].ToString();
+
+                    }
                 }
 
                 return beCTS;
