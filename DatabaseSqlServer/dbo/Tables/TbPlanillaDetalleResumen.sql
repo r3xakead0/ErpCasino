@@ -9,6 +9,9 @@
     [SueldoNeto]               DECIMAL (9, 2) NOT NULL,
     [Deduccion]                DECIMAL (9, 2) NOT NULL,
     [SueldoPago]               DECIMAL (9, 2) NOT NULL,
-    CONSTRAINT [PK_TbPlanillaDetalleResumen] PRIMARY KEY CLUSTERED ([IdPlanillaDetalleResumen] ASC)
+    CONSTRAINT [PK_TbPlanillaDetalleResumen] PRIMARY KEY CLUSTERED ([IdPlanillaDetalleResumen] ASC),
+    CONSTRAINT [FK_TbPlanillaDetalleResumen_TbPlanilla] FOREIGN KEY ([IdPlanilla]) REFERENCES [dbo].[TbPlanilla] ([IdPlanilla]) ON DELETE CASCADE
 );
+
+
 

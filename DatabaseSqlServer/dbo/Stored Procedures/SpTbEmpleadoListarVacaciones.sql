@@ -1,4 +1,4 @@
-﻿--EXEC SpTbEmpleadoListarVacaciones '20171030' 
+﻿--EXEC SpTbEmpleadoListarVacaciones '20171101' 
 CREATE PROCEDURE [dbo].[SpTbEmpleadoListarVacaciones]
 @Fecha AS DATE
 AS
@@ -15,5 +15,9 @@ BEGIN
 	AND		T1.Cesado = 0 
 	AND		T1.FechaCese IS NULL
 	AND		DATEDIFF(YEAR, T1.FechaInicio, @Fecha) > 0
+	AND		(T1.FechaUltimaVacacion IS NULL OR DATEDIFF(YEAR, T1.FechaUltimaVacacion, @Fecha) > 0)
+	ORDER BY T0.ApellidoPaterno, 
+			T0.ApellidoMaterno,
+			T0.Nombres
 
 END

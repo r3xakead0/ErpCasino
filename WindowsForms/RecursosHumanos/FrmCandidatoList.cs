@@ -169,6 +169,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     var beCandidato = new LN.Candidato().Obtener(uiCandidato.Id);
                     frmEmpleadoContratar.Contratar(beCandidato);
 
+                    frmEmpleadoContratar.frmCandidatoList = this;
+
                 }
             }
             catch (Exception ex)

@@ -8,6 +8,9 @@
     [BonoHorasExtras]        DECIMAL (9, 4) NOT NULL,
     [DiasCalendario]         INT            NOT NULL,
     [DiasInasistencia]       INT            NOT NULL,
-    CONSTRAINT [PK_TbGratificacionDetalle] PRIMARY KEY CLUSTERED ([IdGratificacionDetalle] ASC)
+    CONSTRAINT [PK_TbGratificacionDetalle] PRIMARY KEY CLUSTERED ([IdGratificacionDetalle] ASC),
+    CONSTRAINT [FK_TbGratificacionDetalle_TbGratificacion] FOREIGN KEY ([IdGratificacion]) REFERENCES [dbo].[TbGratificacion] ([IdGratificacion]) ON DELETE CASCADE
 );
+
+
 

@@ -86,6 +86,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtEmpleadoNombres.Text = beDetalle.EmpleadoNombre;
                     this.txtPeriodo.Text = beDetalle.Periodo;
 
+                    //TimeSpan span = TimeSpan.FromMinutes(minutos);
+                    //span.Tostring("dd:HH:mm");
                     this.txtBonoNocturnoCantidad.Text = beDetalle.BonoNocturnoCantidad.ToString("N2");
                     this.txtBonoNocturno.Text = beDetalle.BonoNocturnoTotal.ToString("N2");
                     this.txtBonoExtrasCantidad.Text = beDetalle.BonoHorasExtrasCantidad.ToString("N2");
@@ -135,7 +137,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {

@@ -177,6 +177,8 @@
     <Compile Include="DA\Sala.cs" />
     <Compile Include="DA\Turno.cs" />
     <Compile Include="DA\ConnectionManager.cs" />
+    <Compile Include="BE\Vacacion.cs" />
+    <Compile Include="DA\Vacacion.cs" />
     <Compile Include="LN\Movilidad.cs" />
     <Compile Include="LN\Vacacion.cs" />
     <Compile Include="LN\Conexion.cs" />

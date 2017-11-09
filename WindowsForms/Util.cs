@@ -3,6 +3,10 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System;
 using System.Globalization;
+using System.Text;
+using System.IO;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace ErpCasino.WindowsForms
 {
@@ -187,6 +191,93 @@ namespace ErpCasino.WindowsForms
         public static DateTime ParseStringToDatetime(string dateString, string formatDate = "dd/MM/yyyy")
         {
             return DateTime.ParseExact(dateString, formatDate, CultureInfo.InvariantCulture);
+        }
+
+        public static void ListToCsv<T>(List<T> list, string filename)
+        {
+            if (list == null || list.Count == 0) return;
+
+            //get type from 0th member
+            Type t = list[0].GetType();
+            string newLine = Environment.NewLine;
+
+            using (var sw = new StreamWriter(filename))
+            {
+                //make a new instance of the class name we figured out to get its props
+                object o = Activator.CreateInstance(t);
+                //gets all properties
+                PropertyInfo[] props = o.GetType().GetProperties();
+
+                //foreach of the properties in class above, write out properties
+                //this is the header row
+                foreach (PropertyInfo pi in props)
+                {
+                    sw.Write(pi.Name.ToUpper() + ",");
+                }
+                sw.Write(newLine);
+
+                //this acts as datarow
+                foreach (T item in list)
+                {
+                    //this acts as datacolumn
+                    foreach (PropertyInfo pi in props)
+                    {
+                        //this is the row+col intersection (the value)
+                        string whatToWrite =
+                            Convert.ToString(item.GetType()
+                                                 .GetProperty(pi.Name)
+                                                 .GetValue(item, null))
+                                .Replace(',', ' ') + ',';
+
+                        sw.Write(whatToWrite);
+
+                    }
+                    sw.Write(newLine);
+                }
+            }
+        }
+        
+        public static void DatagridviewToCsv(DataGridView dGV, string filename)
+        {
+            string stOutput = "";
+            // Export titles:
+            string sHeaders = "";
+
+            for (int j = 0; j < dGV.Columns.Count; j++)
+            {
+                if (dGV.Columns[j].Visible == true)
+                    sHeaders = sHeaders.ToString() + Convert.ToString(dGV.Columns[j].HeaderText) + "\t";
+            }
+            stOutput += sHeaders + "\r\n";
+
+            // Export data.
+            for (int i = 0; i < dGV.RowCount - 1; i++)
+            {
+                string stLine = "";
+
+                for (int j = 0; j < dGV.Rows[i].Cells.Count; j++)
+                {
+                    if (dGV.Columns[j].Visible == true)
+                        stLine = stLine.ToString() + Convert.ToString(dGV.Rows[i].Cells[j].Value) + "\t";
+                }
+
+                stOutput += stLine + "\r\n";
+            }
+
+            Encoding utf16 = Encoding.GetEncoding(1254);
+            byte[] output = utf16.GetBytes(stOutput);
+
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    bw.Write(output, 0, output.Length); //write the encoded file
+                    bw.Flush();
+                    bw.Close();
+                }
+                fs.Close();
+            }
+
         }
 
     }

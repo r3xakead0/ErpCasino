@@ -116,18 +116,22 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 uiAdelanto.Monto = monto;
 
                 uiAdelanto.CodigoEmpleado = codEmpleado;
-                var beTrabajador = lstBeTrabajadores.SingleOrDefault(x => x.Codigo.Equals(codEmpleado));
+                var beTrabajador = lstBeTrabajadores.FirstOrDefault(x => x.Codigo.Equals(codEmpleado));
                 if (beTrabajador != null)
                     uiAdelanto.NombreCompletoEmpleado = beTrabajador.Nombre;
+                beTrabajador = null;
 
                 if (beTipoAdelanto.Codigo == this.codTipoBanco)
                 {
                     var beBanco = lstBeBancos.FirstOrDefault(x => x.Codigo.Equals(codBanco));
+
                     if (beBanco != null)
                     {
                         uiAdelanto.IdBanco = beBanco.IdBanco;
                         uiAdelanto.NombreBanco = beBanco.Nombre;
                     }
+                    beBanco = null;
+
                     uiAdelanto.Numero = nroOperacion;
                 }
 

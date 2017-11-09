@@ -609,6 +609,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                     if (horasAsistencia > 0)
                     {
+
                         this.ObtenerMinutosAsistencia(fechaHoraNocturnoInicio,
                         fechaHoraNocturnoFinal,
                         fechaHoraHorarioInicio,

@@ -36,6 +36,7 @@ namespace ErpCasino.BusinessLibrary.DA
             {
                 throw ex;
             }
+
         }
 
         public bool Existe(int anho, int mes)

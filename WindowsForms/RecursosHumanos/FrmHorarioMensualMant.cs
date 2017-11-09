@@ -248,7 +248,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 uiHorario.FechaHoraInicio = fechaHoraInicio;
                 uiHorario.FechaHoraFinal = fechaHoraFin;
 
-                var uiCargo = lstUiCargos.SingleOrDefault(x => x.Nombre.Equals(nomCargo));
+                var uiCargo = lstUiCargos.FirstOrDefault(x => x.Nombre.Equals(nomCargo));
                 if (uiCargo != null)
                 {
                     uiHorario.CargoId = uiCargo.Id;
@@ -258,7 +258,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 uiHorario.Fecha = fechaHorario;
 
                 uiHorario.EmpleadoCodigo = codEmpleado;
-                var beTrabajador = lstTrabajadores.SingleOrDefault(x => x.Codigo.Equals(codEmpleado));
+                var beTrabajador = lstTrabajadores.FirstOrDefault(x => x.Codigo.Equals(codEmpleado));
                 if (beTrabajador != null)
                     uiHorario.EmpleadoNombreCompleto = beTrabajador.Nombre;
 

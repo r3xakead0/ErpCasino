@@ -8,7 +8,7 @@ using System.Linq;
 namespace ErpCasino.BusinessLibrary.LN
 {
 
-    public class Record
+    public class Record 
     {
 
         private enum Tipo
@@ -45,7 +45,30 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        
+        public BE.Record ObtenerComisionAFP(string codigo)
+        {
+
+            try
+            {
+
+                var daCategoria = new DA.Categoria();
+
+                DataTable dt = daCategoria.Listar((int)Tipo.ComisionAFP);
+
+                List<BE.Record> lstRecord = this.Convertir(dt);
+
+                var beRecord = lstRecord.FirstOrDefault(obj => obj.Codigo == codigo);
+
+                return beRecord;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public List<BE.Record> ListarTiposInasistencias()
         {
 
@@ -81,7 +104,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
-                var beRecord = lstRecord.SingleOrDefault(obj => obj.Codigo == codigo);
+                var beRecord = lstRecord.FirstOrDefault(obj => obj.Codigo == codigo);
 
                 return beRecord;
 
@@ -127,7 +150,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
-                var beRecord = lstRecord.SingleOrDefault(obj => obj.Codigo == codigo);
+                var beRecord = lstRecord.FirstOrDefault(obj => obj.Codigo == codigo);
 
                 return beRecord;
 
@@ -173,7 +196,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
-                var beRecord = lstRecord.SingleOrDefault(obj => obj.Codigo == codigo);
+                var beRecord = lstRecord.FirstOrDefault(obj => obj.Codigo == codigo);
 
                 return beRecord;
 
@@ -196,7 +219,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
-                var beRecord = lstRecord.SingleOrDefault(obj => obj.Codigo == codigo);
+                var beRecord = lstRecord.FirstOrDefault(obj => obj.Codigo == codigo);
 
                 return beRecord;
 
@@ -242,7 +265,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
-                var beRecord = lstRecord.SingleOrDefault(obj => obj.Codigo == codigo);
+                var beRecord = lstRecord.FirstOrDefault(obj => obj.Codigo == codigo);
 
                 return beRecord;
 
@@ -313,6 +336,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
             return lst;
         }
+
 
     }
 

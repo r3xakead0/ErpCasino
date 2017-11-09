@@ -7,7 +7,7 @@ using System;
 namespace ErpCasino.BusinessLibrary.LN
 {
 
-    public class Empleado
+    public class Empleado: IDisposable  
     {
 
         public bool Insertar(ref BE.ClsBeTbEmpleado beEmpleado)
@@ -187,8 +187,8 @@ namespace ErpCasino.BusinessLibrary.LN
                 {
                     var result = new BE.Record()
                     {
-                        Codigo = dr["Codigo"].ToString(),
-                        Nombre = dr["Empleado"].ToString()
+                        Codigo = dr["Codigo"].ToString().Trim(),
+                        Nombre = dr["Empleado"].ToString().Trim()
                     };
                     lst.Add(result);
                 }
@@ -225,6 +225,150 @@ namespace ErpCasino.BusinessLibrary.LN
                     beEmpleadoRecurso = new DA.ClsDaTbEmpleadoRecurso().Obtener(beEmpleado.IdEmpleado);
 
                 return beEmpleadoRecurso;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private BE.UI.EmpleadoCompleto BeToUi (BE.ClsBeTbEmpleado beEmpleado, DateTime fechaConsulta)
+        {
+            try
+            {
+                var uiEmpleadoRecurso = new BE.UI.EmpleadoCompleto();
+
+                uiEmpleadoRecurso.Id = beEmpleado.IdEmpleado;
+                uiEmpleadoRecurso.DocumentoCodigo = beEmpleado.TipoDocumento.Codigo;
+                uiEmpleadoRecurso.DocumentoNombre = beEmpleado.TipoDocumento.Nombre;
+                uiEmpleadoRecurso.DocumentoNumero = beEmpleado.NumeroDocumento;
+                uiEmpleadoRecurso.Codigo = beEmpleado.Codigo;
+                uiEmpleadoRecurso.Nombres = beEmpleado.Nombres;
+                uiEmpleadoRecurso.Apellidos = $"{beEmpleado.ApellidoPaterno} {beEmpleado.ApellidoMaterno}";
+                uiEmpleadoRecurso.SexoCodigo = beEmpleado.Sexo.Codigo;
+                uiEmpleadoRecurso.SexoNombre = beEmpleado.Sexo.Nombre;
+                uiEmpleadoRecurso.Activo = beEmpleado.Activo == true ? "Si" : "No";
+
+                uiEmpleadoRecurso.SalaId = beEmpleado.Recurso.Sala.IdSala;
+                uiEmpleadoRecurso.SalaNombre = beEmpleado.Recurso.Sala.Nombre;
+                uiEmpleadoRecurso.CargoId = beEmpleado.Recurso.Cargo.IdCargo;
+                uiEmpleadoRecurso.CargoNombre = beEmpleado.Recurso.Cargo.Nombre;
+                uiEmpleadoRecurso.AreaId = beEmpleado.Recurso.Area.IdArea;
+                uiEmpleadoRecurso.AreaNombre = beEmpleado.Recurso.Area.Nombre;
+
+                uiEmpleadoRecurso.FechaIngreso = beEmpleado.Recurso.FechaInicio;
+                uiEmpleadoRecurso.FechaCese = beEmpleado.Recurso.FechaCese;
+                uiEmpleadoRecurso.FechaVacacion = beEmpleado.Recurso.FechaUltimaVacacion;
+
+                uiEmpleadoRecurso.Sueldo = beEmpleado.Recurso.Sueldo;
+                uiEmpleadoRecurso.AsignacionFamiliar = 0.0;
+                if (beEmpleado.Recurso.NumeroHijos > 0)
+                {
+                    var beSueldoMinimo = new LN.SueldoMinimo().Actual(DateTime.Now);
+                    if (beSueldoMinimo != null)
+                        uiEmpleadoRecurso.AsignacionFamiliar = 
+                            new BE.Parametros(beSueldoMinimo.Monto).AsignacionFamiliar;
+                }
+
+                uiEmpleadoRecurso.BancoId = beEmpleado.Recurso.Banco.IdBanco;
+                uiEmpleadoRecurso.BancoNombre = beEmpleado.Recurso.Banco.Nombre;
+                uiEmpleadoRecurso.BancoCuenta = beEmpleado.Recurso.CuentaBanco;
+                uiEmpleadoRecurso.BancoCci = beEmpleado.Recurso.CCI;
+
+                uiEmpleadoRecurso.CtsId = beEmpleado.Recurso.BancoCTS.IdBanco;
+                uiEmpleadoRecurso.CtsNombre = beEmpleado.Recurso.BancoCTS.Nombre;
+                uiEmpleadoRecurso.CtsCuenta = beEmpleado.Recurso.CuentaCTS;
+
+                if (beEmpleado.Recurso.RetencionJudicialNominal > 0.0)
+                {
+                    uiEmpleadoRecurso.RetencionJudicialTipo = BE.UI.TipoRetencionJudicial.Nominal; 
+                    uiEmpleadoRecurso.RetencionJudicialNominal = beEmpleado.Recurso.RetencionJudicialNominal;
+                    uiEmpleadoRecurso.RetencionJudicialPorcentual = 0.0; //Calcular
+                }
+                else
+                {
+                    uiEmpleadoRecurso.RetencionJudicialTipo = BE.UI.TipoRetencionJudicial.Porcentual;
+                    uiEmpleadoRecurso.RetencionJudicialNominal = 0.0; //Calcular
+                    uiEmpleadoRecurso.RetencionJudicialPorcentual = beEmpleado.Recurso.RetencionJudicialPorcentual;
+                }
+
+                if (beEmpleado.Recurso.ONP == true)
+                {
+                    uiEmpleadoRecurso.PensionTipo = BE.UI.TipoPension.ONP;
+
+                    var beOnpComision = new LN.OnpComision()
+                        .Obtener(fechaConsulta.Year,
+                                fechaConsulta.Month);
+                    if (beOnpComision != null)
+                        uiEmpleadoRecurso.OnpComisionPorcentaje = beOnpComision.AportePorcentual;
+                    beOnpComision = null;
+
+                    uiEmpleadoRecurso.OnpMonto = (uiEmpleadoRecurso.Sueldo + uiEmpleadoRecurso.AsignacionFamiliar) * (uiEmpleadoRecurso.OnpComisionPorcentaje / 100); 
+                }
+                else
+                {
+                    uiEmpleadoRecurso.PensionTipo = BE.UI.TipoPension.AFP;
+                    uiEmpleadoRecurso.AfpId = beEmpleado.Recurso.Afp.IdAfp;
+                    uiEmpleadoRecurso.AfpNombre = beEmpleado.Recurso.Afp.Nombre;
+                    uiEmpleadoRecurso.AfpCuspp = beEmpleado.Recurso.CUSPP;
+
+                    var beTipoComision = new Record().ObtenerComisionAFP(beEmpleado.Recurso.CodComision);
+                    uiEmpleadoRecurso.AfpComisionCodigo = beTipoComision.Codigo;
+                    uiEmpleadoRecurso.AfpComisionNombre = beTipoComision.Nombre;
+                    beTipoComision = null;
+
+                    var beAfpComision = new LN.AfpComision()
+                        .Obtener(beEmpleado.Recurso.Afp.IdAfp,
+                                fechaConsulta.Year,
+                                fechaConsulta.Month);
+                    if (beAfpComision != null)
+                    {
+                        double comisiontotal = beAfpComision.PorcentajeFondo + beAfpComision.PorcentajeSeguro;
+
+                        switch (uiEmpleadoRecurso.AfpComisionCodigo)
+                        {
+                            case "FLUJO":
+                                uiEmpleadoRecurso.AfpComisionPorcentaje = comisiontotal + beAfpComision.PorcentajeComisionFlujo;
+                                break;
+                            case "MIXTA":
+                                uiEmpleadoRecurso.AfpComisionPorcentaje = comisiontotal + beAfpComision.PorcentajeComisionMixta;
+                                break;
+                            case "SALDO":
+                                uiEmpleadoRecurso.AfpComisionPorcentaje = comisiontotal + 0.0;
+                                break;
+                            default:
+                                uiEmpleadoRecurso.AfpComisionPorcentaje = 0.0;
+                                break;
+                        }
+                    }
+                    beAfpComision = null;
+
+                    uiEmpleadoRecurso.AfpMonto = (uiEmpleadoRecurso.Sueldo + uiEmpleadoRecurso.AsignacionFamiliar) * (uiEmpleadoRecurso.AfpComisionPorcentaje / 100);
+                }
+
+
+                return uiEmpleadoRecurso;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BE.UI.EmpleadoCompleto ObtenerEmpleadoCompleto(string codigoEmpleado, DateTime fechaConsulta)
+        {
+            try
+            {
+                BE.UI.EmpleadoCompleto uiEmpleadoCompleto = null;
+
+                var beEmpleadoCompleto = this.Obtener(codigoEmpleado, true);
+                if (beEmpleadoCompleto != null)
+                {
+                    uiEmpleadoCompleto = this.BeToUi(beEmpleadoCompleto, fechaConsulta);
+                }
+
+                return uiEmpleadoCompleto;
             }
             catch (Exception ex)
             {
@@ -450,6 +594,31 @@ namespace ErpCasino.BusinessLibrary.LN
             }
             
         }
+
+        #region Dispose
+        private bool disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+
+        #endregion
     }
 
 }

@@ -114,8 +114,11 @@
     [TotaPago]                                 DECIMAL (9, 4) NOT NULL,
     [EsSaludTotal]                             DECIMAL (9, 4) NOT NULL,
     [MovilidadTotal]                           DECIMAL (9, 4) CONSTRAINT [DF_TbPlanillaDetalle_Movilidad] DEFAULT ((0)) NOT NULL,
-    CONSTRAINT [PK_TbPlanillaDetalle] PRIMARY KEY CLUSTERED ([IdPlanillaDetalle] ASC)
+    CONSTRAINT [PK_TbPlanillaDetalle] PRIMARY KEY CLUSTERED ([IdPlanillaDetalle] ASC),
+    CONSTRAINT [FK_TbPlanillaDetalle_TbPlanilla] FOREIGN KEY ([IdPlanilla]) REFERENCES [dbo].[TbPlanilla] ([IdPlanilla]) ON DELETE CASCADE
 );
+
+
 
 
 

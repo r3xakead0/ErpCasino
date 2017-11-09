@@ -112,7 +112,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 frmEmpleadoNew.MdiParent = this.MdiParent;
                 frmEmpleadoNew.Show();
                 frmEmpleadoNew.Cargar(null);
-                frmEmpleadoNew.frmList = this;
+                frmEmpleadoNew.frmEmpleadosList = this;
             }
             catch (Exception ex)
             {
@@ -219,7 +219,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 frmEmpleadoEdit.MdiParent = this.MdiParent;
                 frmEmpleadoEdit.Show();
                 frmEmpleadoEdit.Cargar(beEmpleado);
-                frmEmpleadoEdit.frmList = this;
+                frmEmpleadoEdit.frmEmpleadosList = this;
             }
             catch (Exception ex)
             {

@@ -82,7 +82,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
 
-                this.Editar(uiVacacion);
+                
 
             }
             catch (Exception ex)
@@ -120,6 +120,29 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.dgvVacaciones.CurrentRow != null)
+                {
+                    var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
+
+                    var frmVacacionVer = FrmVacacionVer.Instance();
+                    frmVacacionVer.MdiParent = this.MdiParent;
+                    frmVacacionVer.Show();
+
+                    frmVacacionVer.frmList = this;
+                    frmVacacionVer.Cargar(uiVacacion);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -127,19 +150,44 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (this.dgvVacaciones.CurrentRow != null)
                 {
 
-                    if (Util.ConfirmationMessage("¿Desea eliminar al Vacacion seleccionado?") == false)
+                    if (Util.ConfirmationMessage("¿Desea eliminar el Calculo de Vacaciones seleccionado?") == false)
                         return;
 
-                    var uiAdelato = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
+                    var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
 
-                    int idVacacion = uiAdelato.Id;
+                    int idVacacion = uiVacacion.Id;
                     bool rpta = new LN.Vacacion().Eliminar(idVacacion);
 
                     if (rpta == true)
                     {
-                        Util.InformationMessage("Se eliminó el Vacacion");
+                        Util.InformationMessage("Se eliminó el Calculo de Vacaciones");
                         this.CargarListadoVacaciones();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.dgvVacaciones.CurrentRow != null)
+                {
+
+                    if (Util.ConfirmationMessage("¿Desea imprimir el Calculo de Vacaciones seleccionado?") == false)
+                        return;
+
+                    var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
+
+                    var frmPlanillaVista = new FrmImpresion();
+                    frmPlanillaVista.MdiParent = this.MdiParent;
+                    frmPlanillaVista.Show();
+                    frmPlanillaVista.ImpresionVacacion(uiVacacion.EmpleadoCodigo);
+
                 }
             }
             catch (Exception ex)
@@ -176,23 +224,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         #endregion
 
         #region Metodos
-
-        private void Editar(BE.UI.Vacacion uiVacacion)
-        {
-            try
-            {
-                var frmVacacionMant = FrmVacacionMant.Instance();
-                frmVacacionMant.MdiParent = this.MdiParent;
-                frmVacacionMant.Show();
-
-                frmVacacionMant.frmList = this;
-                frmVacacionMant.Cargar(uiVacacion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         
         public void CargarListadoVacaciones()
         {
@@ -325,8 +356,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+
         #endregion
 
-        
     }
 }

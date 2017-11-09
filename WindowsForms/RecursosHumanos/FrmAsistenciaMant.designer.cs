@@ -53,6 +53,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.btnExportarCsv = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GrpCarga.SuspendLayout();
@@ -253,6 +254,7 @@
             this.GrpDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrpDatos.Controls.Add(this.btnExportarCsv);
             this.GrpDatos.Controls.Add(this.LblFechaRegistroAsistencia);
             this.GrpDatos.Controls.Add(this.BtnEliminar);
             this.GrpDatos.Controls.Add(this.dtpFechaRegistroAsistencia);
@@ -306,6 +308,7 @@
             this.dgvRegistroAsistencias.Name = "dgvRegistroAsistencias";
             this.dgvRegistroAsistencias.Size = new System.Drawing.Size(583, 206);
             this.dgvRegistroAsistencias.TabIndex = 0;
+            this.dgvRegistroAsistencias.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRegistroAsistencias_ColumnHeaderMouseClick);
             // 
             // panel2
             // 
@@ -320,7 +323,7 @@
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(504, 11);
+            this.BtnSave.Location = new System.Drawing.Point(515, 15);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(100, 30);
             this.BtnSave.TabIndex = 17;
@@ -331,13 +334,24 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(390, 11);
+            this.BtnCancel.Location = new System.Drawing.Point(409, 15);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(100, 30);
             this.BtnCancel.TabIndex = 18;
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // btnExportarCsv
+            // 
+            this.btnExportarCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarCsv.Location = new System.Drawing.Point(389, 231);
+            this.btnExportarCsv.Name = "btnExportarCsv";
+            this.btnExportarCsv.Size = new System.Drawing.Size(100, 25);
+            this.btnExportarCsv.TabIndex = 90;
+            this.btnExportarCsv.Text = "Exportar CSV";
+            this.btnExportarCsv.UseVisualStyleBackColor = true;
+            this.btnExportarCsv.Click += new System.EventHandler(this.btnExportarCsv_Click);
             // 
             // FrmAsistenciaMant
             // 
@@ -390,5 +404,6 @@
         internal System.Windows.Forms.Label lblTurno;
         private System.Windows.Forms.TextBox txtEmpleadoCodigo;
         private System.Windows.Forms.TextBox txtTiempo;
+        public System.Windows.Forms.Button btnExportarCsv;
     }
 }

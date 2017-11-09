@@ -3,6 +3,7 @@ using System;
 
 namespace ErpCasino.BusinessLibrary.BE.UI
 {
+
     /// <summary>
     /// Registro de Empleado para el formulario de Listado de Empleados
     /// </summary>
@@ -42,6 +43,94 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public string EmpleadoApellidosNombres { get; set; }
         public DateTime EmpleadoFechaIngreso { get; set; }
         public DateTime? EmpleadoFechaVacacion { get; set; }
+    }
+
+    public enum TipoPension
+    {
+        AFP,
+        ONP
+    }
+
+    public enum TipoRetencionJudicial
+    {
+        Nominal,
+        Porcentual
+    }
+
+    public class EmpleadoCompleto : Empleado
+    {
+
+        private int Anho { get; set; }
+        private int Mes { get; set; }
+
+        public int AreaId { get; set; }
+        public string AreaNombre { get; set; }
+        
+        public DateTime FechaIngreso { get; set; } 
+        public DateTime? FechaCese { get; set; }
+        public DateTime? FechaVacacion { get; set; }
+
+        public double Sueldo { get; set; }
+        public double AsignacionFamiliar { get; set; }
+
+        #region Banco (Sueldo)
+
+        public int BancoId { get; set; }
+        public string BancoNombre { get; set; }
+        public string BancoCuenta { get; set; }
+        public string BancoCci { get; set; }
+
+        #endregion
+
+        #region Banco (CTS)
+
+        public int CtsId { get; set; }
+        public string CtsNombre { get; set; }
+        public string CtsCuenta { get; set; }
+
+        #endregion
+
+        #region Pension
+
+        public TipoPension PensionTipo { get; set; }
+        public double PensionMonto
+        {
+            get
+            {
+                return OnpMonto + AfpMonto;
+            }
+        }
+
+        public double PensionPorcentaje
+        {
+            get
+            {
+                return OnpComisionPorcentaje + AfpComisionPorcentaje;
+            }
+        }
+
+        public double OnpComisionPorcentaje { get; set; } = 0.0;
+        public double OnpMonto { get; set; } = 0.0;
+
+        public int AfpId { get; set; }
+        public string AfpNombre { get; set; }
+        public string AfpCuspp { get; set; }
+        public string AfpComisionCodigo { get; set; }
+        public string AfpComisionNombre { get; set; } 
+        public double AfpComisionPorcentaje { get; set; } = 0.0;
+        public double AfpMonto { get; set; } = 0.0;
+
+        #endregion
+
+        #region Retencion Judicial
+
+        public TipoRetencionJudicial RetencionJudicialTipo { get; set; } 
+        public double RetencionJudicialNominal { get; set; }
+        public double RetencionJudicialPorcentual { get; set; }
+        
+
+        #endregion
+
     }
 
 }

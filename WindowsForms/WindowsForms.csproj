@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecursosHumanos\FrmIndicadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmIndicadores.designer.cs">
+      <DependentUpon>FrmIndicadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmAdelantoCarga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,12 @@
     </Compile>
     <Compile Include="RecursosHumanos\FrmPlanillaMovilidadList.designer.cs">
       <DependentUpon>FrmPlanillaMovilidadList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmVacacionVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmVacacionVer.designer.cs">
+      <DependentUpon>FrmVacacionVer.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmVacacionMant.cs">
       <SubType>Form</SubType>
@@ -492,6 +504,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecursosHumanos\FrmIndicadores.resx">
+      <DependentUpon>FrmIndicadores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmAdelantoCarga.resx">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
     </EmbeddedResource>
@@ -503,6 +518,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmPlanillaMovilidadList.resx">
       <DependentUpon>FrmPlanillaMovilidadList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmVacacionVer.resx">
+      <DependentUpon>FrmVacacionVer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmVacacionMant.resx">
       <DependentUpon>FrmVacacionMant.cs</DependentUpon>

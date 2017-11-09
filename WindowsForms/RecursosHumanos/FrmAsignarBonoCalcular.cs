@@ -84,7 +84,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                                 lstUiCargos = new LN.Cargo().Listar();
 
                             int idCargo = beEmpleadoRecurso.Cargo.IdCargo;
-                            var uiBono = lstUiCargos.SingleOrDefault(x => x.Id == idCargo);
+                            var uiBono = lstUiCargos.FirstOrDefault(x => x.Id == idCargo);
                             if (uiBono != null)
                                 bonoXcargo = uiBono.Bono;
                         }

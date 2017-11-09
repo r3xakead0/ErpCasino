@@ -285,8 +285,8 @@ namespace ErpCasino.BusinessLibrary.LN
                 {
                     var result = new BE.Record()
                     {
-                        Codigo = dr["Codigo"].ToString(),
-                        Nombre = dr["Candidato"].ToString()
+                        Codigo = dr["Codigo"].ToString().Trim(),
+                        Nombre = dr["Candidato"].ToString().Trim()
                     };
                     lst.Add(result);
                 }

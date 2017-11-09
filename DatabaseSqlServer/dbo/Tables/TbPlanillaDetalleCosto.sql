@@ -23,6 +23,9 @@
     [DescuentoMinutoTardanzaFeriadoNocturno] DECIMAL (9, 4) NOT NULL,
     [DescuentoMinutoDominical]               DECIMAL (9, 4) NOT NULL,
     [DescuentoMinutoInasistencia]            DECIMAL (9, 4) NOT NULL,
-    CONSTRAINT [PK_TbPlanillaDetalleCosto] PRIMARY KEY CLUSTERED ([IdPlanillaDetalleCosto] ASC)
+    CONSTRAINT [PK_TbPlanillaDetalleCosto] PRIMARY KEY CLUSTERED ([IdPlanillaDetalleCosto] ASC),
+    CONSTRAINT [FK_TbPlanillaDetalleCosto_TbPlanilla] FOREIGN KEY ([IdPlanilla]) REFERENCES [dbo].[TbPlanilla] ([IdPlanilla]) ON DELETE CASCADE
 );
+
+
 

@@ -80,7 +80,7 @@
             this.txtEmpleadoNombres = new System.Windows.Forms.TextBox();
             this.lblEmpleado = new System.Windows.Forms.Label();
             this.pnlInferior = new System.Windows.Forms.Panel();
-            this.BtnCancel = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.grpResumen.SuspendLayout();
@@ -656,23 +656,23 @@
             // 
             // pnlInferior
             // 
-            this.pnlInferior.Controls.Add(this.BtnCancel);
+            this.pnlInferior.Controls.Add(this.btnCancelar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInferior.Location = new System.Drawing.Point(3, 308);
             this.pnlInferior.Name = "pnlInferior";
             this.pnlInferior.Size = new System.Drawing.Size(752, 44);
             this.pnlInferior.TabIndex = 17;
             // 
-            // BtnCancel
+            // btnCancelar
             // 
-            this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(643, 5);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(100, 30);
-            this.BtnCancel.TabIndex = 18;
-            this.BtnCancel.Text = "Cancelar";
-            this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(643, 5);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.TabIndex = 18;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmPlanillaDetalleView
             // 
@@ -709,7 +709,7 @@
         private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
         private System.Windows.Forms.Panel pnlPrincipal;
         private System.Windows.Forms.Panel pnlInferior;
-        public System.Windows.Forms.Button BtnCancel;
+        public System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox grpEmpleado;
         internal System.Windows.Forms.Label lblEmpleado;
         private System.Windows.Forms.TextBox txtPeriodo;

@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
+using System.ComponentModel;
 
 namespace ErpCasino.WindowsForms.RecursosHumanos
 {
@@ -121,10 +122,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         if (values.Length != 4)
                             throw new Exception("El registro debe contener Codigo de Empleado, Fecha y Hora Ingreso, Fecha y Hora Salida y Turno");
 
-                        string codigoEmpleado = values[0].ToString();
+                        string codigoEmpleado = values[0].ToString().Trim();
                         string nombreEmpleado = "";
 
-                        var beEmpleado = lstEmpleados.SingleOrDefault(x => x.Codigo.Equals(codigoEmpleado));
+                        var beEmpleado = lstEmpleados.FirstOrDefault(x => x.Codigo.Equals(codigoEmpleado));
                         if (beEmpleado != null)
                             nombreEmpleado = beEmpleado.Nombre;
                         beEmpleado = null;
@@ -178,10 +179,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 else
                     this.lstUiAsistencias = lstUiAsistencias;
 
-                var sourceRegistros = new BindingSource();
-                sourceRegistros.DataSource = this.lstUiAsistencias;
+                var sorted = new SortableBindingList<BE.UI.Asistencia>(this.lstUiAsistencias);
 
-                this.dgvRegistroAsistencias.DataSource = sourceRegistros;
+                this.dgvRegistroAsistencias.DataSource = sorted;
 
                 if (this.lstUiAsistencias.Count > 0)
                     this.dtpFechaRegistroAsistencia.Value = this.lstUiAsistencias.Min(x => x.FechaHoraEntrada);
@@ -568,6 +568,53 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
 
         }
-        
+
+        private void dgvRegistroAsistencias_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                var col = this.dgvRegistroAsistencias.Columns[e.ColumnIndex];
+                ListSortDirection dir;
+
+                switch (col.HeaderCell.SortGlyphDirection)
+                {
+                    case SortOrder.Ascending:
+                        dir = ListSortDirection.Ascending;
+                        break;
+                    default:
+                        dir = ListSortDirection.Descending;
+                        break;
+                }
+
+                this.dgvRegistroAsistencias.Sort(col, dir);
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnExportarCsv_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Excel Documents (*.xls)|*.xls";
+                sfd.FileName = "export.xls";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvRegistroAsistencias, sfd.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
+            }
+        }
     }
 }

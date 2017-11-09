@@ -126,6 +126,19 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        public void ImpresionVacacion(string codigoEmpleado)
+        {
+
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void ImpresionCts(int anho, int periodo, string codigoEmpleado)
         {
 

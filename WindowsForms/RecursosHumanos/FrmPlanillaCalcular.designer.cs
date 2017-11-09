@@ -62,6 +62,8 @@
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.BtnGenerate = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.btnExportarCostoCsv = new System.Windows.Forms.Button();
+            this.btnExportarAsistenciasCsv = new System.Windows.Forms.Button();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.tbcPlanilla.SuspendLayout();
@@ -113,6 +115,7 @@
             // 
             // tbpAsistencias
             // 
+            this.tbpAsistencias.Controls.Add(this.btnExportarAsistenciasCsv);
             this.tbpAsistencias.Controls.Add(this.label1);
             this.tbpAsistencias.Controls.Add(this.txtInasistencia);
             this.tbpAsistencias.Controls.Add(this.txtAsistenciaFeriado);
@@ -235,6 +238,7 @@
             // 
             // tbpCostos
             // 
+            this.tbpCostos.Controls.Add(this.btnExportarCostoCsv);
             this.tbpCostos.Controls.Add(this.label3);
             this.tbpCostos.Controls.Add(this.textBox5);
             this.tbpCostos.Controls.Add(this.textBox4);
@@ -479,6 +483,28 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // btnExportarCostoCsv
+            // 
+            this.btnExportarCostoCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarCostoCsv.Location = new System.Drawing.Point(838, 192);
+            this.btnExportarCostoCsv.Name = "btnExportarCostoCsv";
+            this.btnExportarCostoCsv.Size = new System.Drawing.Size(111, 21);
+            this.btnExportarCostoCsv.TabIndex = 90;
+            this.btnExportarCostoCsv.Text = "Exportar CSV";
+            this.btnExportarCostoCsv.UseVisualStyleBackColor = true;
+            this.btnExportarCostoCsv.Click += new System.EventHandler(this.btnExportarCostoCsv_Click);
+            // 
+            // btnExportarAsistenciasCsv
+            // 
+            this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(839, 202);
+            this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
+            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(111, 21);
+            this.btnExportarAsistenciasCsv.TabIndex = 91;
+            this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
+            this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
+            this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
+            // 
             // FrmPlanillaCalcular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -540,5 +566,7 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
         internal System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button btnExportarAsistenciasCsv;
+        public System.Windows.Forms.Button btnExportarCostoCsv;
     }
 }

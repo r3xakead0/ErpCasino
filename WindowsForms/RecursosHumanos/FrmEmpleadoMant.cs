@@ -31,9 +31,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         public BE.ClsBeTbEmpleado beEmpleadoGeneral = null;
 
-        public FrmEmpleadoList frmList = null;
+        public FrmEmpleadoList frmEmpleadosList = null;
+        public FrmCandidatoList frmCandidatoList = null;
 
-        private bool contratarPostulante = false;
+        private bool contratarCandidato = false;
 
         public FrmEmpleadoMant()
         {
@@ -153,7 +154,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.Cargar(beEmpleado);
 
-                contratarPostulante = true;
+                contratarCandidato = true;
 
             }
             catch (Exception ex)
@@ -1013,7 +1014,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     if (rpta)
                     {
-                        if (this.contratarPostulante)
+                        if (this.contratarCandidato)
                             rpta = new LN.Postulante().Contratar(beEmpleadoGeneral.IdCandidato);
                     }
                 } 
@@ -1025,12 +1026,23 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 if (rpta)
                 {
-                    Util.InformationMessage("Se guardo los datos del empleado");
 
                     int idEmpleado = beEmpleadoGeneral.IdEmpleado;
-                    string filtro = this.frmList.cboTipoFiltro.SelectedValue.ToString();
-                    string valor = this.frmList.cboFiltro.SelectedValue.ToString();
-                    this.frmList.CargarEmpleados(filtro, valor, idEmpleado);
+                    string filtro = this.frmEmpleadosList.cboTipoFiltro.SelectedValue.ToString();
+                    string valor = this.frmEmpleadosList.cboFiltro.SelectedValue.ToString();
+
+                    if (this.contratarCandidato == false)
+                    {
+                        if (this.frmEmpleadosList != null)
+                            this.frmEmpleadosList.CargarEmpleados(filtro, valor, idEmpleado);
+                    }
+                    else
+                    {
+                        if (this.frmCandidatoList != null)
+                            this.frmCandidatoList.CargarCandidatos();
+                    }
+
+                    Util.InformationMessage("Se guardo los datos del empleado");
 
                     this.Close();
                 }

@@ -64,6 +64,7 @@
             this.txtAnho = new System.Windows.Forms.TextBox();
             this.lblAnho = new System.Windows.Forms.Label();
             this.tbpDetalle = new System.Windows.Forms.TabPage();
+            this.btnExportarCsv = new System.Windows.Forms.Button();
             this.btnBoleta = new System.Windows.Forms.Button();
             this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.cboEmpleado = new System.Windows.Forms.ComboBox();
@@ -476,6 +477,7 @@
             // 
             // tbpDetalle
             // 
+            this.tbpDetalle.Controls.Add(this.btnExportarCsv);
             this.tbpDetalle.Controls.Add(this.btnBoleta);
             this.tbpDetalle.Controls.Add(this.txtEmpleadoCodigo);
             this.tbpDetalle.Controls.Add(this.cboEmpleado);
@@ -491,6 +493,17 @@
             this.tbpDetalle.TabIndex = 1;
             this.tbpDetalle.Text = "Detalle";
             this.tbpDetalle.UseVisualStyleBackColor = true;
+            // 
+            // btnExportarCsv
+            // 
+            this.btnExportarCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarCsv.Location = new System.Drawing.Point(804, 6);
+            this.btnExportarCsv.Name = "btnExportarCsv";
+            this.btnExportarCsv.Size = new System.Drawing.Size(100, 21);
+            this.btnExportarCsv.TabIndex = 89;
+            this.btnExportarCsv.Text = "Exportar CSV";
+            this.btnExportarCsv.UseVisualStyleBackColor = true;
+            this.btnExportarCsv.Click += new System.EventHandler(this.btnExportarCsv_Click);
             // 
             // btnBoleta
             // 
@@ -736,5 +749,6 @@
         private System.Windows.Forms.ComboBox cboEmpleado;
         internal System.Windows.Forms.Label label6;
         public System.Windows.Forms.Button btnBoleta;
+        public System.Windows.Forms.Button btnExportarCsv;
     }
 }

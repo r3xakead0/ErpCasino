@@ -170,7 +170,6 @@ namespace ErpCasino.BusinessLibrary.DA
 
         public int Eliminar(int idGratificacion)
         {
-            SqlTransaction tns = null;
 
             try
             {
@@ -181,42 +180,19 @@ namespace ErpCasino.BusinessLibrary.DA
                 {
                     cnn.Open();
 
-                    tns = cnn.BeginTransaction();
-
                     SqlCommand cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Transaction = tns;
-
                     cmd.Parameters.Add(new SqlParameter("@IDGRATIFICACION", idGratificacion));
 
                     rowsAffected += cmd.ExecuteNonQuery();
-
-                    var lstBeGratificacionDetalle = this.ListarDetalle(idGratificacion);
-                    foreach (BE.GratificacionDetalle beGratificacionDetalle in lstBeGratificacionDetalle)
-                    {
-                        sp = "SpTbGratificacionDetalleEliminar";
-
-                        cmd = new SqlCommand(sp, cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Transaction = tns;
-
-                        cmd.Parameters.Add(new SqlParameter("@IDGRATIFICACIONDETALLE", beGratificacionDetalle.IdGratificacionDetalle));
-
-                        rowsAffected += cmd.ExecuteNonQuery();
-                    }
-
-                    if (tns != null)
-                        tns.Commit();
                 }
 
                 return rowsAffected;
+              
 
             }
             catch (Exception ex)
             {
-                if (tns != null)
-                    tns.Rollback();
-
                 throw ex;
             }
         }
