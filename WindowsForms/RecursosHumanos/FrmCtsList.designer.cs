@@ -50,6 +50,7 @@
             this.dgvCts.Name = "dgvCts";
             this.dgvCts.Size = new System.Drawing.Size(915, 241);
             this.dgvCts.TabIndex = 0;
+            this.dgvCts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCts_CellDoubleClick);
             // 
             // btnNuevo
             // 

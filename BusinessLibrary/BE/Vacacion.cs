@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ErpCasino.BusinessLibrary.BE
 {
-    internal class Vacacion
+    public class Vacacion
     {
         public int IdVacacion { get; set; }
 
@@ -27,5 +28,17 @@ namespace ErpCasino.BusinessLibrary.BE
         public double TotalBruto { get; set; }
         public double TotalDescuento { get; set; }
         public double TotalNeto { get; set; }
+
+        public List<BE.VacacionDetalle> Detalle { get; set; } = new List<BE.VacacionDetalle>();
+    }
+
+    public class VacacionDetalle
+    {
+        public int IdVacacionDetalle { get; set; }
+        public int Numero { get; set; }
+        public int Anho { get; set; }
+        public int Mes { get; set; }
+        public double HorasExtrasMonto { get; set; }
+        public double BonificacionMonto { get; set; }
     }
 }

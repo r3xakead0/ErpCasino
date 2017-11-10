@@ -58,7 +58,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var lstCalculoPor = new List<BE.Record>();
 
-                lstCalculoPor.Add(new BE.Record() { Codigo = "D", Nombre = "Dia" });
                 lstCalculoPor.Add(new BE.Record() { Codigo = "H", Nombre = "Hora" });
                 lstCalculoPor.Add(new BE.Record() { Codigo = "M", Nombre = "Minuto" });
 
@@ -86,18 +85,16 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtEmpleadoNombres.Text = beDetalle.EmpleadoNombre;
                     this.txtPeriodo.Text = beDetalle.Periodo;
 
-                    //TimeSpan span = TimeSpan.FromMinutes(minutos);
-                    //span.Tostring("dd:HH:mm");
-                    this.txtBonoNocturnoCantidad.Text = beDetalle.BonoNocturnoCantidad.ToString("N2");
+                    this.txtBonoNocturnoCantidad.Text = beDetalle.BonoNocturnoFormato;
                     this.txtBonoNocturno.Text = beDetalle.BonoNocturnoTotal.ToString("N2");
-                    this.txtBonoExtrasCantidad.Text = beDetalle.BonoHorasExtrasCantidad.ToString("N2");
+                    this.txtBonoExtrasCantidad.Text = beDetalle.BonoHorasExtrasFormato;
                     this.txtBonoExtra.Text = beDetalle.BonoHorasExtrasTotal.ToString("N2");
-                    this.txtBonoFeriadosCantidad.Text = beDetalle.BonoFeriadoCantidad.ToString("N2");
+                    this.txtBonoFeriadosCantidad.Text = beDetalle.BonoFeriadoFormato;
                     this.txtBonoFeriado.Text = beDetalle.BonoFeriadoTotal.ToString("N2");
 
-                    this.txtDescuentoInasistenciasCantidad.Text = beDetalle.DescuentoInasistenciaCantidad.ToString("N2");
+                    this.txtDescuentoInasistenciasCantidad.Text = beDetalle.DescuentoInasistenciaFormato;
                     this.txtDescuentoInasistencias.Text = beDetalle.DescuentoInasistenciaTotal.ToString("N2");
-                    this.txtDescuentoTardanzasCantidad.Text = beDetalle.DescuentoTardanzaCantidad.ToString("N2");
+                    this.txtDescuentoTardanzasCantidad.Text = beDetalle.DescuentoTardanzaFormato;
                     this.txtDescuentoTardanzas.Text = beDetalle.DescuentoTardanzaTotal.ToString("N2");
 
                     this.txtSueldoBase.Text = beDetalle.Base.ToString("N2");

@@ -74,7 +74,8 @@
             // 
             // grpVacacion
             // 
-            this.grpVacacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpVacacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpVacacion.Controls.Add(this.txtTotalDescuento);
             this.grpVacacion.Controls.Add(this.label1);
@@ -110,17 +111,17 @@
             this.grpVacacion.Controls.Add(this.label4);
             this.grpVacacion.Location = new System.Drawing.Point(12, 12);
             this.grpVacacion.Name = "grpVacacion";
-            this.grpVacacion.Size = new System.Drawing.Size(449, 361);
+            this.grpVacacion.Size = new System.Drawing.Size(500, 406);
             this.grpVacacion.TabIndex = 116;
             this.grpVacacion.TabStop = false;
             this.grpVacacion.Text = "Calculo de Vacaciones";
             // 
             // txtTotalDescuento
             // 
-            this.txtTotalDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalDescuento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalDescuento.Location = new System.Drawing.Point(364, 304);
+            this.txtTotalDescuento.Location = new System.Drawing.Point(415, 349);
             this.txtTotalDescuento.Name = "txtTotalDescuento";
             this.txtTotalDescuento.ReadOnly = true;
             this.txtTotalDescuento.Size = new System.Drawing.Size(75, 20);
@@ -130,10 +131,10 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(249, 306);
+            this.label1.Location = new System.Drawing.Point(300, 351);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 141;
@@ -200,10 +201,10 @@
             // 
             // txtPensionPorcentaje
             // 
-            this.txtPensionPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPensionPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPensionPorcentaje.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPensionPorcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPensionPorcentaje.Location = new System.Drawing.Point(390, 253);
+            this.txtPensionPorcentaje.Location = new System.Drawing.Point(441, 298);
             this.txtPensionPorcentaje.Name = "txtPensionPorcentaje";
             this.txtPensionPorcentaje.ReadOnly = true;
             this.txtPensionPorcentaje.Size = new System.Drawing.Size(49, 20);
@@ -218,7 +219,7 @@
             this.txtNombres.Location = new System.Drawing.Point(202, 19);
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.ReadOnly = true;
-            this.txtNombres.Size = new System.Drawing.Size(237, 20);
+            this.txtNombres.Size = new System.Drawing.Size(288, 20);
             this.txtNombres.TabIndex = 138;
             this.txtNombres.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -252,7 +253,8 @@
             // 
             // txtPensionTipo
             // 
-            this.txtPensionTipo.Location = new System.Drawing.Point(202, 253);
+            this.txtPensionTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPensionTipo.Location = new System.Drawing.Point(202, 298);
             this.txtPensionTipo.Name = "txtPensionTipo";
             this.txtPensionTipo.ReadOnly = true;
             this.txtPensionTipo.Size = new System.Drawing.Size(31, 20);
@@ -262,31 +264,32 @@
             // 
             // dgvDetalles
             // 
-            this.dgvDetalles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvDetalles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetalles.Location = new System.Drawing.Point(202, 97);
             this.dgvDetalles.Name = "dgvDetalles";
-            this.dgvDetalles.Size = new System.Drawing.Size(237, 124);
+            this.dgvDetalles.Size = new System.Drawing.Size(288, 169);
             this.dgvDetalles.TabIndex = 1;
             // 
             // txtPensionDescipcion
             // 
-            this.txtPensionDescipcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtPensionDescipcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPensionDescipcion.Location = new System.Drawing.Point(239, 253);
+            this.txtPensionDescipcion.Location = new System.Drawing.Point(239, 298);
             this.txtPensionDescipcion.Name = "txtPensionDescipcion";
             this.txtPensionDescipcion.ReadOnly = true;
-            this.txtPensionDescipcion.Size = new System.Drawing.Size(145, 20);
+            this.txtPensionDescipcion.Size = new System.Drawing.Size(196, 20);
             this.txtPensionDescipcion.TabIndex = 129;
             this.txtPensionDescipcion.Text = "ONP";
             // 
             // txtTotalBruto
             // 
-            this.txtTotalBruto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalBruto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalBruto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalBruto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalBruto.Location = new System.Drawing.Point(364, 227);
+            this.txtTotalBruto.Location = new System.Drawing.Point(415, 272);
             this.txtTotalBruto.Name = "txtTotalBruto";
             this.txtTotalBruto.ReadOnly = true;
             this.txtTotalBruto.Size = new System.Drawing.Size(75, 20);
@@ -296,10 +299,10 @@
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(280, 229);
+            this.label14.Location = new System.Drawing.Point(331, 274);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(78, 13);
             this.label14.TabIndex = 127;
@@ -307,10 +310,10 @@
             // 
             // txtTotalNeto
             // 
-            this.txtTotalNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalNeto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalNeto.Location = new System.Drawing.Point(364, 330);
+            this.txtTotalNeto.Location = new System.Drawing.Point(415, 375);
             this.txtTotalNeto.Name = "txtTotalNeto";
             this.txtTotalNeto.ReadOnly = true;
             this.txtTotalNeto.Size = new System.Drawing.Size(75, 20);
@@ -320,10 +323,10 @@
             // 
             // label15
             // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(283, 332);
+            this.label15.Location = new System.Drawing.Point(334, 377);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(75, 13);
             this.label15.TabIndex = 125;
@@ -331,8 +334,10 @@
             // 
             // txtPensionMonto
             // 
-            this.txtPensionMonto.Location = new System.Drawing.Point(127, 253);
+            this.txtPensionMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPensionMonto.Location = new System.Drawing.Point(127, 298);
             this.txtPensionMonto.Name = "txtPensionMonto";
+            this.txtPensionMonto.ReadOnly = true;
             this.txtPensionMonto.Size = new System.Drawing.Size(59, 20);
             this.txtPensionMonto.TabIndex = 124;
             this.txtPensionMonto.Text = "0.00";
@@ -340,8 +345,9 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(11, 255);
+            this.label13.Location = new System.Drawing.Point(11, 300);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(51, 13);
             this.label13.TabIndex = 123;
@@ -350,7 +356,8 @@
             // 
             // txtRetencionJudicial
             // 
-            this.txtRetencionJudicial.Location = new System.Drawing.Point(127, 279);
+            this.txtRetencionJudicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtRetencionJudicial.Location = new System.Drawing.Point(127, 324);
             this.txtRetencionJudicial.Name = "txtRetencionJudicial";
             this.txtRetencionJudicial.ReadOnly = true;
             this.txtRetencionJudicial.Size = new System.Drawing.Size(59, 20);
@@ -360,8 +367,9 @@
             // 
             // label12
             // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 282);
+            this.label12.Location = new System.Drawing.Point(11, 327);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(71, 13);
             this.label12.TabIndex = 121;
@@ -470,7 +478,7 @@
             // txtDescansoDias
             // 
             this.txtDescansoDias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescansoDias.Location = new System.Drawing.Point(390, 71);
+            this.txtDescansoDias.Location = new System.Drawing.Point(441, 71);
             this.txtDescansoDias.Name = "txtDescansoDias";
             this.txtDescansoDias.ReadOnly = true;
             this.txtDescansoDias.Size = new System.Drawing.Size(23, 20);
@@ -492,7 +500,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(413, 74);
+            this.label4.Location = new System.Drawing.Point(464, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 108;
@@ -502,7 +510,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(361, 381);
+            this.btnCancelar.Location = new System.Drawing.Point(412, 426);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
             this.btnCancelar.TabIndex = 17;
@@ -513,7 +521,7 @@
             // btnImprimir
             // 
             this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImprimir.Location = new System.Drawing.Point(255, 381);
+            this.btnImprimir.Location = new System.Drawing.Point(306, 426);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(100, 30);
             this.btnImprimir.TabIndex = 117;
@@ -525,7 +533,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 423);
+            this.ClientSize = new System.Drawing.Size(524, 468);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.grpVacacion);
             this.Controls.Add(this.btnCancelar);

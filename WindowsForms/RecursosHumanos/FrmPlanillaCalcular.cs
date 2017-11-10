@@ -127,7 +127,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var lstCalculoPor = new List<BE.Record>();
 
-                lstCalculoPor.Add(new BE.Record() { Codigo = "D", Nombre = "Dia" });
                 lstCalculoPor.Add(new BE.Record() { Codigo = "H", Nombre = "Hora" });
                 lstCalculoPor.Add(new BE.Record() { Codigo = "M", Nombre = "Minuto" });
 
@@ -198,19 +197,28 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void CargarAsistencias()
+        {
+            try
+            {
+                var source = new BindingSource();
+                source.DataSource = this.lstUiAsistencias;
+                this.dgvAsistencias.DataSource = source;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void FormatoAsistencias()
         {
             try
             {
 
-                if (this.lstUiAsistencias == null)
-                    return;
-
-                var source = new BindingSource();
-                source.DataSource = this.lstUiAsistencias;
-                this.dgvAsistencias.DataSource = source;
-
                 Util.FormatDatagridview(ref this.dgvAsistencias);
+                for (int i = 0; i < this.dgvAsistencias.Columns.Count; i++)
+                    this.dgvAsistencias.Columns[i].Visible = false;
 
                 this.dgvAsistencias.Columns["CodigoEmpleado"].Visible = true;
                 this.dgvAsistencias.Columns["CodigoEmpleado"].HeaderText = "Codigo";
@@ -221,13 +229,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvAsistencias.Columns["Fecha"].Width = 70;
                 this.dgvAsistencias.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 this.dgvAsistencias.Columns["Fecha"].DefaultCellStyle.Format = "dd/MM/yyyy";
-
-                this.dgvAsistencias.Columns["Semana"].Visible = false;
-                this.dgvAsistencias.Columns["Semana"].Width = 70;
-                this.dgvAsistencias.Columns["Semana"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                this.dgvAsistencias.Columns["CalcularPor"].Visible = false;
-
+                
                 this.dgvAsistencias.Columns["FechaHoraInicio"].Visible = true;
                 this.dgvAsistencias.Columns["FechaHoraInicio"].HeaderText = "Inicio Horario";
                 this.dgvAsistencias.Columns["FechaHoraInicio"].Width = 120;
@@ -244,68 +246,65 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 int finHoras = 0;
 
                 //Asistencias Normal
-                iniHoras = this.dgvAsistencias.Columns["AsistenciaNormalTotal"].Index;
-                finHoras = this.dgvAsistencias.Columns["TardanzaNormalNocturna"].Index + 1;
+                iniHoras = this.dgvAsistencias.Columns["FormateadoAsistenciaNormalTotal"].Index;
+                finHoras = this.dgvAsistencias.Columns["FormateadoTardanzaNormalNocturna"].Index + 1;
                 for (int i = iniHoras; i < finHoras; i++)
                 {
                     this.dgvAsistencias.Columns[i].Visible = true;
                     this.dgvAsistencias.Columns[i].Width = 70;
                     this.dgvAsistencias.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.dgvAsistencias.Columns[i].DefaultCellStyle.Format = "N2";
                     this.dgvAsistencias.Columns[i].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
 
-                this.dgvAsistencias.Columns["AsistenciaNormalTotal"].Visible = false;
-                this.dgvAsistencias.Columns["AsistenciaNormalTotal"].HeaderText = "Asistencia Total";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalTotal"].Visible = false;
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalTotal"].HeaderText = "Asistencia Total";
 
-                this.dgvAsistencias.Columns["AsistenciaNormalDiurna"].HeaderText = "Horario Diurno";
-                this.dgvAsistencias.Columns["AsistenciaNormalNocturna"].HeaderText = "Horario Nocturno";
-                this.dgvAsistencias.Columns["AsistenciaNormalDiurnaExtra1"].HeaderText = "Extras 25% Diurno";
-                this.dgvAsistencias.Columns["AsistenciaNormalNocturnaExtra1"].HeaderText = "Extras 25% Nocturno";
-                this.dgvAsistencias.Columns["AsistenciaNormalDiurnaExtra2"].HeaderText = "Extras 35% Diurno";
-                this.dgvAsistencias.Columns["AsistenciaNormalNocturnaExtra2"].HeaderText = "Extras 35% Nocturno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalDiurna"].HeaderText = "Horario Diurno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalNocturna"].HeaderText = "Horario Nocturno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalDiurnaExtra1"].HeaderText = "Extras 25% Diurno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalNocturnaExtra1"].HeaderText = "Extras 25% Nocturno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalDiurnaExtra2"].HeaderText = "Extras 35% Diurno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalNocturnaExtra2"].HeaderText = "Extras 35% Nocturno";
                 
-                this.dgvAsistencias.Columns["TardanzaNormalTotal"].Visible = false;
-                this.dgvAsistencias.Columns["AsistenciaNormalTotal"].HeaderText = "Tardanza Total";
+                this.dgvAsistencias.Columns["FormateadoTardanzaNormalTotal"].Visible = false;
+                this.dgvAsistencias.Columns["FormateadoAsistenciaNormalTotal"].HeaderText = "Tardanza Total";
 
-                this.dgvAsistencias.Columns["TardanzaNormalDiurna"].HeaderText = "Tardanza Diurna";
-                this.dgvAsistencias.Columns["TardanzaNormalNocturna"].HeaderText = "Tardanza Nocturna";
+                this.dgvAsistencias.Columns["FormateadoTardanzaNormalDiurna"].HeaderText = "Tardanza Diurna";
+                this.dgvAsistencias.Columns["FormateadoTardanzaNormalNocturna"].HeaderText = "Tardanza Nocturna";
 
                 //Asistencias Feriados
-                iniHoras = this.dgvAsistencias.Columns["AsistenciaFeriadoTotal"].Index;
-                finHoras = this.dgvAsistencias.Columns["TardanzaFeriadoNocturna"].Index + 1;
+                iniHoras = this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoTotal"].Index;
+                finHoras = this.dgvAsistencias.Columns["FormateadoTardanzaFeriadoNocturna"].Index + 1;
                 for (int i = iniHoras; i < finHoras; i++)
                 {
                     this.dgvAsistencias.Columns[i].Visible = true;
                     this.dgvAsistencias.Columns[i].Width = 70;
                     this.dgvAsistencias.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.dgvAsistencias.Columns[i].DefaultCellStyle.Format = "N2";
                     this.dgvAsistencias.Columns[i].DefaultCellStyle.BackColor = Color.LightYellow;
                 }
 
-                this.dgvAsistencias.Columns["AsistenciaFeriadoTotal"].Visible = false;
-                this.dgvAsistencias.Columns["AsistenciaFeriadoTotal"].HeaderText = "Asistencia Total";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoTotal"].Visible = false;
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoTotal"].HeaderText = "Asistencia Total";
 
-                this.dgvAsistencias.Columns["AsistenciaFeriadoDiurna"].HeaderText = "Horario Diurno";
-                this.dgvAsistencias.Columns["AsistenciaFeriadoNocturna"].HeaderText = "Horario Nocturno";
-                this.dgvAsistencias.Columns["AsistenciaFeriadoDiurnaExtra1"].HeaderText = "Extras 25% Diurno";
-                this.dgvAsistencias.Columns["AsistenciaFeriadoNocturnaExtra1"].HeaderText = "Extras 25% Nocturno";
-                this.dgvAsistencias.Columns["AsistenciaFeriadoDiurnaExtra2"].HeaderText = "Extras 35% Diurno";
-                this.dgvAsistencias.Columns["AsistenciaFeriadoNocturnaExtra2"].HeaderText = "Extras 35% Nocturno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoDiurna"].HeaderText = "Horario Diurno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoNocturna"].HeaderText = "Horario Nocturno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoDiurnaExtra1"].HeaderText = "Extras 25% Diurno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoNocturnaExtra1"].HeaderText = "Extras 25% Nocturno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoDiurnaExtra2"].HeaderText = "Extras 35% Diurno";
+                this.dgvAsistencias.Columns["FormateadoAsistenciaFeriadoNocturnaExtra2"].HeaderText = "Extras 35% Nocturno";
 
-                this.dgvAsistencias.Columns["TardanzaFeriadoTotal"].Visible = false;
+                this.dgvAsistencias.Columns["FormateadoTardanzaFeriadoTotal"].Visible = false;
                 this.dgvAsistencias.Columns["TardanzaFeriadoTotal"].HeaderText = "Tardanza Total";
 
-                this.dgvAsistencias.Columns["TardanzaFeriadoDiurna"].HeaderText = "Tardanza Diurna";
-                this.dgvAsistencias.Columns["TardanzaFeriadoNocturna"].HeaderText = "Tardanza Nocturna";
+                this.dgvAsistencias.Columns["FormateadoTardanzaFeriadoDiurna"].HeaderText = "Tardanza Diurna";
+                this.dgvAsistencias.Columns["FormateadoTardanzaFeriadoNocturna"].HeaderText = "Tardanza Nocturna";
 
                 //Inasistencias
-                this.dgvAsistencias.Columns["InasistenciaTotal"].Visible = true;
-                this.dgvAsistencias.Columns["InasistenciaTotal"].HeaderText = "Inasistencia Total";
-                this.dgvAsistencias.Columns["InasistenciaTotal"].Width = 70;
-                this.dgvAsistencias.Columns["InasistenciaTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvAsistencias.Columns["InasistenciaTotal"].DefaultCellStyle.Format = "N2";
-                this.dgvAsistencias.Columns["InasistenciaTotal"].DefaultCellStyle.BackColor = Color.Red;
+                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].Visible = true;
+                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].HeaderText = "Inasistencia Total";
+                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].Width = 70;
+                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].DefaultCellStyle.BackColor = Color.Red;
 
             }
             catch (Exception ex)
@@ -326,68 +325,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.lstUiAsistencias = new LN.Planilla(anho, mes).ListarAsistencia();
 
                 string calcular = this.cboCalculoPor.SelectedValue.ToString();
-                switch (calcular)
+
+                for (int i = 0; i < this.lstUiAsistencias.Count; i++)
                 {
-                    case "H": //Costo por Hora
-                        for (int i = 0; i < this.lstUiAsistencias.Count; i++)
-                        {
-                            this.lstUiAsistencias[i].CalcularPor = calcular;
-
-                            this.lstUiAsistencias[i].AsistenciaNormalDiurna /= 60;
-                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra1 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra2 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaNormalNocturna /= 60;
-                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra1 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra2 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaNormalTotal /= 60;
-
-                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurna /= 60;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra1 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra2 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturna /= 60;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra1 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra2 /= 60;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoTotal /= 60;
-
-                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60;
-                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60;
-                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60;
-                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60;
-
-                            this.lstUiAsistencias[i].InasistenciaTotal /= 60;
-                        }
-                        break;
-                    case "D": //Costo por Hora
-                        for (int i = 0; i < this.lstUiAsistencias.Count; i++)
-                        {
-                            this.lstUiAsistencias[i].CalcularPor = calcular;
-
-                            this.lstUiAsistencias[i].AsistenciaNormalDiurna /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra1 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaNormalDiurnaExtra2 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaNormalNocturna /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra1 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaNormalNocturnaExtra2 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaNormalTotal /= 60 / 8;
-
-                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurna /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra1 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoDiurnaExtra2 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturna /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra1 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoNocturnaExtra2 /= 60 / 8;
-                            this.lstUiAsistencias[i].AsistenciaFeriadoTotal /= 60 / 8;
-
-                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60 / 8;
-                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60 / 8;
-                            this.lstUiAsistencias[i].TardanzaFeriadoDiurna /= 60 / 8;
-                            this.lstUiAsistencias[i].TardanzaFeriadoNocturna /= 60 / 8;
-
-                            this.lstUiAsistencias[i].InasistenciaTotal /= 60 / 8;
-                        }
-                        break;
-                    default:
-                        break;
+                    this.lstUiAsistencias[i].FormateadoCalculo = calcular;
                 }
 
                 #region Mostrar
@@ -659,11 +600,24 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.CboAnho.SelectedValue = DateTime.Now.Year.ToString();
                 this.CbxMes.SelectedValue = DateTime.Now.Month.ToString();
 
-                this.FormatoCostos();
+                #region Pestaña Costos
                 this.CargarCostosPor();
 
-                this.FormatoAsistencias();
+                this.FormatoCostos();
+                #endregion
+
+                #region Pestaña Asistencias
+
                 this.CargarAsistenciasPor();
+
+                this.lstUiAsistencias = new List<BE.UI.PlanillaAsistencia>();
+
+                this.CargarAsistencias();
+                this.FormatoAsistencias();
+
+                #endregion
+
+                
 
             }
             catch (Exception ex)
@@ -802,62 +756,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                             lstCostosMinutos[i].TardanzaFeriadoNocturno *= 480;
                             lstCostosMinutos[i].Dominical *= 480;
                             lstCostosMinutos[i].Inasistencia *= 480;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                #endregion
-
-                #region Conversion de Tiempo a minutos
-                for (int i = 0; i < lstAsistenciasMinutos.Count; i++)
-                {
-                    switch (lstAsistenciasMinutos[i].CalcularPor)
-                    {
-
-                        case "H": //Hora
-                            lstAsistenciasMinutos[i].CalcularPor = "M";
-                            lstAsistenciasMinutos[i].AsistenciaNormalDiurna *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaNormalDiurnaExtra1 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaNormalDiurnaExtra2 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaNormalNocturna *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaNormalNocturnaExtra1 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaNormalNocturnaExtra2 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaNormalTotal *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoDiurna *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoDiurnaExtra1 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoDiurnaExtra2 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoNocturna *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoNocturnaExtra1 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoNocturnaExtra2 *= 60;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoTotal *= 60;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoDiurna *= 60;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoNocturna *= 60;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoDiurna *= 60;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoNocturna *= 60;
-                            lstAsistenciasMinutos[i].InasistenciaTotal *= 60;
-                            break;
-                        case "D": //Dia
-                            lstAsistenciasMinutos[i].CalcularPor = "M";
-                            lstAsistenciasMinutos[i].AsistenciaNormalDiurna *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaNormalDiurnaExtra1 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaNormalDiurnaExtra2 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaNormalNocturna *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaNormalNocturnaExtra1 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaNormalNocturnaExtra2 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaNormalTotal *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoDiurna *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoDiurnaExtra1 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoDiurnaExtra2 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoNocturna *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoNocturnaExtra1 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoNocturnaExtra2 *= 480;
-                            lstAsistenciasMinutos[i].AsistenciaFeriadoTotal *= 480;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoDiurna *= 480;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoNocturna *= 480;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoDiurna *= 480;
-                            lstAsistenciasMinutos[i].TardanzaFeriadoNocturna *= 480;
-                            lstAsistenciasMinutos[i].InasistenciaTotal *= 480;
                             break;
                         default:
                             break;
@@ -1178,30 +1076,30 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     #endregion
 
                     #region Asistencias en Minutos
-                    asistencia.MinutosAsistenciaNormalDiurna = (int)objAsistencia.AsistenciaNormalDiurna;
-                    asistencia.MinutosAsistenciaNormalNocturna = (int)objAsistencia.AsistenciaNormalNocturna;
-                    asistencia.MinutosAsistenciaNormalDiurnaExtra1 = (int)objAsistencia.AsistenciaNormalDiurnaExtra1;
-                    asistencia.MinutosAsistenciaNormalNocturnaExtra1 = (int)objAsistencia.AsistenciaNormalNocturnaExtra1;
-                    asistencia.MinutosAsistenciaNormalDiurnaExtra2 = (int)objAsistencia.AsistenciaNormalDiurnaExtra2;
-                    asistencia.MinutosAsistenciaNormalNocturnaExtra2 = (int)objAsistencia.AsistenciaNormalNocturnaExtra2;
+                    asistencia.MinutosAsistenciaNormalDiurna = objAsistencia.AsistenciaNormalDiurna;
+                    asistencia.MinutosAsistenciaNormalNocturna = objAsistencia.AsistenciaNormalNocturna;
+                    asistencia.MinutosAsistenciaNormalDiurnaExtra1 = objAsistencia.AsistenciaNormalDiurnaExtra1;
+                    asistencia.MinutosAsistenciaNormalNocturnaExtra1 = objAsistencia.AsistenciaNormalNocturnaExtra1;
+                    asistencia.MinutosAsistenciaNormalDiurnaExtra2 = objAsistencia.AsistenciaNormalDiurnaExtra2;
+                    asistencia.MinutosAsistenciaNormalNocturnaExtra2 = objAsistencia.AsistenciaNormalNocturnaExtra2;
 
-                    asistencia.MinutosAsistenciaFeriadoDiurna = (int)objAsistencia.AsistenciaFeriadoDiurna;
-                    asistencia.MinutosAsistenciaFeriadoNocturna = (int)objAsistencia.AsistenciaFeriadoNocturna;
-                    asistencia.MinutosAsistenciaFeriadoDiurnaExtra1 = (int)objAsistencia.AsistenciaFeriadoDiurnaExtra1;
-                    asistencia.MinutosAsistenciaFeriadoNocturnaExtra1 = (int)objAsistencia.AsistenciaFeriadoNocturnaExtra1;
-                    asistencia.MinutosAsistenciaFeriadoDiurnaExtra2 = (int)objAsistencia.AsistenciaFeriadoDiurnaExtra2;
-                    asistencia.MinutosAsistenciaFeriadoNocturnaExtra2 = (int)objAsistencia.AsistenciaFeriadoNocturnaExtra2;
+                    asistencia.MinutosAsistenciaFeriadoDiurna = objAsistencia.AsistenciaFeriadoDiurna;
+                    asistencia.MinutosAsistenciaFeriadoNocturna = objAsistencia.AsistenciaFeriadoNocturna;
+                    asistencia.MinutosAsistenciaFeriadoDiurnaExtra1 = objAsistencia.AsistenciaFeriadoDiurnaExtra1;
+                    asistencia.MinutosAsistenciaFeriadoNocturnaExtra1 = objAsistencia.AsistenciaFeriadoNocturnaExtra1;
+                    asistencia.MinutosAsistenciaFeriadoDiurnaExtra2 = objAsistencia.AsistenciaFeriadoDiurnaExtra2;
+                    asistencia.MinutosAsistenciaFeriadoNocturnaExtra2 = objAsistencia.AsistenciaFeriadoNocturnaExtra2;
                     #endregion
 
                     #region Tardanzas en Minutos
-                    asistencia.MinutosTardanzaNormalDiurna = (int)objAsistencia.TardanzaNormalDiurna;
-                    asistencia.MinutosTardanzaNormalNocturna = (int)objAsistencia.TardanzaNormalNocturna;
-                    asistencia.MinutosTardanzaFeriadoDiurna = (int)objAsistencia.TardanzaFeriadoDiurna;
-                    asistencia.MinutosTardanzaFeriadoNocturna = (int)objAsistencia.TardanzaFeriadoNocturna;
+                    asistencia.MinutosTardanzaNormalDiurna = objAsistencia.TardanzaNormalDiurna;
+                    asistencia.MinutosTardanzaNormalNocturna = objAsistencia.TardanzaNormalNocturna;
+                    asistencia.MinutosTardanzaFeriadoDiurna = objAsistencia.TardanzaFeriadoDiurna;
+                    asistencia.MinutosTardanzaFeriadoNocturna = objAsistencia.TardanzaFeriadoNocturna;
                     #endregion
 
                     #region Inasistencias en Minutos
-                    asistencia.MinutosInasistenciaTotal = (int)objAsistencia.InasistenciaTotal;
+                    asistencia.MinutosInasistenciaTotal = objAsistencia.InasistenciaTotal;
                     #endregion
 
                     asistencias.Add(asistencia);

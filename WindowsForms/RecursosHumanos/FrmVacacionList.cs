@@ -82,8 +82,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
 
-                
-
             }
             catch (Exception ex)
             {
@@ -155,8 +153,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
 
-                    int idVacacion = uiVacacion.Id;
-                    bool rpta = new LN.Vacacion().Eliminar(idVacacion);
+                    bool rpta = new LN.Vacacion().Eliminar(uiVacacion);
 
                     if (rpta == true)
                     {

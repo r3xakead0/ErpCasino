@@ -1,5 +1,5 @@
-﻿
-CREATE PROCEDURE SpTbVacacionDetalleListar
+﻿CREATE PROCEDURE SpTbVacacionDetalleListar
+@IdVacacion AS INT
 AS
 BEGIN
 	SELECT	IdVacacionDetalle,
@@ -10,4 +10,5 @@ BEGIN
 			HorasExtrasMonto,
 			BonificacionMonto
 	FROM	TbVacacionDetalle
+	WHERE	IdVacacion = @IdVacacion
 END

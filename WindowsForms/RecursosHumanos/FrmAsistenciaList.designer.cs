@@ -59,6 +59,7 @@
             this.dgvAsistencias.Name = "dgvAsistencias";
             this.dgvAsistencias.Size = new System.Drawing.Size(325, 366);
             this.dgvAsistencias.TabIndex = 0;
+            this.dgvAsistencias.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAsistencias_CellDoubleClick);
             this.dgvAsistencias.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvAsistencias_ColumnHeaderMouseClick);
             // 
             // btnNuevo

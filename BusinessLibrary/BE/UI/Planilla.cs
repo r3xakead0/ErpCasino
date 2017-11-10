@@ -22,41 +22,93 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public int CantidadTardanzas { get; set; }
     }
 
+    /// <summary>
+    /// Calculo de Asistencia en Minutos
+    /// </summary>
     public class PlanillaAsistencia: ICloneable 
     {
 
         public string CodigoEmpleado { get; set; }
         public DateTime Fecha { get; set; }
         public int Semana { get; set; }
-        public string CalcularPor { get; set; }
         public DateTime FechaHoraInicio { get; set; }
         public DateTime FechaHoraFinal { get; set; }
-        public double AsistenciaNormalTotal { get; set; }
-        public double AsistenciaNormalDiurna { get; set; }
-        public double AsistenciaNormalNocturna { get; set; }
-        public double AsistenciaNormalDiurnaExtra1 { get; set; }
-        public double AsistenciaNormalNocturnaExtra1 { get; set; }
-        public double AsistenciaNormalDiurnaExtra2 { get; set; }
-        public double AsistenciaNormalNocturnaExtra2 { get; set; }
-        public double TardanzaNormalTotal { get; set; }
-        public double TardanzaNormalDiurna { get; set; }
-        public double TardanzaNormalNocturna { get; set; }
-        public double AsistenciaFeriadoTotal { get; set; }
-        public double AsistenciaFeriadoDiurna { get; set; }
-        public double AsistenciaFeriadoNocturna { get; set; }
-        public double AsistenciaFeriadoDiurnaExtra1 { get; set; }
-        public double AsistenciaFeriadoNocturnaExtra1 { get; set; }
-        public double AsistenciaFeriadoDiurnaExtra2 { get; set; }
-        public double AsistenciaFeriadoNocturnaExtra2 { get; set; }
-        public double TardanzaFeriadoTotal { get; set; }
-        public double TardanzaFeriadoDiurna { get; set; }
-        public double TardanzaFeriadoNocturna { get; set; }
-        public double InasistenciaTotal { get; set; }
+
+        #region Valores de calculo en Minutos
+
+        public int AsistenciaNormalTotal { get; set; }
+        public int AsistenciaNormalDiurna { get; set; }
+        public int AsistenciaNormalNocturna { get; set; }
+        public int AsistenciaNormalDiurnaExtra1 { get; set; }
+        public int AsistenciaNormalNocturnaExtra1 { get; set; }
+        public int AsistenciaNormalDiurnaExtra2 { get; set; }
+        public int AsistenciaNormalNocturnaExtra2 { get; set; }
+        public int TardanzaNormalTotal { get; set; }
+        public int TardanzaNormalDiurna { get; set; }
+        public int TardanzaNormalNocturna { get; set; }
+        public int AsistenciaFeriadoTotal { get; set; }
+        public int AsistenciaFeriadoDiurna { get; set; }
+        public int AsistenciaFeriadoNocturna { get; set; }
+        public int AsistenciaFeriadoDiurnaExtra1 { get; set; }
+        public int AsistenciaFeriadoNocturnaExtra1 { get; set; }
+        public int AsistenciaFeriadoDiurnaExtra2 { get; set; }
+        public int AsistenciaFeriadoNocturnaExtra2 { get; set; }
+        public int TardanzaFeriadoTotal { get; set; }
+        public int TardanzaFeriadoDiurna { get; set; }
+        public int TardanzaFeriadoNocturna { get; set; }
+        public int InasistenciaTotal { get; set; }
+
+        #endregion
+
+
+        #region Devuelve valores en formato de calculo
+        public string FormateadoCalculo { get; set; } //H = Hora | M = Minuto
+        public string FormateadoAsistenciaNormalTotal { get { return AplicarFormato(AsistenciaNormalTotal); } }
+        public string FormateadoAsistenciaNormalDiurna { get { return AplicarFormato(AsistenciaNormalDiurna); } }
+        public string FormateadoAsistenciaNormalNocturna { get { return AplicarFormato(AsistenciaNormalNocturna); } }
+        public string FormateadoAsistenciaNormalDiurnaExtra1 { get { return AplicarFormato(AsistenciaNormalDiurnaExtra1); } }
+        public string FormateadoAsistenciaNormalNocturnaExtra1 { get { return AplicarFormato(AsistenciaNormalNocturnaExtra1); } }
+        public string FormateadoAsistenciaNormalDiurnaExtra2 { get { return AplicarFormato(AsistenciaNormalDiurnaExtra2); } }
+        public string FormateadoAsistenciaNormalNocturnaExtra2 { get { return AplicarFormato(AsistenciaNormalNocturnaExtra2); } }
+        public string FormateadoTardanzaNormalTotal { get { return AplicarFormato(TardanzaNormalTotal); } }
+        public string FormateadoTardanzaNormalDiurna { get { return AplicarFormato(TardanzaNormalDiurna); } }
+        public string FormateadoTardanzaNormalNocturna { get { return AplicarFormato(TardanzaNormalNocturna); } }
+        public string FormateadoAsistenciaFeriadoTotal { get { return AplicarFormato(AsistenciaFeriadoTotal); } }
+        public string FormateadoAsistenciaFeriadoDiurna { get { return AplicarFormato(AsistenciaFeriadoDiurna); } }
+        public string FormateadoAsistenciaFeriadoNocturna { get { return AplicarFormato(AsistenciaFeriadoNocturna); } }
+        public string FormateadoAsistenciaFeriadoDiurnaExtra1 { get { return AplicarFormato(AsistenciaFeriadoDiurnaExtra1); } }
+        public string FormateadoAsistenciaFeriadoNocturnaExtra1 { get { return AplicarFormato(AsistenciaFeriadoNocturnaExtra1); } }
+        public string FormateadoAsistenciaFeriadoDiurnaExtra2 { get { return AplicarFormato(AsistenciaFeriadoDiurnaExtra2); } }
+        public string FormateadoAsistenciaFeriadoNocturnaExtra2 { get { return AplicarFormato(AsistenciaFeriadoNocturnaExtra2); } }
+        public string FormateadoTardanzaFeriadoTotal { get { return AplicarFormato(TardanzaFeriadoTotal); } }
+        public string FormateadoTardanzaFeriadoDiurna { get { return AplicarFormato(TardanzaFeriadoDiurna); } }
+        public string FormateadoTardanzaFeriadoNocturna { get { return AplicarFormato(TardanzaFeriadoNocturna); } }
+        public string FormateadoInasistenciaTotal { get { return AplicarFormato(InasistenciaTotal); } }
+
+        #endregion
 
         public object Clone()
         {
             return this.MemberwiseClone();
         }
+
+        private string AplicarFormato(int valor)
+        {
+            string strValor = "";
+
+            if (FormateadoCalculo == "H") //Hora
+            {
+                var span = TimeSpan.FromMinutes(valor);
+                strValor = string.Format("{0:00}:{1:00}", (int)span.TotalHours, span.Minutes);
+            }
+            else if(FormateadoCalculo == "M") //Minuto
+            {
+                strValor = valor.ToString();
+            }
+
+            return strValor;
+        }
+        
     }
 
     public class PlanillaCosto : ICloneable
@@ -122,21 +174,29 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public double AsignacionFamiliar { get; set; }
         #endregion
 
-        public string CalcularPor { get; set; }
+        public string CalcularPor { get; set; } //Horas - H | Minutos - M
 
         #region Bonos
-        public double BonoNocturnoCantidad { get; set; }  
+        public int BonoNocturnoCantidad { get; set; }
+        public string BonoNocturnoFormato { get { return AplicarFormato(BonoNocturnoCantidad); } }
         public double BonoNocturnoTotal { get; set; }
-        public double BonoHorasExtrasCantidad { get; set; }
+
+        public int BonoHorasExtrasCantidad { get; set; }
+        public string BonoHorasExtrasFormato { get { return AplicarFormato(BonoHorasExtrasCantidad); } }
         public double BonoHorasExtrasTotal { get; set; }
-        public double BonoFeriadoCantidad { get; set; }
+
+        public int BonoFeriadoCantidad { get; set; }
+        public string BonoFeriadoFormato { get { return AplicarFormato(BonoFeriadoCantidad); } }
         public double BonoFeriadoTotal { get; set; }
         #endregion
 
         #region Descuentos 
-        public double DescuentoTardanzaCantidad { get; set; }
+        public int DescuentoTardanzaCantidad { get; set; }
+        public string DescuentoTardanzaFormato { get { return AplicarFormato(DescuentoTardanzaCantidad); } }
         public double DescuentoTardanzaTotal { get; set; }
-        public double DescuentoInasistenciaCantidad { get; set; }
+
+        public int DescuentoInasistenciaCantidad { get; set; }
+        public string DescuentoInasistenciaFormato { get { return AplicarFormato(DescuentoInasistenciaCantidad); } }
         public double DescuentoInasistenciaTotal { get; set; }
         #endregion
 
@@ -174,5 +234,22 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public double TotalNeto { get; set; }
         public double TotalPagar { get; set; }
         #endregion
+
+        private string AplicarFormato(int valor)
+        {
+            string strValor = "";
+
+            if (CalcularPor == "H") //Hora
+            {
+                var span = TimeSpan.FromMinutes(valor);
+                strValor = string.Format("{0:00}:{1:00}", (int)span.TotalHours, span.Minutes);
+            }
+            else if (CalcularPor == "M") //Minuto
+            {
+                strValor = valor.ToString();
+            }
+
+            return strValor;
+        }
     }
 }

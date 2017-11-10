@@ -1028,13 +1028,16 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 {
 
                     int idEmpleado = beEmpleadoGeneral.IdEmpleado;
-                    string filtro = this.frmEmpleadosList.cboTipoFiltro.SelectedValue.ToString();
-                    string valor = this.frmEmpleadosList.cboFiltro.SelectedValue.ToString();
-
+                    
                     if (this.contratarCandidato == false)
                     {
                         if (this.frmEmpleadosList != null)
+                        {
+                            string filtro = this.frmEmpleadosList.cboTipoFiltro.SelectedValue.ToString();
+                            string valor = this.frmEmpleadosList.cboFiltro.SelectedValue.ToString();
+
                             this.frmEmpleadosList.CargarEmpleados(filtro, valor, idEmpleado);
+                        }
                     }
                     else
                     {

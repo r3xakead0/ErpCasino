@@ -380,5 +380,9 @@
     <Build Include="dbo\Stored Procedures\SpTbVacacionDetalleListar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbVacacionDetalleInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbVacacionDetalleEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbVacacionObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoRecursoVacacion.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbAfpComisionObtener2.sql" />
+    <Build Include="dbo\Stored Procedures\SpImpresionReciboVacacion.sql" />
   </ItemGroup>
 </Project>

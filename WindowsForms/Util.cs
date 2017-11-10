@@ -193,6 +193,16 @@ namespace ErpCasino.WindowsForms
             return DateTime.ParseExact(dateString, formatDate, CultureInfo.InvariantCulture);
         }
 
+        public static string ParseMinutesToHours(int minutes, string formatDate = @"HH:mm")
+        {
+            string strHours = "";
+
+            var span = TimeSpan.FromMinutes(minutes);
+            strHours = span.ToString(formatDate);
+
+            return strHours;
+        }
+
         public static void ListToCsv<T>(List<T> list, string filename)
         {
             if (list == null || list.Count == 0) return;

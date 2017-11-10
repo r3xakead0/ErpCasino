@@ -769,6 +769,39 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+
+        internal int Vacacion(string codigo, DateTime? fecha = null)
+        {
+            try
+            {
+                string sp = "SpTbEmpleadoRecursoVacacion";
+                int rowsAffected = 0;
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGO", codigo));
+
+                    if (fecha != null)
+                        cmd.Parameters.Add(new SqlParameter("@FECHAVACACION", (DateTime)fecha));
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@FECHAVACACION", DBNull.Value));
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+
+                    cnn.Close();
+                }
+
+                return rowsAffected;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
 

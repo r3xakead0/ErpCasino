@@ -39,6 +39,40 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         }
 
         #region Formulario
+
+        private void cboAnhoMes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboAnho.Items.Count == 0 || this.cboMes.Items.Count == 0)
+                    return;
+
+                int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
+                int mes = int.Parse(this.cboMes.SelectedValue.ToString());
+
+                this.CargarAsistencias(anho, mes);
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void FrmAsistenciaList_ResizeEnd(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.Width < this.anchoInicial)
+                    this.Width = this.anchoInicial;
+
+                Util.AutoWidthColumn(ref this.dgvAsistencias, "Fecha");
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void FrmAsistenciaList_Load(object sender, EventArgs e)
         {
             try
@@ -118,19 +152,30 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     var uiAsistenciaResumen = (BE.UI.AsistenciaResumen)this.dgvAsistencias.CurrentRow.DataBoundItem;
                     DateTime fecha = uiAsistenciaResumen.Fecha;
 
-                    List<BE.UI.Asistencia> lstUiAsistencias = new LN.Asistencia().Listar(fecha);
-
-                    var frmAsistenciaEdit = FrmAsistenciaMant.Instance();
-                    frmAsistenciaEdit.MdiParent = this.MdiParent;
-                    frmAsistenciaEdit.Show();
-
-                    frmAsistenciaEdit.Cargar(lstUiAsistencias);
-                    frmAsistenciaEdit.frmList = this;
+                    this.Editar(fecha);
                 }
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void dgvAsistencias_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (this.dgvAsistencias.CurrentRow != null)
+                {
+
+                    var uiAsistenciaResumen = (BE.UI.AsistenciaResumen)this.dgvAsistencias.CurrentRow.DataBoundItem;
+                    DateTime fecha = uiAsistenciaResumen.Fecha;
+                    this.Editar(fecha);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -162,6 +207,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         #endregion
 
         #region Metodos
+
+        private void Editar(DateTime fecha)
+        {
+            try
+            {
+                List<BE.UI.Asistencia> lstUiAsistencias = new LN.Asistencia().Listar(fecha);
+
+                var frmAsistenciaEdit = FrmAsistenciaMant.Instance();
+                frmAsistenciaEdit.MdiParent = this.MdiParent;
+                frmAsistenciaEdit.Show();
+
+                frmAsistenciaEdit.frmList = this;
+                frmAsistenciaEdit.Cargar(lstUiAsistencias);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private void CargarAnhos()
         {
@@ -270,39 +334,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
 
         #endregion
-
-        private void cboAnhoMes_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.cboAnho.Items.Count == 0 || this.cboMes.Items.Count == 0)
-                    return;
-
-                int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
-                int mes = int.Parse(this.cboMes.SelectedValue.ToString());
-
-                this.CargarAsistencias(anho, mes);
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
-        private void FrmAsistenciaList_ResizeEnd(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.Width < this.anchoInicial)
-                    this.Width = this.anchoInicial;
-
-                Util.AutoWidthColumn(ref this.dgvAsistencias, "Fecha");
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
 
     }
 }

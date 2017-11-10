@@ -56,6 +56,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 if (uiVacacion != null)
                 {
+
+                    this.uiVacacion = new LN.Vacacion().Obtener(uiVacacion.Id);
+
                     this.txtCodigo.Text = this.uiVacacion.EmpleadoCodigo;
                     this.txtNombres.Text = this.uiVacacion.EmpleadoNombreCompleto;
 
@@ -82,6 +85,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtTotalDescuento.Text = this.uiVacacion.TotalDescuento.ToString("N2");
 
                     this.txtTotalNeto.Text = this.uiVacacion.TotalNeto.ToString("N2");
+
+                    this.CargarListadoVacaciones();
                 }
 
             }

@@ -204,6 +204,54 @@ namespace ErpCasino.BusinessLibrary.DA
                 throw ex;
             }
         }
+
+        public BE.AfpComision Obtener(int idAfpComision)
+        {
+            BE.AfpComision beAfpComision = null;
+            try
+            {
+                string sp = "SpTbAfpComisionObtener2";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDAFPCOMISION", idAfpComision));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        beAfpComision = new BE.AfpComision();
+
+                        beAfpComision.IdAfpComision = reader["IdAfpComision"] == DBNull.Value ? 0 : int.Parse(reader["IdAfpComision"].ToString());
+                        beAfpComision.Anho = reader["Anho"] == DBNull.Value ? 0 : int.Parse(reader["Anho"].ToString());
+                        beAfpComision.Mes = reader["Mes"] == DBNull.Value ? 0 : int.Parse(reader["Mes"].ToString());
+                        beAfpComision.PorcentajeFondo = reader["PorcentajeFondo"] == DBNull.Value ? 0.0 : double.Parse(reader["PorcentajeFondo"].ToString());
+                        beAfpComision.PorcentajeSeguro = reader["PorcentajeSeguro"] == DBNull.Value ? 0.0 : double.Parse(reader["PorcentajeSeguro"].ToString());
+                        beAfpComision.PorcentajeComisionFlujo = reader["PorcentajeComisionFlujo"] == DBNull.Value ? 0.0 : double.Parse(reader["PorcentajeComisionFlujo"].ToString());
+                        beAfpComision.PorcentajeComisionMixta = reader["PorcentajeComisionMixta"] == DBNull.Value ? 0.0 : double.Parse(reader["PorcentajeComisionMixta"].ToString());
+
+                        if (reader["IdAfp"] != DBNull.Value)
+                        {
+                            int idAfp = reader["IdAfp"] == DBNull.Value ? 0 : int.Parse(reader["IdAfp"].ToString());
+                            var beAfp = new BE.Afp() { IdAfp = idAfp };
+
+                            if (new DA.Afp().Obtener(ref beAfp))
+                                beAfpComision.Afp = beAfp;
+                        }
+                    }
+                }
+
+                return beAfpComision;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

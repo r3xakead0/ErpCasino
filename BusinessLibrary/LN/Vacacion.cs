@@ -9,6 +9,82 @@ namespace ErpCasino.BusinessLibrary.LN
     public class Vacacion
     {
 
+        private string NombreMes(int numeroMes)
+        {
+            string nombreMes = "";
+
+            switch (numeroMes)
+            {
+                case 1:
+                    nombreMes = "Enero";
+                    break;
+                case 2:
+                    nombreMes = "Febrero";
+                    break;
+                case 3:
+                    nombreMes = "Marzo";
+                    break;
+                case 4:
+                    nombreMes = "Abril";
+                    break;
+                case 5:
+                    nombreMes = "Mayo";
+                    break;
+                case 6:
+                    nombreMes = "Junio";
+                    break;
+                case 7:
+                    nombreMes = "Julio";
+                    break;
+                case 8:
+                    nombreMes = "Agosto";
+                    break;
+                case 9:
+                    nombreMes = "Septiembre";
+                    break;
+                case 10:
+                    nombreMes = "Octubre";
+                    break;
+                case 11:
+                    nombreMes = "Noviembre";
+                    break;
+                default:
+                    nombreMes = "Diciembre";
+                    break;
+            }
+
+            return nombreMes;
+        }
+
+        private BE.UI.VacacionDetalle BeDetalleToUiDetalle(BE.VacacionDetalle beVacacionDetalle)
+        {
+            var uiVacacionDetalle = new BE.UI.VacacionDetalle();
+
+            uiVacacionDetalle.Id = beVacacionDetalle.IdVacacionDetalle;
+            uiVacacionDetalle.Numero = beVacacionDetalle.Numero;
+            uiVacacionDetalle.Anho = beVacacionDetalle.Anho;
+            uiVacacionDetalle.MesNumero = beVacacionDetalle.Mes;
+            uiVacacionDetalle.MesNombre = this.NombreMes(beVacacionDetalle.Mes);
+            uiVacacionDetalle.HorasExtrasMonto = beVacacionDetalle.HorasExtrasMonto;
+            uiVacacionDetalle.BonificacionMonto = beVacacionDetalle.BonificacionMonto;
+
+            return uiVacacionDetalle;
+        }
+
+        private BE.VacacionDetalle UiDetalleToBeDetalle(BE.UI.VacacionDetalle uiVacacionDetalle)
+        {
+            var beVacacionDetalle = new BE.VacacionDetalle();
+
+            beVacacionDetalle.IdVacacionDetalle = uiVacacionDetalle.Id;
+            beVacacionDetalle.Numero = uiVacacionDetalle.Numero;
+            beVacacionDetalle.Anho = uiVacacionDetalle.Anho;
+            beVacacionDetalle.Mes = uiVacacionDetalle.MesNumero;
+            beVacacionDetalle.HorasExtrasMonto = uiVacacionDetalle.HorasExtrasMonto;
+            beVacacionDetalle.BonificacionMonto = uiVacacionDetalle.BonificacionMonto;
+
+            return beVacacionDetalle;
+        }
+
         private BE.Vacacion UiToBe(BE.UI.Vacacion uiVacacion)
         {
             var beVacacion = new BE.Vacacion();
@@ -37,7 +113,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 var beComisionAfp = new DA.AfpComision().Obtener(uiVacacion.PensionId, anho, mes);
                 beVacacion.ComisionAfp = beComisionAfp;
             }
-            else if (uiVacacion.PensionTipo == BE.UI.TipoPension.AFP)
+            else if (uiVacacion.PensionTipo == BE.UI.TipoPension.ONP)
             {
                 var beComisionOnp = new DA.OnpComision().Obtener(anho, mes);
                 beVacacion.ComisionOnp = beComisionOnp;
@@ -49,6 +125,13 @@ namespace ErpCasino.BusinessLibrary.LN
             beVacacion.TotalDescuento = uiVacacion.TotalDescuento;
             beVacacion.TotalNeto = uiVacacion.TotalNeto;
 
+            beVacacion.Detalle = new List<BE.VacacionDetalle>();
+            foreach (BE.UI.VacacionDetalle uiVacacionDetalle in uiVacacion.Detalle)
+            {
+                var beVacacionDetalle = UiDetalleToBeDetalle(uiVacacionDetalle);
+                beVacacion.Detalle.Add(beVacacionDetalle);
+            }
+
             return beVacacion;
         }
 
@@ -58,13 +141,14 @@ namespace ErpCasino.BusinessLibrary.LN
 
             uiVacacion.Id = beVacacion.IdVacacion;
 
-            uiVacacion.EmpleadoCodigo = beVacacion.CodigoEmpleado;
             uiVacacion.PeriodoFechaInicial = beVacacion.PeriodoFechaInicial;
             uiVacacion.PeriodoFechaFinal = beVacacion.PeriodoFechaFinal;
             uiVacacion.VacacionFechaInicial = beVacacion.FechaInicial;
             uiVacacion.VacacionFechaFinal = beVacacion.FechaFinal;
             uiVacacion.VacacionDias = beVacacion.Dias;
 
+            uiVacacion.EmpleadoCodigo = beVacacion.CodigoEmpleado;
+            uiVacacion.EmpleadoNombreCompleto = new LN.Empleado().ObtenerNombreCompleto(beVacacion.CodigoEmpleado);
             uiVacacion.EmpleadoSueldo = beVacacion.Sueldo;
             uiVacacion.EmpleadoAsignacionFamiliar = beVacacion.AsignacionFamiliar;
             uiVacacion.PromedioHorasExtras = beVacacion.PromedioHorasExtras;
@@ -72,30 +156,36 @@ namespace ErpCasino.BusinessLibrary.LN
 
             if (beVacacion.ComisionAfp != null)
             {
+                uiVacacion.PensionId = beVacacion.ComisionAfp.Afp.IdAfp;
                 uiVacacion.PensionTipo = BE.UI.TipoPension.AFP;
                 uiVacacion.PensionNombre = beVacacion.ComisionAfp.Afp.Nombre;
                 uiVacacion.PensionMonto = beVacacion.PensionMonto;
 
                 uiVacacion.PensionTipoComision = beVacacion.TipoComisionAfp;
+
+                double porcentaje = beVacacion.ComisionAfp.PorcentajeFondo + beVacacion.ComisionAfp.PorcentajeSeguro;
                 switch (uiVacacion.PensionTipoComision)
                 {
                     case "FLUJO":
-                        uiVacacion.PensionPorcentaje = beVacacion.ComisionAfp.PorcentajeComisionFlujo;
+                        porcentaje += beVacacion.ComisionAfp.PorcentajeComisionFlujo;
                         break;
                     case "MIXTA":
-                        uiVacacion.PensionPorcentaje = beVacacion.ComisionAfp.PorcentajeComisionMixta;
+                        porcentaje += beVacacion.ComisionAfp.PorcentajeComisionMixta;
                         break;
                     //case "SALDO":
-                    //    uiVacacion.PensionPorcentaje = beVacacion.ComisionAfp.PorcentajeComisionFlujo;
+                    //    porcentaje += beVacacion.ComisionAfp.PorcentajeComisionFlujo;
                     //    break;
                     default:
-                        uiVacacion.PensionPorcentaje = 0.0;
+                        porcentaje += 0.0;
                         break;
                 }
-                
+                uiVacacion.PensionPorcentaje = porcentaje;
+
+
             }
             else if(beVacacion.ComisionOnp != null)
             {
+                uiVacacion.PensionId = 0;
                 uiVacacion.PensionTipo = BE.UI.TipoPension.ONP;
                 uiVacacion.PensionNombre = "ONP";
                 uiVacacion.PensionMonto = beVacacion.PensionMonto;
@@ -110,6 +200,13 @@ namespace ErpCasino.BusinessLibrary.LN
             //uiVacacion.TotalDescuento = beVacacion.TotalDescuento;
             //uiVacacion.TotalNeto = beVacacion.TotalNeto;
 
+            uiVacacion.Detalle = new List<BE.UI.VacacionDetalle>();
+            foreach (BE.VacacionDetalle beVacacionDetalle in beVacacion.Detalle)
+            {
+                var uiVacacionDetalle = this.BeDetalleToUiDetalle(beVacacionDetalle);
+                uiVacacion.Detalle.Add(uiVacacionDetalle);
+            }
+
             return uiVacacion;
         }
 
@@ -123,7 +220,31 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 uiVacacion.Id = beVacacion.IdVacacion;
 
+                if (uiVacacion.Id > 0)
+                {
+                    string codEmpleado = uiVacacion.EmpleadoCodigo;
+                    DateTime fechaVacacion = uiVacacion.VacacionFechaInicial;
+                    int rpta = new DA.ClsDaTbEmpleado().Vacacion(codEmpleado, fechaVacacion);
+                }
+
                 return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Eliminar(BE.UI.Vacacion uiVacacion)
+        {
+            try
+            {
+                bool rpta = this.Eliminar(uiVacacion.Id);
+
+                if (rpta)
+                    new DA.ClsDaTbEmpleado().Vacacion(uiVacacion.EmpleadoCodigo);
+
+                return rpta;
             }
             catch (Exception ex)
             {
@@ -158,6 +279,30 @@ namespace ErpCasino.BusinessLibrary.LN
                 }
 
                 return lstUiVacaciones;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BE.UI.Vacacion Obtener(int idVacacion)
+        {
+            try
+            {
+                BE.UI.Vacacion uiVacacion = null;
+
+                var daVacacion = new DA.Vacacion();
+
+                BE.Vacacion beVacacion = daVacacion.Obtener(idVacacion);
+                if (beVacacion != null)
+                {
+                    beVacacion.Detalle = daVacacion.ListarDetalle(idVacacion);
+
+                    uiVacacion = this.BeToUi(beVacacion);
+                }
+
+                return uiVacacion;
             }
             catch (Exception ex)
             {

@@ -84,7 +84,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var lstCalculoPor = new List<BE.Record>();
 
-                lstCalculoPor.Add(new BE.Record() { Codigo = "D", Nombre = "Dia" });
                 lstCalculoPor.Add(new BE.Record() { Codigo = "H", Nombre = "Hora" });
                 lstCalculoPor.Add(new BE.Record() { Codigo = "M", Nombre = "Minuto" });
 
@@ -143,11 +142,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvPlanilla.Columns["AsignacionFamiliar"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvPlanilla.Columns["AsignacionFamiliar"].DefaultCellStyle.Format = "N2";
 
-                this.dgvPlanilla.Columns["BonoNocturnoCantidad"].Visible = true;
-                this.dgvPlanilla.Columns["BonoNocturnoCantidad"].HeaderText = "Cantidad Nocturnas";
-                this.dgvPlanilla.Columns["BonoNocturnoCantidad"].Width = 70;
-                this.dgvPlanilla.Columns["BonoNocturnoCantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvPlanilla.Columns["BonoNocturnoCantidad"].DefaultCellStyle.Format = "N2";
+                this.dgvPlanilla.Columns["BonoNocturnoFormato"].Visible = true;
+                this.dgvPlanilla.Columns["BonoNocturnoFormato"].HeaderText = "Cantidad Nocturnas";
+                this.dgvPlanilla.Columns["BonoNocturnoFormato"].Width = 70;
+                this.dgvPlanilla.Columns["BonoNocturnoFormato"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 this.dgvPlanilla.Columns["BonoNocturnoTotal"].Visible = true;
                 this.dgvPlanilla.Columns["BonoNocturnoTotal"].HeaderText = "Bono Nocturno";
@@ -155,11 +153,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvPlanilla.Columns["BonoNocturnoTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvPlanilla.Columns["BonoNocturnoTotal"].DefaultCellStyle.Format = "N2";
 
-                this.dgvPlanilla.Columns["BonoHorasExtrasCantidad"].Visible = true;
-                this.dgvPlanilla.Columns["BonoHorasExtrasCantidad"].HeaderText = "Cantidad Extras";
-                this.dgvPlanilla.Columns["BonoHorasExtrasCantidad"].Width = 70;
-                this.dgvPlanilla.Columns["BonoHorasExtrasCantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvPlanilla.Columns["BonoHorasExtrasCantidad"].DefaultCellStyle.Format = "N2";
+                this.dgvPlanilla.Columns["BonoHorasExtrasFormato"].Visible = true;
+                this.dgvPlanilla.Columns["BonoHorasExtrasFormato"].HeaderText = "Cantidad Extras";
+                this.dgvPlanilla.Columns["BonoHorasExtrasFormato"].Width = 70;
+                this.dgvPlanilla.Columns["BonoHorasExtrasFormato"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 this.dgvPlanilla.Columns["BonoHorasExtrasTotal"].Visible = true;
                 this.dgvPlanilla.Columns["BonoHorasExtrasTotal"].HeaderText = "Bono Extras";
@@ -167,11 +164,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvPlanilla.Columns["BonoHorasExtrasTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvPlanilla.Columns["BonoHorasExtrasTotal"].DefaultCellStyle.Format = "N2";
 
-                this.dgvPlanilla.Columns["BonoFeriadoCantidad"].Visible = true;
-                this.dgvPlanilla.Columns["BonoFeriadoCantidad"].HeaderText = "Cantidad Feriado";
-                this.dgvPlanilla.Columns["BonoFeriadoCantidad"].Width = 70;
-                this.dgvPlanilla.Columns["BonoFeriadoCantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvPlanilla.Columns["BonoFeriadoCantidad"].DefaultCellStyle.Format = "N2";
+                this.dgvPlanilla.Columns["BonoFeriadoFormato"].Visible = true;
+                this.dgvPlanilla.Columns["BonoFeriadoFormato"].HeaderText = "Cantidad Feriado";
+                this.dgvPlanilla.Columns["BonoFeriadoFormato"].Width = 70;
+                this.dgvPlanilla.Columns["BonoFeriadoFormato"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 this.dgvPlanilla.Columns["BonoFeriadoTotal"].Visible = true;
                 this.dgvPlanilla.Columns["BonoFeriadoTotal"].HeaderText = "Bono Feriado";
@@ -179,11 +175,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvPlanilla.Columns["BonoFeriadoTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvPlanilla.Columns["BonoFeriadoTotal"].DefaultCellStyle.Format = "N2";
 
-                this.dgvPlanilla.Columns["DescuentoTardanzaCantidad"].Visible = true;
-                this.dgvPlanilla.Columns["DescuentoTardanzaCantidad"].HeaderText = "Cantidad Tardanza";
-                this.dgvPlanilla.Columns["DescuentoTardanzaCantidad"].Width = 70;
-                this.dgvPlanilla.Columns["DescuentoTardanzaCantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvPlanilla.Columns["DescuentoTardanzaCantidad"].DefaultCellStyle.Format = "N2";
+                this.dgvPlanilla.Columns["DescuentoTardanzaFormato"].Visible = true;
+                this.dgvPlanilla.Columns["DescuentoTardanzaFormato"].HeaderText = "Cantidad Tardanza";
+                this.dgvPlanilla.Columns["DescuentoTardanzaFormato"].Width = 70;
+                this.dgvPlanilla.Columns["DescuentoTardanzaFormato"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 this.dgvPlanilla.Columns["DescuentoTardanzaTotal"].Visible = true;
                 this.dgvPlanilla.Columns["DescuentoTardanzaTotal"].HeaderText = "Descuento Tardanza";
@@ -191,11 +186,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvPlanilla.Columns["DescuentoTardanzaTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.dgvPlanilla.Columns["DescuentoTardanzaTotal"].DefaultCellStyle.Format = "N2";
 
-                this.dgvPlanilla.Columns["DescuentoInasistenciaCantidad"].Visible = true;
-                this.dgvPlanilla.Columns["DescuentoInasistenciaCantidad"].HeaderText = "Cantidad Inasistencia";
-                this.dgvPlanilla.Columns["DescuentoInasistenciaCantidad"].Width = 70;
-                this.dgvPlanilla.Columns["DescuentoInasistenciaCantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvPlanilla.Columns["DescuentoInasistenciaCantidad"].DefaultCellStyle.Format = "N2";
+                this.dgvPlanilla.Columns["DescuentoInasistenciaFormato"].Visible = true;
+                this.dgvPlanilla.Columns["DescuentoInasistenciaFormato"].HeaderText = "Cantidad Inasistencia";
+                this.dgvPlanilla.Columns["DescuentoInasistenciaFormato"].Width = 70;
+                this.dgvPlanilla.Columns["DescuentoInasistenciaFormato"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 this.dgvPlanilla.Columns["DescuentoInasistenciaTotal"].Visible = true;
                 this.dgvPlanilla.Columns["DescuentoInasistenciaTotal"].HeaderText = "Descuento Inasistencia";
@@ -296,45 +290,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.lstUiPlanillaDetalle = new LN.Planilla(this.anho, this.mes).ListarPlantillaDetalle();
 
                 string calcular = this.cboCalculoPor.SelectedValue.ToString();
-                switch (calcular)
+
+                for (int i = 0; i < this.lstUiPlanillaDetalle.Count; i++)
                 {
-                    case "H": //Costo por Hora
-                        for (int i = 0; i < this.lstUiPlanillaDetalle.Count; i++)
-                        {
-                            this.lstUiPlanillaDetalle[i].CalcularPor = calcular;
-
-                            this.lstUiPlanillaDetalle[i].BonoNocturnoCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].BonoHorasExtrasCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].BonoFeriadoCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].DescuentoTardanzaCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].DescuentoInasistenciaCantidad /= 60;
-                        }
-                        break;
-
-                    case "D": //Costo por Hora
-                        for (int i = 0; i < this.lstUiPlanillaDetalle.Count; i++)
-                        {
-                            this.lstUiPlanillaDetalle[i].CalcularPor = calcular;
-
-                            this.lstUiPlanillaDetalle[i].BonoNocturnoCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].BonoHorasExtrasCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].BonoFeriadoCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].DescuentoTardanzaCantidad /= 60;
-                            this.lstUiPlanillaDetalle[i].DescuentoInasistenciaCantidad /= 60;
-
-                            this.lstUiPlanillaDetalle[i].BonoNocturnoCantidad /= 8;
-                            this.lstUiPlanillaDetalle[i].BonoHorasExtrasCantidad /= 8;
-                            this.lstUiPlanillaDetalle[i].BonoFeriadoCantidad /= 8;
-                            this.lstUiPlanillaDetalle[i].DescuentoTardanzaCantidad /= 8;
-                            this.lstUiPlanillaDetalle[i].DescuentoInasistenciaCantidad /= 8;
-
-                        }
-                        break;
-
-                    default:
-                        break;
+                    this.lstUiPlanillaDetalle[i].CalcularPor = calcular;
                 }
-
+                        
                 var sorted = new SortableBindingList<BE.UI.PlanillaDetalle>(lstUiPlanillaDetalle);
                 this.dgvPlanilla.DataSource = sorted;
 

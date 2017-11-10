@@ -84,14 +84,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 if (this.dgvCts.CurrentRow != null)
                 {
-                    var beCts = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
-
-                    var frmCtsMant = FrmCtsMant.Instance();
-                    frmCtsMant.MdiParent = this.MdiParent;
-                    frmCtsMant.Show();
-
-                    frmCtsMant.frmList = this;
-                    frmCtsMant.Cargar(beCts);
+                    var uiCts = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
+                    this.Editar(uiCts);
                 }
             }
             catch (Exception ex)
@@ -153,9 +147,42 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void dgvCts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (this.dgvCts.CurrentRow != null)
+                {
+                    var uiCts = (BE.UI.CTS)this.dgvCts.CurrentRow.DataBoundItem;
+                    this.Editar(uiCts);
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         #endregion
 
         #region Metodos
+
+        private void Editar (BE.UI.CTS uiCts)
+        {
+            try
+            {
+                var frmCtsMant = FrmCtsMant.Instance();
+                frmCtsMant.MdiParent = this.MdiParent;
+                frmCtsMant.Show();
+
+                frmCtsMant.frmList = this;
+                frmCtsMant.Cargar(uiCts);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void CargarListadoCts()
         {

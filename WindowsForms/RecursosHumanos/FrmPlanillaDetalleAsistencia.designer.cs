@@ -47,6 +47,7 @@
             this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.txtEmpleadoNombres = new System.Windows.Forms.TextBox();
             this.lblEmpleado = new System.Windows.Forms.Label();
+            this.btnExportarAsistenciasCsv = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsistencias)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -105,6 +106,7 @@
             // 
             // pnlSuperior
             // 
+            this.pnlSuperior.Controls.Add(this.btnExportarAsistenciasCsv);
             this.pnlSuperior.Controls.Add(this.lblTituloAsistencias);
             this.pnlSuperior.Controls.Add(this.txtNroRegistros);
             this.pnlSuperior.Controls.Add(this.lblNroRegistros);
@@ -154,10 +156,10 @@
             // 
             // cboCalculoPor
             // 
-            this.cboCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCalculoPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCalculoPor.FormattingEnabled = true;
-            this.cboCalculoPor.Location = new System.Drawing.Point(75, 218);
+            this.cboCalculoPor.Location = new System.Drawing.Point(629, 218);
             this.cboCalculoPor.Name = "cboCalculoPor";
             this.cboCalculoPor.Size = new System.Drawing.Size(74, 21);
             this.cboCalculoPor.TabIndex = 77;
@@ -165,9 +167,9 @@
             // 
             // lblCalculoPor
             // 
-            this.lblCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCalculoPor.AutoSize = true;
-            this.lblCalculoPor.Location = new System.Drawing.Point(3, 222);
+            this.lblCalculoPor.Location = new System.Drawing.Point(557, 222);
             this.lblCalculoPor.Name = "lblCalculoPor";
             this.lblCalculoPor.Size = new System.Drawing.Size(66, 13);
             this.lblCalculoPor.TabIndex = 76;
@@ -270,6 +272,17 @@
             this.lblEmpleado.TabIndex = 20;
             this.lblEmpleado.Text = "Empleado :";
             // 
+            // btnExportarAsistenciasCsv
+            // 
+            this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(3, 218);
+            this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
+            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(111, 21);
+            this.btnExportarAsistenciasCsv.TabIndex = 92;
+            this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
+            this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
+            this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
+            // 
             // FrmPlanillaDetalleAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +325,6 @@
         private System.Windows.Forms.TextBox txtNroRegistros;
         internal System.Windows.Forms.Label lblNroRegistros;
         internal System.Windows.Forms.Label lblTituloAsistencias;
+        public System.Windows.Forms.Button btnExportarAsistenciasCsv;
     }
 }
