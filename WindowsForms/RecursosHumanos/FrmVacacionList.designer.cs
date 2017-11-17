@@ -33,6 +33,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
+            this.btnVer = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnVer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVacaciones)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -117,6 +117,17 @@
             this.pnlInferior.Name = "pnlInferior";
             this.pnlInferior.Size = new System.Drawing.Size(744, 44);
             this.pnlInferior.TabIndex = 1;
+            // 
+            // btnVer
+            // 
+            this.btnVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVer.Location = new System.Drawing.Point(529, 5);
+            this.btnVer.Name = "btnVer";
+            this.btnVer.Size = new System.Drawing.Size(100, 30);
+            this.btnVer.TabIndex = 20;
+            this.btnVer.Text = "Ver";
+            this.btnVer.UseVisualStyleBackColor = true;
+            this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
             // 
             // btnImprimir
             // 
@@ -243,17 +254,6 @@
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 57;
             this.label2.Text = "Nro. Registros :";
-            // 
-            // btnVer
-            // 
-            this.btnVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVer.Location = new System.Drawing.Point(529, 5);
-            this.btnVer.Name = "btnVer";
-            this.btnVer.Size = new System.Drawing.Size(100, 30);
-            this.btnVer.TabIndex = 20;
-            this.btnVer.Text = "Ver";
-            this.btnVer.UseVisualStyleBackColor = true;
-            this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
             // 
             // FrmVacacionList
             // 

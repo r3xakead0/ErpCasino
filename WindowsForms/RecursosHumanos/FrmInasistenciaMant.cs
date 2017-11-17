@@ -11,7 +11,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
     {
 
         private FrmInasistenciaList frmList = null;
-        private BE.UI.Inasistencia beInasistencia = new BE.UI.Inasistencia();
+        private BE.UI.Inasistencia beInasistencia = null;
 
         public FrmInasistenciaMant(FrmInasistenciaList frmList)
         {
@@ -104,7 +104,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #region Formulario
 
-        private void FrmAfpComisionMant_Load(object sender, EventArgs e)
+        private void FrmInasistenciaMant_Load(object sender, EventArgs e)
         {
             try
             {
@@ -196,7 +196,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                var rpta = Util.ConfirmationMessage("¿Desea salir del formulario de mantenimiento de Inasistencia?");
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
                 if (rpta == false)
                     return;

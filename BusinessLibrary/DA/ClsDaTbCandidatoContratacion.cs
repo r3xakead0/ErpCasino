@@ -37,6 +37,7 @@ namespace ErpCasino.BusinessLibrary.DA
                         beCandidatoContratacion.Informe = reader["InformeAdministrativoEstado"] == DBNull.Value ? false : bool.Parse(reader["InformeAdministrativoEstado"].ToString());
                         beCandidatoContratacion.Documentacion = reader["DocumentacionEstado"] == DBNull.Value ? false : bool.Parse(reader["DocumentacionEstado"].ToString());
                         beCandidatoContratacion.Observacion = reader["Observacion"] == DBNull.Value ? "" : reader["Observacion"].ToString();
+                        beCandidatoContratacion.Sueldo = reader["Sueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["Sueldo"].ToString());
                     }
 
                 }

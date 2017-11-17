@@ -25,7 +25,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 uiObservacion.Id = beObservacion.IdObservacion;
                 uiObservacion.Nombre = beObservacion.Nombre;
                 uiObservacion.Descripcion = beObservacion.Descripcion;
-                uiObservacion.Activo = beObservacion.Activo ? BE.UI.Activo.Si : BE.UI.Activo.No;
+                uiObservacion.Activo = beObservacion.Activo ? BE.UI.ActivoEnum.Si : BE.UI.ActivoEnum.No;
 
                 return uiObservacion;
             }
@@ -44,7 +44,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 beObservacion.IdObservacion = uiObservacion.Id;
                 beObservacion.Nombre = uiObservacion.Nombre;
                 beObservacion.Descripcion = uiObservacion.Descripcion;
-                beObservacion.Activo = uiObservacion.Activo.Equals(BE.UI.Activo.Si) ? true : false;
+                beObservacion.Activo = uiObservacion.Activo.Equals(BE.UI.ActivoEnum.Si) ? true : false;
 
                 return beObservacion;
             }

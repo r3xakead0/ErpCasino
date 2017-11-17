@@ -157,12 +157,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         }
 
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {
 
-                var rpta = Util.ConfirmationMessage("¿Desea salir del mantenimiento de comisiones de ONPs?");
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
                 if (rpta == false)
                     return;

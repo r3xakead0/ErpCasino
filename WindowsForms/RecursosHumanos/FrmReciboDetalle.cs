@@ -34,7 +34,14 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 this.cboAnho.SelectedValue = anho.ToString();
                 this.cboMes.SelectedValue = mes.ToString();
+
                 this.cboEmpleado.SelectedValue = codigoEmpleado;
+
+                var uiTrabajador = (BE.UI.Trabajador)this.cboEmpleado.SelectedItem;
+                if (uiTrabajador != null)
+                    this.txtTipo.Text = uiTrabajador.Tipo.ToString();
+                else
+                    this.txtTipo.Clear();
 
                 this.CargarListadoRecibos(anho, mes, codigoEmpleado);
             }
@@ -101,13 +108,14 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         private void CargarEmpleados()
         {
-            var lstEmpleados = new LN.Empleado().Combo();
-            var lstCandidatos = new LN.Candidato().Combo();
-            lstEmpleados.AddRange(lstCandidatos);
-            var lstTrabajador = lstEmpleados.OrderBy(o => o.Codigo).Distinct().ToList();
+            var lstUiEmpleados = new LN.Empleado().ListaSimple();
+            var lstUiCandidatos = new LN.Candidato().ListaSimple();
 
-            this.cboEmpleado.DataSource = lstTrabajador;
-            this.cboEmpleado.DisplayMember = "Nombre";
+            lstUiEmpleados.AddRange(lstUiCandidatos);
+            var lstUiTrabajadores = lstUiEmpleados.OrderBy(o => o.ApellidosNombres).ToList();
+
+            this.cboEmpleado.DataSource = lstUiTrabajadores;
+            this.cboEmpleado.DisplayMember = "ApellidosNombres";
             this.cboEmpleado.ValueMember = "Codigo";
         }
 
@@ -115,20 +123,37 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                List<BE.UI.ReciboResumenDetalle> lstUiRecibosResumen = null;
-                if (anho == 0 || mes == 0 || codigoEmpleado == "")
-                {
-                    lstUiRecibosResumen = new List<BE.UI.ReciboResumenDetalle>();
-                }
-                else
+                double totBase = 0.0;
+                double totBonos = 0.0;
+                double totDescuentos = 0.0;
+                double totGeneral = 0.0;
+
+                List<BE.UI.ReciboResumenDetalle> lstUiRecibosResumen = new List<BE.UI.ReciboResumenDetalle>();
+
+                if (anho > 0 || mes > 0 || codigoEmpleado.Length > 0)
                 {
                     lstUiRecibosResumen = new LN.Recibo().ResumenDetallado(anho, mes, codigoEmpleado);
+
+                    totBonos = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Bono")).Sum(x => x.Monto);
+                    totDescuentos = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Descuento")).Sum(x => x.Monto);
+
+                    if (this.txtTipo.Text == BE.UI.TipoTrabajadorEnum.Candidato.ToString())
+                    {
+                        var beCandidatoContratacion = new LN.Candidato().ObtenerContratacion(codigoEmpleado);
+                        if (beCandidatoContratacion != null)
+                            totBase = beCandidatoContratacion.Sueldo;
+                    }
+
+                    totGeneral = totBase + totBonos - totDescuentos;
                 }
 
-                var source = new BindingSource();
-                source.DataSource = lstUiRecibosResumen;
+                var sorted = new SortableBindingList<BE.UI.ReciboResumenDetalle>(lstUiRecibosResumen);
+                this.dgvRecibos.DataSource = sorted;
 
-                this.dgvRecibos.DataSource = source;
+                this.txtTotalBase.Text = totBase.ToString("N2");
+                this.txtTotalBonos.Text = totBonos.ToString("N2");
+                this.txtTotalDescuentos.Text = totDescuentos.ToString("N2");
+                this.txtTotalGeneral.Text = totGeneral.ToString("N2");
 
             }
             catch (Exception ex)
@@ -177,13 +202,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 throw ex;
             }
         }
-        
+
 
         #endregion
 
         #region Formulario
 
-        private void FrmAfpComisionMant_Load(object sender, EventArgs e)
+        private void FrmReciboDetalle_Load(object sender, EventArgs e)
         {
             try
             {
@@ -206,12 +231,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void FrmReciboDetalle_ResizeEnd(object sender, EventArgs e)
         {
             try
             {
-                this.Close();
-
+                Util.AutoWidthColumn(ref this.dgvRecibos, "Concepto");
             }
             catch (Exception ex)
             {
@@ -219,13 +243,34 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void cboAnhoMes_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
+
+                if (rpta == false)
+                    return;
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void cboAnhoMesEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
                 int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
                 int mes = int.Parse(this.cboMes.SelectedValue.ToString());
-                string codEmpleado = this.cboEmpleado.SelectedValue.ToString();
+
+                var uiTrabajador = (BE.UI.Trabajador)this.cboEmpleado.SelectedItem;
+                string codEmpleado = uiTrabajador.Codigo;
+
+                this.txtTipo.Text = uiTrabajador.Tipo.ToString();
 
                 this.CargarListadoRecibos(anho, mes, codEmpleado);
             }
@@ -235,22 +280,48 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void cboEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
+        private void btnExportarAsistenciasCsv_Click(object sender, EventArgs e)
         {
             try
             {
-                string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
-                
-                int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
-                int mes = int.Parse(this.cboMes.SelectedValue.ToString());
-                    
-                this.CargarListadoRecibos(anho, mes, codigoEmpleado);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvRecibos, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
             }
+            finally
+            {
+                Util.PointerReady(this);
+            }
+        }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
+                int mes = int.Parse(this.cboMes.SelectedValue.ToString());
+                string codigoTrabajador = this.cboEmpleado.SelectedValue.ToString();
+
+                var frmPlanillaVista = new FrmImpresion();
+                frmPlanillaVista.MdiParent = this.MdiParent;
+                frmPlanillaVista.Show();
+                frmPlanillaVista.ImpresionRecibo(anho, mes, codigoTrabajador);
+
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
         }
 
         #endregion

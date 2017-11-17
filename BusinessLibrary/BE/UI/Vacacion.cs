@@ -24,7 +24,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
                 return EmpleadoSueldo + EmpleadoAsignacionFamiliar + PromedioHorasExtras + PromedioBonificacion;
             }
         }
-        public TipoPension PensionTipo { get; set; }
+        public TipoPensionEnum PensionTipo { get; set; }
         public string PensionTipoComision { get; set; } //Solo para AFPs
         public int PensionId { get; set; }
         public string PensionNombre { get; set; } //ONP o Nombre de AFPs (PRIMA, PROFUTURO, ETC)

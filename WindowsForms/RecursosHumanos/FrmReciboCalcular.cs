@@ -114,10 +114,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtTotalDescuentos.Text = lstUiRecibosResumen.Sum(o => o.TotalDescuentos).ToString("N2");
                 }
 
-                var source = new BindingSource();
-                source.DataSource = lstUiRecibosResumen;
+                var sorted = new SortableBindingList<BE.UI.ReciboResumen>(lstUiRecibosResumen);
 
-                this.dgvRecibos.DataSource = source;
+                this.dgvRecibos.DataSource = sorted;
 
             }
             catch (Exception ex)
@@ -172,7 +171,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #region Formulario
 
-        private void FrmAfpComisionMant_Load(object sender, EventArgs e)
+        private void FrmReciboCalcular_Load(object sender, EventArgs e)
         {
             try
             {
@@ -193,12 +192,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void FrmReciboCalcular_ResizeEnd(object sender, EventArgs e)
         {
             try
             {
-                this.Close();
-
+                Util.AutoWidthColumn(ref this.dgvRecibos, "EmpleadoNombreCompleto");
             }
             catch (Exception ex)
             {
@@ -206,9 +204,25 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        #endregion
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
-        private void BtnGenerate_Click(object sender, EventArgs e)
+                if (rpta == false)
+                    return;
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        
+        private void btnGenerar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -242,7 +256,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -299,5 +313,32 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 Util.ErrorMessage(ex.Message);
             }
         }
+
+        private void btnExportarAsistenciasCsv_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvRecibos, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
+            }
+        }
+
+        #endregion
+
     }
 }

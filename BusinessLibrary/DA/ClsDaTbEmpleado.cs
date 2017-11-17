@@ -492,6 +492,35 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+        public DataTable ListaSimple()
+        {
+            try
+            {
+                string sp = "SpTbEmpleadoListaSimple";
+                DataTable dt = new DataTable();
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataTable Listar()
         {
             try
@@ -520,6 +549,7 @@ namespace ErpCasino.BusinessLibrary.DA
                 throw ex;
             }
         }
+
 
         public DataTable ComboNombres()
         {

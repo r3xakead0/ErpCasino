@@ -394,10 +394,15 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #region Botones
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
+
+                if (rpta == false)
+                    return;
+
                 this.Close();
             }
             catch (Exception ex)
@@ -420,16 +425,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (Util.ConfirmationMessage($"¿Desea eliminar la planilla de {mes} del {anho}?") == false)
                     return;
 
+                Util.PointerLoad(this);
+
                 bool rpta = new LN.Planilla(this.anho, this.mes).Eliminar();
+
+                Util.PointerReady(this);
+
                 if (rpta == true)
                 {
                     Util.InformationMessage($"Se eliminó la planilla de {mes} del {anho}");
                     this.Close();
                 }
+
             }
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
             }
         }
 
@@ -591,8 +606,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Excel Documents (*.xls)|*.xls";
-                sfd.FileName = "export.xls";
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     Util.PointerLoad(this);

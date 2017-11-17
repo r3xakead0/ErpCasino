@@ -28,11 +28,15 @@ namespace ErpCasino.BusinessLibrary.BE.UI
     public class PlanillaAsistencia: ICloneable 
     {
 
+        #region Datos Generales 
+
         public string CodigoEmpleado { get; set; }
         public DateTime Fecha { get; set; }
         public int Semana { get; set; }
         public DateTime FechaHoraInicio { get; set; }
         public DateTime FechaHoraFinal { get; set; }
+
+        #endregion
 
         #region Valores de calculo en Minutos
 
@@ -62,7 +66,8 @@ namespace ErpCasino.BusinessLibrary.BE.UI
 
 
         #region Devuelve valores en formato de calculo
-        public string FormateadoCalculo { get; set; } //H = Hora | M = Minuto
+
+        public string FormateadoCalculo { get; set; } = "M"; //H = Hora | M = Minuto (Defecto)
         public string FormateadoAsistenciaNormalTotal { get { return AplicarFormato(AsistenciaNormalTotal); } }
         public string FormateadoAsistenciaNormalDiurna { get { return AplicarFormato(AsistenciaNormalDiurna); } }
         public string FormateadoAsistenciaNormalNocturna { get { return AplicarFormato(AsistenciaNormalNocturna); } }

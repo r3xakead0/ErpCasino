@@ -4,6 +4,9 @@ using System;
 namespace ErpCasino.BusinessLibrary.BE
 {
 
+    /// <summary>
+    /// Calculo de Planilla
+    /// </summary>
     public class Planilla
     {
 
@@ -144,6 +147,10 @@ namespace ErpCasino.BusinessLibrary.BE
 
     }
 
+    /// <summary>
+    /// Detalle del calculo de Planilla con las asistencias y costes resumidos.
+    /// Ademas del calculo de Sueldos, Descuentos y Bonificaciones.
+    /// </summary>
     public class PlanillaDetalle
     {
         public int ID { get; set; }
@@ -773,11 +780,29 @@ namespace ErpCasino.BusinessLibrary.BE
 
         #endregion
 
+        #region Subsidio por Descanso Medico
+
+        public double TotalSubsidio { get; set; } = 0.0;
+
+        #endregion
+
+        #region Movilidad por Translado
+
+        public double TotalMovilidad { get; set; } = 0.0;
+
+        #endregion
+
         public double TotalSueldoBruto
         {
             get
             {
-                return Math.Round(this.TotalSueldoBase + this.TotalBono - this.TotalDescuento, 2);
+                double totalBruto = 0.0;
+
+                totalBruto += this.TotalSueldoBase;
+                totalBruto += this.TotalBono - this.TotalDescuento;
+                totalBruto += this.TotalSubsidio + this.TotalMovilidad;
+
+                return Math.Round(totalBruto);
             }
         }
 
@@ -893,7 +918,6 @@ namespace ErpCasino.BusinessLibrary.BE
 
         
         public double EsSaludTotal { get; set; }
-        public double MovilidadTotal { get; set; }
     }
 
 }

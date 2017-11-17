@@ -327,7 +327,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                var rpta = Util.ConfirmationMessage("¿Desea salir del formulario de mantenimiento de Gratificacion?");
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
                 if (rpta == false)
                     return;

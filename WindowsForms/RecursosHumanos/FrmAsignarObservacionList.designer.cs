@@ -188,7 +188,7 @@
             this.cboMes.FormattingEnabled = true;
             this.cboMes.Location = new System.Drawing.Point(172, 7);
             this.cboMes.Name = "cboMes";
-            this.cboMes.Size = new System.Drawing.Size(72, 21);
+            this.cboMes.Size = new System.Drawing.Size(167, 21);
             this.cboMes.TabIndex = 57;
             this.cboMes.SelectionChangeCommitted += new System.EventHandler(this.cboAnhoMes_SelectionChangeCommitted);
             // 

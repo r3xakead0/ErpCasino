@@ -174,7 +174,7 @@
             this.txtMotivo.Location = new System.Drawing.Point(111, 95);
             this.txtMotivo.Multiline = true;
             this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(353, 199);
+            this.txtMotivo.Size = new System.Drawing.Size(353, 216);
             this.txtMotivo.TabIndex = 90;
             // 
             // lblFecha

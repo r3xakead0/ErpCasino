@@ -90,7 +90,7 @@ namespace ErpCasino.WindowsForms.Seguridad
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {

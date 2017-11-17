@@ -553,7 +553,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         this.uiVacacion.PromedioBonificacion = promBoninificaciones;
 
                         this.uiVacacion.PensionTipo = uiEmpleadoCompleto.PensionTipo;
-                        if (uiEmpleadoCompleto.PensionTipo == BE.UI.TipoPension.AFP)
+                        if (uiEmpleadoCompleto.PensionTipo == BE.UI.TipoPensionEnum.AFP)
                         {
                             this.uiVacacion.PensionId = uiEmpleadoCompleto.AfpId;
                             this.uiVacacion.PensionNombre = uiEmpleadoCompleto.AfpNombre;

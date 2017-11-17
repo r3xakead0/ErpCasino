@@ -328,8 +328,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Excel Documents (*.xls)|*.xls";
-                sfd.FileName = "export.xls";
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     Util.PointerLoad(this);

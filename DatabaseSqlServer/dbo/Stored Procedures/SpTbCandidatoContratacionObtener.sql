@@ -10,7 +10,8 @@ BEGIN
 			T0.InformeDisciplinarioEstado,
 			T0.InformeAdministrativoEstado,
 			T0.DocumentacionEstado,
-			T0.Observacion
+			T0.Observacion,
+			T0.Sueldo
 	FROM	TbCandidatoContratacion T0
 	WHERE	T0.IdCandidato = @IdCandidato
 END

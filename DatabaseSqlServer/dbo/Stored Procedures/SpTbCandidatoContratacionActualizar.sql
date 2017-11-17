@@ -7,7 +7,8 @@ CREATE PROCEDURE [dbo].[SpTbCandidatoContratacionActualizar]
 @InformeDisciplinarioEstado AS INT,
 @InformeAdministrativoEstado AS INT,
 @DocumentacionEstado AS INT,
-@Observacion AS TEXT
+@Observacion AS TEXT,
+@Sueldo AS DECIMAL(10,2)
 AS
 BEGIN
 	UPDATE	TbCandidatoContratacion
@@ -17,6 +18,7 @@ BEGIN
 			InformeDisciplinarioEstado = @InformeDisciplinarioEstado,
 			InformeAdministrativoEstado = @InformeAdministrativoEstado,
 			DocumentacionEstado = @DocumentacionEstado,
-			Observacion = @Observacion
+			Observacion = @Observacion,
+			Sueldo = @Sueldo
 	WHERE	IdCandidato = @IdCandidato
 END

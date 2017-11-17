@@ -2,9 +2,9 @@ using System;
 
 namespace ErpCasino.BusinessLibrary.BE.UI
 {
-    public enum Activo
+    public enum TipoPensionEnum
     {
-        Si,
-        No
+        AFP,
+        ONP
     }
 }

@@ -188,6 +188,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@INFORMEADMINISTRATIVOESTADO", beCandidato.Contratacion.Informe));
                     cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONEstado", beCandidato.Contratacion.Documentacion));
                     cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
+                    cmd.Parameters.Add(new SqlParameter("@SUELDO", beCandidato.Contratacion.Sueldo));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 
@@ -306,6 +307,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@INFORMEADMINISTRATIVOESTADO", beCandidato.Contratacion.Informe));
                     cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONESTADO", beCandidato.Contratacion.Documentacion));
                     cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
+                    cmd.Parameters.Add(new SqlParameter("@SUELDO", beCandidato.Contratacion.Sueldo));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 
@@ -504,6 +506,35 @@ namespace ErpCasino.BusinessLibrary.DA
                     cnn.Close();
                 }
                     
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable ListaSimple()
+        {
+            try
+            {
+                string sp = "SpTbCandidatoListaSimple";
+                DataTable dt = new DataTable();
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+
                 return dt;
 
             }

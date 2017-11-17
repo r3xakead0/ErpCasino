@@ -11,17 +11,6 @@ namespace ErpCasino.BusinessLibrary.LN
     public class Record 
     {
 
-        private enum Tipo
-        {
-            Sexo = 1,
-            EstadoCivil = 2,
-            TipoDocumento = 3,
-            TipoTelefono = 4,
-            ComisionAFP = 5,
-            TipoAdelanto = 6,
-            TipoInasistencia = 7
-        }
-        
         public List<BE.Record> ListarComisionesAFP()
         {
 
@@ -32,7 +21,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.ComisionAFP);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.ComisionAFP);
 
                 lst = this.Convertir(dt);
 
@@ -53,7 +42,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.ComisionAFP);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.ComisionAFP);
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
@@ -79,7 +68,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoInasistencia);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoInasistencia);
 
                 lst = this.Convertir(dt);
 
@@ -100,7 +89,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.Sexo);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.Sexo);
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
@@ -125,7 +114,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.Sexo);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.Sexo);
 
                 lst = this.Convertir(dt);
 
@@ -146,7 +135,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoInasistencia);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoInasistencia);
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
@@ -171,7 +160,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoAdelanto);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoAdelanto);
 
                 lst = this.Convertir(dt);
 
@@ -192,7 +181,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoAdelanto);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoAdelanto);
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
@@ -215,7 +204,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.EstadoCivil);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.EstadoCivil);
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
@@ -240,7 +229,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.EstadoCivil);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.EstadoCivil);
 
                 lst = this.Convertir(dt);
 
@@ -261,7 +250,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoDocumento);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoDocumento);
 
                 List<BE.Record> lstRecord = this.Convertir(dt);
 
@@ -286,7 +275,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoDocumento);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoDocumento);
 
                 lst = this.Convertir(dt);
 
@@ -309,7 +298,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 var daCategoria = new DA.Categoria();
 
-                DataTable dt = daCategoria.Listar((int)Tipo.TipoTelefono);
+                DataTable dt = daCategoria.Listar((int)BE.TipoEnum.TipoTelefono);
 
                 lst = this.Convertir(dt);
 

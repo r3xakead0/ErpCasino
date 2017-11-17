@@ -307,8 +307,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.dgvBonos.Columns["BonoNombre"].Visible = true;
                 this.dgvBonos.Columns["BonoNombre"].HeaderText = "Bono";
-                this.dgvBonos.Columns["BonoNombre"].Width = 100;
-                this.dgvBonos.Columns["BonoNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.dgvBonos.Columns["BonoNombre"].Width = 200;
+                this.dgvBonos.Columns["BonoNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvBonos.Columns["Monto"].Visible = true;
                 this.dgvBonos.Columns["Monto"].HeaderText = "Monto";

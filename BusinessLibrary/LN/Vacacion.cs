@@ -108,12 +108,12 @@ namespace ErpCasino.BusinessLibrary.LN
 
             int anho = beVacacion.FechaInicial.Year;
             int mes = beVacacion.FechaInicial.Month;
-            if (uiVacacion.PensionTipo == BE.UI.TipoPension.AFP)
+            if (uiVacacion.PensionTipo == BE.UI.TipoPensionEnum.AFP)
             {
                 var beComisionAfp = new DA.AfpComision().Obtener(uiVacacion.PensionId, anho, mes);
                 beVacacion.ComisionAfp = beComisionAfp;
             }
-            else if (uiVacacion.PensionTipo == BE.UI.TipoPension.ONP)
+            else if (uiVacacion.PensionTipo == BE.UI.TipoPensionEnum.ONP)
             {
                 var beComisionOnp = new DA.OnpComision().Obtener(anho, mes);
                 beVacacion.ComisionOnp = beComisionOnp;
@@ -157,7 +157,7 @@ namespace ErpCasino.BusinessLibrary.LN
             if (beVacacion.ComisionAfp != null)
             {
                 uiVacacion.PensionId = beVacacion.ComisionAfp.Afp.IdAfp;
-                uiVacacion.PensionTipo = BE.UI.TipoPension.AFP;
+                uiVacacion.PensionTipo = BE.UI.TipoPensionEnum.AFP;
                 uiVacacion.PensionNombre = beVacacion.ComisionAfp.Afp.Nombre;
                 uiVacacion.PensionMonto = beVacacion.PensionMonto;
 
@@ -186,7 +186,7 @@ namespace ErpCasino.BusinessLibrary.LN
             else if(beVacacion.ComisionOnp != null)
             {
                 uiVacacion.PensionId = 0;
-                uiVacacion.PensionTipo = BE.UI.TipoPension.ONP;
+                uiVacacion.PensionTipo = BE.UI.TipoPensionEnum.ONP;
                 uiVacacion.PensionNombre = "ONP";
                 uiVacacion.PensionMonto = beVacacion.PensionMonto;
 

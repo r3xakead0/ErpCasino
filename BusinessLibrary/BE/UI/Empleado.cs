@@ -45,17 +45,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public DateTime? EmpleadoFechaVacacion { get; set; }
     }
 
-    public enum TipoPension
-    {
-        AFP,
-        ONP
-    }
-
-    public enum TipoRetencionJudicial
-    {
-        Nominal,
-        Porcentual
-    }
+    
 
     public class EmpleadoCompleto : Empleado
     {
@@ -92,7 +82,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
 
         #region Pension
 
-        public TipoPension PensionTipo { get; set; }
+        public TipoPensionEnum PensionTipo { get; set; }
         public double PensionMonto
         {
             get
@@ -124,7 +114,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
 
         #region Retencion Judicial
 
-        public TipoRetencionJudicial RetencionJudicialTipo { get; set; } 
+        public TipoRetencionJudicialEnum RetencionJudicialTipo { get; set; } 
         public double RetencionJudicialNominal { get; set; }
         public double RetencionJudicialPorcentual { get; set; }
         

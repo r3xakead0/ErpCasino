@@ -298,7 +298,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
 
-                var rpta = Util.ConfirmationMessage("¿Desea salir del formulario de Carga de Adelantos?");
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
                 if (rpta == false)
                     return;

@@ -32,7 +32,8 @@
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.tbcPlanilla = new System.Windows.Forms.TabControl();
             this.tbpAsistencias = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnExportarAsistenciasCsv = new System.Windows.Forms.Button();
+            this.lblLeyendaAsistencia = new System.Windows.Forms.Label();
             this.txtInasistencia = new System.Windows.Forms.TextBox();
             this.txtAsistenciaFeriado = new System.Windows.Forms.TextBox();
             this.txtAsistenciaNormal = new System.Windows.Forms.TextBox();
@@ -42,28 +43,27 @@
             this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
             this.dgvAsistencias = new System.Windows.Forms.DataGridView();
             this.tbpCostos = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnExportarCostoCsv = new System.Windows.Forms.Button();
+            this.lblLeyendaDescuentos = new System.Windows.Forms.Label();
+            this.txtLeyendaTardanzaFeriado = new System.Windows.Forms.TextBox();
+            this.txtLeyendaInasistencia = new System.Windows.Forms.TextBox();
+            this.lblLeyendaCostos = new System.Windows.Forms.Label();
+            this.txtLeyendaTardanzaNormal = new System.Windows.Forms.TextBox();
+            this.txtLeyendaAsistenciaFeriado = new System.Windows.Forms.TextBox();
+            this.txtLeyendaAsistenciaNormal = new System.Windows.Forms.TextBox();
             this.cboCostoPor = new System.Windows.Forms.ComboBox();
             this.lblCostoPor = new System.Windows.Forms.Label();
             this.txtRegistrosCostos = new System.Windows.Forms.TextBox();
             this.lblRegistrosCostos = new System.Windows.Forms.Label();
             this.dgvCostos = new System.Windows.Forms.DataGridView();
-            this.GrpPeriodo = new System.Windows.Forms.GroupBox();
-            this.BtnBuscar = new System.Windows.Forms.Button();
-            this.CbxMes = new System.Windows.Forms.ComboBox();
-            this.CboAnho = new System.Windows.Forms.ComboBox();
-            this.LblFechaHora = new System.Windows.Forms.Label();
+            this.grpPeriodo = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.cboMes = new System.Windows.Forms.ComboBox();
+            this.cboAnho = new System.Windows.Forms.ComboBox();
+            this.lblFechaHora = new System.Windows.Forms.Label();
             this.pnlBotones = new System.Windows.Forms.Panel();
-            this.BtnGenerate = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
-            this.btnExportarCostoCsv = new System.Windows.Forms.Button();
-            this.btnExportarAsistenciasCsv = new System.Windows.Forms.Button();
+            this.btnGenerar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.tbcPlanilla.SuspendLayout();
@@ -71,7 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsistencias)).BeginInit();
             this.tbpCostos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCostos)).BeginInit();
-            this.GrpPeriodo.SuspendLayout();
+            this.grpPeriodo.SuspendLayout();
             this.pnlBotones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,7 +93,7 @@
             // pnlPrincipal
             // 
             this.pnlPrincipal.Controls.Add(this.tbcPlanilla);
-            this.pnlPrincipal.Controls.Add(this.GrpPeriodo);
+            this.pnlPrincipal.Controls.Add(this.grpPeriodo);
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
@@ -107,16 +107,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbcPlanilla.Controls.Add(this.tbpAsistencias);
             this.tbcPlanilla.Controls.Add(this.tbpCostos);
-            this.tbcPlanilla.Location = new System.Drawing.Point(9, 69);
+            this.tbcPlanilla.Location = new System.Drawing.Point(9, 56);
             this.tbcPlanilla.Name = "tbcPlanilla";
             this.tbcPlanilla.SelectedIndex = 0;
-            this.tbcPlanilla.Size = new System.Drawing.Size(964, 334);
+            this.tbcPlanilla.Size = new System.Drawing.Size(964, 347);
             this.tbcPlanilla.TabIndex = 41;
             // 
             // tbpAsistencias
             // 
             this.tbpAsistencias.Controls.Add(this.btnExportarAsistenciasCsv);
-            this.tbpAsistencias.Controls.Add(this.label1);
+            this.tbpAsistencias.Controls.Add(this.lblLeyendaAsistencia);
             this.tbpAsistencias.Controls.Add(this.txtInasistencia);
             this.tbpAsistencias.Controls.Add(this.txtAsistenciaFeriado);
             this.tbpAsistencias.Controls.Add(this.txtAsistenciaNormal);
@@ -128,20 +128,31 @@
             this.tbpAsistencias.Location = new System.Drawing.Point(4, 22);
             this.tbpAsistencias.Name = "tbpAsistencias";
             this.tbpAsistencias.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpAsistencias.Size = new System.Drawing.Size(956, 308);
+            this.tbpAsistencias.Size = new System.Drawing.Size(956, 321);
             this.tbpAsistencias.TabIndex = 0;
             this.tbpAsistencias.Text = "Asistencias";
             this.tbpAsistencias.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // btnExportarAsistenciasCsv
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(839, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "Leyenda :";
+            this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(839, 215);
+            this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
+            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(111, 21);
+            this.btnExportarAsistenciasCsv.TabIndex = 91;
+            this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
+            this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
+            this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
+            // 
+            // lblLeyendaAsistencia
+            // 
+            this.lblLeyendaAsistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLeyendaAsistencia.AutoSize = true;
+            this.lblLeyendaAsistencia.Location = new System.Drawing.Point(839, 6);
+            this.lblLeyendaAsistencia.Name = "lblLeyendaAsistencia";
+            this.lblLeyendaAsistencia.Size = new System.Drawing.Size(54, 13);
+            this.lblLeyendaAsistencia.TabIndex = 60;
+            this.lblLeyendaAsistencia.Text = "Leyenda :";
             // 
             // txtInasistencia
             // 
@@ -187,7 +198,7 @@
             this.cboCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCalculoPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCalculoPor.FormattingEnabled = true;
-            this.cboCalculoPor.Location = new System.Drawing.Point(839, 242);
+            this.cboCalculoPor.Location = new System.Drawing.Point(839, 255);
             this.cboCalculoPor.Name = "cboCalculoPor";
             this.cboCalculoPor.Size = new System.Drawing.Size(111, 21);
             this.cboCalculoPor.TabIndex = 55;
@@ -197,7 +208,7 @@
             // 
             this.lblCalculoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCalculoPor.AutoSize = true;
-            this.lblCalculoPor.Location = new System.Drawing.Point(839, 226);
+            this.lblCalculoPor.Location = new System.Drawing.Point(839, 239);
             this.lblCalculoPor.Name = "lblCalculoPor";
             this.lblCalculoPor.Size = new System.Drawing.Size(66, 13);
             this.lblCalculoPor.TabIndex = 53;
@@ -207,7 +218,7 @@
             // 
             this.txtRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegistrosAsistencias.Location = new System.Drawing.Point(839, 282);
+            this.txtRegistrosAsistencias.Location = new System.Drawing.Point(839, 295);
             this.txtRegistrosAsistencias.Name = "txtRegistrosAsistencias";
             this.txtRegistrosAsistencias.Size = new System.Drawing.Size(111, 20);
             this.txtRegistrosAsistencias.TabIndex = 56;
@@ -219,7 +230,7 @@
             this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRegistrosAsistencias.AutoSize = true;
             this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(839, 266);
+            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(839, 279);
             this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
             this.lblRegistrosAsistencias.Size = new System.Drawing.Size(57, 13);
             this.lblRegistrosAsistencias.TabIndex = 54;
@@ -233,19 +244,19 @@
             this.dgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAsistencias.Location = new System.Drawing.Point(6, 6);
             this.dgvAsistencias.Name = "dgvAsistencias";
-            this.dgvAsistencias.Size = new System.Drawing.Size(827, 296);
+            this.dgvAsistencias.Size = new System.Drawing.Size(827, 309);
             this.dgvAsistencias.TabIndex = 40;
             // 
             // tbpCostos
             // 
             this.tbpCostos.Controls.Add(this.btnExportarCostoCsv);
-            this.tbpCostos.Controls.Add(this.label3);
-            this.tbpCostos.Controls.Add(this.textBox5);
-            this.tbpCostos.Controls.Add(this.textBox4);
-            this.tbpCostos.Controls.Add(this.label2);
-            this.tbpCostos.Controls.Add(this.textBox1);
-            this.tbpCostos.Controls.Add(this.textBox2);
-            this.tbpCostos.Controls.Add(this.textBox3);
+            this.tbpCostos.Controls.Add(this.lblLeyendaDescuentos);
+            this.tbpCostos.Controls.Add(this.txtLeyendaTardanzaFeriado);
+            this.tbpCostos.Controls.Add(this.txtLeyendaInasistencia);
+            this.tbpCostos.Controls.Add(this.lblLeyendaCostos);
+            this.tbpCostos.Controls.Add(this.txtLeyendaTardanzaNormal);
+            this.tbpCostos.Controls.Add(this.txtLeyendaAsistenciaFeriado);
+            this.tbpCostos.Controls.Add(this.txtLeyendaAsistenciaNormal);
             this.tbpCostos.Controls.Add(this.cboCostoPor);
             this.tbpCostos.Controls.Add(this.lblCostoPor);
             this.tbpCostos.Controls.Add(this.txtRegistrosCostos);
@@ -254,102 +265,113 @@
             this.tbpCostos.Location = new System.Drawing.Point(4, 22);
             this.tbpCostos.Name = "tbpCostos";
             this.tbpCostos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpCostos.Size = new System.Drawing.Size(956, 308);
+            this.tbpCostos.Size = new System.Drawing.Size(956, 321);
             this.tbpCostos.TabIndex = 1;
             this.tbpCostos.Text = "Costos";
             this.tbpCostos.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // btnExportarCostoCsv
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(838, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 13);
-            this.label3.TabIndex = 67;
-            this.label3.Text = "Leyenda Descuentos :";
+            this.btnExportarCostoCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarCostoCsv.Location = new System.Drawing.Point(838, 205);
+            this.btnExportarCostoCsv.Name = "btnExportarCostoCsv";
+            this.btnExportarCostoCsv.Size = new System.Drawing.Size(111, 21);
+            this.btnExportarCostoCsv.TabIndex = 90;
+            this.btnExportarCostoCsv.Text = "Exportar CSV";
+            this.btnExportarCostoCsv.UseVisualStyleBackColor = true;
+            this.btnExportarCostoCsv.Click += new System.EventHandler(this.btnExportarCostoCsv_Click);
             // 
-            // textBox5
+            // lblLeyendaDescuentos
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.BackColor = System.Drawing.Color.Yellow;
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(838, 120);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(111, 20);
-            this.textBox5.TabIndex = 66;
-            this.textBox5.Text = "Tardanza Feriado";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lblLeyendaDescuentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLeyendaDescuentos.AutoSize = true;
+            this.lblLeyendaDescuentos.Location = new System.Drawing.Point(838, 78);
+            this.lblLeyendaDescuentos.Name = "lblLeyendaDescuentos";
+            this.lblLeyendaDescuentos.Size = new System.Drawing.Size(114, 13);
+            this.lblLeyendaDescuentos.TabIndex = 67;
+            this.lblLeyendaDescuentos.Text = "Leyenda Descuentos :";
             // 
-            // textBox4
+            // txtLeyendaTardanzaFeriado
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BackColor = System.Drawing.Color.Red;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(838, 146);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(111, 20);
-            this.textBox4.TabIndex = 65;
-            this.textBox4.Text = "Inasistencia";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLeyendaTardanzaFeriado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLeyendaTardanzaFeriado.BackColor = System.Drawing.Color.Yellow;
+            this.txtLeyendaTardanzaFeriado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLeyendaTardanzaFeriado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLeyendaTardanzaFeriado.Location = new System.Drawing.Point(838, 120);
+            this.txtLeyendaTardanzaFeriado.Name = "txtLeyendaTardanzaFeriado";
+            this.txtLeyendaTardanzaFeriado.Size = new System.Drawing.Size(111, 20);
+            this.txtLeyendaTardanzaFeriado.TabIndex = 66;
+            this.txtLeyendaTardanzaFeriado.Text = "Tardanza Feriado";
+            this.txtLeyendaTardanzaFeriado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label2
+            // txtLeyendaInasistencia
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(838, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 64;
-            this.label2.Text = "Leyenda Costos :";
+            this.txtLeyendaInasistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLeyendaInasistencia.BackColor = System.Drawing.Color.Red;
+            this.txtLeyendaInasistencia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLeyendaInasistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLeyendaInasistencia.Location = new System.Drawing.Point(838, 146);
+            this.txtLeyendaInasistencia.Name = "txtLeyendaInasistencia";
+            this.txtLeyendaInasistencia.Size = new System.Drawing.Size(111, 20);
+            this.txtLeyendaInasistencia.TabIndex = 65;
+            this.txtLeyendaInasistencia.Text = "Inasistencia";
+            this.txtLeyendaInasistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox1
+            // lblLeyendaCostos
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.Color.Green;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(838, 94);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(111, 20);
-            this.textBox1.TabIndex = 63;
-            this.textBox1.Text = "Tardanza Normal";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lblLeyendaCostos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLeyendaCostos.AutoSize = true;
+            this.lblLeyendaCostos.Location = new System.Drawing.Point(838, 6);
+            this.lblLeyendaCostos.Name = "lblLeyendaCostos";
+            this.lblLeyendaCostos.Size = new System.Drawing.Size(89, 13);
+            this.lblLeyendaCostos.TabIndex = 64;
+            this.lblLeyendaCostos.Text = "Leyenda Costos :";
             // 
-            // textBox2
+            // txtLeyendaTardanzaNormal
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BackColor = System.Drawing.Color.LightYellow;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(838, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(111, 20);
-            this.textBox2.TabIndex = 62;
-            this.textBox2.Text = "Asistencia Feriado";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLeyendaTardanzaNormal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLeyendaTardanzaNormal.BackColor = System.Drawing.Color.Green;
+            this.txtLeyendaTardanzaNormal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLeyendaTardanzaNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLeyendaTardanzaNormal.Location = new System.Drawing.Point(838, 94);
+            this.txtLeyendaTardanzaNormal.Name = "txtLeyendaTardanzaNormal";
+            this.txtLeyendaTardanzaNormal.Size = new System.Drawing.Size(111, 20);
+            this.txtLeyendaTardanzaNormal.TabIndex = 63;
+            this.txtLeyendaTardanzaNormal.Text = "Tardanza Normal";
+            this.txtLeyendaTardanzaNormal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox3
+            // txtLeyendaAsistenciaFeriado
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.BackColor = System.Drawing.Color.LightGreen;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(838, 22);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(111, 20);
-            this.textBox3.TabIndex = 61;
-            this.textBox3.Text = "Asistencia Normal";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLeyendaAsistenciaFeriado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLeyendaAsistenciaFeriado.BackColor = System.Drawing.Color.LightYellow;
+            this.txtLeyendaAsistenciaFeriado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLeyendaAsistenciaFeriado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLeyendaAsistenciaFeriado.Location = new System.Drawing.Point(838, 48);
+            this.txtLeyendaAsistenciaFeriado.Name = "txtLeyendaAsistenciaFeriado";
+            this.txtLeyendaAsistenciaFeriado.Size = new System.Drawing.Size(111, 20);
+            this.txtLeyendaAsistenciaFeriado.TabIndex = 62;
+            this.txtLeyendaAsistenciaFeriado.Text = "Asistencia Feriado";
+            this.txtLeyendaAsistenciaFeriado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtLeyendaAsistenciaNormal
+            // 
+            this.txtLeyendaAsistenciaNormal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLeyendaAsistenciaNormal.BackColor = System.Drawing.Color.LightGreen;
+            this.txtLeyendaAsistenciaNormal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLeyendaAsistenciaNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLeyendaAsistenciaNormal.Location = new System.Drawing.Point(838, 22);
+            this.txtLeyendaAsistenciaNormal.Name = "txtLeyendaAsistenciaNormal";
+            this.txtLeyendaAsistenciaNormal.Size = new System.Drawing.Size(111, 20);
+            this.txtLeyendaAsistenciaNormal.TabIndex = 61;
+            this.txtLeyendaAsistenciaNormal.Text = "Asistencia Normal";
+            this.txtLeyendaAsistenciaNormal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cboCostoPor
             // 
             this.cboCostoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCostoPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCostoPor.FormattingEnabled = true;
-            this.cboCostoPor.Location = new System.Drawing.Point(838, 232);
+            this.cboCostoPor.Location = new System.Drawing.Point(838, 245);
             this.cboCostoPor.Name = "cboCostoPor";
             this.cboCostoPor.Size = new System.Drawing.Size(111, 21);
             this.cboCostoPor.TabIndex = 52;
@@ -359,7 +381,7 @@
             // 
             this.lblCostoPor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCostoPor.AutoSize = true;
-            this.lblCostoPor.Location = new System.Drawing.Point(839, 216);
+            this.lblCostoPor.Location = new System.Drawing.Point(839, 229);
             this.lblCostoPor.Name = "lblCostoPor";
             this.lblCostoPor.Size = new System.Drawing.Size(58, 13);
             this.lblCostoPor.TabIndex = 51;
@@ -369,7 +391,7 @@
             // 
             this.txtRegistrosCostos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRegistrosCostos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegistrosCostos.Location = new System.Drawing.Point(838, 272);
+            this.txtRegistrosCostos.Location = new System.Drawing.Point(838, 285);
             this.txtRegistrosCostos.Name = "txtRegistrosCostos";
             this.txtRegistrosCostos.Size = new System.Drawing.Size(111, 20);
             this.txtRegistrosCostos.TabIndex = 52;
@@ -381,7 +403,7 @@
             this.lblRegistrosCostos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRegistrosCostos.AutoSize = true;
             this.lblRegistrosCostos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrosCostos.Location = new System.Drawing.Point(838, 256);
+            this.lblRegistrosCostos.Location = new System.Drawing.Point(838, 269);
             this.lblRegistrosCostos.Name = "lblRegistrosCostos";
             this.lblRegistrosCostos.Size = new System.Drawing.Size(57, 13);
             this.lblRegistrosCostos.TabIndex = 51;
@@ -395,115 +417,93 @@
             this.dgvCostos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCostos.Location = new System.Drawing.Point(6, 6);
             this.dgvCostos.Name = "dgvCostos";
-            this.dgvCostos.Size = new System.Drawing.Size(826, 286);
+            this.dgvCostos.Size = new System.Drawing.Size(826, 299);
             this.dgvCostos.TabIndex = 41;
             // 
-            // GrpPeriodo
+            // grpPeriodo
             // 
-            this.GrpPeriodo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpPeriodo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GrpPeriodo.Controls.Add(this.BtnBuscar);
-            this.GrpPeriodo.Controls.Add(this.CbxMes);
-            this.GrpPeriodo.Controls.Add(this.CboAnho);
-            this.GrpPeriodo.Controls.Add(this.LblFechaHora);
-            this.GrpPeriodo.Location = new System.Drawing.Point(9, 3);
-            this.GrpPeriodo.Name = "GrpPeriodo";
-            this.GrpPeriodo.Size = new System.Drawing.Size(960, 60);
-            this.GrpPeriodo.TabIndex = 39;
-            this.GrpPeriodo.TabStop = false;
-            this.GrpPeriodo.Text = "Periodo";
+            this.grpPeriodo.Controls.Add(this.btnBuscar);
+            this.grpPeriodo.Controls.Add(this.cboMes);
+            this.grpPeriodo.Controls.Add(this.cboAnho);
+            this.grpPeriodo.Controls.Add(this.lblFechaHora);
+            this.grpPeriodo.Location = new System.Drawing.Point(9, 3);
+            this.grpPeriodo.Name = "grpPeriodo";
+            this.grpPeriodo.Size = new System.Drawing.Size(960, 47);
+            this.grpPeriodo.TabIndex = 39;
+            this.grpPeriodo.TabStop = false;
+            this.grpPeriodo.Text = "Periodo";
             // 
-            // BtnBuscar
+            // btnBuscar
             // 
-            this.BtnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnBuscar.Location = new System.Drawing.Point(845, 17);
-            this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(100, 30);
-            this.BtnBuscar.TabIndex = 19;
-            this.BtnBuscar.Text = "Buscar";
-            this.BtnBuscar.UseVisualStyleBackColor = true;
-            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscar.Location = new System.Drawing.Point(854, 11);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(100, 30);
+            this.btnBuscar.TabIndex = 19;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // CbxMes
+            // cboMes
             // 
-            this.CbxMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbxMes.FormattingEnabled = true;
-            this.CbxMes.Location = new System.Drawing.Point(192, 23);
-            this.CbxMes.Name = "CbxMes";
-            this.CbxMes.Size = new System.Drawing.Size(241, 21);
-            this.CbxMes.TabIndex = 50;
+            this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMes.FormattingEnabled = true;
+            this.cboMes.Location = new System.Drawing.Point(154, 17);
+            this.cboMes.Name = "cboMes";
+            this.cboMes.Size = new System.Drawing.Size(241, 21);
+            this.cboMes.TabIndex = 50;
             // 
-            // CboAnho
+            // cboAnho
             // 
-            this.CboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboAnho.FormattingEnabled = true;
-            this.CboAnho.Location = new System.Drawing.Point(105, 23);
-            this.CboAnho.Name = "CboAnho";
-            this.CboAnho.Size = new System.Drawing.Size(72, 21);
-            this.CboAnho.TabIndex = 49;
+            this.cboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAnho.FormattingEnabled = true;
+            this.cboAnho.Location = new System.Drawing.Point(76, 17);
+            this.cboAnho.Name = "cboAnho";
+            this.cboAnho.Size = new System.Drawing.Size(72, 21);
+            this.cboAnho.TabIndex = 49;
             // 
-            // LblFechaHora
+            // lblFechaHora
             // 
-            this.LblFechaHora.AutoSize = true;
-            this.LblFechaHora.Location = new System.Drawing.Point(9, 26);
-            this.LblFechaHora.Name = "LblFechaHora";
-            this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
-            this.LblFechaHora.TabIndex = 18;
-            this.LblFechaHora.Text = "Año y Mes :";
+            this.lblFechaHora.AutoSize = true;
+            this.lblFechaHora.Location = new System.Drawing.Point(6, 20);
+            this.lblFechaHora.Name = "lblFechaHora";
+            this.lblFechaHora.Size = new System.Drawing.Size(63, 13);
+            this.lblFechaHora.TabIndex = 18;
+            this.lblFechaHora.Text = "Año y Mes :";
             // 
             // pnlBotones
             // 
-            this.pnlBotones.Controls.Add(this.BtnGenerate);
-            this.pnlBotones.Controls.Add(this.BtnCancel);
+            this.pnlBotones.Controls.Add(this.btnGenerar);
+            this.pnlBotones.Controls.Add(this.btnCancelar);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBotones.Location = new System.Drawing.Point(3, 415);
             this.pnlBotones.Name = "pnlBotones";
             this.pnlBotones.Size = new System.Drawing.Size(980, 44);
             this.pnlBotones.TabIndex = 17;
             // 
-            // BtnGenerate
+            // btnGenerar
             // 
-            this.BtnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnGenerate.Location = new System.Drawing.Point(871, 5);
-            this.BtnGenerate.Name = "BtnGenerate";
-            this.BtnGenerate.Size = new System.Drawing.Size(100, 30);
-            this.BtnGenerate.TabIndex = 17;
-            this.BtnGenerate.Text = "Generar";
-            this.BtnGenerate.UseVisualStyleBackColor = true;
-            this.BtnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
+            this.btnGenerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerar.Location = new System.Drawing.Point(871, 5);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(100, 30);
+            this.btnGenerar.TabIndex = 17;
+            this.btnGenerar.Text = "Generar";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
-            // BtnCancel
+            // btnCancelar
             // 
-            this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancel.Location = new System.Drawing.Point(765, 5);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(100, 30);
-            this.BtnCancel.TabIndex = 18;
-            this.BtnCancel.Text = "Cancelar";
-            this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // btnExportarCostoCsv
-            // 
-            this.btnExportarCostoCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportarCostoCsv.Location = new System.Drawing.Point(838, 192);
-            this.btnExportarCostoCsv.Name = "btnExportarCostoCsv";
-            this.btnExportarCostoCsv.Size = new System.Drawing.Size(111, 21);
-            this.btnExportarCostoCsv.TabIndex = 90;
-            this.btnExportarCostoCsv.Text = "Exportar CSV";
-            this.btnExportarCostoCsv.UseVisualStyleBackColor = true;
-            this.btnExportarCostoCsv.Click += new System.EventHandler(this.btnExportarCostoCsv_Click);
-            // 
-            // btnExportarAsistenciasCsv
-            // 
-            this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(839, 202);
-            this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
-            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(111, 21);
-            this.btnExportarAsistenciasCsv.TabIndex = 91;
-            this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
-            this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
-            this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(765, 5);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.TabIndex = 18;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmPlanillaCalcular
             // 
@@ -514,7 +514,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmPlanillaCalcular";
             this.Text = "Calcular Planilla";
-            this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);
+            this.Load += new System.EventHandler(this.FrmPlanillaCalcular_Load);
             this.tlpPrincipal.ResumeLayout(false);
             this.pnlPrincipal.ResumeLayout(false);
             this.tbcPlanilla.ResumeLayout(false);
@@ -524,8 +524,8 @@
             this.tbpCostos.ResumeLayout(false);
             this.tbpCostos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCostos)).EndInit();
-            this.GrpPeriodo.ResumeLayout(false);
-            this.GrpPeriodo.PerformLayout();
+            this.grpPeriodo.ResumeLayout(false);
+            this.grpPeriodo.PerformLayout();
             this.pnlBotones.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -534,15 +534,15 @@
         #endregion
         private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
         private System.Windows.Forms.Panel pnlPrincipal;
-        internal System.Windows.Forms.Label LblFechaHora;
+        internal System.Windows.Forms.Label lblFechaHora;
         private System.Windows.Forms.Panel pnlBotones;
-        public System.Windows.Forms.Button BtnGenerate;
-        public System.Windows.Forms.Button BtnCancel;
-        private System.Windows.Forms.GroupBox GrpPeriodo;
-        private System.Windows.Forms.ComboBox CbxMes;
-        private System.Windows.Forms.ComboBox CboAnho;
+        public System.Windows.Forms.Button btnGenerar;
+        public System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.GroupBox grpPeriodo;
+        private System.Windows.Forms.ComboBox cboMes;
+        private System.Windows.Forms.ComboBox cboAnho;
         private System.Windows.Forms.DataGridView dgvAsistencias;
-        public System.Windows.Forms.Button BtnBuscar;
+        public System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TabControl tbcPlanilla;
         private System.Windows.Forms.TabPage tbpAsistencias;
         private System.Windows.Forms.TabPage tbpCostos;
@@ -555,17 +555,17 @@
         internal System.Windows.Forms.Label lblCalculoPor;
         private System.Windows.Forms.TextBox txtRegistrosAsistencias;
         internal System.Windows.Forms.Label lblRegistrosAsistencias;
-        internal System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label lblLeyendaAsistencia;
         private System.Windows.Forms.TextBox txtInasistencia;
         private System.Windows.Forms.TextBox txtAsistenciaFeriado;
         private System.Windows.Forms.TextBox txtAsistenciaNormal;
-        internal System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.Label lblLeyendaCostos;
+        private System.Windows.Forms.TextBox txtLeyendaTardanzaNormal;
+        private System.Windows.Forms.TextBox txtLeyendaAsistenciaFeriado;
+        private System.Windows.Forms.TextBox txtLeyendaAsistenciaNormal;
+        private System.Windows.Forms.TextBox txtLeyendaTardanzaFeriado;
+        private System.Windows.Forms.TextBox txtLeyendaInasistencia;
+        internal System.Windows.Forms.Label lblLeyendaDescuentos;
         public System.Windows.Forms.Button btnExportarAsistenciasCsv;
         public System.Windows.Forms.Button btnExportarCostoCsv;
     }

@@ -255,6 +255,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         this.ClbDocumentos.ItemCheck += ClbDocumentos_ItemCheck;
                         this.CbxAproboDocumentos.CheckedChanged += CbxAproboDocumentos_CheckedChanged;
                         this.TxtObservacion.Text = this.beCandidatoGeneral.Contratacion.Observacion;
+                        this.txtSueldo.Text = this.beCandidatoGeneral.Contratacion.Sueldo.ToString("N2");
                     }
 
                 }
@@ -611,11 +612,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         #endregion
 
         #region Botones
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {
-                var rpta = Util.ConfirmationMessage("¿Desea salir del mantenimiento de candidato?");
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
                 if (rpta == false)
                     return;
@@ -954,6 +955,53 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     CbxAproboDocumentos.Checked = (ClbDocumentos.Items.Count == ClbDocumentos.CheckedItems.Count);
                     CbxAproboDocumentos.CheckedChanged += CbxAproboDocumentos_CheckedChanged;
                 }));
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void txtSueldo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                double sueldo = 0.0;
+
+                if (this.txtSueldo.Text.Length > 0)
+                    sueldo = double.Parse(this.txtSueldo.Text);
+
+                this.txtSueldo.Text = sueldo.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void txtSueldo_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate
+            {
+                txtSueldo.SelectAll();
+            });
+        }
+
+        private void txtSueldo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+                {
+                    e.Handled = true;
+                }
+
+                // only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {

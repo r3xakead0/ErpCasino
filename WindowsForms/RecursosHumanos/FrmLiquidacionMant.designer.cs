@@ -1185,7 +1185,7 @@
             this.BtnCancel.TabIndex = 18;
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmLiquidacionMant
             // 

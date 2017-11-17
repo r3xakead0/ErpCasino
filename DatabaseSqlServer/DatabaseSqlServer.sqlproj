@@ -102,11 +102,7 @@
     <Build Include="dbo\Tables\TbPostulanteEstado.sql" />
     <Build Include="dbo\Tables\TbPostulanteContacto.sql" />
     <Build Include="dbo\Tables\TbPostulante.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbTipoObtener.sql" />
     <Build Include="dbo\Stored Procedures\SpTbTipoListar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbTipoInsertar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbTipoEliminar.sql" />
-    <Build Include="dbo\Stored Procedures\SpTbTipoActualizar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoListar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbPostulanteTelefonoEliminar.sql" />
@@ -384,5 +380,7 @@
     <Build Include="dbo\Stored Procedures\SpTbEmpleadoRecursoVacacion.sql" />
     <Build Include="dbo\Stored Procedures\SpTbAfpComisionObtener2.sql" />
     <Build Include="dbo\Stored Procedures\SpImpresionReciboVacacion.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbEmpleadoListaSimple.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbCandidatoListaSimple.sql" />
   </ItemGroup>
 </Project>

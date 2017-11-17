@@ -8,7 +8,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         private int pId;
         private string pNombre;
         private string pDescripcion;
-        private Activo pActivo;
+        private ActivoEnum pActivo;
 
         public int Id
         {
@@ -49,7 +49,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
             }
         }
 
-        public Activo Activo
+        public ActivoEnum Activo
         {
             get
             {
@@ -62,7 +62,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
             }
         }
 
-        public Observacion(int ID, string Nombre, string Descripcion, Activo Activo)
+        public Observacion(int ID, string Nombre, string Descripcion, ActivoEnum Activo)
         {
             this.pId = ID;
             this.pNombre = Nombre;
@@ -75,7 +75,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
             this.pId = 0;
             this.pNombre = "<Ingrese el nombre>";
             this.pDescripcion = "<Ingrese la descripción>";
-            this.pActivo = Activo.Si;
+            this.pActivo = ActivoEnum.Si;
         }
 
        

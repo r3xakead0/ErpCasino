@@ -95,7 +95,7 @@
             this.grpInasistencia.Controls.Add(this.lblFecha);
             this.grpInasistencia.Location = new System.Drawing.Point(9, 9);
             this.grpInasistencia.Name = "grpInasistencia";
-            this.grpInasistencia.Size = new System.Drawing.Size(425, 280);
+            this.grpInasistencia.Size = new System.Drawing.Size(425, 291);
             this.grpInasistencia.TabIndex = 3;
             this.grpInasistencia.TabStop = false;
             this.grpInasistencia.Text = "Detalle de la Inasistencia";
@@ -104,7 +104,7 @@
             // 
             this.txtCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCertificado.Location = new System.Drawing.Point(78, 249);
+            this.txtCertificado.Location = new System.Drawing.Point(78, 260);
             this.txtCertificado.Name = "txtCertificado";
             this.txtCertificado.Size = new System.Drawing.Size(336, 20);
             this.txtCertificado.TabIndex = 6;
@@ -113,7 +113,7 @@
             // 
             this.lblCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCertificado.AutoSize = true;
-            this.lblCertificado.Location = new System.Drawing.Point(9, 252);
+            this.lblCertificado.Location = new System.Drawing.Point(9, 263);
             this.lblCertificado.Name = "lblCertificado";
             this.lblCertificado.Size = new System.Drawing.Size(63, 13);
             this.lblCertificado.TabIndex = 73;
@@ -137,7 +137,7 @@
             this.txtDetalle.Multiline = true;
             this.txtDetalle.Name = "txtDetalle";
             this.txtDetalle.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDetalle.Size = new System.Drawing.Size(336, 140);
+            this.txtDetalle.Size = new System.Drawing.Size(336, 151);
             this.txtDetalle.TabIndex = 5;
             // 
             // lblDetalle
@@ -253,9 +253,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 359);
             this.Controls.Add(this.tlpPrincipal);
+            this.MaximizeBox = false;
             this.Name = "FrmInasistenciaMant";
             this.Text = "Mantenimiento de Inasistencia";
-            this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);
+            this.Load += new System.EventHandler(this.FrmInasistenciaMant_Load);
             this.tlpPrincipal.ResumeLayout(false);
             this.pnlPrincipal.ResumeLayout(false);
             this.grpInasistencia.ResumeLayout(false);

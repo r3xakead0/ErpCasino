@@ -269,6 +269,56 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        public BE.ClsBeTbCandidatoContratacion ObtenerContratacion(string codigo)
+        {
+            try
+            {
+                BE.ClsBeTbCandidatoContratacion beCandidatoContratacion = null;
+
+                var beCandidato = new DA.ClsDaTbCandidato().Obtener(codigo);
+                if (beCandidato != null)
+                    beCandidatoContratacion = new DA.ClsDaTbCandidatoContratacion().Obtener(beCandidato.IdCandidato);
+
+                return beCandidatoContratacion;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<BE.UI.Trabajador> ListaSimple()
+        {
+
+            var lstUiEmpleados = new List<BE.UI.Trabajador>();
+
+            try
+            {
+                DataTable dt = new DA.ClsDaTbCandidato().ListaSimple();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var uiTrabajador = new BE.UI.Trabajador()
+                    {
+                        Codigo = dr["Codigo"].ToString().Trim(),
+                        Nombres = dr["Nombres"].ToString().Trim(),
+                        ApellidoPaterno = dr["ApellidoPaterno"].ToString().Trim(),
+                        ApellidoMaterno = dr["ApellidoMaterno"].ToString().Trim(),
+                        Activo = bool.Parse(dr["Activo"].ToString()) == true ? BE.UI.ActivoEnum.Si : BE.UI.ActivoEnum.No,
+                        Tipo = BE.UI.TipoTrabajadorEnum.Candidato
+                    };
+                    lstUiEmpleados.Add(uiTrabajador);
+                }
+
+                return lstUiEmpleados;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<BE.Record> Combo()
         {
 

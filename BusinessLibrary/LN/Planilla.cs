@@ -442,7 +442,7 @@ namespace ErpCasino.BusinessLibrary.LN
                         uiPlanillaDetalle.PrestamoTotal = beDetalle.PrestamoTotal;
                         uiPlanillaDetalle.GratificacionTotal = 0.0;
                         uiPlanillaDetalle.EsSaludTotal = beDetalle.EsSaludTotal;
-                        uiPlanillaDetalle.MovilidadTotal = beDetalle.MovilidadTotal;
+                        uiPlanillaDetalle.MovilidadTotal = beDetalle.TotalMovilidad;
 
                         uiPlanillaDetalle.TotalBase = beDetalle.TotalSueldoBase;
                         uiPlanillaDetalle.TotalBruto = beDetalle.TotalSueldoBruto;

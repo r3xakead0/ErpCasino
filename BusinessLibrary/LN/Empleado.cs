@@ -171,6 +171,38 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
+        public List<BE.UI.Trabajador> ListaSimple()
+        {
+
+            var lstUiEmpleados = new List<BE.UI.Trabajador>();
+
+            try
+            {
+                DataTable dt = new DA.ClsDaTbEmpleado().ListaSimple();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var uiTrabajador = new BE.UI.Trabajador()
+                    {
+                        Codigo = dr["Codigo"].ToString().Trim(),
+                        Nombres = dr["Nombres"].ToString().Trim(),
+                        ApellidoPaterno = dr["ApellidoPaterno"].ToString().Trim(),
+                        ApellidoMaterno = dr["ApellidoMaterno"].ToString().Trim(),
+                        Activo = bool.Parse(dr["Activo"].ToString()) == true ? BE.UI.ActivoEnum.Si : BE.UI.ActivoEnum.No,
+                        Tipo = BE.UI.TipoTrabajadorEnum.Empleado
+                    };
+                    lstUiEmpleados.Add(uiTrabajador);
+                }
+
+                return lstUiEmpleados;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<BE.Record> Combo()
         {
 
@@ -281,20 +313,20 @@ namespace ErpCasino.BusinessLibrary.LN
 
                 if (beEmpleado.Recurso.RetencionJudicialNominal > 0.0)
                 {
-                    uiEmpleadoRecurso.RetencionJudicialTipo = BE.UI.TipoRetencionJudicial.Nominal; 
+                    uiEmpleadoRecurso.RetencionJudicialTipo = BE.UI.TipoRetencionJudicialEnum.Nominal; 
                     uiEmpleadoRecurso.RetencionJudicialNominal = beEmpleado.Recurso.RetencionJudicialNominal;
                     uiEmpleadoRecurso.RetencionJudicialPorcentual = 0.0; //Calcular
                 }
                 else
                 {
-                    uiEmpleadoRecurso.RetencionJudicialTipo = BE.UI.TipoRetencionJudicial.Porcentual;
+                    uiEmpleadoRecurso.RetencionJudicialTipo = BE.UI.TipoRetencionJudicialEnum.Porcentual;
                     uiEmpleadoRecurso.RetencionJudicialNominal = 0.0; //Calcular
                     uiEmpleadoRecurso.RetencionJudicialPorcentual = beEmpleado.Recurso.RetencionJudicialPorcentual;
                 }
 
                 if (beEmpleado.Recurso.ONP == true)
                 {
-                    uiEmpleadoRecurso.PensionTipo = BE.UI.TipoPension.ONP;
+                    uiEmpleadoRecurso.PensionTipo = BE.UI.TipoPensionEnum.ONP;
 
                     var beOnpComision = new LN.OnpComision()
                         .Obtener(fechaConsulta.Year,
@@ -307,7 +339,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 }
                 else
                 {
-                    uiEmpleadoRecurso.PensionTipo = BE.UI.TipoPension.AFP;
+                    uiEmpleadoRecurso.PensionTipo = BE.UI.TipoPensionEnum.AFP;
                     uiEmpleadoRecurso.AfpId = beEmpleado.Recurso.Afp.IdAfp;
                     uiEmpleadoRecurso.AfpNombre = beEmpleado.Recurso.Afp.Nombre;
                     uiEmpleadoRecurso.AfpCuspp = beEmpleado.Recurso.CUSPP;

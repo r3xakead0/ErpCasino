@@ -366,12 +366,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {
 
-                var rpta = Util.ConfirmationMessage("¿Desea salir del mantenimiento de asistencias?");
+                var rpta = Util.ConfirmationMessage($"¿Desea salir del formulario { this.Text }?");
 
                 if (rpta == false)
                     return;
@@ -599,8 +599,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Excel Documents (*.xls)|*.xls";
-                sfd.FileName = "export.xls";
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     Util.PointerLoad(this);

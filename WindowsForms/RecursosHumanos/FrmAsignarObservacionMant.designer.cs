@@ -170,7 +170,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(111, 122);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(353, 113);
+            this.txtDescripcion.Size = new System.Drawing.Size(353, 131);
             this.txtDescripcion.TabIndex = 90;
             // 
             // lblFecha

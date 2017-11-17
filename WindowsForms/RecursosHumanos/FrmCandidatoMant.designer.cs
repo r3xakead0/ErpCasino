@@ -113,6 +113,8 @@
             this.PnlPrincipal = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.lblSueldo = new System.Windows.Forms.Label();
+            this.txtSueldo = new System.Windows.Forms.TextBox();
             this.TlpPrincipal.SuspendLayout();
             this.TbcMantenimiento.SuspendLayout();
             this.TbpGeneral.SuspendLayout();
@@ -598,7 +600,7 @@
             this.TbpConctacto.Location = new System.Drawing.Point(4, 22);
             this.TbpConctacto.Name = "TbpConctacto";
             this.TbpConctacto.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpConctacto.Size = new System.Drawing.Size(504, 417);
+            this.TbpConctacto.Size = new System.Drawing.Size(504, 427);
             this.TbpConctacto.TabIndex = 1;
             this.TbpConctacto.Text = "Contacto";
             this.TbpConctacto.UseVisualStyleBackColor = true;
@@ -827,6 +829,8 @@
             // 
             // TbpContratacion
             // 
+            this.TbpContratacion.Controls.Add(this.lblSueldo);
+            this.TbpContratacion.Controls.Add(this.txtSueldo);
             this.TbpContratacion.Controls.Add(this.GrpInformes);
             this.TbpContratacion.Controls.Add(this.GrpDocumentos);
             this.TbpContratacion.Controls.Add(this.GrpInduccion);
@@ -835,7 +839,7 @@
             this.TbpContratacion.Location = new System.Drawing.Point(4, 22);
             this.TbpContratacion.Name = "TbpContratacion";
             this.TbpContratacion.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpContratacion.Size = new System.Drawing.Size(504, 417);
+            this.TbpContratacion.Size = new System.Drawing.Size(504, 427);
             this.TbpContratacion.TabIndex = 2;
             this.TbpContratacion.Text = "Contratación";
             this.TbpContratacion.UseVisualStyleBackColor = true;
@@ -988,7 +992,7 @@
             this.TxtObservacion.Multiline = true;
             this.TxtObservacion.Name = "TxtObservacion";
             this.TxtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtObservacion.Size = new System.Drawing.Size(330, 76);
+            this.TxtObservacion.Size = new System.Drawing.Size(330, 50);
             this.TxtObservacion.TabIndex = 31;
             // 
             // PnlPrincipal
@@ -1021,7 +1025,28 @@
             this.BtnCancel.TabIndex = 33;
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // lblSueldo
+            // 
+            this.lblSueldo.Location = new System.Drawing.Point(27, 385);
+            this.lblSueldo.Name = "lblSueldo";
+            this.lblSueldo.Size = new System.Drawing.Size(97, 13);
+            this.lblSueldo.TabIndex = 82;
+            this.lblSueldo.Text = "Sueldo:";
+            this.lblSueldo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtSueldo
+            // 
+            this.txtSueldo.Location = new System.Drawing.Point(145, 382);
+            this.txtSueldo.Name = "txtSueldo";
+            this.txtSueldo.Size = new System.Drawing.Size(100, 20);
+            this.txtSueldo.TabIndex = 81;
+            this.txtSueldo.Text = "0.00";
+            this.txtSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSueldo.Enter += new System.EventHandler(this.txtSueldo_Enter);
+            this.txtSueldo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSueldo_KeyPress);
+            this.txtSueldo.Leave += new System.EventHandler(this.txtSueldo_Leave);
             // 
             // FrmCandidatoMant
             // 
@@ -1139,5 +1164,7 @@
         internal System.Windows.Forms.Label LblEdad;
         internal System.Windows.Forms.Label LblNacDepartamentoAsterisk;
         internal System.Windows.Forms.Label LblNacProvinciaAsterisk;
+        internal System.Windows.Forms.Label lblSueldo;
+        internal System.Windows.Forms.TextBox txtSueldo;
     }
 }

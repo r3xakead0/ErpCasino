@@ -54,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvInasistencias.Location = new System.Drawing.Point(3, 3);
             this.dgvInasistencias.Name = "dgvInasistencias";
-            this.dgvInasistencias.Size = new System.Drawing.Size(938, 254);
+            this.dgvInasistencias.Size = new System.Drawing.Size(938, 264);
             this.dgvInasistencias.TabIndex = 0;
             // 
             // btnClasificar
@@ -79,7 +79,7 @@
             this.TlpPrincipal.Location = new System.Drawing.Point(0, 0);
             this.TlpPrincipal.Name = "TlpPrincipal";
             this.TlpPrincipal.RowCount = 3;
-            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.TlpPrincipal.Size = new System.Drawing.Size(950, 376);
@@ -96,14 +96,14 @@
             this.PnlFiltro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlFiltro.Location = new System.Drawing.Point(3, 3);
             this.PnlFiltro.Name = "PnlFiltro";
-            this.PnlFiltro.Size = new System.Drawing.Size(944, 54);
+            this.PnlFiltro.Size = new System.Drawing.Size(944, 44);
             this.PnlFiltro.TabIndex = 0;
             // 
             // LblSala
             // 
             this.LblSala.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblSala.AutoSize = true;
-            this.LblSala.Location = new System.Drawing.Point(692, 20);
+            this.LblSala.Location = new System.Drawing.Point(692, 15);
             this.LblSala.Name = "LblSala";
             this.LblSala.Size = new System.Drawing.Size(31, 13);
             this.LblSala.TabIndex = 55;
@@ -114,7 +114,7 @@
             this.cboSala.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboSala.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSala.FormattingEnabled = true;
-            this.cboSala.Location = new System.Drawing.Point(761, 17);
+            this.cboSala.Location = new System.Drawing.Point(769, 12);
             this.cboSala.Name = "cboSala";
             this.cboSala.Size = new System.Drawing.Size(166, 21);
             this.cboSala.TabIndex = 56;
@@ -123,7 +123,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(165, 20);
+            this.label1.Location = new System.Drawing.Point(165, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 13);
             this.label1.TabIndex = 54;
@@ -133,9 +133,9 @@
             // 
             this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMes.FormattingEnabled = true;
-            this.cboMes.Location = new System.Drawing.Point(181, 17);
+            this.cboMes.Location = new System.Drawing.Point(181, 12);
             this.cboMes.Name = "cboMes";
-            this.cboMes.Size = new System.Drawing.Size(72, 21);
+            this.cboMes.Size = new System.Drawing.Size(228, 21);
             this.cboMes.TabIndex = 53;
             this.cboMes.SelectionChangeCommitted += new System.EventHandler(this.CboAnhoMesSala_SelectionChangeCommitted);
             // 
@@ -143,7 +143,7 @@
             // 
             this.cboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAnho.FormattingEnabled = true;
-            this.cboAnho.Location = new System.Drawing.Point(87, 17);
+            this.cboAnho.Location = new System.Drawing.Point(87, 12);
             this.cboAnho.Name = "cboAnho";
             this.cboAnho.Size = new System.Drawing.Size(72, 21);
             this.cboAnho.TabIndex = 52;
@@ -152,7 +152,7 @@
             // LblFechaHora
             // 
             this.LblFechaHora.AutoSize = true;
-            this.LblFechaHora.Location = new System.Drawing.Point(18, 20);
+            this.LblFechaHora.Location = new System.Drawing.Point(18, 15);
             this.LblFechaHora.Name = "LblFechaHora";
             this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
             this.LblFechaHora.TabIndex = 51;
@@ -162,9 +162,9 @@
             // 
             this.PnlGrilla.Controls.Add(this.dgvInasistencias);
             this.PnlGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlGrilla.Location = new System.Drawing.Point(3, 63);
+            this.PnlGrilla.Location = new System.Drawing.Point(3, 53);
             this.PnlGrilla.Name = "PnlGrilla";
-            this.PnlGrilla.Size = new System.Drawing.Size(944, 260);
+            this.PnlGrilla.Size = new System.Drawing.Size(944, 270);
             this.PnlGrilla.TabIndex = 1;
             // 
             // PnlBotones

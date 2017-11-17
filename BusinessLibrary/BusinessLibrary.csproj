@@ -52,6 +52,7 @@
     <Compile Include="BE\MetaSala.cs" />
     <Compile Include="BE\Observacion.cs" />
     <Compile Include="BE\ObservacionEmpleado.cs" />
+    <Compile Include="BE\TipoEnum.cs" />
     <Compile Include="BE\SueldoMinimo.cs" />
     <Compile Include="BE\CTS.cs" />
     <Compile Include="BE\Inasistencia.cs" />
@@ -90,9 +91,12 @@
     <Compile Include="BE\Sala.cs" />
     <Compile Include="BE\Turno.cs" />
     <Compile Include="BE\Ubigeo.cs" />
-    <Compile Include="BE\Tipo.cs" />
     <Compile Include="BE\Parametros.cs" />
-    <Compile Include="BE\UI\Activo.cs" />
+    <Compile Include="BE\UI\Trabajador.cs" />
+    <Compile Include="BE\UI\TipoTrabajadorEnum.cs" />
+    <Compile Include="BE\UI\TipoRetencionJudicialEnum.cs" />
+    <Compile Include="BE\UI\TipoPensionEnum.cs" />
+    <Compile Include="BE\UI\ActivoEnum.cs" />
     <Compile Include="BE\UI\Movilidad.cs" />
     <Compile Include="BE\UI\Vacacion.cs" />
     <Compile Include="BE\UI\Comprometido.cs" />
@@ -171,7 +175,6 @@
     <Compile Include="DA\ClsDaTbEmpleadoTelefono.cs" />
     <Compile Include="DA\Pais.cs" />
     <Compile Include="DA\Ubigeo.cs" />
-    <Compile Include="DA\Tipo.cs" />
     <Compile Include="DA\Usuario.cs" />
     <Compile Include="DA\Horario.cs" />
     <Compile Include="DA\Sala.cs" />

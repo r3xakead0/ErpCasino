@@ -222,7 +222,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvObservaciones.Columns.Add(colDescripcion);
 
                 DataGridViewComboBoxColumn colActivo = new DataGridViewComboBoxColumn();
-                colActivo.DataSource = Enum.GetValues(typeof(BE.UI.Activo));
+                colActivo.DataSource = Enum.GetValues(typeof(BE.UI.ActivoEnum));
                 colActivo.DataPropertyName = "Activo";
                 colActivo.Name = "Activo";
                 colActivo.Width = 70;

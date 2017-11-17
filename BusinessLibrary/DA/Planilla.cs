@@ -308,7 +308,7 @@ namespace ErpCasino.BusinessLibrary.DA
                         #endregion
 
                         #region Movilidad
-                        beDetalle.MovilidadTotal = double.Parse(reader["MovilidadTotal"].ToString());
+                        beDetalle.TotalMovilidad = double.Parse(reader["MovilidadTotal"].ToString());
                         #endregion
 
                         lstUiPlanillaDetalle.Add(beDetalle);
@@ -718,7 +718,7 @@ namespace ErpCasino.BusinessLibrary.DA
                 #endregion
 
                 #region Movilidad
-                cmd.Parameters.Add(new SqlParameter("@MOVILIDADTOTAL", bePlanillaDetalle.MovilidadTotal));
+                cmd.Parameters.Add(new SqlParameter("@MOVILIDADTOTAL", bePlanillaDetalle.TotalMovilidad));
                 #endregion
 
                 rowsAffected += cmd.ExecuteNonQuery();
