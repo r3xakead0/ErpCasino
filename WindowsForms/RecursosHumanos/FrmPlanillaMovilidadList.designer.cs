@@ -38,6 +38,9 @@
             this.pnlResumen = new System.Windows.Forms.Panel();
             this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovilidades)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -109,6 +112,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Controls.Add(this.btnEditar);
@@ -129,6 +133,8 @@
             // 
             // pnlResumen
             // 
+            this.pnlResumen.Controls.Add(this.txtTotal);
+            this.pnlResumen.Controls.Add(this.label3);
             this.pnlResumen.Controls.Add(this.txtNroRegistros);
             this.pnlResumen.Controls.Add(this.label2);
             this.pnlResumen.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -157,6 +163,40 @@
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 57;
             this.label2.Text = "Nro. Registros :";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(637, 2);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(98, 20);
+            this.txtTotal.TabIndex = 69;
+            this.txtTotal.Text = "0.00";
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(594, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 68;
+            this.label3.Text = "Total :";
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 24;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // FrmPlanillaMovilidadList
             // 
@@ -191,5 +231,8 @@
         private System.Windows.Forms.Panel pnlResumen;
         internal System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNroRegistros;
+        private System.Windows.Forms.TextBox txtTotal;
+        internal System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

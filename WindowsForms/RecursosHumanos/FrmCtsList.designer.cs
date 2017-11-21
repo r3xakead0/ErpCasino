@@ -36,6 +36,7 @@
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCts)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -102,6 +103,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnImprimir);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
@@ -132,6 +134,17 @@
             this.pnlSuperior.Size = new System.Drawing.Size(915, 241);
             this.pnlSuperior.TabIndex = 0;
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 24;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmCtsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,5 +174,6 @@
         private System.Windows.Forms.Panel pnlInferior;
         private System.Windows.Forms.Panel pnlSuperior;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

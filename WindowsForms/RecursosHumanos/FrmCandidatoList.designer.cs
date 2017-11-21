@@ -39,6 +39,7 @@
             this.pnlResumen = new System.Windows.Forms.Panel();
             this.txtNroCandidatos = new System.Windows.Forms.TextBox();
             this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlBotones.SuspendLayout();
@@ -58,8 +59,8 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.Location = new System.Drawing.Point(804, 3);
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.Location = new System.Drawing.Point(804, 5);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 30);
             this.btnNuevo.TabIndex = 16;
@@ -69,8 +70,8 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Location = new System.Drawing.Point(698, 3);
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.Location = new System.Drawing.Point(698, 5);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 30);
             this.btnEditar.TabIndex = 17;
@@ -80,8 +81,8 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(592, 3);
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Location = new System.Drawing.Point(592, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 30);
             this.btnEliminar.TabIndex = 18;
@@ -108,6 +109,7 @@
             // 
             // pnlBotones
             // 
+            this.pnlBotones.Controls.Add(this.btnExportar);
             this.pnlBotones.Controls.Add(this.BtnContratar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
             this.pnlBotones.Controls.Add(this.btnEliminar);
@@ -120,8 +122,8 @@
             // 
             // BtnContratar
             // 
-            this.BtnContratar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnContratar.Location = new System.Drawing.Point(486, 3);
+            this.BtnContratar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnContratar.Location = new System.Drawing.Point(486, 5);
             this.BtnContratar.Name = "BtnContratar";
             this.BtnContratar.Size = new System.Drawing.Size(100, 30);
             this.BtnContratar.TabIndex = 19;
@@ -172,6 +174,17 @@
             this.lblRegistrosAsistencias.TabIndex = 59;
             this.lblRegistrosAsistencias.Text = "Registros :";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 24;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmCandidatoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,5 +217,6 @@
         private System.Windows.Forms.Panel pnlResumen;
         private System.Windows.Forms.TextBox txtNroCandidatos;
         internal System.Windows.Forms.Label lblRegistrosAsistencias;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

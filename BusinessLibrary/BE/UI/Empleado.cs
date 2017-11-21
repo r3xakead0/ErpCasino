@@ -115,11 +115,12 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         #region Retencion Judicial
 
         public TipoRetencionJudicialEnum RetencionJudicialTipo { get; set; } 
-        public double RetencionJudicialNominal { get; set; }
-        public double RetencionJudicialPorcentual { get; set; }
-        
+        public double RetencionJudicialNominal { get; set; } = 0.0;
+        public double RetencionJudicialPorcentual { get; set; } = 0.0;
 
         #endregion
+
+        public string EsSaludAutogenerado { get; set; } = "";
 
     }
 

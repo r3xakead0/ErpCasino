@@ -34,6 +34,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
+            this.btnCargar = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,11 +42,10 @@
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
             this.pnlResumen = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.txtTotalAdelantos = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCargar = new System.Windows.Forms.Button();
+            this.txtNroRegistros = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -128,6 +128,17 @@
             this.pnlInferior.Size = new System.Drawing.Size(744, 44);
             this.pnlInferior.TabIndex = 1;
             // 
+            // btnCargar
+            // 
+            this.btnCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCargar.Location = new System.Drawing.Point(9, 5);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(100, 30);
+            this.btnCargar.TabIndex = 19;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            // 
             // pnlSuperior
             // 
             this.pnlSuperior.Controls.Add(this.dgvAdelantos);
@@ -199,27 +210,6 @@
             this.pnlResumen.Size = new System.Drawing.Size(744, 24);
             this.pnlResumen.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Nro. Registros :";
-            // 
-            // txtNroRegistros
-            // 
-            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNroRegistros.Location = new System.Drawing.Point(95, 2);
-            this.txtNroRegistros.Name = "txtNroRegistros";
-            this.txtNroRegistros.ReadOnly = true;
-            this.txtNroRegistros.Size = new System.Drawing.Size(56, 20);
-            this.txtNroRegistros.TabIndex = 61;
-            this.txtNroRegistros.Text = "0";
-            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // txtTotalAdelantos
             // 
             this.txtTotalAdelantos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -243,16 +233,26 @@
             this.label3.TabIndex = 62;
             this.label3.Text = "Total :";
             // 
-            // btnCargar
+            // txtNroRegistros
             // 
-            this.btnCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCargar.Location = new System.Drawing.Point(9, 5);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(100, 30);
-            this.btnCargar.TabIndex = 19;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
-            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNroRegistros.Location = new System.Drawing.Point(95, 2);
+            this.txtNroRegistros.Name = "txtNroRegistros";
+            this.txtNroRegistros.ReadOnly = true;
+            this.txtNroRegistros.Size = new System.Drawing.Size(56, 20);
+            this.txtNroRegistros.TabIndex = 61;
+            this.txtNroRegistros.Text = "0";
+            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Nro. Registros :";
             // 
             // FrmAdelantoList
             // 

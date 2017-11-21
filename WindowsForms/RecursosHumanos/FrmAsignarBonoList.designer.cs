@@ -44,11 +44,18 @@
             this.cboMes = new System.Windows.Forms.ComboBox();
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
+            this.pnlResumen = new System.Windows.Forms.Panel();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNroRegistros = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBonos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
             this.pnlSuperior.SuspendLayout();
             this.pnlFiltro.SuspendLayout();
+            this.pnlResumen.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvBonos
@@ -57,9 +64,10 @@
             this.dgvBonos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBonos.Location = new System.Drawing.Point(0, 0);
             this.dgvBonos.Name = "dgvBonos";
-            this.dgvBonos.Size = new System.Drawing.Size(885, 259);
+            this.dgvBonos.Size = new System.Drawing.Size(885, 229);
             this.dgvBonos.TabIndex = 0;
             this.dgvBonos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBonos_CellDoubleClick);
+            this.dgvBonos.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBonos_ColumnHeaderMouseClick);
             // 
             // btnNuevo
             // 
@@ -98,21 +106,25 @@
             // 
             this.tlpPrincipal.ColumnCount = 1;
             this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.Controls.Add(this.pnlInferior, 0, 2);
+            this.tlpPrincipal.Controls.Add(this.pnlInferior, 0, 3);
             this.tlpPrincipal.Controls.Add(this.pnlSuperior, 0, 1);
             this.tlpPrincipal.Controls.Add(this.pnlFiltro, 0, 0);
+            this.tlpPrincipal.Controls.Add(this.pnlResumen, 0, 2);
             this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tlpPrincipal.Name = "tlpPrincipal";
-            this.tlpPrincipal.RowCount = 3;
+            this.tlpPrincipal.RowCount = 4;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpPrincipal.Size = new System.Drawing.Size(891, 355);
             this.tlpPrincipal.TabIndex = 19;
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnCalcular);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
@@ -139,7 +151,7 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSuperior.Location = new System.Drawing.Point(3, 43);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(885, 259);
+            this.pnlSuperior.Size = new System.Drawing.Size(885, 229);
             this.pnlSuperior.TabIndex = 0;
             // 
             // pnlFiltro
@@ -225,6 +237,72 @@
             this.LblFechaHora.TabIndex = 55;
             this.LblFechaHora.Text = "Año y Mes :";
             // 
+            // pnlResumen
+            // 
+            this.pnlResumen.Controls.Add(this.txtTotal);
+            this.pnlResumen.Controls.Add(this.label3);
+            this.pnlResumen.Controls.Add(this.txtNroRegistros);
+            this.pnlResumen.Controls.Add(this.label2);
+            this.pnlResumen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlResumen.Location = new System.Drawing.Point(3, 278);
+            this.pnlResumen.Name = "pnlResumen";
+            this.pnlResumen.Size = new System.Drawing.Size(885, 24);
+            this.pnlResumen.TabIndex = 3;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(778, 2);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(98, 20);
+            this.txtTotal.TabIndex = 67;
+            this.txtTotal.Text = "0.00";
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(735, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 66;
+            this.label3.Text = "Total :";
+            // 
+            // txtNroRegistros
+            // 
+            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNroRegistros.Location = new System.Drawing.Point(94, 2);
+            this.txtNroRegistros.Name = "txtNroRegistros";
+            this.txtNroRegistros.ReadOnly = true;
+            this.txtNroRegistros.Size = new System.Drawing.Size(56, 20);
+            this.txtNroRegistros.TabIndex = 65;
+            this.txtNroRegistros.Text = "0";
+            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 64;
+            this.label2.Text = "Nro. Registros :";
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(115, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 20;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmAsignarBonoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,6 +320,8 @@
             this.pnlSuperior.ResumeLayout(false);
             this.pnlFiltro.ResumeLayout(false);
             this.pnlFiltro.PerformLayout();
+            this.pnlResumen.ResumeLayout(false);
+            this.pnlResumen.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -264,5 +344,11 @@
         private System.Windows.Forms.TextBox txtEmpleadoCodigo;
         internal System.Windows.Forms.Label lblEmpleado;
         private System.Windows.Forms.ComboBox cboEmpleado;
+        private System.Windows.Forms.Panel pnlResumen;
+        private System.Windows.Forms.TextBox txtTotal;
+        internal System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNroRegistros;
+        internal System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

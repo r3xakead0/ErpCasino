@@ -43,6 +43,7 @@
             this.cboMes = new System.Windows.Forms.ComboBox();
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObservaciones)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -58,7 +59,8 @@
             this.dgvObservaciones.Name = "dgvObservaciones";
             this.dgvObservaciones.Size = new System.Drawing.Size(885, 259);
             this.dgvObservaciones.TabIndex = 0;
-            this.dgvObservaciones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdelantos_CellDoubleClick);
+            this.dgvObservaciones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvObservaciones_CellDoubleClick);
+            this.dgvObservaciones.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvObservaciones_ColumnHeaderMouseClick);
             // 
             // btnNuevo
             // 
@@ -112,6 +114,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Controls.Add(this.btnEditar);
@@ -152,6 +155,7 @@
             this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
             this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
             this.txtEmpleadoCodigo.TabIndex = 95;
+            this.txtEmpleadoCodigo.Leave += new System.EventHandler(this.txtEmpleadoCodigo_Leave);
             // 
             // lblEmpleado
             // 
@@ -172,6 +176,7 @@
             this.cboEmpleado.Name = "cboEmpleado";
             this.cboEmpleado.Size = new System.Drawing.Size(261, 21);
             this.cboEmpleado.TabIndex = 94;
+            this.cboEmpleado.SelectionChangeCommitted += new System.EventHandler(this.cboEmpleado_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -211,6 +216,16 @@
             this.LblFechaHora.TabIndex = 55;
             this.LblFechaHora.Text = "Año y Mes :";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 22;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmAsignarObservacionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,5 +264,6 @@
         private System.Windows.Forms.TextBox txtEmpleadoCodigo;
         internal System.Windows.Forms.Label lblEmpleado;
         private System.Windows.Forms.ComboBox cboEmpleado;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

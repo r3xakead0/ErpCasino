@@ -40,6 +40,7 @@
             this.LblFechaHora = new System.Windows.Forms.Label();
             this.PnlGrilla = new System.Windows.Forms.Panel();
             this.PnlBotones = new System.Windows.Forms.Panel();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInasistencias)).BeginInit();
             this.TlpPrincipal.SuspendLayout();
             this.PnlFiltro.SuspendLayout();
@@ -169,12 +170,24 @@
             // 
             // PnlBotones
             // 
+            this.PnlBotones.Controls.Add(this.btnExportar);
             this.PnlBotones.Controls.Add(this.btnClasificar);
             this.PnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlBotones.Location = new System.Drawing.Point(3, 329);
             this.PnlBotones.Name = "PnlBotones";
             this.PnlBotones.Size = new System.Drawing.Size(944, 44);
             this.PnlBotones.TabIndex = 2;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 25;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // FrmInasistenciaList
             // 
@@ -210,5 +223,6 @@
         internal System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Label LblSala;
         public System.Windows.Forms.ComboBox cboSala;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

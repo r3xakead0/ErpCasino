@@ -14,6 +14,7 @@ namespace ErpCasino.BusinessLibrary.LN
         private BE.Adelanto UiToBe(BE.UI.Adelanto uiAdelanto)
         {
             var beAdelanto = new BE.Adelanto();
+            beAdelanto.IdAdelanto = uiAdelanto.IdAdelanto;
             beAdelanto.CodigoEmpleado = uiAdelanto.CodigoEmpleado;
             beAdelanto.IdBanco = uiAdelanto.IdBanco;
             beAdelanto.Tipo = uiAdelanto.CodigoTipo;

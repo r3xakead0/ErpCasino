@@ -207,6 +207,8 @@ namespace ErpCasino.BusinessLibrary.DA
                     else
                         cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", DBNull.Value));
 
+                    cmd.Parameters.Add(new SqlParameter("@AUTOGENERADO", beEmpleado.Recurso.Autogenerado));
+
                     rowsAffected += cmd.ExecuteNonQuery();
 
                     if (tns != null)
@@ -359,6 +361,8 @@ namespace ErpCasino.BusinessLibrary.DA
                         cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", beEmpleado.Recurso.FechaUltimaVacacion));
                     else
                         cmd.Parameters.Add(new SqlParameter("@FECHAULTIMAVACACION", DBNull.Value));
+
+                    cmd.Parameters.Add(new SqlParameter("@AUTOGENERADO", beEmpleado.Recurso.Autogenerado));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 

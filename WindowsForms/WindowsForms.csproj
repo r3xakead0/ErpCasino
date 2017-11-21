@@ -71,6 +71,12 @@
     <Compile Include="RecursosHumanos\FrmAdelantoCarga.designer.cs">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaDetalleBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmPlanillaDetalleBoleta.designer.cs">
+      <DependentUpon>FrmPlanillaDetalleBoleta.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmPlanillaMovilidadMant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -510,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmAdelantoCarga.resx">
       <DependentUpon>FrmAdelantoCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaDetalleBoleta.resx">
+      <DependentUpon>FrmPlanillaDetalleBoleta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmPlanillaMovilidadMant.resx">
       <DependentUpon>FrmPlanillaMovilidadMant.cs</DependentUpon>

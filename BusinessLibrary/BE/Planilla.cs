@@ -920,4 +920,68 @@ namespace ErpCasino.BusinessLibrary.BE
         public double EsSaludTotal { get; set; }
     }
 
+    public class PlanillaBoleta: Audit
+    {
+        public int IdPlanillaBoleta{ get; set; } = 0;
+        public int IdPlanilla{ get; set; } = 0;
+        public int Anho{ get; set; } = 0;
+        public int Mes{ get; set; } = 0;
+        public string MesNombre{ get; set; } = "";
+        public int MesDias{ get; set; } = 0;
+        public string EmpresaNombre{ get; set; } = "";
+        public string EmpresaRuc{ get; set; } = "";
+        public string EmpresaDistrito{ get; set; } = "";
+        public string EmpresaDireccion{ get; set; } = "";
+        public string EmpleadoCodigo{ get; set; } = "";
+        public string EmpleadoNombres{ get; set; } = "";
+        public string EmpleadoApellidos{ get; set; } = "";
+        public string EmpleadoCargo{ get; set; } = "";
+        public string EmpleadoNroDocumento{ get; set; } = "";
+        public DateTime EmpleadoFechaIngreso{ get; set; } = DateTime.Now;
+        public DateTime? EmpleadoFechaCese { get; set; } = null;
+        public DateTime? EmpleadoVacacionSalida { get; set; } = null;
+        public DateTime? EmpleadoVacacionRetorno { get; set; } = null;
+        public string EmpleadoEsSaludCodigo{ get; set; } = "";
+        public string EmpleadoSppCodigo{ get; set; } = "";
+        public string EmpleadoSppEntidad{ get; set; } = "";
+        public int DiasLaborados{ get; set; } = 0;
+        public int DiasNoLaborados{ get; set; } = 0;
+        public int DiasSinGoceHaber{ get; set; } = 0;
+        public int DiasSubsidiado{ get; set; } = 0;
+        public int HorasNormales{ get; set; } = 0;
+        public double Sueldo{ get; set; } = 0.0;
+        public double AsignacionFamiliar{ get; set; } = 0.0;
+        public double BonificacionNocturna{ get; set; } = 0.0;
+        public double MovilidadTranslado{ get; set; } = 0.0;
+        public double SubsidioDescansoMedico{ get; set; } = 0.0;
+        public double BonificacionHorasExtras{ get; set; } = 0.0;
+        public int CantidadHorasExtras{ get; set; } = 0;
+        public double Cts{ get; set; } = 0.0;
+        public double Vacaciones{ get; set; } = 0.0;
+        public double FeriadoDominical{ get; set; } = 0.0;
+        public double Gratificacion{ get; set; } = 0.0;
+        public double BonificacionGratificacion{ get; set; } = 0.0;
+        public double TotalBruto{ get; set; } = 0.0;
+        public double AfpFondoMonto{ get; set; } = 0.0;
+        public double AfpSeguroMonto{ get; set; } = 0.0;
+        public double AfpComisionMonto{ get; set; } = 0.0;
+        public double IpssVidaMonto{ get; set; } = 0.0;
+        public double OnpMonto{ get; set; } = 0.0;
+        public double RentaQuintaMonto{ get; set; } = 0.0;
+        public int InasistenciasDias{ get; set; } = 0;
+        public double InasistenciasMonto{ get; set; } = 0.0;
+        public double AdelantoMonto{ get; set; } = 0.0;
+        public int TardanzaMinutos{ get; set; } = 0;
+        public double TardanzaMonto{ get; set; } = 0.0;
+        public double GratificacionMonto{ get; set; } = 0.0;
+        public double RetencionJudicialMonto{ get; set; } = 0.0;
+        public double SeguroVidaTrabajadorMonto{ get; set; } = 0.0;
+        public double IpssSaludTrabajadorMonto{ get; set; } = 0.0;
+        public double SeguroVidaEmpleadoMonto{ get; set; } = 0.0;
+        public double IpssSaludEmpleadoMonto{ get; set; } = 0.0;
+        public double TotalDescuentos{ get; set; } = 0.0;
+        public double TotalAportes{ get; set; } = 0.0;
+        public double TotalNeto{ get; set; } = 0.0;
+    }
+
 }

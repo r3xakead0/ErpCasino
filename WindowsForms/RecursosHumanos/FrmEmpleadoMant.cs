@@ -328,6 +328,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                         #endregion
 
+                        this.txtAutogenerado.Text = beEmpleado.Recurso.Autogenerado;
+
                     }
 
                     #endregion
@@ -783,7 +785,21 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                
+
+                var ttpResumen = new ToolTip();
+
+                var infoCci = "Codigo de Cuenta Interbancaria";
+                ttpResumen.SetToolTip(this.LblCci, infoCci);
+                ttpResumen.SetToolTip(this.TxtCci, infoCci);
+
+                var infoAutogenerado = "Codigo Unico autogenerado por ESSALUD";
+                ttpResumen.SetToolTip(this.lblAutogenerado, infoAutogenerado);
+                ttpResumen.SetToolTip(this.txtAutogenerado, infoAutogenerado);
+
+                var infoCuspp = "Codigo Unico del Sistema Privado de Pensiones";
+                ttpResumen.SetToolTip(this.LblCuspp, infoCuspp);
+                ttpResumen.SetToolTip(this.TxtCuspp, infoCuspp);
+
             }
             catch (Exception ex)
             {
@@ -985,6 +1001,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     double dRjPorcentual = double.Parse(this.txtRetencionJudicial.Text);
                     this.beEmpleadoGeneral.Recurso.RetencionJudicialPorcentual = dRjPorcentual;
                 }
+
+                this.beEmpleadoGeneral.Recurso.Autogenerado = this.txtAutogenerado.Text;
 
                 #endregion
 

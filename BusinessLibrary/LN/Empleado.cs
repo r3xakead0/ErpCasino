@@ -378,6 +378,7 @@ namespace ErpCasino.BusinessLibrary.LN
                     uiEmpleadoRecurso.AfpMonto = (uiEmpleadoRecurso.Sueldo + uiEmpleadoRecurso.AsignacionFamiliar) * (uiEmpleadoRecurso.AfpComisionPorcentaje / 100);
                 }
 
+                uiEmpleadoRecurso.EsSaludAutogenerado = beEmpleado.Recurso.Autogenerado;
 
                 return uiEmpleadoRecurso;
 

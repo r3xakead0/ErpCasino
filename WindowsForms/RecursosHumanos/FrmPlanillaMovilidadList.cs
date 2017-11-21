@@ -132,6 +132,30 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvMovilidades, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
+            }
+        }
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -219,6 +243,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 int nroRegistros = lstUiMovilidades.Count;
                 this.txtNroRegistros.Text = nroRegistros.ToString();
 
+                double sumRegistros = lstUiMovilidades.Sum(x => x.Monto);
+                this.txtTotal.Text = sumRegistros.ToString("N2");
+
             }
             catch (Exception ex)
             {
@@ -242,7 +269,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.dgvMovilidades.Columns["MesNombre"].Visible = true;
                 this.dgvMovilidades.Columns["MesNombre"].HeaderText = "Mes";
-                this.dgvMovilidades.Columns["MesNombre"].Width = 50;
+                this.dgvMovilidades.Columns["MesNombre"].Width = 100;
                 this.dgvMovilidades.Columns["MesNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 this.dgvMovilidades.Columns["EmpleadoCodigo"].Visible = true;
@@ -268,7 +295,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 throw ex;
             }
         }
-        
+
+
         #endregion
 
         

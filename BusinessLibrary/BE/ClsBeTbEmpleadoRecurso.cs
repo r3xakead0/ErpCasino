@@ -27,6 +27,7 @@ namespace ErpCasino.BusinessLibrary.BE
         private double mRetencionJudicialNominal = 0.0;
         private double mRetencionJudicialPorcentual = 0.0;
         private DateTime? mFechaUltimaVacacion = null;
+        private string mAutogenerado = "";
 
         public int IdEmpleado
         {
@@ -283,6 +284,18 @@ namespace ErpCasino.BusinessLibrary.BE
             set
             {
                 mFechaUltimaVacacion = value;
+            }
+        }
+
+        public string Autogenerado
+        {
+            get
+            {
+                return mAutogenerado;
+            }
+            set
+            {
+                mAutogenerado = value;
             }
         }
 

@@ -58,9 +58,13 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.beAdelanto = beAdelanto;
 
                     this.dtpFecha.Value = this.beAdelanto.Fecha;
+
+                    this.txtEmpleadoCodigo.Text = this.beAdelanto.CodigoEmpleado;
                     this.cboEmpleado.SelectedValue = this.beAdelanto.CodigoEmpleado;
+
                     this.cboTipos.SelectedValue = this.beAdelanto.CodigoTipo;
                     this.cboBancos.SelectedValue = this.beAdelanto.IdBanco;
+
                     this.txtNumero.Text = this.beAdelanto.Numero;
                     this.txtMonto.Text = this.beAdelanto.Monto.ToString("N2");
 

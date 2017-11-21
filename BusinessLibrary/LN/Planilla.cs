@@ -60,6 +60,85 @@ namespace ErpCasino.BusinessLibrary.LN
             return uiPlanillaDetalle;
         }
 
+        public BE.UI.PlanillaBoleta ObtenerPlanillaBoleta(string codigoEmpleado)
+        {
+            try
+            {
+                BE.UI.PlanillaBoleta uiPlanillaBoleta = null;
+
+                var bePlanillaBoleta = new DA.Planilla().ObtenerBoleta(this.anho, this.mes, codigoEmpleado);
+                if (bePlanillaBoleta != null)
+                {
+                    uiPlanillaBoleta = new BE.UI.PlanillaBoleta();
+
+                    
+
+                    /*
+                    uiPlanillaBoleta.Anho = bePlanillaBoleta.Anho;
+                    uiPlanillaBoleta.Mes = bePlanillaBoleta.Mes;
+                    uiPlanillaBoleta.MesNombre = bePlanillaBoleta.MesNombre;
+                    uiPlanillaBoleta.MesDias = bePlanillaBoleta.MesDias;
+                    uiPlanillaBoleta.EmpresaNombre = bePlanillaBoleta.EmpresaNombre;
+                    uiPlanillaBoleta.EmpresaRuc = bePlanillaBoleta.EmpresaRuc;
+                    uiPlanillaBoleta.EmpresaDistrito = bePlanillaBoleta.EmpresaDistrito;
+                    uiPlanillaBoleta.EmpresaDireccion = bePlanillaBoleta.EmpresaDireccion;
+                    uiPlanillaBoleta.EmpleadoCodigo = bePlanillaBoleta.EmpleadoCodigo;
+                    uiPlanillaBoleta.EmpleadoNombres = bePlanillaBoleta.EmpleadoNombres;
+                    uiPlanillaBoleta.EmpleadoApellidos = bePlanillaBoleta.EmpleadoApellidos;
+                    uiPlanillaBoleta.EmpleadoCargo = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.EmpleadoNroDocumento = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.EmpleadoFechaIngreso = bePlanillaBoleta.EmpleadoFechaIngreso;
+                    uiPlanillaBoleta.EmpleadoFechaCese = bePlanillaBoleta.EmpleadoFechaCese;
+                    uiPlanillaBoleta.EmpleadoVacacionSalida = bePlanillaBoleta.EmpleadoVacacionSalida;
+                    uiPlanillaBoleta.EmpleadoVacacionRetorno = bePlanillaBoleta.EmpleadoVacacionRetorno;
+                    uiPlanillaBoleta.EmpleadoEsSaludCodigo = bePlanillaBoleta.EmpleadoEsSaludCodigo;
+                    uiPlanillaBoleta.EmpleadoSppCodigo = bePlanillaBoleta.EmpleadoSppCodigo;
+                    uiPlanillaBoleta.EmpleadoSppEntidad = bePlanillaBoleta.EmpleadoSppEntidad;
+                    uiPlanillaBoleta.DiasLaborados = bePlanillaBoleta.DiasLaborados;
+                    uiPlanillaBoleta.DiasNoLaborados = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.DiasSinGoceHaber = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.DiasSubsidiado = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.HorasNormales = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.Sueldo = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.AsignacionFamiliar = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.BonificacionNocturna = bePlanillaBoleta.EmpleadoCargo;
+                    uiPlanillaBoleta.MovilidadTranslado = reader["MovilidadTranslado"] == DBNull.Value ? 0.0 : double.Parse(reader["MovilidadTranslado"].ToString());
+                    uiPlanillaBoleta.SubsidioDescansoMedico = reader["SubsidioDescansoMedico"] == DBNull.Value ? 0.0 : double.Parse(reader["SubsidioDescansoMedico"].ToString());
+                    uiPlanillaBoleta.BonificacionHorasExtras = reader["BonificacionHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["BonificacionHorasExtras"].ToString());
+                    uiPlanillaBoleta.CantidadHorasExtras = reader["CantidadHorasExtras"] == DBNull.Value ? 0 : int.Parse(reader["CantidadHorasExtras"].ToString());
+                    uiPlanillaBoleta.Cts = reader["Cts"] == DBNull.Value ? 0.0 : double.Parse(reader["Cts"].ToString());
+                    uiPlanillaBoleta.Vacaciones = reader["Vacaciones"] == DBNull.Value ? 0.0 : double.Parse(reader["Vacaciones"].ToString());
+                    uiPlanillaBoleta.FeriadoDominical = reader["FeriadoDominical"] == DBNull.Value ? 0.0 : double.Parse(reader["FeriadoDominical"].ToString());
+                    uiPlanillaBoleta.Gratificacion = reader["Gratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["Gratificacion"].ToString());
+                    uiPlanillaBoleta.BonificacionGratificacion = reader["BonificacionGratificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["BonificacionGratificacion"].ToString());
+                    uiPlanillaBoleta.AfpFondoMonto = reader["AfpFondoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["AfpFondoMonto"].ToString());
+                    uiPlanillaBoleta.AfpSeguroMonto = reader["AfpSeguroMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["AfpSeguroMonto"].ToString());
+                    uiPlanillaBoleta.AfpComisionMonto = reader["AfpComisionMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["AfpComisionMonto"].ToString());
+                    uiPlanillaBoleta.IpssVidaMonto = reader["IpssVidaMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["IpssVidaMonto"].ToString());
+                    uiPlanillaBoleta.OnpMonto = reader["OnpMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["OnpMonto"].ToString());
+                    uiPlanillaBoleta.RentaQuintaMonto = reader["RentaQuintaMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["RentaQuintaMonto"].ToString());
+                    uiPlanillaBoleta.InasistenciasDias = reader["InasistenciasDias"] == DBNull.Value ? 0 : int.Parse(reader["InasistenciasDias"].ToString());
+                    uiPlanillaBoleta.InasistenciasMonto = reader["InasistenciasMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["InasistenciasMonto"].ToString());
+                    uiPlanillaBoleta.AdelantoMonto = reader["AdelantoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["AdelantoMonto"].ToString());
+                    uiPlanillaBoleta.TardanzaMinutos = reader["TardanzaMinutos"] == DBNull.Value ? 0 : int.Parse(reader["TardanzaMinutos"].ToString());
+                    uiPlanillaBoleta.TardanzaMonto = reader["TardanzaMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["TardanzaMonto"].ToString());
+                    uiPlanillaBoleta.GratificacionMonto = reader["GratificacionMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["GratificacionMonto"].ToString());
+                    uiPlanillaBoleta.RetencionJudicialMonto = reader["RetencionJudicialMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["RetencionJudicialMonto"].ToString());
+                    uiPlanillaBoleta.SeguroVidaTrabajadorMonto = reader["SeguroVidaTrabajadorMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["SeguroVidaTrabajadorMonto"].ToString());
+                    uiPlanillaBoleta.IpssSaludTrabajadorMonto = reader["IpssSaludTrabajadorMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["IpssSaludTrabajadorMonto"].ToString());
+                    uiPlanillaBoleta.SeguroVidaEmpleadoMonto = reader["SeguroVidaEmpleadoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["SeguroVidaEmpleadoMonto"].ToString());
+                    uiPlanillaBoleta.IpssSaludEmpleadoMonto = reader["IpssSaludEmpleadoMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["IpssSaludEmpleadoMonto"].ToString());
+                    */
+                }
+
+                return uiPlanillaBoleta;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Planilla(int anho, int mes)
         {
             try

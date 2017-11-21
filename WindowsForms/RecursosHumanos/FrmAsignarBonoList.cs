@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
@@ -67,6 +68,31 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.CargarListadoBonos();
                 this.FormatoListadoBonos();
 
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void dgvBonos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                var col = this.dgvBonos.Columns[e.ColumnIndex];
+                ListSortDirection dir;
+
+                switch (col.HeaderCell.SortGlyphDirection)
+                {
+                    case SortOrder.Ascending:
+                        dir = ListSortDirection.Ascending;
+                        break;
+                    default:
+                        dir = ListSortDirection.Descending;
+                        break;
+                }
+
+                this.dgvBonos.Sort(col, dir);
             }
             catch (Exception ex)
             {
@@ -150,6 +176,30 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvBonos, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
             }
         }
 
@@ -262,11 +312,15 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 string codigoEmpleado = this.txtEmpleadoCodigo.Text;
 
                 var lstUiBonos = new LN.BonoEmpleado().Listar(anho, mes, codigoEmpleado);
-                
-                var source = new BindingSource();
-                source.DataSource = lstUiBonos;
+                var cntBonos = lstUiBonos.Count;
+                var sumBonos = lstUiBonos.Sum(x => x.Monto);
 
-                this.dgvBonos.DataSource = source;
+                var sorted = new SortableBindingList<BE.UI.BonoEmpleado>(lstUiBonos);
+
+                this.dgvBonos.DataSource = sorted;
+
+                this.txtNroRegistros.Text = cntBonos.ToString();
+                this.txtTotal.Text = sumBonos.ToString("N2");
 
             }
             catch (Exception ex)

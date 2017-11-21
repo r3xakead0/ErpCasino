@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
@@ -41,7 +43,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 if (this.dgvObservaciones.DataSource != null)
                 {
-                    Util.AutoWidthColumn(ref this.dgvObservaciones, "NombreCompletoEmpleado");
+                    Util.AutoWidthColumn(ref this.dgvObservaciones, "EmpleadoNombreCompleto");
                 }
             }
             catch (Exception ex)
@@ -61,6 +63,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.cboAnho.SelectedValue = DateTime.Now.Year.ToString();
                 this.cboMes.SelectedValue = DateTime.Now.Month.ToString();
 
+                this.CargarEmpleados();
+
                 this.CargarListadoObservaciones();
                 this.FormatoListadoObservaciones();
 
@@ -71,7 +75,32 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void dgvAdelantos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvObservaciones_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                var col = this.dgvObservaciones.Columns[e.ColumnIndex];
+                ListSortDirection dir;
+
+                switch (col.HeaderCell.SortGlyphDirection)
+                {
+                    case SortOrder.Ascending:
+                        dir = ListSortDirection.Ascending;
+                        break;
+                    default:
+                        dir = ListSortDirection.Descending;
+                        break;
+                }
+
+                this.dgvObservaciones.Sort(col, dir);
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void dgvObservaciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -115,6 +144,30 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             catch (Exception ex)
             {
                 Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvObservaciones, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
             }
         }
 
@@ -164,10 +217,74 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void cboEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboEmpleado.SelectedIndex > 0)
+                {
+                    string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                }
+
+                this.CargarListadoObservaciones();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+
+        }
+
+        private void txtEmpleadoCodigo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string codigoEmpleado = this.txtEmpleadoCodigo.Text.Trim();
+
+                var lst = (List<BE.Record>)this.cboEmpleado.DataSource;
+
+                if (lst.Where(x => x.Codigo == codigoEmpleado).Count() > 0)
+                {
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                    this.cboEmpleado.SelectedValue = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                    this.cboEmpleado.SelectedIndex = 0;
+                }
+
+                this.CargarListadoObservaciones();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+
+        }
 
         #endregion
 
         #region Metodos
+
+        private void CargarEmpleados()
+        {
+            var lstEmpleados = new LN.Empleado().Combo();
+            var lstCandidatos = new LN.Candidato().Combo();
+            lstEmpleados.AddRange(lstCandidatos);
+            var lstTrabajador = lstEmpleados.OrderBy(o => o.Codigo).Distinct().ToList();
+
+            lstTrabajador.Insert(0, new BE.Record() { Codigo = "", Nombre = "Seleccione" });
+
+            this.cboEmpleado.DataSource = lstTrabajador;
+            this.cboEmpleado.DisplayMember = "Nombre";
+            this.cboEmpleado.ValueMember = "Codigo";
+        }
 
         private void Editar(BE.UI.ObservacionEmpleado uiObservacionEmpleado)
         {
@@ -194,12 +311,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 int anho = int.Parse(this.cboAnho.SelectedValue.ToString());
                 int mes = int.Parse(this.cboMes.SelectedValue.ToString());
 
-                var lstAdelantos = new LN.ObservacionEmpleado().Listar(anho, mes);
+                var lstUiObservaciones = new LN.ObservacionEmpleado().Listar(anho, mes);
 
-                var source = new BindingSource();
-                source.DataSource = lstAdelantos;
+                var sorted = new SortableBindingList<BE.UI.ObservacionEmpleado>(lstUiObservaciones);
 
-                this.dgvObservaciones.DataSource = source;
+                this.dgvObservaciones.DataSource = sorted;
 
             }
             catch (Exception ex)
@@ -305,6 +421,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 throw ex;
             }
         }
+
+
 
         #endregion
 

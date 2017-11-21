@@ -31,6 +31,7 @@
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.GrpDetalleBono = new System.Windows.Forms.GroupBox();
+            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.lblNumero = new System.Windows.Forms.Label();
             this.lblBanco = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.GrpDetalleBono.SuspendLayout();
@@ -100,6 +100,14 @@
             this.GrpDetalleBono.TabIndex = 39;
             this.GrpDetalleBono.TabStop = false;
             this.GrpDetalleBono.Text = "Detalle de Adelanto";
+            // 
+            // txtEmpleadoCodigo
+            // 
+            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(78, 49);
+            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
+            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
+            this.txtEmpleadoCodigo.TabIndex = 90;
+            this.txtEmpleadoCodigo.Leave += new System.EventHandler(this.txtEmpleadoCodigo_Leave);
             // 
             // txtNumero
             // 
@@ -251,14 +259,6 @@
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // txtEmpleadoCodigo
-            // 
-            this.txtEmpleadoCodigo.Location = new System.Drawing.Point(78, 49);
-            this.txtEmpleadoCodigo.Name = "txtEmpleadoCodigo";
-            this.txtEmpleadoCodigo.Size = new System.Drawing.Size(86, 20);
-            this.txtEmpleadoCodigo.TabIndex = 90;
-            this.txtEmpleadoCodigo.Leave += new System.EventHandler(this.txtEmpleadoCodigo_Leave);
             // 
             // FrmAdelantoMant
             // 

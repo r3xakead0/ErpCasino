@@ -588,10 +588,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     var uiPlanillaDetalle = (BE.UI.PlanillaDetalle)this.dgvPlanilla.CurrentRow.DataBoundItem;
 
-                    var frmPlanillaVista = new FrmImpresion();
-                    frmPlanillaVista.MdiParent = this.MdiParent;
-                    frmPlanillaVista.Show();
-                    frmPlanillaVista.ImpresionBoleta(this.anho, this.mes, uiPlanillaDetalle.EmpleadoCodigo);
+                    string codigoEmpleado = uiPlanillaDetalle.EmpleadoCodigo;
+
+                    var frmBoleta = new FrmPlanillaDetalleBoleta(this.anho, this.mes, codigoEmpleado);
+                    frmBoleta.MdiParent = this.MdiParent;
+                    frmBoleta.Show();
 
                 }
             }

@@ -42,6 +42,7 @@
             this.cboFiltro = new System.Windows.Forms.ComboBox();
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
             this.lblFiltros = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlBotones.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // pnlBotones
             // 
+            this.pnlBotones.Controls.Add(this.btnExportar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnEditar);
@@ -208,6 +210,17 @@
             this.lblFiltros.TabIndex = 59;
             this.lblFiltros.Text = "Filtros :";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 23;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmEmpleadoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +259,6 @@
         private System.Windows.Forms.DataGridView dgvEmpleados;
         private System.Windows.Forms.Panel pnlResumen;
         private System.Windows.Forms.TextBox txtNroEmpleados;
-
+        private System.Windows.Forms.Button btnExportar;
     }
 }

@@ -316,7 +316,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.cboMes.DataSource = lstMes;
                 this.cboMes.DisplayMember = "Nombre";
                 this.cboMes.ValueMember = "Codigo";
-                
+                    
             }
             catch (Exception ex)
             {

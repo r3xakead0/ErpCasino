@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
@@ -61,9 +63,36 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.cboAnho.SelectedValue = DateTime.Now.Year.ToString();
                 this.cboMes.SelectedValue = DateTime.Now.Month.ToString();
 
+                this.CargarEmpleados();
+
                 this.CargarListadoDescuentos();
                 this.FormatoListadoDescuentos();
 
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void dgvDescuentos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                var col = this.dgvDescuentos.Columns[e.ColumnIndex];
+                ListSortDirection dir;
+
+                switch (col.HeaderCell.SortGlyphDirection)
+                {
+                    case SortOrder.Ascending:
+                        dir = ListSortDirection.Ascending;
+                        break;
+                    default:
+                        dir = ListSortDirection.Descending;
+                        break;
+                }
+
+                this.dgvDescuentos.Sort(col, dir);
             }
             catch (Exception ex)
             {
@@ -163,6 +192,80 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvDescuentos, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
+            }
+        }
+
+        private void cboEmpleado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.cboEmpleado.SelectedIndex > 0)
+                {
+                    string codigoEmpleado = this.cboEmpleado.SelectedValue.ToString().Trim();
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                }
+
+                this.CargarListadoDescuentos();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+
+        }
+
+        private void txtEmpleadoCodigo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string codigoEmpleado = this.txtEmpleadoCodigo.Text.Trim();
+
+                var lst = (List<BE.Record>)this.cboEmpleado.DataSource;
+
+                if (lst.Where(x => x.Codigo == codigoEmpleado).Count() > 0)
+                {
+                    this.txtEmpleadoCodigo.Text = codigoEmpleado;
+                    this.cboEmpleado.SelectedValue = codigoEmpleado;
+                }
+                else
+                {
+                    this.txtEmpleadoCodigo.Clear();
+                    this.cboEmpleado.SelectedIndex = 0;
+                }
+
+                this.CargarListadoDescuentos();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+
+        }
 
         #endregion
 
@@ -193,11 +296,14 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 int mes = int.Parse(this.cboMes.SelectedValue.ToString());
 
                 var lstUiDescuentos = new LN.DescuentoEmpleado().Listar(anho, mes);
+                var cntDescuentos = lstUiDescuentos.Count;
+                var sumDescuentos = lstUiDescuentos.Sum(x => x.Monto);
 
-                var source = new BindingSource();
-                source.DataSource = lstUiDescuentos;
+                var sorted = new SortableBindingList<BE.UI.DescuentoEmpleado>(lstUiDescuentos);
 
-                this.dgvDescuentos.DataSource = source;
+                this.dgvDescuentos.DataSource = sorted;
+                this.txtNroRegistros.Text = cntDescuentos.ToString();
+                this.txtTotal.Text = sumDescuentos.ToString("N2");
 
             }
             catch (Exception ex)
@@ -237,7 +343,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvDescuentos.Columns["DescuentoNombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 this.dgvDescuentos.Columns["Monto"].Visible = true;
-                this.dgvDescuentos.Columns["Monto"].HeaderText = "Motivo";
+                this.dgvDescuentos.Columns["Monto"].HeaderText = "Monto";
                 this.dgvDescuentos.Columns["Monto"].Width = 100;
                 this.dgvDescuentos.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight;
                 this.dgvDescuentos.Columns["Monto"].DefaultCellStyle.Format = "N2";
@@ -248,6 +354,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 throw ex;
             }
+        }
+
+        private void CargarEmpleados()
+        {
+            var lstEmpleados = new LN.Empleado().Combo();
+            var lstCandidatos = new LN.Candidato().Combo();
+            lstEmpleados.AddRange(lstCandidatos);
+            var lstTrabajador = lstEmpleados.OrderBy(o => o.Codigo).Distinct().ToList();
+
+            lstTrabajador.Insert(0, new BE.Record() { Codigo = "", Nombre = "Seleccione" });
+
+            this.cboEmpleado.DataSource = lstTrabajador;
+            this.cboEmpleado.DisplayMember = "Nombre";
+            this.cboEmpleado.ValueMember = "Codigo";
         }
 
         private void CargarAnhos()
@@ -305,7 +425,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        #endregion
 
+
+        #endregion
+ 
     }
 }

@@ -20,7 +20,8 @@ CREATE PROCEDURE [dbo].[SpTbEmpleadoRecursoActualizar]
 @Sueldo AS DECIMAL(10,2),
 @RetencionJudicialNominal AS DECIMAL(10,2),
 @RetencionJudicialPorcentual AS DECIMAL(10,2),
-@FechaUltimaVacacion AS DATE
+@FechaUltimaVacacion AS DATE,
+@Autogenerado AS VARCHAR(50)
 AS
 BEGIN
 	UPDATE	TbEmpleadoRecurso
@@ -43,6 +44,7 @@ BEGIN
 			Sueldo = @Sueldo,
 			RetencionJudicialNominal = @RetencionJudicialNominal,
 			RetencionJudicialPorcentual = @RetencionJudicialPorcentual,
-			FechaUltimaVacacion = @FechaUltimaVacacion
+			FechaUltimaVacacion = @FechaUltimaVacacion,
+			Autogenerado = @Autogenerado
 	WHERE	IdEmpleado = @IdEmpleado
 END

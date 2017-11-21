@@ -195,12 +195,12 @@ namespace ErpCasino.WindowsForms
 
         public static string ParseMinutesToHours(int minutes, string formatDate = @"HH:mm")
         {
-            string strHours = "";
+            string strValor = "";
 
             var span = TimeSpan.FromMinutes(minutes);
-            strHours = span.ToString(formatDate);
-
-            return strHours;
+            strValor = string.Format("{0:00}:{1:00}", (int)span.TotalHours, span.Minutes);
+            
+            return strValor;
         }
 
         public static void ListToCsv<T>(List<T> list, string filename)

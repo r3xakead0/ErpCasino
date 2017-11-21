@@ -95,6 +95,9 @@
             this.LblEmail = new System.Windows.Forms.Label();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TbpRecurso = new System.Windows.Forms.TabPage();
+            this.btnVerHijos = new System.Windows.Forms.Button();
+            this.chkVacaciones = new System.Windows.Forms.CheckBox();
+            this.dtpVacaciones = new System.Windows.Forms.DateTimePicker();
             this.txtRetencionJudicial = new System.Windows.Forms.TextBox();
             this.cboRetencionJudicial = new System.Windows.Forms.ComboBox();
             this.lblRetencionJudicial = new System.Windows.Forms.Label();
@@ -136,9 +139,8 @@
             this.PnlPrincipal = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.dtpVacaciones = new System.Windows.Forms.DateTimePicker();
-            this.chkVacaciones = new System.Windows.Forms.CheckBox();
-            this.btnVerHijos = new System.Windows.Forms.Button();
+            this.lblAutogenerado = new System.Windows.Forms.Label();
+            this.txtAutogenerado = new System.Windows.Forms.TextBox();
             this.TlpPrincipal.SuspendLayout();
             this.TbcMantenimiento.SuspendLayout();
             this.TbpGeneral.SuspendLayout();
@@ -838,6 +840,8 @@
             // 
             // TbpRecurso
             // 
+            this.TbpRecurso.Controls.Add(this.lblAutogenerado);
+            this.TbpRecurso.Controls.Add(this.txtAutogenerado);
             this.TbpRecurso.Controls.Add(this.btnVerHijos);
             this.TbpRecurso.Controls.Add(this.chkVacaciones);
             this.TbpRecurso.Controls.Add(this.dtpVacaciones);
@@ -885,6 +889,38 @@
             this.TbpRecurso.TabIndex = 2;
             this.TbpRecurso.Text = "Recurso";
             this.TbpRecurso.UseVisualStyleBackColor = true;
+            // 
+            // btnVerHijos
+            // 
+            this.btnVerHijos.Location = new System.Drawing.Point(195, 158);
+            this.btnVerHijos.Name = "btnVerHijos";
+            this.btnVerHijos.Size = new System.Drawing.Size(50, 20);
+            this.btnVerHijos.TabIndex = 37;
+            this.btnVerHijos.Text = "Ver";
+            this.btnVerHijos.UseVisualStyleBackColor = true;
+            this.btnVerHijos.Click += new System.EventHandler(this.btnVerHijos_Click);
+            // 
+            // chkVacaciones
+            // 
+            this.chkVacaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkVacaciones.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkVacaciones.Location = new System.Drawing.Point(257, 104);
+            this.chkVacaciones.Name = "chkVacaciones";
+            this.chkVacaciones.Size = new System.Drawing.Size(112, 20);
+            this.chkVacaciones.TabIndex = 75;
+            this.chkVacaciones.Text = "Vacaciones:";
+            this.chkVacaciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkVacaciones.CheckedChanged += new System.EventHandler(this.chkVacaciones_CheckedChanged);
+            // 
+            // dtpVacaciones
+            // 
+            this.dtpVacaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpVacaciones.CustomFormat = "dd/MM/yyyy";
+            this.dtpVacaciones.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpVacaciones.Location = new System.Drawing.Point(373, 104);
+            this.dtpVacaciones.Name = "dtpVacaciones";
+            this.dtpVacaciones.Size = new System.Drawing.Size(100, 20);
+            this.dtpVacaciones.TabIndex = 74;
             // 
             // txtRetencionJudicial
             // 
@@ -1241,11 +1277,9 @@
             // 
             // TxtCuspp
             // 
-            this.TxtCuspp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtCuspp.Location = new System.Drawing.Point(145, 298);
             this.TxtCuspp.Name = "TxtCuspp";
-            this.TxtCuspp.Size = new System.Drawing.Size(330, 20);
+            this.TxtCuspp.Size = new System.Drawing.Size(100, 20);
             this.TxtCuspp.TabIndex = 33;
             // 
             // LblCodComision
@@ -1289,37 +1323,23 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // dtpVacaciones
+            // lblAutogenerado
             // 
-            this.dtpVacaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpVacaciones.CustomFormat = "dd/MM/yyyy";
-            this.dtpVacaciones.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVacaciones.Location = new System.Drawing.Point(373, 104);
-            this.dtpVacaciones.Name = "dtpVacaciones";
-            this.dtpVacaciones.Size = new System.Drawing.Size(100, 20);
-            this.dtpVacaciones.TabIndex = 74;
+            this.lblAutogenerado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAutogenerado.AutoSize = true;
+            this.lblAutogenerado.Location = new System.Drawing.Point(292, 301);
+            this.lblAutogenerado.Name = "lblAutogenerado";
+            this.lblAutogenerado.Size = new System.Drawing.Size(77, 13);
+            this.lblAutogenerado.TabIndex = 77;
+            this.lblAutogenerado.Text = "Autogenerado:";
             // 
-            // chkVacaciones
+            // txtAutogenerado
             // 
-            this.chkVacaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkVacaciones.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkVacaciones.Location = new System.Drawing.Point(257, 104);
-            this.chkVacaciones.Name = "chkVacaciones";
-            this.chkVacaciones.Size = new System.Drawing.Size(112, 20);
-            this.chkVacaciones.TabIndex = 75;
-            this.chkVacaciones.Text = "Vacaciones:";
-            this.chkVacaciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkVacaciones.CheckedChanged += new System.EventHandler(this.chkVacaciones_CheckedChanged);
-            // 
-            // btnVerHijos
-            // 
-            this.btnVerHijos.Location = new System.Drawing.Point(195, 158);
-            this.btnVerHijos.Name = "btnVerHijos";
-            this.btnVerHijos.Size = new System.Drawing.Size(50, 20);
-            this.btnVerHijos.TabIndex = 37;
-            this.btnVerHijos.Text = "Ver";
-            this.btnVerHijos.UseVisualStyleBackColor = true;
-            this.btnVerHijos.Click += new System.EventHandler(this.btnVerHijos_Click);
+            this.txtAutogenerado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAutogenerado.Location = new System.Drawing.Point(375, 298);
+            this.txtAutogenerado.Name = "txtAutogenerado";
+            this.txtAutogenerado.Size = new System.Drawing.Size(100, 20);
+            this.txtAutogenerado.TabIndex = 76;
             // 
             // FrmEmpleadoMant
             // 
@@ -1459,5 +1479,7 @@
         internal System.Windows.Forms.CheckBox chkVacaciones;
         internal System.Windows.Forms.DateTimePicker dtpVacaciones;
         public System.Windows.Forms.Button btnVerHijos;
+        internal System.Windows.Forms.Label lblAutogenerado;
+        internal System.Windows.Forms.TextBox txtAutogenerado;
     }
 }
