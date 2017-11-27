@@ -110,6 +110,45 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+        internal BE.OnpComision Obtener(int idOnpComision)
+        {
+            BE.OnpComision beOnpComision = null;
+            try
+            {
+                string sp = "SpTbOnpComisionObtener2";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IDONPCOMISION", idOnpComision));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+
+                        beOnpComision = new BE.OnpComision();
+
+                        beOnpComision.IdOnpComision = int.Parse(reader["IdOnpComision"].ToString());
+                        beOnpComision.Anho = int.Parse(reader["Anho"].ToString());
+                        beOnpComision.Mes = int.Parse(reader["Mes"].ToString());
+                        beOnpComision.PorcentajeAporte = double.Parse(reader["PorcentajeAporte"].ToString());
+
+                    }
+
+                }
+
+                return beOnpComision;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public BE.OnpComision Obtener(int anho, int mes)
         {
             BE.OnpComision beOnpComision = null;
@@ -149,6 +188,7 @@ namespace ErpCasino.BusinessLibrary.DA
                 throw ex;
             }
         }
+
         
     }
 }

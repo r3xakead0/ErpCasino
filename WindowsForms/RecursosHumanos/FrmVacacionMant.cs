@@ -33,9 +33,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         public FrmVacacionList frmList = null;
 
-        private BE.UI.Vacacion uiVacacion = null;
         private bool calculado = false;
-
+        private BE.UI.Vacacion uiVacacion = null;
+        
         public FrmVacacionMant()
         {
             try
@@ -114,6 +114,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                this.grpEmpleado.Enabled = true;
+
                 this.txtCodigo.Clear();
                 this.txtNombres.Clear();
                 this.txtPeriodoInicio.Clear();
@@ -135,6 +137,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.txtTotalNeto.Text = "0.00";
 
                 this.calculado = false;
+                
             }
             catch (Exception ex)
             {
@@ -231,6 +234,132 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvDetalles.Columns["BonificacionMonto"].DefaultCellStyle.Format = "N2";
 
                 Util.AutoWidthColumn(ref this.dgvDetalles, "MesNombre");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private bool Calcular(string codigoEmpleado, DateTime fechaConsulta)
+        {
+            bool calculado = false;
+            try
+            {
+                using (var lnEmpleado = new LN.Empleado())
+                {
+                    var uiEmpleadoCompleto = lnEmpleado.ObtenerEmpleadoCompleto(codigoEmpleado, fechaConsulta);
+
+                    if (uiEmpleadoCompleto != null)
+                    {
+                        //Rescartar el detalle
+                        var lstUiVacacionDetalle = this.uiVacacion.Detalle;
+
+                        //Limpiar 
+                        this.uiVacacion = new BE.UI.Vacacion();
+
+                        //Asignar nuevos valores
+                        this.uiVacacion.Detalle = lstUiVacacionDetalle;
+
+                        this.uiVacacion.PeriodoFechaInicial = this.dtpPeriodoInicio.Value.Date;
+                        this.uiVacacion.PeriodoFechaFinal = this.dtpPeriodoFinal.Value.Date;
+
+                        var fechaVacacionInicio = this.dtpVacacionSalida.Value;
+                        int diasVacaciones = int.Parse(this.txtDescansoDias.Text);
+                        this.uiVacacion.VacacionFechaInicial = fechaVacacionInicio.Date;
+                        this.uiVacacion.VacacionFechaFinal = fechaVacacionInicio.AddDays(diasVacaciones).Date;
+                        this.uiVacacion.VacacionDias = diasVacaciones;
+
+                        this.uiVacacion.EmpleadoCodigo = uiEmpleadoCompleto.Codigo;
+                        this.uiVacacion.EmpleadoNombreCompleto = $"{uiEmpleadoCompleto.Apellidos}, {uiEmpleadoCompleto.Nombres}";
+
+                        this.uiVacacion.EmpleadoSueldo = uiEmpleadoCompleto.Sueldo;
+                        this.uiVacacion.EmpleadoAsignacionFamiliar = lnEmpleado.ObtenerAsignacionFamiliar(codigoEmpleado);
+
+                        double sumHorasExtras = double.Parse(this.txtSumaHorasExtras.Text);
+                        double sumBoninificaciones = double.Parse(this.txtSumaBonos.Text);
+                        int numMeses = int.Parse(this.txtCantidadMeses.Text);
+
+                        double promHorasExtras = sumHorasExtras / numMeses;
+                        double promBoninificaciones = sumBoninificaciones / numMeses;
+                        this.uiVacacion.PromedioHorasExtras = promHorasExtras;
+                        this.uiVacacion.PromedioBonificacion = promBoninificaciones;
+
+                        this.uiVacacion.PensionTipo = uiEmpleadoCompleto.PensionTipo;
+                        if (uiEmpleadoCompleto.PensionTipo == BE.UI.TipoPensionEnum.AFP)
+                        {
+                            this.uiVacacion.PensionId = uiEmpleadoCompleto.AfpId;
+                            this.uiVacacion.PensionNombre = uiEmpleadoCompleto.AfpNombre;
+                            this.uiVacacion.PensionTipoComision = uiEmpleadoCompleto.AfpComisionCodigo;
+                            this.uiVacacion.PensionPorcentaje = uiEmpleadoCompleto.AfpComisionPorcentaje;
+                        }
+                        else
+                        {
+                            this.uiVacacion.PensionId = 0;
+                            this.uiVacacion.PensionNombre = "ONP";
+                            this.uiVacacion.PensionTipoComision = "";
+                            this.uiVacacion.PensionPorcentaje = uiEmpleadoCompleto.OnpComisionPorcentaje;
+                        }
+
+                        double factorPension = this.uiVacacion.PensionPorcentaje / 100;
+                        double totalPension = this.uiVacacion.TotalBruto;
+                        this.uiVacacion.PensionMonto = totalPension * factorPension;
+
+                        this.uiVacacion.RetencionJudicialMonto = uiEmpleadoCompleto.RetencionJudicialNominal;
+
+                        calculado = true;
+                    }
+
+                }
+
+                return calculado;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void MostrarCalculo()
+        {
+            try
+            {
+                if (this.uiVacacion == null)
+                    return;
+
+                this.grpEmpleado.Enabled = false;
+
+                this.txtCodigo.Text = this.uiVacacion.EmpleadoCodigo;
+                this.txtNombres.Text = this.uiVacacion.EmpleadoNombreCompleto;
+
+                this.txtPeriodoInicio.Text = this.uiVacacion.PeriodoFechaInicial.ToString("dd/MM/yyyy");
+                this.txtPeriodoFinal.Text = this.uiVacacion.PeriodoFechaFinal.ToString("dd/MM/yyyy");
+
+                this.txtDescansoInicio.Text = this.uiVacacion.VacacionFechaInicial.ToString("dd/MM/yyyy");
+                this.txtDescansoFin.Text = this.uiVacacion.VacacionFechaFinal.ToString("dd/MM/yyyy");
+                this.txtDescansoDias.Text = this.uiVacacion.VacacionDias.ToString();
+
+                this.txtSueldo.Text = this.uiVacacion.EmpleadoSueldo.ToString("N2");
+                this.txtAsignacionFamiliar.Text = this.uiVacacion.EmpleadoAsignacionFamiliar.ToString("N2");
+                this.txtPromedioBonificaciones.Text = this.uiVacacion.PromedioBonificacion.ToString("N2");
+                this.txtPromedioHorasExtras.Text = this.uiVacacion.PromedioHorasExtras.ToString("N2");
+
+                this.txtRedondeo.ReadOnly = false;
+                this.txtRedondeo.Text = this.uiVacacion.Redondeo.ToString("N2");
+
+                this.txtTotalBruto.Text = this.uiVacacion.TotalBruto.ToString("N2");
+
+                this.txtRetencionJudicial.Text = this.uiVacacion.RetencionJudicialMonto.ToString("N2");
+
+                this.txtPensionTipo.Text = this.uiVacacion.PensionTipo.ToString();
+                this.txtPensionDescipcion.Text = this.uiVacacion.PensionNombre;
+                this.txtPensionMonto.Text = this.uiVacacion.PensionMonto.ToString("N2");
+                this.txtPensionPorcentaje.Text = $"{this.uiVacacion.PensionPorcentaje.ToString("N2")} %";
+                this.txtTotalNeto.Text = this.uiVacacion.TotalNeto.ToString("N2");
+
+                this.calculado = true;
+
             }
             catch (Exception ex)
             {
@@ -518,99 +647,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 string codigoEmpleado = this.txtEmpleadoCodigo.Text.Trim();
                 DateTime fechaConsulta = this.dtpVacacionSalida.Value;
 
-                using (var lnEmpleado = new LN.Empleado())
-                {
-                    
-                    var uiEmpleadoCompleto = lnEmpleado.ObtenerEmpleadoCompleto(codigoEmpleado, fechaConsulta);
+                bool calculado = this.Calcular(codigoEmpleado, fechaConsulta);
 
-                    if (uiEmpleadoCompleto != null)
-                    {
-
-                        #region Cargar Objeto
-                        
-                        this.uiVacacion.PeriodoFechaInicial = this.dtpPeriodoInicio.Value.Date;
-                        this.uiVacacion.PeriodoFechaFinal = this.dtpPeriodoFinal.Value.Date;
-
-                        var fechaVacacionInicio = this.dtpVacacionSalida.Value;
-                        int diasVacaciones = int.Parse(this.txtDescansoDias.Text);
-                        this.uiVacacion.VacacionFechaInicial = fechaVacacionInicio.Date;
-                        this.uiVacacion.VacacionFechaFinal = fechaVacacionInicio.AddDays(diasVacaciones).Date;
-                        this.uiVacacion.VacacionDias = diasVacaciones;
-
-                        this.uiVacacion.EmpleadoCodigo = uiEmpleadoCompleto.Codigo;
-                        this.uiVacacion.EmpleadoNombreCompleto = $"{uiEmpleadoCompleto.Apellidos}, {uiEmpleadoCompleto.Nombres}";
-
-                        this.uiVacacion.EmpleadoSueldo = uiEmpleadoCompleto.Sueldo;
-                        this.uiVacacion.EmpleadoAsignacionFamiliar = lnEmpleado.ObtenerAsignacionFamiliar(codigoEmpleado);
-
-                        double sumHorasExtras = double.Parse(this.txtSumaHorasExtras.Text);
-                        double sumBoninificaciones = double.Parse(this.txtSumaBonos.Text);
-                        int numMeses = int.Parse(this.txtCantidadMeses.Text);
-
-                        double promHorasExtras = sumHorasExtras / numMeses;
-                        double promBoninificaciones = sumBoninificaciones / numMeses;
-                        this.uiVacacion.PromedioHorasExtras = promHorasExtras;
-                        this.uiVacacion.PromedioBonificacion = promBoninificaciones;
-
-                        this.uiVacacion.PensionTipo = uiEmpleadoCompleto.PensionTipo;
-                        if (uiEmpleadoCompleto.PensionTipo == BE.UI.TipoPensionEnum.AFP)
-                        {
-                            this.uiVacacion.PensionId = uiEmpleadoCompleto.AfpId;
-                            this.uiVacacion.PensionNombre = uiEmpleadoCompleto.AfpNombre;
-                            this.uiVacacion.PensionTipoComision = uiEmpleadoCompleto.AfpComisionCodigo;
-                            this.uiVacacion.PensionPorcentaje = uiEmpleadoCompleto.AfpComisionPorcentaje;
-                        }
-                        else
-                        {
-                            this.uiVacacion.PensionId = 0;
-                            this.uiVacacion.PensionNombre = "ONP";
-                            this.uiVacacion.PensionTipoComision = "";
-                            this.uiVacacion.PensionPorcentaje = uiEmpleadoCompleto.OnpComisionPorcentaje;
-                        }
-
-                        double factorPension = this.uiVacacion.PensionPorcentaje / 100;
-                        double totalPension = this.uiVacacion.TotalBruto;
-                        this.uiVacacion.PensionMonto = totalPension * factorPension;
-
-                        this.uiVacacion.RetencionJudicialMonto = uiEmpleadoCompleto.RetencionJudicialNominal;
-
-                        #endregion
-
-                        #region Cargar Controles
-
-                        this.txtCodigo.Text = this.uiVacacion.EmpleadoCodigo;
-                        this.txtNombres.Text = this.uiVacacion.EmpleadoNombreCompleto;
-
-                        this.txtPeriodoInicio.Text = this.uiVacacion.PeriodoFechaInicial.ToString("dd/MM/yyyy");
-                        this.txtPeriodoFinal.Text = this.uiVacacion.PeriodoFechaFinal.ToString("dd/MM/yyyy");
-
-                        this.txtDescansoInicio.Text = this.uiVacacion.VacacionFechaInicial.ToString("dd/MM/yyyy");
-                        this.txtDescansoFin.Text = this.uiVacacion.VacacionFechaFinal.ToString("dd/MM/yyyy");
-                        this.txtDescansoDias.Text = this.uiVacacion.VacacionDias.ToString();
-
-                        this.txtSueldo.Text = this.uiVacacion.EmpleadoSueldo.ToString("N2");
-                        this.txtAsignacionFamiliar.Text = this.uiVacacion.EmpleadoAsignacionFamiliar.ToString("N2");
-                        this.txtPromedioBonificaciones.Text = this.uiVacacion.PromedioBonificacion.ToString("N2");
-                        this.txtPromedioHorasExtras.Text = this.uiVacacion.PromedioHorasExtras.ToString("N2");
-                        this.txtTotalBruto.Text = this.uiVacacion.TotalBruto.ToString("N2");
-
-                        this.txtRetencionJudicial.Text = this.uiVacacion.RetencionJudicialMonto.ToString("N2");
-
-                        this.txtPensionTipo.Text = this.uiVacacion.PensionTipo.ToString();
-                        this.txtPensionDescipcion.Text = this.uiVacacion.PensionNombre;
-                        this.txtPensionMonto.Text = this.uiVacacion.PensionMonto.ToString("N2");
-                        this.txtPensionPorcentaje.Text = $"{this.uiVacacion.PensionPorcentaje.ToString("N2")} %";
-                        this.txtTotalNeto.Text = this.uiVacacion.TotalNeto.ToString("N2");
-
-                        #endregion
-
-                        this.calculado = true;
-                    }
-                    else
-                    {
-                        this.LimpiarCalculo();
-                    }
-                }
+                if (calculado)
+                    this.MostrarCalculo();
+                else
+                    this.LimpiarCalculo();
 
                 #endregion
 
@@ -621,6 +663,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -630,6 +673,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 if (this.calculado == false)
                     throw new Exception("Primero realice el calculo de vacaciones");
+
+                if (this.txtPensionTipo.Text.Length == 0)
+                    throw new Exception("No se asigno el tipo de pensión");
+
+                if (this.txtPensionDescipcion.Text.Length == 0)
+                    throw new Exception("No se asigno la entidad de pensión");
 
                 #endregion
 
@@ -670,8 +719,74 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        #endregion
+        private void txtRedondeo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+                {
+                    e.Handled = true;
+                }
 
+                // only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void txtRedondeo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke((Action)delegate
+                {
+                    txtRedondeo.SelectAll();
+                });
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void txtRedondeo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.txtRedondeo.Text.Length > 0)
+                    this.uiVacacion.Redondeo = double.Parse(this.txtRedondeo.Text);
+
+                this.txtRedondeo.Text = this.uiVacacion.Redondeo.ToString("N2");
+
+                this.MostrarCalculo();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.calculado == true)
+                    this.LimpiarCalculo();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        #endregion
 
     }
 }

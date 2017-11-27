@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NumeroLetras.cs" />
     <Compile Include="RecursosHumanos\FrmIndicadores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +432,13 @@
     <Compile Include="RecursosHumanos\FrmImpresion.Designer.cs">
       <DependentUpon>FrmImpresion.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\Impresos\ImpresionVacacionRecibo.cs">
+      <DependentUpon>ImpresionVacacionRecibo.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RecursosHumanos\Impresos\ImpresionBoleta.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -693,6 +701,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmImpresion.resx">
       <DependentUpon>FrmImpresion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionVacacionRecibo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImpresionVacacionRecibo.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionBoleta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

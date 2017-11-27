@@ -1,9 +1,9 @@
-﻿CREATE PROCEDURE [dbo].[SpTbVacacionObtener]
-@IdVacacion AS INT
+﻿CREATE PROCEDURE [dbo].[SpTbVacacionListarPorEmpleado]
+@CodigoEmpleado AS VARCHAR(10)
 AS
 BEGIN
-	SELECT	TOP 1 
-			IdVacacion,
+
+	SELECT	IdVacacion,
 			PeriodoFechaInicial,
 			PeriodoFechaFinal,
 			FechaInicial,
@@ -23,6 +23,8 @@ BEGIN
 			RetencionJudicialMonto,
 			TotalDescuento,
 			TotalNeto
-	FROM	TbVacacion
-	WHERE	IdVacacion = @IdVacacion
+	FROM	TbVacacion WITH(NOLOCK)
+	WHERE	CodigoEmpleado = @CodigoEmpleado
+	ORDER BY FechaInicial DESC
+
 END

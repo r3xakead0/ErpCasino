@@ -73,6 +73,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     this.txtAsignacionFamiliar.Text = this.uiVacacion.EmpleadoAsignacionFamiliar.ToString("N2");
                     this.txtPromedioBonificaciones.Text = this.uiVacacion.PromedioBonificacion.ToString("N2");
                     this.txtPromedioHorasExtras.Text = this.uiVacacion.PromedioHorasExtras.ToString("N2");
+                    this.txtRedondeo.Text = this.uiVacacion.Redondeo.ToString("N2");
                     this.txtTotalBruto.Text = this.uiVacacion.TotalBruto.ToString("N2");
 
                     this.txtRetencionJudicial.Text = this.uiVacacion.RetencionJudicialMonto.ToString("N2");
@@ -111,6 +112,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.txtAsignacionFamiliar.Text = "0.00";
                 this.txtPromedioBonificaciones.Text = "0.00";
                 this.txtPromedioHorasExtras.Text = "0.00";
+                this.txtRedondeo.Text = "0.00";
                 this.txtTotalBruto.Text = "0.00";
 
                 this.txtRetencionJudicial.Text = "0.00";
@@ -243,14 +245,76 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                if (this.uiVacacion == null)
+                    return;
+
                 if (Util.ConfirmationMessage("¿Desea imprimir el Calculo de Vacaciones?") == false)
                     return;
 
-                
-                var frmPlanillaVista = new FrmImpresion();
+                //Obtener o Calcular Recibo 
+
+                BE.UI.VacacionRecibo uiVacacionRecibo = new LN.Vacacion().ObtenerRecibo(this.uiVacacion.Id);
+                if (uiVacacionRecibo == null)
+                {
+                    uiVacacionRecibo = new BE.UI.VacacionRecibo();
+
+                    uiVacacionRecibo.Id = 0;
+                    uiVacacionRecibo.IdVacacion = this.uiVacacion.Id;
+
+                    uiVacacionRecibo.Anho = this.uiVacacion.VacacionFechaInicial.Year;
+                    uiVacacionRecibo.Mes = this.uiVacacion.VacacionFechaInicial.Month;
+                    uiVacacionRecibo.MesNombre = Util.GetNameOfMonth(this.uiVacacion.VacacionFechaInicial.Month);
+
+                    var beEmpresa = new LN.Empresa().Obtener();
+                    uiVacacionRecibo.EmpresaNombre = beEmpresa.NombreComercial;
+                    uiVacacionRecibo.EmpresaDistrito = beEmpresa.Ubigeo.Nombre;
+                    beEmpresa = null;
+
+                    var beEmpleado = new LN.Empleado().Obtener(this.uiVacacion.EmpleadoCodigo);
+                    uiVacacionRecibo.EmpleadoCodigo = beEmpleado.Codigo;
+                    uiVacacionRecibo.EmpleadoNombres = beEmpleado.Nombres;
+                    uiVacacionRecibo.EmpleadoApellidos = $"{beEmpleado.ApellidoPaterno} {beEmpleado.ApellidoMaterno}";
+                    uiVacacionRecibo.EmpleadoNroDocumento = beEmpleado.NumeroDocumento;
+                    beEmpleado = null;
+
+                    uiVacacionRecibo.Detalle = "Vacaciones correspondiente al ejercicio " + DateTime.Now.Year.ToString();
+                    uiVacacionRecibo.PeriodoInicio = this.uiVacacion.PeriodoFechaInicial;
+                    uiVacacionRecibo.PeriodoFinal = this.uiVacacion.PeriodoFechaFinal;
+                    uiVacacionRecibo.VacacionInicio = this.uiVacacion.VacacionFechaInicial;
+                    uiVacacionRecibo.VacacionFinal = this.uiVacacion.VacacionFechaInicial;
+                    uiVacacionRecibo.Sueldo = this.uiVacacion.EmpleadoSueldo;
+                    uiVacacionRecibo.AsignacionFamiliar = this.uiVacacion.EmpleadoAsignacionFamiliar;
+                    uiVacacionRecibo.PromedioHorasExtras = this.uiVacacion.PromedioHorasExtras;
+                    uiVacacionRecibo.PromedioBonificacion = this.uiVacacion.PromedioBonificacion;
+                    uiVacacionRecibo.Redondeo = this.uiVacacion.Redondeo;
+                    uiVacacionRecibo.TotalBruto = this.uiVacacion.TotalBruto;
+
+                    uiVacacionRecibo.RetencionJudicialMonto = this.uiVacacion.RetencionJudicialMonto;
+
+                    string pensionEntidad = "";
+                    if (this.uiVacacion.PensionTipo == BE.UI.TipoPensionEnum.AFP)
+                        pensionEntidad = $"AFP - {this.uiVacacion.PensionNombre}";
+                    else if (this.uiVacacion.PensionTipo == BE.UI.TipoPensionEnum.ONP)
+                        pensionEntidad = "ONP";
+                    uiVacacionRecibo.PensionEntidad = pensionEntidad;
+                    uiVacacionRecibo.PensionMonto = this.uiVacacion.PensionMonto;
+
+                    uiVacacionRecibo.TotalDescuento = this.uiVacacion.TotalDescuento;
+
+                    uiVacacionRecibo.TotalNeto = this.uiVacacion.TotalNeto;
+                    uiVacacionRecibo.TotalNetoLiteral = new NumeroLetras().Convertir(this.uiVacacion.TotalNeto);
+
+                    bool rpta = new LN.Vacacion().RegistrarRecibo(uiVacacionRecibo);
+                    if (rpta == false)
+                        return;
+
+                }
+
+                //Mostrar
+                var frmPlanillaVista = FrmImpresion.Instance();
                 frmPlanillaVista.MdiParent = this.MdiParent;
                 frmPlanillaVista.Show();
-                frmPlanillaVista.ImpresionVacacion(this.uiVacacion.EmpleadoCodigo);
+                frmPlanillaVista.ImpresionVacacion(this.uiVacacion.Id);
 
             }
             catch (Exception ex)

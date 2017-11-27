@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[TbVacacion] (
+﻿CREATE TABLE [dbo].[TbVacacion] (
     [IdVacacion]             INT            IDENTITY (1, 1) NOT NULL,
     [PeriodoFechaInicial]    DATE           NOT NULL,
     [PeriodoFechaFinal]      DATE           NOT NULL,
@@ -10,6 +10,7 @@ CREATE TABLE [dbo].[TbVacacion] (
     [AsignacionFamiliar]     DECIMAL (9, 2) NOT NULL,
     [PromedioHorasExtras]    DECIMAL (9, 2) NOT NULL,
     [PromedioBonificacion]   DECIMAL (9, 2) NOT NULL,
+    [Redondeo]               DECIMAL (9, 2) NOT NULL,
     [TotalBruto]             DECIMAL (9, 2) NOT NULL,
     [idAfpComision]          INT            NULL,
     [ComisionAfp]            VARCHAR (10)   NULL,
@@ -20,6 +21,8 @@ CREATE TABLE [dbo].[TbVacacion] (
     [TotalNeto]              DECIMAL (9, 2) NOT NULL,
     CONSTRAINT [PK_TbVacacion] PRIMARY KEY CLUSTERED ([IdVacacion] ASC)
 );
+
+
 
 
 

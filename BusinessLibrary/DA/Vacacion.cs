@@ -8,6 +8,56 @@ namespace ErpCasino.BusinessLibrary.DA
 {
     internal class Vacacion
     {
+
+        private BE.Vacacion Convertir(SqlDataReader reader)
+        {
+            try
+            {
+                var beVacacion = new BE.Vacacion();
+
+                beVacacion.IdVacacion = reader["IdVacacion"] == DBNull.Value ? 0 : int.Parse(reader["IdVacacion"].ToString());
+                beVacacion.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
+                beVacacion.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
+                beVacacion.FechaInicial = reader["FechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaInicial"].ToString());
+                beVacacion.FechaFinal = reader["FechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaFinal"].ToString());
+                beVacacion.Dias = reader["Dias"] == DBNull.Value ? 0 : int.Parse(reader["Dias"].ToString());
+                beVacacion.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
+                beVacacion.Sueldo = reader["Sueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["Sueldo"].ToString());
+                beVacacion.AsignacionFamiliar = reader["AsignacionFamiliar"] == DBNull.Value ? 0.0 : double.Parse(reader["AsignacionFamiliar"].ToString());
+                beVacacion.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
+                beVacacion.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
+                beVacacion.Redondeo = reader["Redondeo"] == DBNull.Value ? 0.0 : double.Parse(reader["Redondeo"].ToString());
+                beVacacion.TotalBruto = reader["TotalBruto"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBruto"].ToString());
+
+                int idAfpComision = reader["idAfpComision"] == DBNull.Value ? 0 : int.Parse(reader["idAfpComision"].ToString());
+                if (idAfpComision > 0)
+                {
+                    var beAfpComision = new DA.AfpComision().Obtener(idAfpComision);
+                    beVacacion.ComisionAfp = beAfpComision;
+
+                    beVacacion.TipoComisionAfp = reader["ComisionAfp"] == DBNull.Value ? "" : reader["ComisionAfp"].ToString();
+                }
+
+                int idOnpComision = reader["idOnpComision"] == DBNull.Value ? 0 : int.Parse(reader["idOnpComision"].ToString());
+                if (idOnpComision > 0)
+                {
+                    var beOnpComision = new DA.OnpComision().Obtener(idOnpComision);
+                    beVacacion.ComisionOnp = beOnpComision;
+                }
+
+                beVacacion.PensionMonto = reader["PensionMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["PensionMonto"].ToString());
+                beVacacion.RetencionJudicialMonto = reader["RetencionJudicialMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["RetencionJudicialMonto"].ToString());
+                beVacacion.TotalDescuento = reader["TotalDescuento"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalDescuento"].ToString());
+                beVacacion.TotalNeto = reader["TotalNeto"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalNeto"].ToString());
+
+                return beVacacion;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         internal int Eliminar(int idVacacion)
         {
             try
@@ -61,42 +111,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        var beVacacion = new BE.Vacacion();
-
-                        beVacacion.IdVacacion = reader["IdVacacion"] == DBNull.Value ? 0 : int.Parse(reader["IdVacacion"].ToString());
-                        beVacacion.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
-                        beVacacion.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
-                        beVacacion.FechaInicial = reader["FechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaInicial"].ToString());
-                        beVacacion.FechaFinal = reader["FechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaFinal"].ToString());
-                        beVacacion.Dias = reader["Dias"] == DBNull.Value ? 0 : int.Parse(reader["Dias"].ToString());
-                        beVacacion.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
-                        beVacacion.Sueldo = reader["Sueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["Sueldo"].ToString());
-                        beVacacion.AsignacionFamiliar = reader["AsignacionFamiliar"] == DBNull.Value ? 0.0 : double.Parse(reader["AsignacionFamiliar"].ToString());
-                        beVacacion.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
-                        beVacacion.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
-                        beVacacion.TotalBruto = reader["TotalBruto"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBruto"].ToString());
-                        
-                        int idAfpComision = reader["idAfpComision"] == DBNull.Value ? 0 : int.Parse(reader["idAfpComision"].ToString());
-                        if (idAfpComision > 0)
-                        {
-                            var beAfpComision = new DA.AfpComision().Obtener(idAfpComision, anho, mes);
-                            beVacacion.ComisionAfp = beAfpComision;
-
-                            beVacacion.TipoComisionAfp = reader["ComisionAfp"] == DBNull.Value ? "" : reader["ComisionAfp"].ToString();
-                        }
-
-                        int idOnpComision = reader["idOnpComision"] == DBNull.Value ? 0 : int.Parse(reader["idOnpComision"].ToString());
-                        if (idOnpComision > 0)
-                        {
-                            var beOnpComision = new DA.OnpComision().Obtener(anho, mes);
-                            beVacacion.ComisionOnp = beOnpComision;
-                        }
-
-                        beVacacion.PensionMonto = reader["PensionMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["PensionMonto"].ToString());
-                        beVacacion.RetencionJudicialMonto = reader["RetencionJudicialMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["RetencionJudicialMonto"].ToString());
-                        beVacacion.TotalDescuento = reader["TotalDescuento"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalDescuento"].ToString());
-                        beVacacion.TotalNeto = reader["TotalNeto"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalNeto"].ToString());
-
+                        BE.Vacacion beVacacion = Convertir(reader);
                         lstBeVacaciones.Add(beVacacion);
                     }
                 }
@@ -182,6 +197,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@ASIGNACIONFAMILIAR", beVacacion.AsignacionFamiliar));
                     cmd.Parameters.Add(new SqlParameter("@PROMEDIOHORASEXTRAS", beVacacion.PromedioHorasExtras));
                     cmd.Parameters.Add(new SqlParameter("@PROMEDIOBONIFICACION", beVacacion.PromedioBonificacion));
+                    cmd.Parameters.Add(new SqlParameter("@REDONDEO", beVacacion.Redondeo));
                     cmd.Parameters.Add(new SqlParameter("@TOTALBRUTO", beVacacion.TotalBruto));
 
                     if (beVacacion.ComisionAfp != null)
@@ -251,6 +267,43 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+        /// <summary>
+        /// Listar las vacaciones del empleado ordenada desde la fecha mas reciente a la mas antigua
+        /// </summary>
+        /// <param name="codigoEmpleado">Codigo del empleado a consultar</param>
+        /// <returns></returns>
+        internal List<BE.Vacacion> ListarPorEmpleado(string codigoEmpleado)
+        {
+            try
+            {
+                var lstBeVacaciones = new List<BE.Vacacion>();
+
+                string sp = "SpTbVacacionListarPorEmpleado";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", codigoEmpleado));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        BE.Vacacion beVacacion = Convertir(reader);
+                        lstBeVacaciones.Add(beVacacion);
+                    }
+                }
+
+                return lstBeVacaciones;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         internal BE.Vacacion Obtener(int idVacacion)
         {
             BE.Vacacion beVacacion = null;
@@ -270,45 +323,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        beVacacion = new BE.Vacacion();
-
-                        beVacacion.IdVacacion = reader["IdVacacion"] == DBNull.Value ? 0 : int.Parse(reader["IdVacacion"].ToString());
-                        beVacacion.PeriodoFechaInicial = reader["PeriodoFechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaInicial"].ToString());
-                        beVacacion.PeriodoFechaFinal = reader["PeriodoFechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["PeriodoFechaFinal"].ToString());
-                        beVacacion.FechaInicial = reader["FechaInicial"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaInicial"].ToString());
-                        beVacacion.FechaFinal = reader["FechaFinal"] == DBNull.Value ? DateTime.Now : DateTime.Parse(reader["FechaFinal"].ToString());
-                        beVacacion.Dias = reader["Dias"] == DBNull.Value ? 0 : int.Parse(reader["Dias"].ToString());
-                        beVacacion.CodigoEmpleado = reader["CodigoEmpleado"] == DBNull.Value ? "" : reader["CodigoEmpleado"].ToString();
-                        beVacacion.Sueldo = reader["Sueldo"] == DBNull.Value ? 0.0 : double.Parse(reader["Sueldo"].ToString());
-                        beVacacion.AsignacionFamiliar = reader["AsignacionFamiliar"] == DBNull.Value ? 0.0 : double.Parse(reader["AsignacionFamiliar"].ToString());
-                        beVacacion.PromedioHorasExtras = reader["PromedioHorasExtras"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioHorasExtras"].ToString());
-                        beVacacion.PromedioBonificacion = reader["PromedioBonificacion"] == DBNull.Value ? 0.0 : double.Parse(reader["PromedioBonificacion"].ToString());
-                        beVacacion.TotalBruto = reader["TotalBruto"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalBruto"].ToString());
-
-                        int anho = beVacacion.FechaInicial.Year;
-                        int mes = beVacacion.FechaInicial.Month;
-
-                        int idAfpComision = reader["idAfpComision"] == DBNull.Value ? 0 : int.Parse(reader["idAfpComision"].ToString());
-                        if (idAfpComision > 0)
-                        {
-                            var beAfpComision = new DA.AfpComision().Obtener(idAfpComision);
-                            beVacacion.ComisionAfp = beAfpComision;
-
-                            beVacacion.TipoComisionAfp = reader["ComisionAfp"] == DBNull.Value ? "" : reader["ComisionAfp"].ToString();
-                        }
-
-                        int idOnpComision = reader["idOnpComision"] == DBNull.Value ? 0 : int.Parse(reader["idOnpComision"].ToString());
-                        if (idOnpComision > 0)
-                        {
-                            var beOnpComision = new DA.OnpComision().Obtener(anho, mes);
-                            beVacacion.ComisionOnp = beOnpComision;
-                        }
-
-                        beVacacion.PensionMonto = reader["PensionMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["PensionMonto"].ToString());
-                        beVacacion.RetencionJudicialMonto = reader["RetencionJudicialMonto"] == DBNull.Value ? 0.0 : double.Parse(reader["RetencionJudicialMonto"].ToString());
-                        beVacacion.TotalDescuento = reader["TotalDescuento"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalDescuento"].ToString());
-                        beVacacion.TotalNeto = reader["TotalNeto"] == DBNull.Value ? 0.0 : double.Parse(reader["TotalNeto"].ToString());
-                        
+                        beVacacion = Convertir(reader);
                     }
                 }
 

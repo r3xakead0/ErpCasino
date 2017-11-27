@@ -664,7 +664,6 @@
             this.dgvPlanilla.Name = "dgvPlanilla";
             this.dgvPlanilla.Size = new System.Drawing.Size(928, 303);
             this.dgvPlanilla.TabIndex = 41;
-            this.dgvPlanilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlanilla_CellDoubleClick);
             // 
             // grpFiltro
             // 

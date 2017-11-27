@@ -182,6 +182,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 var sorted = new SortableBindingList<BE.UI.Asistencia>(this.lstUiAsistencias);
 
                 this.dgvRegistroAsistencias.DataSource = sorted;
+                this.txtNroRegistros.Text = this.lstUiAsistencias.Count.ToString();
 
                 if (this.lstUiAsistencias.Count > 0)
                     this.dtpFechaRegistroAsistencia.Value = this.lstUiAsistencias.Min(x => x.FechaHoraEntrada);
@@ -330,7 +331,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -344,7 +345,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     var uiAsistencia = (BE.UI.Asistencia)this.dgvRegistroAsistencias.Rows[i].DataBoundItem;
                     uiAsistencia.Fecha = this.dtpFechaRegistroAsistencia.Value;
 
-                    rpta = new LN.Asistencia().Insertar(ref uiAsistencia, idUsuarioSesion);
+                    if (uiAsistencia.ID == 0)
+                        rpta = new LN.Asistencia().Insertar(ref uiAsistencia, idUsuarioSesion);
+                    //else
+                    //    rpta = new LN.Asistencia().Actualizar(uiAsistencia, idUsuarioSesion);
 
                 }
 
@@ -385,7 +389,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void BtnAgregar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -472,10 +476,21 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     var uiAsistencia = (BE.UI.Asistencia)this.dgvRegistroAsistencias.CurrentRow.DataBoundItem;
 
                     if (uiAsistencia.ID > 0)
-                        new LN.Asistencia().Eliminar(uiAsistencia.ID);
+                    {
+                        bool rpta = new LN.Asistencia().Eliminar(uiAsistencia.ID);
+
+                        if (rpta == true && this.frmList != null)
+                        {
+                            int anho = this.dtpFechaRegistroAsistencia.Value.Year;
+                            int mes = this.dtpFechaRegistroAsistencia.Value.Month;
+                            this.frmList.CargarAsistencias(anho, mes);
+                        }
+                    }
 
                     int i = this.dgvRegistroAsistencias.CurrentRow.Index;
                     this.dgvRegistroAsistencias.Rows.RemoveAt(i);
+
+                    this.txtNroRegistros.Text = this.lstUiAsistencias.Count.ToString();
                 }
             }
             catch (Exception ex)

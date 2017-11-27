@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE SpTbVacacionListar
+﻿CREATE PROCEDURE [dbo].[SpTbVacacionListar]
 @Anho AS INT,
 @Mes AS INT
 AS
@@ -15,6 +15,7 @@ BEGIN
 			AsignacionFamiliar,
 			PromedioHorasExtras,
 			PromedioBonificacion,
+			Redondeo,
 			TotalBruto,
 			idAfpComision,
 			ComisionAfp,

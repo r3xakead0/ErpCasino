@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.grpResumen = new System.Windows.Forms.GroupBox();
             this.txtTotalNeto = new System.Windows.Forms.TextBox();
             this.txtResumenDescuentos = new System.Windows.Forms.TextBox();
@@ -143,10 +143,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmpleadoNombres = new System.Windows.Forms.TextBox();
             this.lblEmpleado = new System.Windows.Forms.Label();
-            this.pnlInferior = new System.Windows.Forms.Panel();
-            this.btnImprimir = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.grpResumen.SuspendLayout();
             this.grpDeduccionAporte.SuspendLayout();
@@ -154,26 +150,11 @@
             this.grpCantidad.SuspendLayout();
             this.grpEmpresa.SuspendLayout();
             this.grpEmpleado.SuspendLayout();
-            this.pnlInferior.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tlpPrincipal
-            // 
-            this.tlpPrincipal.ColumnCount = 1;
-            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.Controls.Add(this.pnlPrincipal, 0, 0);
-            this.tlpPrincipal.Controls.Add(this.pnlInferior, 0, 1);
-            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tlpPrincipal.Name = "tlpPrincipal";
-            this.tlpPrincipal.RowCount = 2;
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(759, 662);
-            this.tlpPrincipal.TabIndex = 16;
             // 
             // pnlPrincipal
             // 
+            this.pnlPrincipal.Controls.Add(this.btnImprimir);
             this.pnlPrincipal.Controls.Add(this.grpResumen);
             this.pnlPrincipal.Controls.Add(this.grpDeduccionAporte);
             this.pnlPrincipal.Controls.Add(this.grpSueldo);
@@ -181,10 +162,21 @@
             this.pnlPrincipal.Controls.Add(this.grpEmpresa);
             this.pnlPrincipal.Controls.Add(this.grpEmpleado);
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPrincipal.Location = new System.Drawing.Point(3, 3);
+            this.pnlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(753, 606);
+            this.pnlPrincipal.Size = new System.Drawing.Size(753, 604);
             this.pnlPrincipal.TabIndex = 16;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImprimir.Location = new System.Drawing.Point(3, 570);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(100, 30);
+            this.btnImprimir.TabIndex = 19;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // grpResumen
             // 
@@ -1342,50 +1334,18 @@
             this.lblEmpleado.TabIndex = 20;
             this.lblEmpleado.Text = "Apellidos y Nombres :";
             // 
-            // pnlInferior
-            // 
-            this.pnlInferior.Controls.Add(this.btnImprimir);
-            this.pnlInferior.Controls.Add(this.btnCancelar);
-            this.pnlInferior.Location = new System.Drawing.Point(3, 615);
-            this.pnlInferior.Name = "pnlInferior";
-            this.pnlInferior.Size = new System.Drawing.Size(753, 44);
-            this.pnlInferior.TabIndex = 17;
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImprimir.Location = new System.Drawing.Point(538, 5);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(100, 30);
-            this.btnImprimir.TabIndex = 19;
-            this.btnImprimir.Text = "Imprimir";
-            this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(644, 5);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelar.TabIndex = 18;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // FrmPlanillaDetalleBoleta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 662);
-            this.Controls.Add(this.tlpPrincipal);
+            this.ClientSize = new System.Drawing.Size(753, 604);
+            this.Controls.Add(this.pnlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmPlanillaDetalleBoleta";
             this.Text = " Boleta del Empleado";
             this.Load += new System.EventHandler(this.FrmPlanillaDetalleBoleta_Load);
-            this.tlpPrincipal.ResumeLayout(false);
             this.pnlPrincipal.ResumeLayout(false);
             this.grpResumen.ResumeLayout(false);
             this.grpResumen.PerformLayout();
@@ -1399,16 +1359,12 @@
             this.grpEmpresa.PerformLayout();
             this.grpEmpleado.ResumeLayout(false);
             this.grpEmpleado.PerformLayout();
-            this.pnlInferior.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
         private System.Windows.Forms.Panel pnlPrincipal;
-        private System.Windows.Forms.Panel pnlInferior;
-        public System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox grpEmpleado;
         internal System.Windows.Forms.Label lblEmpleado;
         private System.Windows.Forms.TextBox txtFechaIngreso;

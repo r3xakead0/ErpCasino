@@ -1,5 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[SpTbPlanillaBoletaObtener]
-@IdPlanillaBoleta AS INT
+﻿CREATE PROCEDURE [dbo].[SpTbPlanillaBoletaObtener2]
+@ANHO AS SMALLINT,
+@MES AS TINYINT,
+@CODIGOEMPLEADO AS VARCHAR(10)
 AS
 BEGIN
 	SELECT	TOP 1 
@@ -64,6 +66,8 @@ BEGIN
 			TotalAportes,
 			TotalNeto
 	FROM	TbPlanillaBoleta WITH(NOLOCK) 
-	WHERE	IdPlanillaBoleta = @IdPlanillaBoleta
+	WHERE	Anho = @ANHO 
+	AND		Mes = @MES 
+	AND		EmpleadoCodigo = @CODIGOEMPLEADO 
 
 END

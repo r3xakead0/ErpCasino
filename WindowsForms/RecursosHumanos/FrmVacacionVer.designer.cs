@@ -67,6 +67,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.txtRedondeo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.grpVacacion.SuspendLayout();
             this.grpPromedios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalles)).BeginInit();
@@ -77,6 +79,8 @@
             this.grpVacacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpVacacion.Controls.Add(this.txtRedondeo);
+            this.grpVacacion.Controls.Add(this.label11);
             this.grpVacacion.Controls.Add(this.txtTotalDescuento);
             this.grpVacacion.Controls.Add(this.label1);
             this.grpVacacion.Controls.Add(this.grpPromedios);
@@ -146,7 +150,7 @@
             this.grpPromedios.Controls.Add(this.label7);
             this.grpPromedios.Controls.Add(this.txtPromedioBonificaciones);
             this.grpPromedios.Controls.Add(this.label8);
-            this.grpPromedios.Location = new System.Drawing.Point(13, 149);
+            this.grpPromedios.Location = new System.Drawing.Point(13, 175);
             this.grpPromedios.Name = "grpPromedios";
             this.grpPromedios.Size = new System.Drawing.Size(173, 72);
             this.grpPromedios.TabIndex = 140;
@@ -529,6 +533,26 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
+            // txtRedondeo
+            // 
+            this.txtRedondeo.Location = new System.Drawing.Point(127, 149);
+            this.txtRedondeo.Name = "txtRedondeo";
+            this.txtRedondeo.ReadOnly = true;
+            this.txtRedondeo.Size = new System.Drawing.Size(59, 20);
+            this.txtRedondeo.TabIndex = 144;
+            this.txtRedondeo.Text = "0.00";
+            this.txtRedondeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 152);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 13);
+            this.label11.TabIndex = 143;
+            this.label11.Text = "Redondeo :";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FrmVacacionVer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,5 +616,7 @@
         internal System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox grpPromedios;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.TextBox txtRedondeo;
+        internal System.Windows.Forms.Label label11;
     }
 }

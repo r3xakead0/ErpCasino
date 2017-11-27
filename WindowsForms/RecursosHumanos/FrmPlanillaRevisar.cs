@@ -490,10 +490,23 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                string codigoEmpleado = "";
+
+                if (this.dgvPlanilla.CurrentRow != null)
+                {
+                    var uiPlanillaDetalle = (BE.UI.PlanillaDetalle)this.dgvPlanilla.CurrentRow.DataBoundItem;
+                    codigoEmpleado = uiPlanillaDetalle.EmpleadoCodigo;
+                }
+
                 this.anho = int.Parse(this.CboAnho.SelectedValue.ToString());
                 this.mes = int.Parse(this.CbxMes.SelectedValue.ToString());
 
                 this.CalcularPlanillaDetalle();
+
+                this.dgvPlanilla.Rows.OfType<DataGridViewRow>().Where(x => x.Cells["EmpleadoCodigo"].Value.ToString().Equals(codigoEmpleado)).ToArray<DataGridViewRow>()[0].Selected = true;
+                this.dgvPlanilla.FirstDisplayedScrollingRowIndex = this.dgvPlanilla.SelectedRows[0].Index;
+                this.dgvPlanilla.Update();
+
             }
             catch (Exception ex)
             {
@@ -557,28 +570,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void dgvPlanilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-
-                if (e.RowIndex < 0)
-                    return;
-
-                var uiPlanillaDetalle = (BE.UI.PlanillaDetalle)this.dgvPlanilla.Rows[e.RowIndex].DataBoundItem;
-
-                var frmPlanillaVista = new FrmPlanillaDetalleView(this.idPlanilla);
-                frmPlanillaVista.MdiParent = this.MdiParent;
-                frmPlanillaVista.Show();
-                frmPlanillaVista.Cargar(uiPlanillaDetalle);
-
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
         private void btnBoleta_Click(object sender, EventArgs e)
         {
             try
@@ -590,7 +581,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     string codigoEmpleado = uiPlanillaDetalle.EmpleadoCodigo;
 
-                    var frmBoleta = new FrmPlanillaDetalleBoleta(this.anho, this.mes, codigoEmpleado);
+                    var frmBoleta = FrmPlanillaDetalleBoleta.Instance(this.anho, this.mes, codigoEmpleado);
                     frmBoleta.MdiParent = this.MdiParent;
                     frmBoleta.Show();
 

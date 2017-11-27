@@ -1,0 +1,35 @@
+﻿CREATE TABLE [dbo].[TbVacacionRecibo] (
+    [IdVacacionRecibo]       INT            IDENTITY (1, 1) NOT NULL,
+    [IdVacacion]             INT            NOT NULL,
+    [Anho]                   SMALLINT       NOT NULL,
+    [Mes]                    TINYINT        NOT NULL,
+    [MesNombre]              VARCHAR (15)   NOT NULL,
+    [EmpresaNombre]          VARCHAR (100)  NOT NULL,
+    [EmpresaDistrito]        VARCHAR (150)  NOT NULL,
+    [EmpleadoCodigo]         VARCHAR (10)   NOT NULL,
+    [EmpleadoNombres]        VARCHAR (100)  NOT NULL,
+    [EmpleadoApellidos]      VARCHAR (100)  NOT NULL,
+    [EmpleadoNroDocumento]   VARCHAR (20)   NOT NULL,
+    [Detalle]                VARCHAR (100)  NOT NULL,
+    [PeriodoInicio]          DATE           NOT NULL,
+    [PeriodoFinal]           DATE           NOT NULL,
+    [VacacionInicio]         DATE           NOT NULL,
+    [VacacionFinal]          DATE           NOT NULL,
+    [Sueldo]                 DECIMAL (9, 2) NOT NULL,
+    [AsignacionFamiliar]     DECIMAL (9, 2) NOT NULL,
+    [PromedioHorasExtras]    DECIMAL (9, 2) NOT NULL,
+    [PromedioBonificacion]   DECIMAL (9, 2) NOT NULL,
+    [Redondeo]               DECIMAL (9, 2) NOT NULL,
+    [TotalBruto]             DECIMAL (9, 2) NOT NULL,
+    [RetencionJudicialMonto] DECIMAL (9, 2) NOT NULL,
+    [PensionEntidad]         VARCHAR (50)   NOT NULL,
+    [PensionMonto]           DECIMAL (9, 2) NOT NULL,
+    [TotalDescuento]         DECIMAL (9, 2) NOT NULL,
+    [TotalNeto]              DECIMAL (9, 2) NOT NULL,
+    [TotalNetoLiteral]       VARCHAR (255)  NOT NULL,
+    CONSTRAINT [PK_TbVacacionRecibo] PRIMARY KEY CLUSTERED ([IdVacacionRecibo] ASC),
+    CONSTRAINT [FK_TbVacacionRecibo_TbVacacion] FOREIGN KEY ([IdVacacion]) REFERENCES [dbo].[TbVacacion] ([IdVacacion]) ON DELETE CASCADE
+);
+
+
+

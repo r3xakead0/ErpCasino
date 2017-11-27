@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE SpTbVacacionInsertar
+﻿CREATE PROCEDURE [dbo].[SpTbVacacionInsertar]
 @IdVacacion AS INT OUTPUT,
 @PeriodoFechaInicial AS DATE,
 @PeriodoFechaFinal AS DATE,
@@ -10,6 +10,7 @@
 @AsignacionFamiliar AS DECIMAL(9,2),
 @PromedioHorasExtras AS DECIMAL(9,2),
 @PromedioBonificacion AS DECIMAL(9,2),
+@Redondeo AS DECIMAL(9,2),
 @TotalBruto AS DECIMAL(9,2),
 @idAfpComision AS INT,
 @ComisionAfp AS VARCHAR(10),
@@ -20,7 +21,7 @@
 @TotalNeto AS DECIMAL(9,2)
 AS
 BEGIN
-	INSERT INTO TbVacacion (PeriodoFechaInicial,PeriodoFechaFinal,FechaInicial,FechaFinal,Dias,CodigoEmpleado,Sueldo,AsignacionFamiliar,PromedioHorasExtras,PromedioBonificacion,TotalBruto,idAfpComision,ComisionAfp,idOnpComision,PensionMonto,RetencionJudicialMonto,TotalDescuento,TotalNeto)
-	VALUES (@PeriodoFechaInicial,@PeriodoFechaFinal,@FechaInicial,@FechaFinal,@Dias,@CodigoEmpleado,@Sueldo,@AsignacionFamiliar,@PromedioHorasExtras,@PromedioBonificacion,@TotalBruto,@idAfpComision,@ComisionAfp,@idOnpComision,@PensionMonto,@RetencionJudicialMonto,@TotalDescuento,@TotalNeto)
+	INSERT INTO TbVacacion (PeriodoFechaInicial,PeriodoFechaFinal,FechaInicial,FechaFinal,Dias,CodigoEmpleado,Sueldo,AsignacionFamiliar,PromedioHorasExtras,PromedioBonificacion,Redondeo,TotalBruto,idAfpComision,ComisionAfp,idOnpComision,PensionMonto,RetencionJudicialMonto,TotalDescuento,TotalNeto)
+	VALUES (@PeriodoFechaInicial,@PeriodoFechaFinal,@FechaInicial,@FechaFinal,@Dias,@CodigoEmpleado,@Sueldo,@AsignacionFamiliar,@PromedioHorasExtras,@PromedioBonificacion,@Redondeo,@TotalBruto,@idAfpComision,@ComisionAfp,@idOnpComision,@PensionMonto,@RetencionJudicialMonto,@TotalDescuento,@TotalNeto)
 	SET @IdVacacion = @@IDENTITY
 END

@@ -52,7 +52,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void FrmPostulanteList_Load(object sender, EventArgs e)
+        private void FrmVacacionList_Load(object sender, EventArgs e)
         {
             try
             {
@@ -81,6 +81,15 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     return;
 
                 var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
+                if (uiVacacion == null)
+                    return;
+
+                var frmVacacionVer = FrmVacacionVer.Instance();
+                frmVacacionVer.MdiParent = this.MdiParent;
+                frmVacacionVer.Show();
+
+                frmVacacionVer.frmList = this;
+                frmVacacionVer.Cargar(uiVacacion);
 
             }
             catch (Exception ex)
@@ -95,6 +104,26 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             {
                 this.CargarListadoVacaciones();
 
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvVacaciones, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
             }
             catch (Exception ex)
             {
@@ -160,31 +189,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         Util.InformationMessage("Se eliminó el Calculo de Vacaciones");
                         this.CargarListadoVacaciones();
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
-
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.dgvVacaciones.CurrentRow != null)
-                {
-
-                    if (Util.ConfirmationMessage("¿Desea imprimir el Calculo de Vacaciones seleccionado?") == false)
-                        return;
-
-                    var uiVacacion = (BE.UI.Vacacion)this.dgvVacaciones.CurrentRow.DataBoundItem;
-
-                    var frmPlanillaVista = new FrmImpresion();
-                    frmPlanillaVista.MdiParent = this.MdiParent;
-                    frmPlanillaVista.Show();
-                    frmPlanillaVista.ImpresionVacacion(uiVacacion.EmpleadoCodigo);
-
                 }
             }
             catch (Exception ex)
@@ -276,7 +280,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvVacaciones.Columns["VacacionFechaFinal"].Visible = true;
                 this.dgvVacaciones.Columns["VacacionFechaFinal"].HeaderText = "Fecha Final";
                 this.dgvVacaciones.Columns["VacacionFechaFinal"].Width = 100;
-                this.dgvVacaciones.Columns["VacacionFechaFinal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                this.dgvVacaciones.Columns["VacacionFechaFinal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 this.dgvVacaciones.Columns["VacacionFechaFinal"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
                 this.dgvVacaciones.Columns["VacacionDias"].Visible = true;

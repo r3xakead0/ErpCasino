@@ -54,6 +54,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.txtNroRegistros = new System.Windows.Forms.TextBox();
+            this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GrpCarga.SuspendLayout();
@@ -211,7 +213,7 @@
             this.BtnAgregar.TabIndex = 19;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
-            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
+            this.BtnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // DtpFechaHoraSalida
             // 
@@ -254,6 +256,8 @@
             this.GrpDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrpDatos.Controls.Add(this.txtNroRegistros);
+            this.GrpDatos.Controls.Add(this.lblRegistrosAsistencias);
             this.GrpDatos.Controls.Add(this.btnExportarCsv);
             this.GrpDatos.Controls.Add(this.LblFechaRegistroAsistencia);
             this.GrpDatos.Controls.Add(this.BtnEliminar);
@@ -283,9 +287,9 @@
             this.LblFechaRegistroAsistencia.AutoSize = true;
             this.LblFechaRegistroAsistencia.Location = new System.Drawing.Point(10, 247);
             this.LblFechaRegistroAsistencia.Name = "LblFechaRegistroAsistencia";
-            this.LblFechaRegistroAsistencia.Size = new System.Drawing.Size(79, 13);
+            this.LblFechaRegistroAsistencia.Size = new System.Drawing.Size(85, 13);
             this.LblFechaRegistroAsistencia.TabIndex = 38;
-            this.LblFechaRegistroAsistencia.Text = "Fecha Registro";
+            this.LblFechaRegistroAsistencia.Text = "Fecha Registro :";
             // 
             // BtnEliminar
             // 
@@ -303,9 +307,9 @@
             this.dtpFechaRegistroAsistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dtpFechaRegistroAsistencia.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaRegistroAsistencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaRegistroAsistencia.Location = new System.Drawing.Point(105, 244);
+            this.dtpFechaRegistroAsistencia.Location = new System.Drawing.Point(104, 244);
             this.dtpFechaRegistroAsistencia.Name = "dtpFechaRegistroAsistencia";
-            this.dtpFechaRegistroAsistencia.Size = new System.Drawing.Size(100, 20);
+            this.dtpFechaRegistroAsistencia.Size = new System.Drawing.Size(86, 20);
             this.dtpFechaRegistroAsistencia.TabIndex = 39;
             this.dtpFechaRegistroAsistencia.ValueChanged += new System.EventHandler(this.dtpFechaRegistroAsistencia_ValueChanged);
             // 
@@ -340,7 +344,7 @@
             this.BtnSave.TabIndex = 17;
             this.BtnSave.Text = "Guardar";
             this.BtnSave.UseVisualStyleBackColor = true;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.BtnSave.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // BtnCancel
             // 
@@ -352,6 +356,30 @@
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // txtNroRegistros
+            // 
+            this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNroRegistros.Location = new System.Drawing.Point(342, 244);
+            this.txtNroRegistros.Name = "txtNroRegistros";
+            this.txtNroRegistros.ReadOnly = true;
+            this.txtNroRegistros.Size = new System.Drawing.Size(41, 20);
+            this.txtNroRegistros.TabIndex = 108;
+            this.txtNroRegistros.Text = "0";
+            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRegistrosAsistencias
+            // 
+            this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegistrosAsistencias.AutoSize = true;
+            this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(250, 247);
+            this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
+            this.lblRegistrosAsistencias.Size = new System.Drawing.Size(80, 13);
+            this.lblRegistrosAsistencias.TabIndex = 107;
+            this.lblRegistrosAsistencias.Text = "Nro. Registros :";
             // 
             // FrmAsistenciaMant
             // 
@@ -405,5 +433,7 @@
         private System.Windows.Forms.TextBox txtEmpleadoCodigo;
         private System.Windows.Forms.TextBox txtTiempo;
         public System.Windows.Forms.Button btnExportarCsv;
+        private System.Windows.Forms.TextBox txtNroRegistros;
+        internal System.Windows.Forms.Label lblRegistrosAsistencias;
     }
 }

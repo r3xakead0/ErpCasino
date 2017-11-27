@@ -386,5 +386,12 @@
     <Build Include="dbo\Stored Procedures\SpTbPlanillaBoletaObtener.sql" />
     <Build Include="dbo\Stored Procedures\SpTbPlanillaBoletaInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbPlanillaBoletaActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbVacacionListarPorEmpleado.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbOnpComisionObtener2.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPlanillaBoletaObtener2.sql" />
+    <Build Include="dbo\Tables\TbVacacionRecibo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbVacacionReciboObtener.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbVacacionReciboInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbVacacionReciboActualizar.sql" />
   </ItemGroup>
 </Project>

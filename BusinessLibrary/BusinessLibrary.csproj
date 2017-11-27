@@ -134,6 +134,7 @@
     <Compile Include="DA\Movilidad.cs" />
     <Compile Include="DA\Conexion.cs" />
     <Compile Include="DA\Empresa.cs" />
+    <Compile Include="DA\PlanillaBoleta.cs" />
     <Compile Include="DA\Recibo.cs" />
     <Compile Include="DA\Comprometido.cs" />
     <Compile Include="DA\MetaSala.cs" />
@@ -182,7 +183,9 @@
     <Compile Include="DA\ConnectionManager.cs" />
     <Compile Include="BE\Vacacion.cs" />
     <Compile Include="DA\Vacacion.cs" />
+    <Compile Include="DA\VacacionRecibo.cs" />
     <Compile Include="LN\Movilidad.cs" />
+    <Compile Include="LN\PlanillaBoleta.cs" />
     <Compile Include="LN\Vacacion.cs" />
     <Compile Include="LN\Conexion.cs" />
     <Compile Include="LN\Empresa.cs" />

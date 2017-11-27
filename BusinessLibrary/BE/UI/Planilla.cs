@@ -260,6 +260,10 @@ namespace ErpCasino.BusinessLibrary.BE.UI
 
     public class PlanillaBoleta
     {
+        public int Id { get; set; } = 0;
+
+        public int IdPlanilla { get; set; } = 0;
+
         public int Anho { get; set; } = 0;
         public int Mes { get; set; } = 0;
         public string MesNombre { get; set; } = "";

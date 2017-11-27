@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.grpVacacion = new System.Windows.Forms.GroupBox();
+            this.txtRedondeo = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtPensionPorcentaje = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -85,7 +88,7 @@
             this.dtpVacacionSalida = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.txtPensionPorcentaje = new System.Windows.Forms.TextBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.grpVacacion.SuspendLayout();
             this.grpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalles)).BeginInit();
@@ -95,6 +98,9 @@
             // 
             this.grpVacacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpVacacion.Controls.Add(this.btnLimpiar);
+            this.grpVacacion.Controls.Add(this.txtRedondeo);
+            this.grpVacacion.Controls.Add(this.label23);
             this.grpVacacion.Controls.Add(this.txtPensionPorcentaje);
             this.grpVacacion.Controls.Add(this.btnGuardar);
             this.grpVacacion.Controls.Add(this.txtNombres);
@@ -134,6 +140,42 @@
             this.grpVacacion.TabIndex = 116;
             this.grpVacacion.TabStop = false;
             this.grpVacacion.Text = "Calculo de Vacación";
+            // 
+            // txtRedondeo
+            // 
+            this.txtRedondeo.Location = new System.Drawing.Point(79, 149);
+            this.txtRedondeo.Name = "txtRedondeo";
+            this.txtRedondeo.ReadOnly = true;
+            this.txtRedondeo.Size = new System.Drawing.Size(59, 20);
+            this.txtRedondeo.TabIndex = 141;
+            this.txtRedondeo.Text = "0.00";
+            this.txtRedondeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRedondeo.Enter += new System.EventHandler(this.txtRedondeo_Enter);
+            this.txtRedondeo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRedondeo_KeyPress);
+            this.txtRedondeo.Leave += new System.EventHandler(this.txtRedondeo_Leave);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(9, 152);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(63, 13);
+            this.label23.TabIndex = 140;
+            this.label23.Text = "Redondeo :";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPensionPorcentaje
+            // 
+            this.txtPensionPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPensionPorcentaje.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPensionPorcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPensionPorcentaje.Location = new System.Drawing.Point(380, 176);
+            this.txtPensionPorcentaje.Name = "txtPensionPorcentaje";
+            this.txtPensionPorcentaje.ReadOnly = true;
+            this.txtPensionPorcentaje.Size = new System.Drawing.Size(59, 20);
+            this.txtPensionPorcentaje.TabIndex = 139;
+            this.txtPensionPorcentaje.Text = "0.00 %";
+            this.txtPensionPorcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnGuardar
             // 
@@ -187,7 +229,7 @@
             // 
             // txtPensionTipo
             // 
-            this.txtPensionTipo.Location = new System.Drawing.Point(144, 175);
+            this.txtPensionTipo.Location = new System.Drawing.Point(144, 176);
             this.txtPensionTipo.Name = "txtPensionTipo";
             this.txtPensionTipo.ReadOnly = true;
             this.txtPensionTipo.Size = new System.Drawing.Size(52, 20);
@@ -199,7 +241,7 @@
             // 
             this.txtPensionDescipcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPensionDescipcion.Location = new System.Drawing.Point(202, 175);
+            this.txtPensionDescipcion.Location = new System.Drawing.Point(202, 176);
             this.txtPensionDescipcion.Name = "txtPensionDescipcion";
             this.txtPensionDescipcion.ReadOnly = true;
             this.txtPensionDescipcion.Size = new System.Drawing.Size(175, 20);
@@ -235,7 +277,7 @@
             this.txtTotalNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalNeto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalNeto.Location = new System.Drawing.Point(380, 200);
+            this.txtTotalNeto.Location = new System.Drawing.Point(380, 201);
             this.txtTotalNeto.Name = "txtTotalNeto";
             this.txtTotalNeto.ReadOnly = true;
             this.txtTotalNeto.Size = new System.Drawing.Size(59, 20);
@@ -248,7 +290,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(302, 203);
+            this.label15.Location = new System.Drawing.Point(302, 204);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(75, 13);
             this.label15.TabIndex = 125;
@@ -258,6 +300,7 @@
             // 
             this.txtPensionMonto.Location = new System.Drawing.Point(79, 175);
             this.txtPensionMonto.Name = "txtPensionMonto";
+            this.txtPensionMonto.ReadOnly = true;
             this.txtPensionMonto.Size = new System.Drawing.Size(59, 20);
             this.txtPensionMonto.TabIndex = 124;
             this.txtPensionMonto.Text = "0.00";
@@ -275,7 +318,7 @@
             // 
             // txtRetencionJudicial
             // 
-            this.txtRetencionJudicial.Location = new System.Drawing.Point(79, 200);
+            this.txtRetencionJudicial.Location = new System.Drawing.Point(79, 201);
             this.txtRetencionJudicial.Name = "txtRetencionJudicial";
             this.txtRetencionJudicial.ReadOnly = true;
             this.txtRetencionJudicial.Size = new System.Drawing.Size(59, 20);
@@ -746,18 +789,16 @@
             this.label19.Text = "Días";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtPensionPorcentaje
+            // btnLimpiar
             // 
-            this.txtPensionPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPensionPorcentaje.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPensionPorcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPensionPorcentaje.Location = new System.Drawing.Point(380, 175);
-            this.txtPensionPorcentaje.Name = "txtPensionPorcentaje";
-            this.txtPensionPorcentaje.ReadOnly = true;
-            this.txtPensionPorcentaje.Size = new System.Drawing.Size(59, 20);
-            this.txtPensionPorcentaje.TabIndex = 139;
-            this.txtPensionPorcentaje.Text = "0.00 %";
-            this.txtPensionPorcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLimpiar.Location = new System.Drawing.Point(233, 264);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 30);
+            this.btnLimpiar.TabIndex = 142;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // FrmVacacionMant
             // 
@@ -840,5 +881,8 @@
         internal System.Windows.Forms.Label label17;
         internal System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtPensionPorcentaje;
+        private System.Windows.Forms.TextBox txtRedondeo;
+        internal System.Windows.Forms.Label label23;
+        public System.Windows.Forms.Button btnLimpiar;
     }
 }

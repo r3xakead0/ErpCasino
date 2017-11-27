@@ -44,6 +44,7 @@
             this.crvVisorInforme.Size = new System.Drawing.Size(708, 496);
             this.crvVisorInforme.TabIndex = 0;
             this.crvVisorInforme.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.crvVisorInforme.Load += new System.EventHandler(this.crvVisorInforme_Load);
             // 
             // FrmImpresion
             // 

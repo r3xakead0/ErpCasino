@@ -2,6 +2,9 @@ using BE = ErpCasino.BusinessLibrary.BE;
 using DA = ErpCasino.BusinessLibrary.DA;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using ErpCasino.BusinessLibrary.BE.UI;
+using System.Reflection;
 
 namespace ErpCasino.BusinessLibrary.LN
 {
@@ -56,6 +59,8 @@ namespace ErpCasino.BusinessLibrary.LN
             return nombreMes;
         }
 
+        #region Conversiones de BE a UI
+
         private BE.UI.VacacionDetalle BeDetalleToUiDetalle(BE.VacacionDetalle beVacacionDetalle)
         {
             var uiVacacionDetalle = new BE.UI.VacacionDetalle();
@@ -70,6 +75,123 @@ namespace ErpCasino.BusinessLibrary.LN
 
             return uiVacacionDetalle;
         }
+
+        private BE.UI.Vacacion BeToUi(BE.Vacacion beVacacion)
+        {
+            var uiVacacion = new BE.UI.Vacacion();
+
+            uiVacacion.Id = beVacacion.IdVacacion;
+
+            uiVacacion.PeriodoFechaInicial = beVacacion.PeriodoFechaInicial;
+            uiVacacion.PeriodoFechaFinal = beVacacion.PeriodoFechaFinal;
+            uiVacacion.VacacionFechaInicial = beVacacion.FechaInicial;
+            uiVacacion.VacacionFechaFinal = beVacacion.FechaFinal;
+            uiVacacion.VacacionDias = beVacacion.Dias;
+
+            uiVacacion.EmpleadoCodigo = beVacacion.CodigoEmpleado;
+            uiVacacion.EmpleadoNombreCompleto = new LN.Empleado().ObtenerNombreCompleto(beVacacion.CodigoEmpleado);
+            uiVacacion.EmpleadoSueldo = beVacacion.Sueldo;
+            uiVacacion.EmpleadoAsignacionFamiliar = beVacacion.AsignacionFamiliar;
+            uiVacacion.PromedioHorasExtras = beVacacion.PromedioHorasExtras;
+            uiVacacion.PromedioBonificacion = beVacacion.PromedioBonificacion;
+            uiVacacion.Redondeo = beVacacion.Redondeo;
+
+            if (beVacacion.ComisionAfp != null)
+            {
+                uiVacacion.PensionId = beVacacion.ComisionAfp.Afp.IdAfp;
+                uiVacacion.PensionTipo = BE.UI.TipoPensionEnum.AFP;
+                uiVacacion.PensionNombre = beVacacion.ComisionAfp.Afp.Nombre;
+                uiVacacion.PensionMonto = beVacacion.PensionMonto;
+
+                uiVacacion.PensionTipoComision = beVacacion.TipoComisionAfp;
+
+                double porcentaje = beVacacion.ComisionAfp.PorcentajeFondo + beVacacion.ComisionAfp.PorcentajeSeguro;
+                switch (uiVacacion.PensionTipoComision)
+                {
+                    case "FLUJO":
+                        porcentaje += beVacacion.ComisionAfp.PorcentajeComisionFlujo;
+                        break;
+                    case "MIXTA":
+                        porcentaje += beVacacion.ComisionAfp.PorcentajeComisionMixta;
+                        break;
+                    //case "SALDO":
+                    //    porcentaje += beVacacion.ComisionAfp.PorcentajeComisionFlujo;
+                    //    break;
+                    default:
+                        porcentaje += 0.0;
+                        break;
+                }
+                uiVacacion.PensionPorcentaje = porcentaje;
+
+
+            }
+            else if (beVacacion.ComisionOnp != null)
+            {
+                uiVacacion.PensionId = 0;
+                uiVacacion.PensionTipo = BE.UI.TipoPensionEnum.ONP;
+                uiVacacion.PensionNombre = "ONP";
+                uiVacacion.PensionMonto = beVacacion.PensionMonto;
+
+                uiVacacion.PensionTipoComision = "";
+                uiVacacion.PensionPorcentaje = beVacacion.ComisionOnp.PorcentajeAporte;
+            }
+
+            uiVacacion.RetencionJudicialMonto = beVacacion.RetencionJudicialMonto;
+
+            //uiVacacion.TotalBruto = beVacacion.TotalBruto;
+            //uiVacacion.TotalDescuento = beVacacion.TotalDescuento;
+            //uiVacacion.TotalNeto = beVacacion.TotalNeto;
+
+            uiVacacion.Detalle = new List<BE.UI.VacacionDetalle>();
+            foreach (BE.VacacionDetalle beVacacionDetalle in beVacacion.Detalle)
+            {
+                var uiVacacionDetalle = this.BeDetalleToUiDetalle(beVacacionDetalle);
+                uiVacacion.Detalle.Add(uiVacacionDetalle);
+            }
+
+            return uiVacacion;
+        }
+
+        private BE.UI.VacacionRecibo BeReciboToUiRecibo(BE.VacacionRecibo beVacacionRecibo)
+        {
+            try
+            {
+                var uiVacacionRecibo = new BE.UI.VacacionRecibo();
+
+                uiVacacionRecibo.Id = beVacacionRecibo.IdVacacionRecibo;
+                //uiVacacionRecibo.IdVacacion = beVacacionRecibo.IdVacacion;
+
+                //Obtener las propiedades que sean publicas y se puedan escribir
+                var lstPropertiesInfosBE = beVacacionRecibo.GetType().GetProperties()
+                    .Where(x => x.CanWrite == true && x.PropertyType.IsPublic == true)
+                    .ToList();
+
+                //Obtener las propuedades que sean publicas y se puedan escribir
+                var lstPropertiesInfosUI = uiVacacionRecibo.GetType().GetProperties()
+                    .Where(x => x.CanWrite == true && x.PropertyType.IsPublic == true)
+                    .ToList();
+
+                foreach (PropertyInfo propertyInfoUI in lstPropertiesInfosUI)
+                {
+                    var propertyName = propertyInfoUI.Name;
+
+                    PropertyInfo propertyInfoBE = lstPropertiesInfosBE.Where(x => x.Name == propertyName).FirstOrDefault();
+                    if (propertyInfoBE != null)
+                        propertyInfoUI.SetValue(uiVacacionRecibo, propertyInfoBE.GetValue(beVacacionRecibo));
+
+                }
+
+                return uiVacacionRecibo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+
+        #region Conversiones de UI a BE
 
         private BE.VacacionDetalle UiDetalleToBeDetalle(BE.UI.VacacionDetalle uiVacacionDetalle)
         {
@@ -102,6 +224,7 @@ namespace ErpCasino.BusinessLibrary.LN
             beVacacion.AsignacionFamiliar = uiVacacion.EmpleadoAsignacionFamiliar;
             beVacacion.PromedioHorasExtras = uiVacacion.PromedioHorasExtras;
             beVacacion.PromedioBonificacion = uiVacacion.PromedioBonificacion;
+            beVacacion.Redondeo = uiVacacion.Redondeo;
 
             beVacacion.TipoComisionAfp = uiVacacion.PensionTipoComision;
             beVacacion.PensionMonto = uiVacacion.PensionMonto;
@@ -118,7 +241,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 var beComisionOnp = new DA.OnpComision().Obtener(anho, mes);
                 beVacacion.ComisionOnp = beComisionOnp;
             }
-            
+
             beVacacion.RetencionJudicialMonto = uiVacacion.RetencionJudicialMonto;
 
             beVacacion.TotalBruto = uiVacacion.TotalBruto;
@@ -135,80 +258,43 @@ namespace ErpCasino.BusinessLibrary.LN
             return beVacacion;
         }
 
-        private BE.UI.Vacacion BeToUi(BE.Vacacion beVacacion)
+        private BE.VacacionRecibo UiReciboToBeRecibo(BE.UI.VacacionRecibo uiVacacionRecibo)
         {
-            var uiVacacion = new BE.UI.Vacacion();
-
-            uiVacacion.Id = beVacacion.IdVacacion;
-
-            uiVacacion.PeriodoFechaInicial = beVacacion.PeriodoFechaInicial;
-            uiVacacion.PeriodoFechaFinal = beVacacion.PeriodoFechaFinal;
-            uiVacacion.VacacionFechaInicial = beVacacion.FechaInicial;
-            uiVacacion.VacacionFechaFinal = beVacacion.FechaFinal;
-            uiVacacion.VacacionDias = beVacacion.Dias;
-
-            uiVacacion.EmpleadoCodigo = beVacacion.CodigoEmpleado;
-            uiVacacion.EmpleadoNombreCompleto = new LN.Empleado().ObtenerNombreCompleto(beVacacion.CodigoEmpleado);
-            uiVacacion.EmpleadoSueldo = beVacacion.Sueldo;
-            uiVacacion.EmpleadoAsignacionFamiliar = beVacacion.AsignacionFamiliar;
-            uiVacacion.PromedioHorasExtras = beVacacion.PromedioHorasExtras;
-            uiVacacion.PromedioBonificacion = beVacacion.PromedioBonificacion;
-
-            if (beVacacion.ComisionAfp != null)
+            try
             {
-                uiVacacion.PensionId = beVacacion.ComisionAfp.Afp.IdAfp;
-                uiVacacion.PensionTipo = BE.UI.TipoPensionEnum.AFP;
-                uiVacacion.PensionNombre = beVacacion.ComisionAfp.Afp.Nombre;
-                uiVacacion.PensionMonto = beVacacion.PensionMonto;
+                var beVacacionRecibo = new BE.VacacionRecibo();
 
-                uiVacacion.PensionTipoComision = beVacacion.TipoComisionAfp;
+                beVacacionRecibo.IdVacacionRecibo = uiVacacionRecibo.Id;
+                
+                //Obtener las propiedades que sean publicas y se puedan escribir
+                var lstPropertiesInfosBE = beVacacionRecibo.GetType().GetProperties()
+                    .Where(x => x.CanWrite == true && x.PropertyType.IsPublic == true)
+                    .ToList();
 
-                double porcentaje = beVacacion.ComisionAfp.PorcentajeFondo + beVacacion.ComisionAfp.PorcentajeSeguro;
-                switch (uiVacacion.PensionTipoComision)
+                //Obtener las propuedades que sean publicas y se puedan escribir
+                var lstPropertiesInfosUI = uiVacacionRecibo.GetType().GetProperties()
+                    .Where(x => x.CanWrite == true && x.PropertyType.IsPublic == true)
+                    .ToList();
+
+                foreach (PropertyInfo propertyInfoBE in lstPropertiesInfosBE)
                 {
-                    case "FLUJO":
-                        porcentaje += beVacacion.ComisionAfp.PorcentajeComisionFlujo;
-                        break;
-                    case "MIXTA":
-                        porcentaje += beVacacion.ComisionAfp.PorcentajeComisionMixta;
-                        break;
-                    //case "SALDO":
-                    //    porcentaje += beVacacion.ComisionAfp.PorcentajeComisionFlujo;
-                    //    break;
-                    default:
-                        porcentaje += 0.0;
-                        break;
+                    var propertyName = propertyInfoBE.Name;
+
+                    PropertyInfo propertyInfoUI = lstPropertiesInfosUI.Where(x => x.Name == propertyName).FirstOrDefault();
+                    if (propertyInfoUI != null)
+                        propertyInfoBE.SetValue(beVacacionRecibo, propertyInfoUI.GetValue(uiVacacionRecibo));
+
                 }
-                uiVacacion.PensionPorcentaje = porcentaje;
 
-
+                return beVacacionRecibo;
             }
-            else if(beVacacion.ComisionOnp != null)
+            catch (Exception ex)
             {
-                uiVacacion.PensionId = 0;
-                uiVacacion.PensionTipo = BE.UI.TipoPensionEnum.ONP;
-                uiVacacion.PensionNombre = "ONP";
-                uiVacacion.PensionMonto = beVacacion.PensionMonto;
-
-                uiVacacion.PensionTipoComision = "";
-                uiVacacion.PensionPorcentaje = beVacacion.ComisionOnp.PorcentajeAporte;
+                throw ex;
             }
-
-            uiVacacion.RetencionJudicialMonto = beVacacion.RetencionJudicialMonto;
-
-            //uiVacacion.TotalBruto = beVacacion.TotalBruto;
-            //uiVacacion.TotalDescuento = beVacacion.TotalDescuento;
-            //uiVacacion.TotalNeto = beVacacion.TotalNeto;
-
-            uiVacacion.Detalle = new List<BE.UI.VacacionDetalle>();
-            foreach (BE.VacacionDetalle beVacacionDetalle in beVacacion.Detalle)
-            {
-                var uiVacacionDetalle = this.BeDetalleToUiDetalle(beVacacionDetalle);
-                uiVacacion.Detalle.Add(uiVacacionDetalle);
-            }
-
-            return uiVacacion;
         }
+
+        #endregion
 
         public bool Insertar(ref BE.UI.Vacacion uiVacacion)
         {
@@ -225,6 +311,52 @@ namespace ErpCasino.BusinessLibrary.LN
                     string codEmpleado = uiVacacion.EmpleadoCodigo;
                     DateTime fechaVacacion = uiVacacion.VacacionFechaInicial;
                     int rpta = new DA.ClsDaTbEmpleado().Vacacion(codEmpleado, fechaVacacion);
+                }
+
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BE.UI.VacacionRecibo ObtenerRecibo(int idVacacion)
+        {
+            try
+            {
+                BE.UI.VacacionRecibo uiVacacionRecibo = null;
+
+                BE.VacacionRecibo beVacacionRecibo = new DA.VacacionRecibo().Obtener(idVacacion);
+                if (beVacacionRecibo != null)
+                    uiVacacionRecibo = BeReciboToUiRecibo(beVacacionRecibo);
+
+                return uiVacacionRecibo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+       
+        public bool RegistrarRecibo(BE.UI.VacacionRecibo uiVacacionRecibo)
+        {
+            try
+            {
+                int rowsAffected = 0;
+
+                var daVacacionRecibo = new DA.VacacionRecibo();
+
+                BE.VacacionRecibo beVacacionRecibo = UiReciboToBeRecibo(uiVacacionRecibo);
+                if (beVacacionRecibo.IdVacacionRecibo == 0)
+                {
+                    rowsAffected = daVacacionRecibo.Insertar(ref beVacacionRecibo);
+                    uiVacacionRecibo.Id = beVacacionRecibo.IdVacacionRecibo;
+                }
+                else
+                {
+                    rowsAffected = daVacacionRecibo.Actualizar(beVacacionRecibo);
                 }
 
                 return rowsAffected > 0;
@@ -279,6 +411,30 @@ namespace ErpCasino.BusinessLibrary.LN
                 }
 
                 return lstUiVacaciones;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Obtener la última vacación (mas reciente) del empleado
+        /// </summary>
+        /// <param name="codigoEmpleado">Codigo de empleado de consulta</param>
+        /// <returns></returns>
+        public BE.UI.Vacacion ObtenerUltimo(string codigoEmpleado)
+        {
+            try
+            {
+                BE.UI.Vacacion uiVacacion = null;
+
+                var lstBeVacaciones = new DA.Vacacion().ListarPorEmpleado(codigoEmpleado);
+                var beVacaciones = lstBeVacaciones.FirstOrDefault();
+                if (beVacaciones != null)
+                    uiVacacion = this.BeToUi(beVacaciones);
+
+                return uiVacacion;
             }
             catch (Exception ex)
             {

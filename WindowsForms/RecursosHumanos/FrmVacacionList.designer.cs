@@ -34,7 +34,6 @@
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.btnVer = new System.Windows.Forms.Button();
-            this.btnImprimir = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVacaciones)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -108,8 +108,8 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnVer);
-            this.pnlInferior.Controls.Add(this.btnImprimir);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -128,17 +128,6 @@
             this.btnVer.Text = "Ver";
             this.btnVer.UseVisualStyleBackColor = true;
             this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImprimir.Location = new System.Drawing.Point(317, 5);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(100, 30);
-            this.btnImprimir.TabIndex = 19;
-            this.btnImprimir.Text = "Imprimir";
-            this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // pnlSuperior
             // 
@@ -255,6 +244,17 @@
             this.label2.TabIndex = 57;
             this.label2.Text = "Nro. Registros :";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 25;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmVacacionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,7 +264,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmVacacionList";
             this.Text = "Listado de Calculo de Vacaciones";
-            this.Load += new System.EventHandler(this.FrmPostulanteList_Load);
+            this.Load += new System.EventHandler(this.FrmVacacionList_Load);
             this.ResizeEnd += new System.EventHandler(this.FrmVacacionList_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVacaciones)).EndInit();
             this.tlpPrincipal.ResumeLayout(false);
@@ -296,7 +296,7 @@
         private System.Windows.Forms.TextBox txtNroRegistros;
         private System.Windows.Forms.TextBox txtTotal;
         internal System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnVer;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

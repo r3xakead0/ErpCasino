@@ -205,12 +205,59 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        public void ImpresionVacacion(string codigoEmpleado)
+        public void ImpresionVacacion(int idVacacion)
         {
 
             try
             {
-                
+                string impresion = @"\RecursosHumanos\Impresos\ImpresionVacacionRecibo.rpt";
+
+                ReportDocument rpt = new ReportDocument();
+
+                rpt.Load(Application.StartupPath + impresion);
+
+                //Obtener datos de conexion a Base de datos
+                var Conexion = new LN.Conexion();
+
+                //Cargar con la configuracion de Crystal Report
+                //==================================================================================
+                //Configuramos la Base de Datos
+                TableLogOnInfo ConInfo = new TableLogOnInfo();
+                ConInfo.ConnectionInfo.UserID = Conexion.Usuario;
+                ConInfo.ConnectionInfo.Password = Conexion.Clave;
+                ConInfo.ConnectionInfo.DatabaseName = Conexion.BaseDatos;
+                ConInfo.ConnectionInfo.ServerName = Conexion.Servidor;
+                for (int i = 0; i <= rpt.Database.Tables.Count - 1; i++)
+                {
+                    rpt.Database.Tables[i].ApplyLogOnInfo(ConInfo);
+                }
+
+                ParameterFieldDefinitions crParameterFieldDefinitions = default(ParameterFieldDefinitions);
+                ParameterFieldDefinition crParameter1 = default(ParameterFieldDefinition);
+                ParameterValues crParameter1Values = new ParameterValues();
+                ParameterDiscreteValue crDiscrete1Value = new ParameterDiscreteValue();
+
+                //'Get the collection of parameters from the report
+                crParameterFieldDefinitions = rpt.DataDefinition.ParameterFields;
+                //'Access the specified parameter from the collection
+                crParameter1 = crParameterFieldDefinitions["@IDVACACION"];
+
+                //'Get the current values from the parameter field.  At this point
+                //'there are zero values set.
+                crParameter1Values = crParameter1.CurrentValues;
+
+                //'Set the current values for the parameter field
+                crDiscrete1Value = new ParameterDiscreteValue();
+                crDiscrete1Value.Value = idVacacion;
+
+                //'Add the first current value for the parameter field
+                crParameter1Values.Add(crDiscrete1Value);
+
+                //'All current parameter values must be applied for the parameter field.
+                crParameter1.ApplyCurrentValues(crParameter1Values);
+
+                crvVisorInforme.ReportSource = rpt;
+                crvVisorInforme.Refresh();
             }
             catch (Exception ex)
             {
@@ -379,5 +426,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void crvVisorInforme_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
