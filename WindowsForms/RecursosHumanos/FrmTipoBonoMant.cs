@@ -166,9 +166,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     var uiBono = (BE.UI.Bono)this.dgvBonos.CurrentRow.DataBoundItem;
 
                     if (uiBono.Calculado == true)
-                        throw new Exception("No se puede eliminar una observación calculada");
+                        throw new Exception("No se puede eliminar una bono calculado");
 
-                    if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
+                    if (Util.ConfirmationMessage("¿Desea eliminar el bono seleccionado?") == false)
                         return;
 
                     if (uiBono.Id > 0)

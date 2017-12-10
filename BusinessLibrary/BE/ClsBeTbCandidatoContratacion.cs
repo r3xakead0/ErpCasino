@@ -15,7 +15,8 @@ namespace ErpCasino.BusinessLibrary.BE
         public bool Documentacion { get; set; } = false;
         public string Observacion { get; set; } = "";
         public double Sueldo { get; set; } = 0.0;
-        
+        public BE.Cargo Cargo { get; set; } = null;
+
         public object Clone()
         {
             return base.MemberwiseClone();

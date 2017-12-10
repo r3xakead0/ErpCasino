@@ -21,4 +21,16 @@ namespace ErpCasino.BusinessLibrary.BE.UI
 
     }
 
+    /// <summary>
+    /// Objeto de datos simples del Candidato y Sueldo
+    /// </summary>
+    public class CandidatoSueldo
+    {
+        public string Codigo { get; set; } = "";
+        public string Nombres { get; set; } = "";
+        public string ApellidoPaterno { get; set; } = "";
+        public string ApellidoMaterno { get; set; } = "";
+        public double Sueldo { get; set; } = 0.0;
+    }
+
 }

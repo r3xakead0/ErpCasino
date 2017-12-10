@@ -209,7 +209,6 @@
     <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralValidarDocumento.sql" />
     <Build Include="dbo\Stored Procedures\SpTbEmpleadoGeneralValidarCodigo.sql" />
     <Build Include="dbo\Stored Procedures\SpTbHorarioDetalle.sql" />
-    <Build Include="dbo\Stored Procedures\SpObtenerNombreCompleto.sql" />
     <Build Include="dbo\Tables\TbPlanillaDetalle.sql" />
     <Build Include="dbo\Tables\TbPlanilla.sql" />
     <Build Include="dbo\Functions\IsOverlapDates.sql" />
@@ -393,5 +392,18 @@
     <Build Include="dbo\Stored Procedures\SpTbVacacionReciboObtener.sql" />
     <Build Include="dbo\Stored Procedures\SpTbVacacionReciboInsertar.sql" />
     <Build Include="dbo\Stored Procedures\SpTbVacacionReciboActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoListar2.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbPrestamoCuotaListar2.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbDescuentoEmpleadoExisteCalculo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTrabajadorObtenerTipo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTrabajadorObtenerNombreCompleto.sql" />
+    <Build Include="dbo\Tables\TbSueldoCandidato.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoCandidatoListar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoCandidatoInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoCandidatoExisteCalculo.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoCandidatoEliminar.sql" />
+    <Build Include="dbo\Stored Procedures\SpTbSueldoCandidatoActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarSueldosCandidato.sql" />
+    <Build Include="dbo\Stored Procedures\SpListarAsistenciaCandidato.sql" />
   </ItemGroup>
 </Project>

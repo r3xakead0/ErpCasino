@@ -212,12 +212,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var lstCts = new LN.CTS().Listar();
+                var lstUiCts = new LN.CTS().Listar();
 
-                var source = new BindingSource();
-                source.DataSource = lstCts;
+                var sorted = new SortableBindingList<BE.UI.CTS>(lstUiCts);
 
-                this.dgvCts.DataSource = source;
+                this.dgvCts.DataSource = sorted;
             }
             catch (Exception ex)
             {

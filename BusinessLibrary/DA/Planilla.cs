@@ -826,6 +826,8 @@ namespace ErpCasino.BusinessLibrary.DA
 
                 #region Inasistencias
                 cmd.Parameters.Add(new SqlParameter("@MINUTOSINASISTENCIATOTAL", bePlanillaAsistencia.MinutosInasistenciaTotal));
+                cmd.Parameters.Add(new SqlParameter("@MINUTOSINASISTENCIANORMAL", bePlanillaAsistencia.MinutosInasistenciaNormal));
+                cmd.Parameters.Add(new SqlParameter("@MINUTOSINASISTENCIAFERIADO", bePlanillaAsistencia.MinutosInasistenciaFeriado));
                 #endregion
 
                 rowsAffected = cmd.ExecuteNonQuery();
@@ -965,7 +967,7 @@ namespace ErpCasino.BusinessLibrary.DA
         /// <param name="anho">Numero del año</param>
         /// <param name="mes">Numero del mes</param>
         /// <returns></returns>
-        public DataTable ListarAsistencia(int anho, int mes)
+        public DataTable ListarAsistencias(int anho, int mes)
         {
             try
             {
@@ -1043,7 +1045,9 @@ namespace ErpCasino.BusinessLibrary.DA
                         bePlanillaAsistencia.MinutosTardanzaNormalNocturna = int.Parse(reader["MinutosTardanzaNormalNocturna"].ToString());
                         bePlanillaAsistencia.MinutosTardanzaFeriadoDiurna = int.Parse(reader["MinutosTardanzaFeriadoDiurna"].ToString());
                         bePlanillaAsistencia.MinutosTardanzaFeriadoNocturna = int.Parse(reader["MinutosTardanzaFeriadoNocturna"].ToString());
-                        bePlanillaAsistencia.MinutosInasistenciaTotal = int.Parse(reader["MinutosInasistenciaTotal"].ToString());
+                        //bePlanillaAsistencia.MinutosInasistenciaTotal = int.Parse(reader["MinutosInasistenciaTotal"].ToString());
+                        bePlanillaAsistencia.MinutosInasistenciaNormal = int.Parse(reader["MinutosInasistenciaNormal"].ToString());
+                        bePlanillaAsistencia.MinutosInasistenciaFeriado = int.Parse(reader["MinutosInasistenciaFeriado"].ToString());
 
                         lstBePlanillaAsistencias.Add(bePlanillaAsistencia);
                     }

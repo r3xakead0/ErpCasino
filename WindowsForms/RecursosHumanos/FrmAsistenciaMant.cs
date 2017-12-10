@@ -631,5 +631,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 Util.PointerReady(this);
             }
         }
+        
     }
 }

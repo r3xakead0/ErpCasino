@@ -159,7 +159,49 @@ namespace ErpCasino.BusinessLibrary.DA
             }
             
         }
-        
+
+        /// <summary>
+        /// Validar si existe bonos calculados para el periodo (año y mes) y tipo de bono
+        /// </summary>
+        /// <param name="anho">Año de consulta en formato yyyy. Ejm: 2017</param>
+        /// <param name="mes">Mes de consulta en rango del 1 al 12. Ejm: 1</param>
+        /// <param name="descuentoId">ID del tipo de descuento</param>
+        /// <returns></returns>
+        public bool ExisteCalculo(int anho, int mes, int descuentoId)
+        {
+            int cantidad = 0;
+
+            try
+            {
+                string sp = "SpTbDescuentoEmpleadoExisteCalculo";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+                    cmd.Parameters.Add(new SqlParameter("@IDDESCUENTO", descuentoId));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        cantidad = reader["Cantidad"] == DBNull.Value ? 0 : int.Parse(reader["Cantidad"].ToString());
+                    }
+
+                }
+
+                return cantidad > 0;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 
 }

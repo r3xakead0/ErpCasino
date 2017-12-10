@@ -133,8 +133,25 @@ namespace ErpCasino.BusinessLibrary.LN
                 throw ex;
             }
         }
-        
 
+        /// <summary>
+        /// Validar si existe descuentos calculados para el periodo (año y mes) y tipo de bono
+        /// </summary>
+        /// <param name="anho">Año de consulta en formato yyyy. Ejm: 2017</param>
+        /// <param name="mes">Mes de consulta en rango del 1 al 12. Ejm: 1</param>
+        /// <param name="descuentoId">ID del tipo de descuento</param>
+        /// <returns></returns>
+        public bool ExisteCalculo(int anho, int mes, int descuentoId)
+        {
+            try
+            {
+                return new DA.DescuentoEmpleado().ExisteCalculo(anho, mes, descuentoId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

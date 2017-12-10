@@ -123,19 +123,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                double totBase = 0.0;
+                double totBase = 0.0; //Sueldo
                 double totBonos = 0.0;
                 double totDescuentos = 0.0;
                 double totGeneral = 0.0;
 
-                List<BE.UI.ReciboResumenDetalle> lstUiRecibosResumen = new List<BE.UI.ReciboResumenDetalle>();
+                List<BE.UI.Recibo> lstUiRecibosResumen = new List<BE.UI.Recibo>();
 
                 if (anho > 0 || mes > 0 || codigoEmpleado.Length > 0)
                 {
                     lstUiRecibosResumen = new LN.Recibo().ResumenDetallado(anho, mes, codigoEmpleado);
 
-                    totBonos = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Bono")).Sum(x => x.Monto);
-                    totDescuentos = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Descuento")).Sum(x => x.Monto);
+                    //totBase = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Sueldo")).Sum(x => x.Monto);
+                    totBonos = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Bono")).Sum(x => x.Total);
+                    totDescuentos = lstUiRecibosResumen.Where(x => x.Tipo.Equals("Descuento")).Sum(x => x.Total);
 
                     if (this.txtTipo.Text == BE.UI.TipoTrabajadorEnum.Candidato.ToString())
                     {
@@ -147,10 +148,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     totGeneral = totBase + totBonos - totDescuentos;
                 }
 
-                var sorted = new SortableBindingList<BE.UI.ReciboResumenDetalle>(lstUiRecibosResumen);
+                var sorted = new SortableBindingList<BE.UI.Recibo>(lstUiRecibosResumen);
                 this.dgvRecibos.DataSource = sorted;
 
-                this.txtTotalBase.Text = totBase.ToString("N2");
+                this.txtTotalSueldo.Text = totBase.ToString("N2");
                 this.txtTotalBonos.Text = totBonos.ToString("N2");
                 this.txtTotalDescuentos.Text = totDescuentos.ToString("N2");
                 this.txtTotalGeneral.Text = totGeneral.ToString("N2");

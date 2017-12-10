@@ -189,6 +189,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONEstado", beCandidato.Contratacion.Documentacion));
                     cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
                     cmd.Parameters.Add(new SqlParameter("@SUELDO", beCandidato.Contratacion.Sueldo));
+                    //cmd.Parameters.Add(new SqlParameter("@IDCARGO", beCandidato.Contratacion.Cargo.IdCargo));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 
@@ -308,6 +309,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@DOCUMENTACIONESTADO", beCandidato.Contratacion.Documentacion));
                     cmd.Parameters.Add(new SqlParameter("@OBSERVACION", beCandidato.Contratacion.Observacion));
                     cmd.Parameters.Add(new SqlParameter("@SUELDO", beCandidato.Contratacion.Sueldo));
+                    //cmd.Parameters.Add(new SqlParameter("@IDCARGO", beCandidato.Contratacion.Cargo.IdCargo));
 
                     rowsAffected += cmd.ExecuteNonQuery();
 

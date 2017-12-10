@@ -31,6 +31,8 @@
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblTotalSueldo = new System.Windows.Forms.Label();
+            this.txtTotalSueldo = new System.Windows.Forms.TextBox();
             this.lblTotalBonos = new System.Windows.Forms.Label();
             this.txtTotalBonos = new System.Windows.Forms.TextBox();
             this.lblTotalDescuentos = new System.Windows.Forms.Label();
@@ -49,8 +51,6 @@
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.lblTotalBase = new System.Windows.Forms.Label();
-            this.txtTotalBase = new System.Windows.Forms.TextBox();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,8 +89,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.lblTotalBase);
-            this.groupBox1.Controls.Add(this.txtTotalBase);
+            this.groupBox1.Controls.Add(this.lblTotalSueldo);
+            this.groupBox1.Controls.Add(this.txtTotalSueldo);
             this.groupBox1.Controls.Add(this.lblTotalBonos);
             this.groupBox1.Controls.Add(this.txtTotalBonos);
             this.groupBox1.Controls.Add(this.lblTotalDescuentos);
@@ -105,6 +105,30 @@
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Recibos";
+            // 
+            // lblTotalSueldo
+            // 
+            this.lblTotalSueldo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalSueldo.AutoSize = true;
+            this.lblTotalSueldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSueldo.Location = new System.Drawing.Point(452, 142);
+            this.lblTotalSueldo.Name = "lblTotalSueldo";
+            this.lblTotalSueldo.Size = new System.Drawing.Size(46, 13);
+            this.lblTotalSueldo.TabIndex = 98;
+            this.lblTotalSueldo.Text = "Sueldo :";
+            // 
+            // txtTotalSueldo
+            // 
+            this.txtTotalSueldo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalSueldo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotalSueldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalSueldo.Location = new System.Drawing.Point(453, 158);
+            this.txtTotalSueldo.Name = "txtTotalSueldo";
+            this.txtTotalSueldo.ReadOnly = true;
+            this.txtTotalSueldo.Size = new System.Drawing.Size(81, 20);
+            this.txtTotalSueldo.TabIndex = 99;
+            this.txtTotalSueldo.Text = "0.00";
+            this.txtTotalSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblTotalBonos
             // 
@@ -310,30 +334,6 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // lblTotalBase
-            // 
-            this.lblTotalBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotalBase.AutoSize = true;
-            this.lblTotalBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalBase.Location = new System.Drawing.Point(452, 142);
-            this.lblTotalBase.Name = "lblTotalBase";
-            this.lblTotalBase.Size = new System.Drawing.Size(37, 13);
-            this.lblTotalBase.TabIndex = 98;
-            this.lblTotalBase.Text = "Base :";
-            // 
-            // txtTotalBase
-            // 
-            this.txtTotalBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalBase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTotalBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalBase.Location = new System.Drawing.Point(453, 158);
-            this.txtTotalBase.Name = "txtTotalBase";
-            this.txtTotalBase.ReadOnly = true;
-            this.txtTotalBase.Size = new System.Drawing.Size(81, 20);
-            this.txtTotalBase.TabIndex = 99;
-            this.txtTotalBase.Text = "0.00";
-            this.txtTotalBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // FrmReciboDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,7 +379,7 @@
         internal System.Windows.Forms.Label lblTotalGeneral;
         private System.Windows.Forms.TextBox txtTotalGeneral;
         private System.Windows.Forms.TextBox txtTipo;
-        internal System.Windows.Forms.Label lblTotalBase;
-        private System.Windows.Forms.TextBox txtTotalBase;
+        internal System.Windows.Forms.Label lblTotalSueldo;
+        private System.Windows.Forms.TextBox txtTotalSueldo;
     }
 }

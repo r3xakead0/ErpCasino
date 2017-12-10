@@ -131,6 +131,21 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmDescuentoCalc = new FrmAsignarDescuentoCalcular(this);
+                frmDescuentoCalc.MdiParent = this.MdiParent;
+                frmDescuentoCalc.Show();
+
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             try
@@ -428,6 +443,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
 
         #endregion
- 
+
     }
 }

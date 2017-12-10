@@ -12,6 +12,11 @@ namespace ErpCasino.BusinessLibrary.LN
     public class Vacacion
     {
 
+        /// <summary>
+        /// Obtiene el nombre del mes
+        /// </summary>
+        /// <param name="numeroMes">Número del mes</param>
+        /// <returns></returns>
         private string NombreMes(int numeroMes)
         {
             string nombreMes = "";

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BE\Adelanto.cs" />
+    <Compile Include="BE\SueldoCandidato.cs" />
     <Compile Include="BE\Empresa.cs" />
     <Compile Include="BE\Movilidad.cs" />
     <Compile Include="BE\Recibo.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="BE\Turno.cs" />
     <Compile Include="BE\Ubigeo.cs" />
     <Compile Include="BE\Parametros.cs" />
+    <Compile Include="BE\UI\Costo.cs" />
+    <Compile Include="BE\UI\SueldoCandidato.cs" />
+    <Compile Include="BE\UI\TipoReciboEnum.cs" />
     <Compile Include="BE\UI\Trabajador.cs" />
     <Compile Include="BE\UI\TipoTrabajadorEnum.cs" />
     <Compile Include="BE\UI\TipoRetencionJudicialEnum.cs" />
@@ -131,6 +135,7 @@
     <Compile Include="BE\UI\Planilla.cs" />
     <Compile Include="BE\UI\Cuota.cs" />
     <Compile Include="BE\UI\Prestamo.cs" />
+    <Compile Include="DA\SueldoCandidato.cs" />
     <Compile Include="DA\Movilidad.cs" />
     <Compile Include="DA\Conexion.cs" />
     <Compile Include="DA\Empresa.cs" />
@@ -184,6 +189,9 @@
     <Compile Include="BE\Vacacion.cs" />
     <Compile Include="DA\Vacacion.cs" />
     <Compile Include="DA\VacacionRecibo.cs" />
+    <Compile Include="DA\Trabajador.cs" />
+    <Compile Include="LN\SueldoCandidato.cs" />
+    <Compile Include="LN\Trabajador.cs" />
     <Compile Include="LN\Movilidad.cs" />
     <Compile Include="LN\PlanillaBoleta.cs" />
     <Compile Include="LN\Vacacion.cs" />

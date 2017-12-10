@@ -180,15 +180,17 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 if (this.dgvDescuentos.CurrentRow != null)
                 {
 
-                    if (Util.ConfirmationMessage("¿Desea eliminar la observación seleccionada?") == false)
+                    if (Util.ConfirmationMessage("¿Desea eliminar el descuento seleccionado?") == false)
                         return;
 
                     var uiDescuento = (BE.UI.Descuento)this.dgvDescuentos.CurrentRow.DataBoundItem;
-                    if (uiDescuento.Id > 0)
-                    {
-                        this.lstEliminados.Add(uiDescuento);
-                    }
 
+                    if (uiDescuento.Calculado == true)
+                        throw new Exception("No se puede eliminar un descuento calculado");
+
+                    if (uiDescuento.Id > 0)
+                        this.lstEliminados.Add(uiDescuento);
+                    
                     this.lstCreados.Remove(uiDescuento);
                     this.lstModificados.Remove(uiDescuento);
 

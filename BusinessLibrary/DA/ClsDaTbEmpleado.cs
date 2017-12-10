@@ -584,38 +584,6 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-        public string ObtenerNombreCompleto(string codigo, bool? activo = null)
-        {
-            string nombreCompleto = "";
-
-            try
-            {
-                string sp = "SpObtenerNombreCompleto";
-
-                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
-                {
-                    cnn.Open();
-
-                    SqlCommand cmd = new SqlCommand(sp, cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
-                    cmd.Parameters.Add(new SqlParameter("@CODIGO", codigo));
-                    if (activo != null)
-                        cmd.Parameters.Add(new SqlParameter("@ACTIVO", activo));
-
-                    nombreCompleto = cmd.ExecuteScalar().ToString();
-
-                    cnn.Close();
-                }
-
-                return nombreCompleto;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         public BE.ClsBeTbEmpleado Obtener(int idEmpleado)
         {
@@ -803,7 +771,12 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
-
+        /// <summary>
+        /// Aplica vacación al empleado
+        /// </summary>
+        /// <param name="codigo">Codigo unico de trabajador</param>
+        /// <param name="fecha">Opcional: fecha de salida de vacaciones</param>
+        /// <returns></returns>
         internal int Vacacion(string codigo, DateTime? fecha = null)
         {
             try

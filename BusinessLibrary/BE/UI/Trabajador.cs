@@ -21,7 +21,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
                 return $"{Nombres} {ApellidoPaterno} {ApellidoMaterno}";
             }
         }
-        public TipoTrabajadorEnum Tipo { get; set; }
+        public TipoTrabajadorEnum Tipo { get; set; } = TipoTrabajadorEnum.Ninguno;
         public ActivoEnum Activo { get; set; }
     }
 }

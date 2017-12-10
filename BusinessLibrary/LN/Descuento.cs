@@ -19,6 +19,7 @@ namespace ErpCasino.BusinessLibrary.LN
             uiDescuento.Nombre = beDescuento.Nombre;
             uiDescuento.Descripcion = beDescuento.Descripcion;
             uiDescuento.Monto = beDescuento.Monto;
+            uiDescuento.Calculado = beDescuento.Calculado;
             uiDescuento.Activo = beDescuento.Activo;
 
             return uiDescuento;
@@ -32,6 +33,7 @@ namespace ErpCasino.BusinessLibrary.LN
             beDescuento.Nombre = uiDescuento.Nombre;
             beDescuento.Descripcion = uiDescuento.Descripcion;
             beDescuento.Monto = uiDescuento.Monto;
+            beDescuento.Calculado = uiDescuento.Calculado;
             beDescuento.Activo = uiDescuento.Activo;
 
             return beDescuento;

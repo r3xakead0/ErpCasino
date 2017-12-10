@@ -28,6 +28,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeDescuento.Nombre));
                     cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeDescuento.Descripcion));
                     cmd.Parameters.Add(new SqlParameter("@MONTO", oBeDescuento.Monto));
+                    cmd.Parameters.Add(new SqlParameter("@CALCULADO", oBeDescuento.Calculado));
                     cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeDescuento.Activo));
 
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -61,6 +62,7 @@ namespace ErpCasino.BusinessLibrary.DA
                     cmd.Parameters.Add(new SqlParameter("@IDDESCUENTO", oBeDescuento.IdDescuento));
                     cmd.Parameters.Add(new SqlParameter("@NOMBRE", oBeDescuento.Nombre));
                     cmd.Parameters.Add(new SqlParameter("@DESCRIPCION", oBeDescuento.Descripcion));
+                    cmd.Parameters.Add(new SqlParameter("@CALCULADO", oBeDescuento.Calculado));
                     cmd.Parameters.Add(new SqlParameter("@MONTO", oBeDescuento.Monto));
                     cmd.Parameters.Add(new SqlParameter("@ACTIVO", oBeDescuento.Activo));
 
@@ -127,6 +129,7 @@ namespace ErpCasino.BusinessLibrary.DA
                         beDescuento.Nombre = reader["Nombre"].ToString();
                         beDescuento.Descripcion = reader["Descripcion"].ToString();
                         beDescuento.Monto = double.Parse(reader["Monto"].ToString());
+                        beDescuento.Calculado = bool.Parse(reader["Calculado"].ToString());
                         beDescuento.Activo = bool.Parse(reader["Activo"].ToString());
 
                         lstDescuentos.Add(beDescuento);
@@ -166,6 +169,7 @@ namespace ErpCasino.BusinessLibrary.DA
                         beDescuento.Nombre = reader["Nombre"].ToString();
                         beDescuento.Descripcion = reader["Descripcion"].ToString();
                         beDescuento.Monto = double.Parse(reader["Monto"].ToString());
+                        beDescuento.Calculado = bool.Parse(reader["Calculado"].ToString());
                         beDescuento.Activo = bool.Parse(reader["Activo"].ToString());
                     }
                 }

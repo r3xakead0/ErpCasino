@@ -57,6 +57,7 @@
             this.dgvInasistencias.Name = "dgvInasistencias";
             this.dgvInasistencias.Size = new System.Drawing.Size(938, 264);
             this.dgvInasistencias.TabIndex = 0;
+            this.dgvInasistencias.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInasistencias_CellDoubleClick);
             // 
             // btnClasificar
             // 

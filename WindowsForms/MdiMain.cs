@@ -506,6 +506,21 @@ namespace ErpCasino.WindowsForms
             }
         }
 
+        private void tsmAsignarSueldos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmSueldo = FrmAsignarSueldoList.Instance();
+                frmSueldo.MdiParent = this;
+                frmSueldo.StartPosition = FormStartPosition.CenterScreen;
+                frmSueldo.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void tsmAsignarBonos_Click(object sender, EventArgs e)
         {
             try
@@ -570,7 +585,7 @@ namespace ErpCasino.WindowsForms
         {
             try
             {
-                var frmReciboCalcular = new FrmReciboCalcular();
+                var frmReciboCalcular = new FrmReciboRevisar();
                 frmReciboCalcular.MdiParent = this;
                 frmReciboCalcular.StartPosition = FormStartPosition.CenterScreen;
                 frmReciboCalcular.Show();

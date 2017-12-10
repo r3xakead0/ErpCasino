@@ -19,7 +19,7 @@ namespace ErpCasino.BusinessLibrary.LN
         {
             var uiPlanillaDetalle = new BE.UI.PlanillaAsistencia();
 
-            uiPlanillaDetalle.CodigoEmpleado = bePlanillaAsistencia.CodigoEmpleado;
+            uiPlanillaDetalle.Codigo = bePlanillaAsistencia.CodigoEmpleado;
             uiPlanillaDetalle.Fecha = bePlanillaAsistencia.Fecha;
             uiPlanillaDetalle.Semana = bePlanillaAsistencia.Semana;
 
@@ -132,9 +132,11 @@ namespace ErpCasino.BusinessLibrary.LN
             }
         }
 
-        /*
-         *  Listar todos los empleados activos con sus sueldos y si tiene hijos
-         */
+
+        /// <summary>
+        /// Listar todos los empleados activos con sus sueldos y si tiene hijos
+        /// </summary>
+        /// <returns></returns>
         public DataTable ListarSueldos()
         {
             try
@@ -390,7 +392,7 @@ namespace ErpCasino.BusinessLibrary.LN
                         uiPlanillaDetalle.Periodo = this.anho.ToString() + "/" + this.mes.ToString();
 
                         uiPlanillaDetalle.EmpleadoCodigo = beDetalle.CodigoEmpleado;
-                        uiPlanillaDetalle.EmpleadoNombre = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(beDetalle.CodigoEmpleado);
+                        uiPlanillaDetalle.EmpleadoNombre = new DA.Trabajador().ObtenerNombreCompleto(beDetalle.CodigoEmpleado);
 
                         var beCargo = new DA.Cargo().Obtener(beDetalle.IdCargo);
                         if (beCargo != null)
@@ -526,8 +528,9 @@ namespace ErpCasino.BusinessLibrary.LN
                     uiResumenAsistencia.IdPlanilla = int.Parse(drItem["IdPlanilla"].ToString());
                     uiResumenAsistencia.CodigoEmpleado = drItem["CodigoEmpleado"].ToString();
                     uiResumenAsistencia.CantidadAsistencias = int.Parse(drItem["CantidadAsistencias"].ToString());
-                    uiResumenAsistencia.CantidadInasistencias = int.Parse(drItem["CantidadInasistencias"].ToString());
                     uiResumenAsistencia.CantidadTardanzas = int.Parse(drItem["CantidadTardanzas"].ToString());
+                    uiResumenAsistencia.CantidadInasistenciasNormales = int.Parse(drItem["CantidadInasistenciasNormales"].ToString());
+                    uiResumenAsistencia.CantidadInasistenciasFeriados = int.Parse(drItem["CantidadInasistenciasFeriados"].ToString());
 
                     break;
                 }
@@ -542,20 +545,21 @@ namespace ErpCasino.BusinessLibrary.LN
 
         public List<BE.UI.PlanillaAsistencia> ListarAsistencia()
         {
-            List<BE.UI.PlanillaAsistencia> lstResultado = new List<BE.UI.PlanillaAsistencia>();
+            var lstUiPlanillaAsistencias = new List<BE.UI.PlanillaAsistencia>();
 
             try
             {
 
                 var daPlanilla = new DA.Planilla();
 
-                DataTable dtAsistencia = daPlanilla.ListarAsistencia(this.anho, this.mes);
+                DataTable dtAsistencia = daPlanilla.ListarAsistencias(this.anho, this.mes);
                 foreach (DataRow drItem in dtAsistencia.Rows)
                 {
 
                     #region Obtener datos de asistencia
 
                     string codEmpleado = drItem["Codigo"].ToString();
+                    string nomEmpleado = drItem["Empleado"].ToString();
                     DateTime fecha = DateTime.Parse(drItem["Fecha"].ToString());
                     int semana = int.Parse(drItem["Semana"].ToString());
 
@@ -604,28 +608,32 @@ namespace ErpCasino.BusinessLibrary.LN
                     int minutosTardanzaFeriadosNocturnas = 0;
 
                     int minutosInasistenciasTotales = 0;
+                    int minutosInasistenciasNormales = 0;
+                    int minutosInasistenciasFeriados = 0;
 
                     #region Calcular Horas Normales y Extras 
 
                     if (horasAsistencia > 0)
                     {
 
+                        #region Calcular Minutos de Asistencias 
+
                         this.ObtenerMinutosAsistencia(fechaHoraNocturnoInicio,
-                        fechaHoraNocturnoFinal,
-                        fechaHoraHorarioInicio,
-                        fechaHoraHorarioFinal,
-                        out minutosAsistenciaNormalesDiurnas,
-                        out minutosAsistenciaNormalesNocturnas,
-                        out minutosAsistenciaNormalesDiurnasPrimerasExtras,
-                        out minutosAsistenciaNormalesNocturnasPrimerasExtras,
-                        out minutosAsistenciaNormalesDiurnasPosterioresExtras,
-                        out minutosAsistenciaNormalesNocturnasPosterioresExtras,
-                        out minutosAsistenciaFeriadosDiurnas,
-                        out minutosAsistenciaFeriadosNocturnas,
-                        out minutosAsistenciaFeriadosDiurnasPrimerasExtras,
-                        out minutosAsistenciaFeriadosNocturnasPrimerasExtras,
-                        out minutosAsistenciaFeriadosDiurnasPosterioresExtras,
-                        out minutosAsistenciaFeriadosNocturnasPosterioresExtras);
+                                                    fechaHoraNocturnoFinal,
+                                                    fechaHoraHorarioInicio,
+                                                    fechaHoraHorarioFinal,
+                                                    out minutosAsistenciaNormalesDiurnas,
+                                                    out minutosAsistenciaNormalesNocturnas,
+                                                    out minutosAsistenciaNormalesDiurnasPrimerasExtras,
+                                                    out minutosAsistenciaNormalesNocturnasPrimerasExtras,
+                                                    out minutosAsistenciaNormalesDiurnasPosterioresExtras,
+                                                    out minutosAsistenciaNormalesNocturnasPosterioresExtras,
+                                                    out minutosAsistenciaFeriadosDiurnas,
+                                                    out minutosAsistenciaFeriadosNocturnas,
+                                                    out minutosAsistenciaFeriadosDiurnasPrimerasExtras,
+                                                    out minutosAsistenciaFeriadosNocturnasPrimerasExtras,
+                                                    out minutosAsistenciaFeriadosDiurnasPosterioresExtras,
+                                                    out minutosAsistenciaFeriadosNocturnasPosterioresExtras);
 
                         minutosAsistenciaNormalesTotales = minutosAsistenciaNormalesDiurnas
                                                          + minutosAsistenciaNormalesNocturnas
@@ -640,6 +648,8 @@ namespace ErpCasino.BusinessLibrary.LN
                                                          + minutosAsistenciaFeriadosNocturnasPrimerasExtras
                                                          + minutosAsistenciaFeriadosDiurnasPosterioresExtras
                                                          + minutosAsistenciaFeriadosNocturnasPosterioresExtras;
+
+                        #endregion
 
                         #region Calcular Minutos de Tardanza
 
@@ -658,58 +668,74 @@ namespace ErpCasino.BusinessLibrary.LN
                         minutosTardanzaFeriadosTotales = minutosTardanzaFeriadosDiurnas
                                                        + minutosTardanzaFeriadosNocturnas;
 
+                        #endregion
+
                     }
                     else
                     {
-                        minutosInasistenciasTotales = horasHorario * 60;
+
+                        #region Calcular Minutos de Inasistencia
+
+                        this.ObtenerMinutosInasistencia(fechaHoraHorarioInicio,
+                            fechaHoraHorarioFinal,
+                            out minutosInasistenciasNormales,
+                            out minutosInasistenciasFeriados);
+
+                        minutosInasistenciasTotales = minutosInasistenciasNormales 
+                                                    + minutosInasistenciasFeriados;
+
+                        #endregion
                     }
-                    #endregion
 
                     #endregion
 
-                    var objRegistro = new BE.UI.PlanillaAsistencia();
-                    objRegistro.CodigoEmpleado = codEmpleado;
-                    objRegistro.Fecha = fecha;
-                    objRegistro.Semana = semana;
+                    var uiPlanillaAsistencia = new BE.UI.PlanillaAsistencia();
 
-                    objRegistro.FechaHoraInicio = fechaHoraHorarioInicio;
-                    objRegistro.FechaHoraFinal = fechaHoraHorarioFinal;
+                    uiPlanillaAsistencia.Codigo = codEmpleado;
+                    //uiPlanillaAsistencia.NombreEmpleado = nomEmpleado;
+                    uiPlanillaAsistencia.Fecha = fecha;
+                    uiPlanillaAsistencia.Semana = semana;
+
+                    uiPlanillaAsistencia.FechaHoraInicio = fechaHoraHorarioInicio;
+                    uiPlanillaAsistencia.FechaHoraFinal = fechaHoraHorarioFinal;
 
                     //Asistencia Normales
-                    objRegistro.AsistenciaNormalTotal = minutosAsistenciaNormalesTotales;
-                    objRegistro.AsistenciaNormalDiurna = minutosAsistenciaNormalesDiurnas;
-                    objRegistro.AsistenciaNormalNocturna = minutosAsistenciaNormalesNocturnas;
-                    objRegistro.AsistenciaNormalDiurnaExtra1 = minutosAsistenciaNormalesDiurnasPrimerasExtras;
-                    objRegistro.AsistenciaNormalNocturnaExtra1 = minutosAsistenciaNormalesNocturnasPrimerasExtras;
-                    objRegistro.AsistenciaNormalDiurnaExtra2 = minutosAsistenciaNormalesDiurnasPosterioresExtras;
-                    objRegistro.AsistenciaNormalNocturnaExtra2 = minutosAsistenciaNormalesNocturnasPosterioresExtras;
+                    uiPlanillaAsistencia.AsistenciaNormalTotal = minutosAsistenciaNormalesTotales;
+                    uiPlanillaAsistencia.AsistenciaNormalDiurna = minutosAsistenciaNormalesDiurnas;
+                    uiPlanillaAsistencia.AsistenciaNormalNocturna = minutosAsistenciaNormalesNocturnas;
+                    uiPlanillaAsistencia.AsistenciaNormalDiurnaExtra1 = minutosAsistenciaNormalesDiurnasPrimerasExtras;
+                    uiPlanillaAsistencia.AsistenciaNormalNocturnaExtra1 = minutosAsistenciaNormalesNocturnasPrimerasExtras;
+                    uiPlanillaAsistencia.AsistenciaNormalDiurnaExtra2 = minutosAsistenciaNormalesDiurnasPosterioresExtras;
+                    uiPlanillaAsistencia.AsistenciaNormalNocturnaExtra2 = minutosAsistenciaNormalesNocturnasPosterioresExtras;
 
                     //Tardanza Normales
-                    objRegistro.TardanzaNormalTotal = minutosTardanzaNormalesTotales;
-                    objRegistro.TardanzaNormalDiurna = minutosTardanzaNormalesDiurnas;
-                    objRegistro.TardanzaNormalNocturna = minutosTardanzaNormalesNocturnas;
+                    uiPlanillaAsistencia.TardanzaNormalTotal = minutosTardanzaNormalesTotales;
+                    uiPlanillaAsistencia.TardanzaNormalDiurna = minutosTardanzaNormalesDiurnas;
+                    uiPlanillaAsistencia.TardanzaNormalNocturna = minutosTardanzaNormalesNocturnas;
 
                     //Asistencia Feriados
-                    objRegistro.AsistenciaFeriadoTotal = minutosAsistenciaFeriadosTotales;
-                    objRegistro.AsistenciaFeriadoDiurna = minutosAsistenciaFeriadosDiurnas;
-                    objRegistro.AsistenciaFeriadoNocturna = minutosAsistenciaFeriadosNocturnas;
-                    objRegistro.AsistenciaFeriadoDiurnaExtra1 = minutosAsistenciaFeriadosDiurnasPrimerasExtras;
-                    objRegistro.AsistenciaFeriadoNocturnaExtra1 = minutosAsistenciaFeriadosNocturnasPrimerasExtras;
-                    objRegistro.AsistenciaFeriadoDiurnaExtra2 = minutosAsistenciaFeriadosDiurnasPosterioresExtras;
-                    objRegistro.AsistenciaFeriadoNocturnaExtra2 = minutosAsistenciaFeriadosNocturnasPosterioresExtras;
+                    uiPlanillaAsistencia.AsistenciaFeriadoTotal = minutosAsistenciaFeriadosTotales;
+                    uiPlanillaAsistencia.AsistenciaFeriadoDiurna = minutosAsistenciaFeriadosDiurnas;
+                    uiPlanillaAsistencia.AsistenciaFeriadoNocturna = minutosAsistenciaFeriadosNocturnas;
+                    uiPlanillaAsistencia.AsistenciaFeriadoDiurnaExtra1 = minutosAsistenciaFeriadosDiurnasPrimerasExtras;
+                    uiPlanillaAsistencia.AsistenciaFeriadoNocturnaExtra1 = minutosAsistenciaFeriadosNocturnasPrimerasExtras;
+                    uiPlanillaAsistencia.AsistenciaFeriadoDiurnaExtra2 = minutosAsistenciaFeriadosDiurnasPosterioresExtras;
+                    uiPlanillaAsistencia.AsistenciaFeriadoNocturnaExtra2 = minutosAsistenciaFeriadosNocturnasPosterioresExtras;
 
                     //Tardanza Feriado
-                    objRegistro.TardanzaFeriadoTotal = minutosTardanzaFeriadosTotales;
-                    objRegistro.TardanzaFeriadoDiurna = minutosTardanzaFeriadosDiurnas;
-                    objRegistro.TardanzaFeriadoNocturna = minutosTardanzaFeriadosNocturnas;
+                    uiPlanillaAsistencia.TardanzaFeriadoTotal = minutosTardanzaFeriadosTotales;
+                    uiPlanillaAsistencia.TardanzaFeriadoDiurna = minutosTardanzaFeriadosDiurnas;
+                    uiPlanillaAsistencia.TardanzaFeriadoNocturna = minutosTardanzaFeriadosNocturnas;
 
                     //Tardanza Inasistencias
-                    objRegistro.InasistenciaTotal = minutosInasistenciasTotales;
+                    uiPlanillaAsistencia.InasistenciaTotal = minutosInasistenciasTotales;
+                    uiPlanillaAsistencia.InasistenciaNormal = minutosInasistenciasNormales;
+                    uiPlanillaAsistencia.InasistenciaFeriado = minutosInasistenciasFeriados;
 
-                    lstResultado.Add(objRegistro);
+                    lstUiPlanillaAsistencias.Add(uiPlanillaAsistencia);
                 }
 
-                return lstResultado;
+                return lstUiPlanillaAsistencias;
             }
             catch (Exception ex)
             {
@@ -936,6 +962,45 @@ namespace ErpCasino.BusinessLibrary.LN
                 minutosTardanzaFeriadoDiurnas = minutosFeriadoDiurnas > 0 ? minutosFeriadoDiurnas : 0;
                 minutosTardanzaFeriadoNocturnas = minutosFeriadoNocturas > 0 ? minutosFeriadoNocturas : 0;
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void ObtenerMinutosInasistencia(DateTime fechaHoraInicio,
+                                            DateTime fechaHoraFinal,
+                                            out int minutosInasistenciaNormales,
+                                            out int minutosInasistenciaFeriados)
+        {
+
+            try
+            {
+                int minNorDia = 0;
+                int minFerDia = 0;
+
+                int minutosTotales = (int)fechaHoraFinal.Subtract(fechaHoraInicio).TotalMinutes;
+                DateTime fechaHoraActual = fechaHoraInicio;
+                DateTime fechaHoraTermino = fechaHoraFinal.AddMinutes(-15);
+                int numMinutos = 1;
+
+                while (fechaHoraActual < fechaHoraTermino)
+                {
+
+                    bool esFeriado = this.EsFeriado(fechaHoraActual);
+
+                    if (esFeriado == false) //Inasistencia Normal
+                        minNorDia++;
+                    else //Inasistencia Feriado
+                        minFerDia++;
+
+                    fechaHoraActual = fechaHoraInicio.AddMinutes(numMinutos);
+                    numMinutos++;
+                }
+
+                minutosInasistenciaNormales = minNorDia;
+                minutosInasistenciaFeriados = minFerDia;
             }
             catch (Exception ex)
             {

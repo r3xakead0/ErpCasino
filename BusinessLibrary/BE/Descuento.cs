@@ -71,6 +71,8 @@ namespace ErpCasino.BusinessLibrary.BE
             }
         }
 
+        public bool Calculado { get; set; }
+
         public Descuento()
         {
 

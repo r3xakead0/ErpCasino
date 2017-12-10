@@ -188,6 +188,7 @@
             this.btnArchivo.Size = new System.Drawing.Size(25, 20);
             this.btnArchivo.TabIndex = 24;
             this.btnArchivo.UseVisualStyleBackColor = true;
+            this.btnArchivo.Click += new System.EventHandler(this.btnArchivo_Click);
             // 
             // cboTipos
             // 

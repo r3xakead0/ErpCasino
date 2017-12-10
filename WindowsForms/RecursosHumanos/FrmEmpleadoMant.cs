@@ -149,7 +149,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 #region Inicializar datos de RRHH
 
                 beEmpleado.Recurso = new BE.ClsBeTbEmpleadoRecurso();
-
+                beEmpleado.Recurso.Sueldo = beCandidato.Contratacion.Sueldo;
+                beEmpleado.Recurso.Cargo = beCandidato.Contratacion.Cargo;
                 #endregion
 
                 this.Cargar(beEmpleado);

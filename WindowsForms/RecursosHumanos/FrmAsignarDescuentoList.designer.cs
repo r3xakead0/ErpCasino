@@ -34,6 +34,8 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
             this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
@@ -43,7 +45,6 @@
             this.cboMes = new System.Windows.Forms.ComboBox();
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.LblFechaHora = new System.Windows.Forms.Label();
-            this.btnExportar = new System.Windows.Forms.Button();
             this.pnlResumen = new System.Windows.Forms.Panel();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -122,6 +123,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnCalcular);
             this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
@@ -131,6 +133,26 @@
             this.pnlInferior.Name = "pnlInferior";
             this.pnlInferior.Size = new System.Drawing.Size(885, 44);
             this.pnlInferior.TabIndex = 1;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(9, 5);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(100, 30);
+            this.btnCalcular.TabIndex = 20;
+            this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(115, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 21;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // pnlSuperior
             // 
@@ -169,11 +191,11 @@
             // 
             this.lblEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmpleado.AutoSize = true;
-            this.lblEmpleado.Location = new System.Drawing.Point(454, 11);
+            this.lblEmpleado.Location = new System.Drawing.Point(401, 10);
             this.lblEmpleado.Name = "lblEmpleado";
-            this.lblEmpleado.Size = new System.Drawing.Size(60, 13);
+            this.lblEmpleado.Size = new System.Drawing.Size(116, 13);
             this.lblEmpleado.TabIndex = 93;
-            this.lblEmpleado.Text = "Empleado :";
+            this.lblEmpleado.Text = "Candidato | Empleado :";
             // 
             // cboEmpleado
             // 
@@ -223,16 +245,6 @@
             this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
             this.LblFechaHora.TabIndex = 55;
             this.LblFechaHora.Text = "Año y Mes :";
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.Location = new System.Drawing.Point(9, 5);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(100, 30);
-            this.btnExportar.TabIndex = 21;
-            this.btnExportar.Text = "Exportar CSV";
-            this.btnExportar.UseVisualStyleBackColor = true;
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // pnlResumen
             // 
@@ -298,7 +310,7 @@
             this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.Name = "FrmAsignarDescuentoList";
-            this.Text = "Listado de Descuentos de Empleados";
+            this.Text = "Listado de Descuentos de Candidatos y Empleados";
             this.Load += new System.EventHandler(this.FrmAsignarDescuentoList_Load);
             this.ResizeEnd += new System.EventHandler(this.FrmAsignarDescuentoList_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).EndInit();
@@ -336,5 +348,6 @@
         internal System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNroRegistros;
         internal System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCalcular;
     }
 }

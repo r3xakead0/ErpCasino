@@ -34,12 +34,12 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlBotones = new System.Windows.Forms.Panel();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.BtnContratar = new System.Windows.Forms.Button();
             this.pnlListado = new System.Windows.Forms.Panel();
             this.pnlResumen = new System.Windows.Forms.Panel();
             this.txtNroCandidatos = new System.Windows.Forms.TextBox();
             this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
-            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlBotones.SuspendLayout();
@@ -55,6 +55,7 @@
             this.dgvCandidatos.Name = "dgvCandidatos";
             this.dgvCandidatos.Size = new System.Drawing.Size(913, 311);
             this.dgvCandidatos.TabIndex = 0;
+            this.dgvCandidatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCandidatos_CellDoubleClick);
             this.dgvCandidatos.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCandidato_ColumnHeaderMouseClick);
             // 
             // btnNuevo
@@ -120,6 +121,17 @@
             this.pnlBotones.Size = new System.Drawing.Size(913, 44);
             this.pnlBotones.TabIndex = 1;
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(9, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 24;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // BtnContratar
             // 
             this.BtnContratar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -173,17 +185,6 @@
             this.lblRegistrosAsistencias.Size = new System.Drawing.Size(57, 13);
             this.lblRegistrosAsistencias.TabIndex = 59;
             this.lblRegistrosAsistencias.Text = "Registros :";
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExportar.Location = new System.Drawing.Point(9, 5);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(100, 30);
-            this.btnExportar.TabIndex = 24;
-            this.btnExportar.Text = "Exportar CSV";
-            this.btnExportar.UseVisualStyleBackColor = true;
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // FrmCandidatoList
             // 

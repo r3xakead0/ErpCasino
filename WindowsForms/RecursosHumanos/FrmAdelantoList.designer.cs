@@ -46,6 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportar);
             this.pnlInferior.Controls.Add(this.btnCargar);
             this.pnlInferior.Controls.Add(this.btnNuevo);
             this.pnlInferior.Controls.Add(this.btnEliminar);
@@ -254,6 +256,17 @@
             this.label2.TabIndex = 57;
             this.label2.Text = "Nro. Registros :";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Location = new System.Drawing.Point(115, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 25;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmAdelantoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,7 +276,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmAdelantoList";
             this.Text = "Listado de Adelantos";
-            this.Load += new System.EventHandler(this.FrmPostulanteList_Load);
+            this.Load += new System.EventHandler(this.FrmAdelantoList_Load);
             this.ResizeEnd += new System.EventHandler(this.FrmAdelantoList_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).EndInit();
             this.tlpPrincipal.ResumeLayout(false);
@@ -297,5 +310,6 @@
         private System.Windows.Forms.TextBox txtTotalAdelantos;
         internal System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCargar;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

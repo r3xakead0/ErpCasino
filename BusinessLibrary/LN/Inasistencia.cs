@@ -175,7 +175,7 @@ namespace ErpCasino.BusinessLibrary.LN
                     uiInasistencia.EmpleadoCodigo = drInasistencia["Codigo"].ToString();
                     if (uiInasistencia.EmpleadoCodigo.Length > 0)
                     {
-                        string nombreEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(uiInasistencia.EmpleadoCodigo);
+                        string nombreEmpleado = new DA.Trabajador().ObtenerNombreCompleto(uiInasistencia.EmpleadoCodigo);
                         uiInasistencia.EmpleadoNombreCompleto = nombreEmpleado.Length == 0 ? "NO DEFINIDO" : nombreEmpleado;
                     }
 

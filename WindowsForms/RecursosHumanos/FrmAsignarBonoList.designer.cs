@@ -34,6 +34,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.pnlSuperior = new System.Windows.Forms.Panel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
@@ -49,7 +50,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBonos)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -135,6 +135,16 @@
             this.pnlInferior.Size = new System.Drawing.Size(885, 44);
             this.pnlInferior.TabIndex = 1;
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(115, 5);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 30);
+            this.btnExportar.TabIndex = 20;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // btnCalcular
             // 
             this.btnCalcular.Location = new System.Drawing.Point(9, 5);
@@ -182,11 +192,11 @@
             // 
             this.lblEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmpleado.AutoSize = true;
-            this.lblEmpleado.Location = new System.Drawing.Point(454, 11);
+            this.lblEmpleado.Location = new System.Drawing.Point(401, 10);
             this.lblEmpleado.Name = "lblEmpleado";
-            this.lblEmpleado.Size = new System.Drawing.Size(60, 13);
+            this.lblEmpleado.Size = new System.Drawing.Size(116, 13);
             this.lblEmpleado.TabIndex = 90;
-            this.lblEmpleado.Text = "Empleado :";
+            this.lblEmpleado.Text = "Candidato | Empleado :";
             // 
             // cboEmpleado
             // 
@@ -293,16 +303,6 @@
             this.label2.TabIndex = 64;
             this.label2.Text = "Nro. Registros :";
             // 
-            // btnExportar
-            // 
-            this.btnExportar.Location = new System.Drawing.Point(115, 5);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(100, 30);
-            this.btnExportar.TabIndex = 20;
-            this.btnExportar.Text = "Exportar CSV";
-            this.btnExportar.UseVisualStyleBackColor = true;
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
-            // 
             // FrmAsignarBonoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,7 +311,7 @@
             this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.Name = "FrmAsignarBonoList";
-            this.Text = "Listado de Bonos de Empleados";
+            this.Text = "Listado de Bonos de Candidatos y Empleados";
             this.Load += new System.EventHandler(this.FrmAsignarBonoList_Load);
             this.ResizeEnd += new System.EventHandler(this.FrmAsignarBonoList_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBonos)).EndInit();

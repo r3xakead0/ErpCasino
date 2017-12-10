@@ -95,6 +95,8 @@
             this.LblEmail = new System.Windows.Forms.Label();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TbpContratacion = new System.Windows.Forms.TabPage();
+            this.lblSueldo = new System.Windows.Forms.Label();
+            this.txtSueldo = new System.Windows.Forms.TextBox();
             this.GrpInformes = new System.Windows.Forms.GroupBox();
             this.CbxAproboAdministrativo = new System.Windows.Forms.CheckBox();
             this.CbxAproboDisciplinario = new System.Windows.Forms.CheckBox();
@@ -113,8 +115,8 @@
             this.PnlPrincipal = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.lblSueldo = new System.Windows.Forms.Label();
-            this.txtSueldo = new System.Windows.Forms.TextBox();
+            this.LblIdCargo = new System.Windows.Forms.Label();
+            this.cboCargo = new System.Windows.Forms.ComboBox();
             this.TlpPrincipal.SuspendLayout();
             this.TbcMantenimiento.SuspendLayout();
             this.TbpGeneral.SuspendLayout();
@@ -829,6 +831,8 @@
             // 
             // TbpContratacion
             // 
+            this.TbpContratacion.Controls.Add(this.LblIdCargo);
+            this.TbpContratacion.Controls.Add(this.cboCargo);
             this.TbpContratacion.Controls.Add(this.lblSueldo);
             this.TbpContratacion.Controls.Add(this.txtSueldo);
             this.TbpContratacion.Controls.Add(this.GrpInformes);
@@ -844,13 +848,34 @@
             this.TbpContratacion.Text = "Contratación";
             this.TbpContratacion.UseVisualStyleBackColor = true;
             // 
+            // lblSueldo
+            // 
+            this.lblSueldo.Location = new System.Drawing.Point(27, 299);
+            this.lblSueldo.Name = "lblSueldo";
+            this.lblSueldo.Size = new System.Drawing.Size(97, 13);
+            this.lblSueldo.TabIndex = 82;
+            this.lblSueldo.Text = "Sueldo:";
+            this.lblSueldo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtSueldo
+            // 
+            this.txtSueldo.Location = new System.Drawing.Point(145, 296);
+            this.txtSueldo.Name = "txtSueldo";
+            this.txtSueldo.Size = new System.Drawing.Size(100, 20);
+            this.txtSueldo.TabIndex = 81;
+            this.txtSueldo.Text = "0.00";
+            this.txtSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSueldo.Enter += new System.EventHandler(this.txtSueldo_Enter);
+            this.txtSueldo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSueldo_KeyPress);
+            this.txtSueldo.Leave += new System.EventHandler(this.txtSueldo_Leave);
+            // 
             // GrpInformes
             // 
             this.GrpInformes.Controls.Add(this.CbxAproboAdministrativo);
             this.GrpInformes.Controls.Add(this.CbxAproboDisciplinario);
-            this.GrpInformes.Location = new System.Drawing.Point(30, 243);
+            this.GrpInformes.Location = new System.Drawing.Point(343, 97);
             this.GrpInformes.Name = "GrpInformes";
-            this.GrpInformes.Size = new System.Drawing.Size(445, 68);
+            this.GrpInformes.Size = new System.Drawing.Size(129, 68);
             this.GrpInformes.TabIndex = 78;
             this.GrpInformes.TabStop = false;
             this.GrpInformes.Text = "Informes";
@@ -879,7 +904,7 @@
             this.GrpDocumentos.Controls.Add(this.ClbDocumentos);
             this.GrpDocumentos.Location = new System.Drawing.Point(30, 97);
             this.GrpDocumentos.Name = "GrpDocumentos";
-            this.GrpDocumentos.Size = new System.Drawing.Size(445, 137);
+            this.GrpDocumentos.Size = new System.Drawing.Size(297, 137);
             this.GrpDocumentos.TabIndex = 77;
             this.GrpDocumentos.TabStop = false;
             this.GrpDocumentos.Text = "Documentos";
@@ -896,10 +921,13 @@
             // 
             // ClbDocumentos
             // 
+            this.ClbDocumentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ClbDocumentos.FormattingEnabled = true;
             this.ClbDocumentos.Location = new System.Drawing.Point(6, 49);
             this.ClbDocumentos.Name = "ClbDocumentos";
-            this.ClbDocumentos.Size = new System.Drawing.Size(433, 79);
+            this.ClbDocumentos.Size = new System.Drawing.Size(285, 79);
             this.ClbDocumentos.TabIndex = 28;
             this.ClbDocumentos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ClbDocumentos_ItemCheck);
             // 
@@ -980,7 +1008,7 @@
             // LblObservacion
             // 
             this.LblObservacion.AutoSize = true;
-            this.LblObservacion.Location = new System.Drawing.Point(27, 329);
+            this.LblObservacion.Location = new System.Drawing.Point(27, 243);
             this.LblObservacion.Name = "LblObservacion";
             this.LblObservacion.Size = new System.Drawing.Size(70, 13);
             this.LblObservacion.TabIndex = 69;
@@ -988,7 +1016,7 @@
             // 
             // TxtObservacion
             // 
-            this.TxtObservacion.Location = new System.Drawing.Point(145, 326);
+            this.TxtObservacion.Location = new System.Drawing.Point(145, 240);
             this.TxtObservacion.Multiline = true;
             this.TxtObservacion.Name = "TxtObservacion";
             this.TxtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1027,26 +1055,24 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // lblSueldo
+            // LblIdCargo
             // 
-            this.lblSueldo.Location = new System.Drawing.Point(27, 385);
-            this.lblSueldo.Name = "lblSueldo";
-            this.lblSueldo.Size = new System.Drawing.Size(97, 13);
-            this.lblSueldo.TabIndex = 82;
-            this.lblSueldo.Text = "Sueldo:";
-            this.lblSueldo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LblIdCargo.AutoSize = true;
+            this.LblIdCargo.Location = new System.Drawing.Point(28, 325);
+            this.LblIdCargo.Name = "LblIdCargo";
+            this.LblIdCargo.Size = new System.Drawing.Size(38, 13);
+            this.LblIdCargo.TabIndex = 84;
+            this.LblIdCargo.Text = "Cargo:";
             // 
-            // txtSueldo
+            // cboCargo
             // 
-            this.txtSueldo.Location = new System.Drawing.Point(145, 382);
-            this.txtSueldo.Name = "txtSueldo";
-            this.txtSueldo.Size = new System.Drawing.Size(100, 20);
-            this.txtSueldo.TabIndex = 81;
-            this.txtSueldo.Text = "0.00";
-            this.txtSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSueldo.Enter += new System.EventHandler(this.txtSueldo_Enter);
-            this.txtSueldo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSueldo_KeyPress);
-            this.txtSueldo.Leave += new System.EventHandler(this.txtSueldo_Leave);
+            this.cboCargo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCargo.Location = new System.Drawing.Point(145, 322);
+            this.cboCargo.Name = "cboCargo";
+            this.cboCargo.Size = new System.Drawing.Size(330, 21);
+            this.cboCargo.TabIndex = 83;
             // 
             // FrmCandidatoMant
             // 
@@ -1166,5 +1192,7 @@
         internal System.Windows.Forms.Label LblNacProvinciaAsterisk;
         internal System.Windows.Forms.Label lblSueldo;
         internal System.Windows.Forms.TextBox txtSueldo;
+        internal System.Windows.Forms.Label LblIdCargo;
+        internal System.Windows.Forms.ComboBox cboCargo;
     }
 }

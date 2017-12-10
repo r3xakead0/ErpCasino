@@ -141,7 +141,16 @@ namespace ErpCasino.BusinessLibrary.BE
 
         #region Inasistencias
 
-        public int MinutosInasistenciaTotal { get; set; }
+        public int MinutosInasistenciaTotal
+        {
+            get
+            {
+                return this.MinutosInasistenciaNormal
+                    + this.MinutosInasistenciaFeriado;
+            }
+        }
+        public int MinutosInasistenciaNormal { get; set; }
+        public int MinutosInasistenciaFeriado { get; set; }
 
         #endregion
 

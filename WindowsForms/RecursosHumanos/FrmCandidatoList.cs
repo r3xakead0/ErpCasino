@@ -50,6 +50,18 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+        private void dgvCandidatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                this.Editar();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             try
@@ -72,21 +84,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-
-                if (this.dgvCandidatos.CurrentRow != null)
-                {
-                    var uiCandidato = (BE.UI.Candidato)this.dgvCandidatos.CurrentRow.DataBoundItem;
-
-                    var frmCandidatoEdit = FrmCandidatoMant.Instance();
-                    frmCandidatoEdit.MdiParent = this.MdiParent;
-                    frmCandidatoEdit.Show();
-
-                    frmCandidatoEdit.frmList = this;
-
-                    var beCandidato = new LN.Candidato().Obtener(uiCandidato.Id);
-                    frmCandidatoEdit.Cargar(beCandidato);
-                    
-                }
+                this.Editar();
             }
             catch (Exception ex)
             {
@@ -232,6 +230,32 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         #endregion
 
         #region Metodos
+
+        private void Editar()
+        {
+            try
+            {
+                if (this.dgvCandidatos.CurrentRow != null)
+                {
+                    var uiCandidato = (BE.UI.Candidato)this.dgvCandidatos.CurrentRow.DataBoundItem;
+
+                    var frmCandidatoEdit = FrmCandidatoMant.Instance();
+                    frmCandidatoEdit.MdiParent = this.MdiParent;
+                    frmCandidatoEdit.Show();
+
+                    frmCandidatoEdit.frmList = this;
+
+                    var beCandidato = new LN.Candidato().Obtener(uiCandidato.Id);
+                    frmCandidatoEdit.Cargar(beCandidato);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void CargarCandidatos()
         {
             try
@@ -318,8 +342,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+
         #endregion
 
-        
     }
 }

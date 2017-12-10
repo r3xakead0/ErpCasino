@@ -2,7 +2,7 @@ using System;
 
 namespace ErpCasino.BusinessLibrary.BE
 {
-    public class Parametros
+    public class Parametros : IDisposable
     {
 
         private int baseDias = 30;
@@ -189,5 +189,30 @@ namespace ErpCasino.BusinessLibrary.BE
                 return baseHoras;
             }
         }
+
+        #region Dispose
+        private bool disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+
+        #endregion
     }
 }

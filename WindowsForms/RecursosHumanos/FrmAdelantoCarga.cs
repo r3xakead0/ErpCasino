@@ -349,5 +349,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         }
 
         #endregion
+
+        private void btnArchivo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -233,7 +233,7 @@
             // 
             this.txtAnhoMes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAnhoMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnhoMes.Location = new System.Drawing.Point(98, 24);
+            this.txtAnhoMes.Location = new System.Drawing.Point(75, 24);
             this.txtAnhoMes.Name = "txtAnhoMes";
             this.txtAnhoMes.ReadOnly = true;
             this.txtAnhoMes.Size = new System.Drawing.Size(86, 20);
@@ -304,7 +304,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmAsignarBonoCalcular";
             this.Text = "Calcular Bonos de Empleados";
-            this.Load += new System.EventHandler(this.FrmAfpComisionMant_Load);
+            this.Load += new System.EventHandler(this.FrmAsignarBonoCalcular_Load);
             this.tlpPrincipal.ResumeLayout(false);
             this.pnlFiltro.ResumeLayout(false);
             this.grpCalcular.ResumeLayout(false);

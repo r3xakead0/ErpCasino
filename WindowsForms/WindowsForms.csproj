@@ -60,6 +60,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NumeroLetras.cs" />
+    <Compile Include="RecursosHumanos\FrmAsignarSueldoCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarSueldoCalc.designer.cs">
+      <DependentUpon>FrmAsignarSueldoCalc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarDescuentoCalcular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarDescuentoCalcular.designer.cs">
+      <DependentUpon>FrmAsignarDescuentoCalcular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarSueldoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarSueldoView.designer.cs">
+      <DependentUpon>FrmAsignarSueldoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarSueldoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecursosHumanos\FrmAsignarSueldoList.designer.cs">
+      <DependentUpon>FrmAsignarSueldoList.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecursosHumanos\FrmIndicadores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,11 +162,11 @@
     <Compile Include="RecursosHumanos\FrmReciboDetalle.designer.cs">
       <DependentUpon>FrmReciboDetalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecursosHumanos\FrmReciboCalcular.cs">
+    <Compile Include="RecursosHumanos\FrmReciboRevisar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecursosHumanos\FrmReciboCalcular.designer.cs">
-      <DependentUpon>FrmReciboCalcular.cs</DependentUpon>
+    <Compile Include="RecursosHumanos\FrmReciboRevisar.designer.cs">
+      <DependentUpon>FrmReciboRevisar.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmSalaMant.cs">
       <SubType>Form</SubType>
@@ -432,6 +456,13 @@
     <Compile Include="RecursosHumanos\FrmImpresion.Designer.cs">
       <DependentUpon>FrmImpresion.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecursosHumanos\Impresos\ImpresionRecibo.cs">
+      <DependentUpon>ImpresionRecibo.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RecursosHumanos\Impresos\ImpresionVacacionRecibo.cs">
       <DependentUpon>ImpresionVacacionRecibo.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -519,6 +550,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarSueldoCalc.resx">
+      <DependentUpon>FrmAsignarSueldoCalc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarDescuentoCalcular.resx">
+      <DependentUpon>FrmAsignarDescuentoCalcular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarSueldoView.resx">
+      <DependentUpon>FrmAsignarSueldoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\FrmAsignarSueldoList.resx">
+      <DependentUpon>FrmAsignarSueldoList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmIndicadores.resx">
       <DependentUpon>FrmIndicadores.cs</DependentUpon>
     </EmbeddedResource>
@@ -558,8 +601,8 @@
     <EmbeddedResource Include="RecursosHumanos\FrmReciboDetalle.resx">
       <DependentUpon>FrmReciboDetalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmReciboCalcular.resx">
-      <DependentUpon>FrmReciboCalcular.cs</DependentUpon>
+    <EmbeddedResource Include="RecursosHumanos\FrmReciboRevisar.resx">
+      <DependentUpon>FrmReciboRevisar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmSalaMant.resx">
       <DependentUpon>FrmSalaMant.cs</DependentUpon>
@@ -701,6 +744,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmImpresion.resx">
       <DependentUpon>FrmImpresion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionRecibo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImpresionRecibo.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\Impresos\ImpresionVacacionRecibo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

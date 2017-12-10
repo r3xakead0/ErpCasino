@@ -100,7 +100,7 @@ namespace ErpCasino.BusinessLibrary.LN
 
             if (uiHorario.EmpleadoCodigo.Length > 0)
             {
-                string nombreEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(beHorario.Codigo);
+                string nombreEmpleado = new DA.Trabajador().ObtenerNombreCompleto(beHorario.Codigo);
                 uiHorario.EmpleadoNombreCompleto = nombreEmpleado.Length == 0 ? "NO DEFINIDO" : nombreEmpleado;
             }
             else

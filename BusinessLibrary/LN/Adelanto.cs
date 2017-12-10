@@ -146,7 +146,7 @@ namespace ErpCasino.BusinessLibrary.LN
                     uiAdelanto.Monto = beAdelanto.Monto;
 
                     uiAdelanto.CodigoEmpleado = beAdelanto.CodigoEmpleado;
-                    uiAdelanto.NombreCompletoEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(beAdelanto.CodigoEmpleado);
+                    uiAdelanto.NombreCompletoEmpleado = new DA.Trabajador().ObtenerNombreCompleto(beAdelanto.CodigoEmpleado);
 
                     uiAdelanto.IdBanco = beAdelanto.IdBanco;
                     BE.Banco beBanco = new BE.Banco() { IdBanco = uiAdelanto.IdBanco };
@@ -186,7 +186,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 uiAdelanto.Monto = beAdelanto.Monto;
 
                 uiAdelanto.CodigoEmpleado = beAdelanto.CodigoEmpleado;
-                uiAdelanto.NombreCompletoEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(beAdelanto.CodigoEmpleado);
+                uiAdelanto.NombreCompletoEmpleado = new DA.Trabajador().ObtenerNombreCompleto(beAdelanto.CodigoEmpleado);
 
                 uiAdelanto.IdBanco = beAdelanto.IdBanco;
                 BE.Banco beBanco = new BE.Banco() { IdBanco = uiAdelanto.IdBanco };

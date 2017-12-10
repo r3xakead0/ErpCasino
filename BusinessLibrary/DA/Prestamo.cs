@@ -262,6 +262,53 @@ namespace ErpCasino.BusinessLibrary.DA
             }
         }
 
+        /// <summary>
+        /// Listar todos los prestamos filtrado empleado que esten pendiente de pago
+        /// </summary>
+        /// <param name="CodigoEmpleado">Codigo de Empleado</param>
+        /// <returns></returns>
+        public List<BE.Prestamo> ListarPorEmpleado(string CodigoEmpleado)
+        {
+            var lstPrestamos = new List<BE.Prestamo>();
+            try
+            {
+                string sp = "SpTbPrestamoListar2";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CodigoEmpleado", CodigoEmpleado));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var bePrestamo = new BE.Prestamo();
+
+                        bePrestamo.IdPrestamo = int.Parse(reader["IdPrestamo"].ToString());
+                        bePrestamo.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                        bePrestamo.CodigoEmpleado = reader["CodigoEmpleado"].ToString();
+                        bePrestamo.Motivo = reader["Motivo"].ToString();
+                        bePrestamo.Monto = double.Parse(reader["Monto"].ToString());
+                        bePrestamo.NumeroCuotas = int.Parse(reader["Cuotas"].ToString());
+                        bePrestamo.Pagado = bool.Parse(reader["Pagado"].ToString());
+                        bePrestamo.Cuotas = this.ListarCuotas(bePrestamo.IdPrestamo);
+     
+                        lstPrestamos.Add(bePrestamo);
+                    }
+                }
+
+                return lstPrestamos;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public BE.Prestamo Obtener(int idPrestamo, bool conCuotas = false)
         {
             BE.Prestamo bePrestamo = null;
@@ -327,6 +374,47 @@ namespace ErpCasino.BusinessLibrary.DA
                     SqlCommand cmd = new SqlCommand(sp, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@IDPRESTAMO", idPrestamo));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        var bePrestamoCuota = new BE.PrestamoCuota();
+
+                        bePrestamoCuota.IdPrestamoCuota = int.Parse(reader["IdPrestamoCuota"].ToString());
+                        bePrestamoCuota.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                        bePrestamoCuota.Importe = double.Parse(reader["Monto"].ToString());
+                        bePrestamoCuota.Pagado = bool.Parse(reader["Pagado"].ToString());
+
+                        lstPrestamoCuota.Add(bePrestamoCuota);
+                    }
+                }
+
+                return lstPrestamoCuota;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<BE.PrestamoCuota> ListarCuotas(int anho, int mes, string codigoEmpleado)
+        {
+            List<BE.PrestamoCuota> lstPrestamoCuota = new List<BE.PrestamoCuota>();
+            try
+            {
+                string sp = "SpTbPrestamoCuotaListar2";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+                    cmd.Parameters.Add(new SqlParameter("@CODIGOEMPLEADO", codigoEmpleado));
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())

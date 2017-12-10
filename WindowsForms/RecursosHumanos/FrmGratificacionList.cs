@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using BE = ErpCasino.BusinessLibrary.BE;
 using LN = ErpCasino.BusinessLibrary.LN;
@@ -20,6 +21,18 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 this.CargarGratificaciones();
                 this.FormatoGratificaciones();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void FrmGratificacionList_ResizeEnd(object sender, EventArgs e)
+        {
+            try
+            {
+                Util.AutoWidthColumn(ref this.dgvGratificaciones, "EmpleadoNombres");
             }
             catch (Exception ex)
             {
@@ -124,12 +137,20 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var lstGratificaciones = new LN.Gratificacion().Listar(false);
+                var lstUiGratificaciones = new LN.Gratificacion().Listar(false);
 
-                var source = new BindingSource();
-                source.DataSource = lstGratificaciones;
+                var sorted = new SortableBindingList<BE.UI.Gratificacion>(lstUiGratificaciones);
+                this.dgvGratificaciones.DataSource = sorted;
 
-                this.dgvGratificaciones.DataSource = source;
+                int cntRegistros = lstUiGratificaciones.Count;
+                double sumTotBruto = lstUiGratificaciones.Sum(x => x.GratificacionBruta);
+                double sumTotNeto = lstUiGratificaciones.Sum(x => x.GratificacionNeta);
+                double sumTotPagar = lstUiGratificaciones.Sum(x => x.GratificacionPago);
+
+                this.txtNroRegistros.Text = cntRegistros.ToString();
+                this.txtTotalBruto.Text = sumTotBruto.ToString("N2");
+                this.txtTotalNeto.Text = sumTotNeto.ToString("N2");
+                this.txtTotalPagar.Text = sumTotPagar.ToString("N2");
             }
             catch (Exception ex)
             {
@@ -182,8 +203,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
+
         #endregion
 
-        
     }
 }

@@ -25,9 +25,13 @@
     [MinutosTardanzaFeriadoDiurna]           INT          NOT NULL,
     [MinutosTardanzaFeriadoNocturna]         INT          NOT NULL,
     [MinutosInasistenciaTotal]               INT          NOT NULL,
+    [MinutosInasistenciaNormal]              INT          NOT NULL,
+    [MinutosInasistenciaFeriado]             INT          NOT NULL,
     CONSTRAINT [PK_TbPlantillaAsistencia] PRIMARY KEY CLUSTERED ([IdPlanillaAsistencia] ASC),
     CONSTRAINT [FK_TbPlanillaAsistencia_TbPlanilla] FOREIGN KEY ([IdPlanilla]) REFERENCES [dbo].[TbPlanilla] ([IdPlanilla]) ON DELETE CASCADE
 );
+
+
 
 
 

@@ -10,7 +10,8 @@ BEGIN
 			T0.CodigoEmpleado,
 			COUNT(T0.MinutosAsistenciaTotal) AS CantidadAsistencias,
 			COUNT(T0.MinutosTardanzaTotal) AS CantidadTardanzas,
-			COUNT(T0.MinutosInasistenciaTotal) AS CantidadInasistencias
+			COUNT(T0.MinutosInasistenciaNormal) AS CantidadInasistenciasNormales,
+			COUNT(T0.MinutosInasistenciaFeriado) AS CantidadInasistenciasFeriados	
 	FROM	TbPlanillaAsistencia T0 WITH(NOLOCK)
 	INNER JOIN TbPlanilla T1 WITH(NOLOCK) ON T1.IdPlanilla = T0.IdPlanilla
 	WHERE	T1.Anho = @Anho 

@@ -1,11 +1,12 @@
 ﻿
-CREATE PROCEDURE SpTbDescuentoListar
+CREATE PROCEDURE [dbo].[SpTbDescuentoListar]
 AS
 BEGIN
-SELECT IdDescuento,
-Nombre,
-Descripcion,
-Monto,
-Activo
-FROM TbDescuento
+	SELECT	IdDescuento,
+			Nombre,
+			Descripcion,
+			Monto,
+			Calculado,
+			Activo
+	FROM	TbDescuento WITH(NOLOCK)
 END

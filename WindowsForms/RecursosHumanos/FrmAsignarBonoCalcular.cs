@@ -431,7 +431,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #region Formulario
 
-        private void FrmAfpComisionMant_Load(object sender, EventArgs e)
+        private void FrmAsignarBonoCalcular_Load(object sender, EventArgs e)
         {
             try
             {
@@ -581,7 +581,10 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 }
 
                 Util.InformationMessage("Se guardo los bonos calculados");
-                this.frmList.CargarListadoBonos();
+
+                if (this.frmList != null)
+                    this.frmList.CargarListadoBonos();
+
                 this.Close();
 
             }

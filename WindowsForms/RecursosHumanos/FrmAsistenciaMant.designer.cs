@@ -46,6 +46,8 @@
             this.DtpFechaHoraEntrada = new System.Windows.Forms.DateTimePicker();
             this.LblCodigo = new System.Windows.Forms.Label();
             this.GrpDatos = new System.Windows.Forms.GroupBox();
+            this.txtNroRegistros = new System.Windows.Forms.TextBox();
+            this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
             this.btnExportarCsv = new System.Windows.Forms.Button();
             this.LblFechaRegistroAsistencia = new System.Windows.Forms.Label();
             this.BtnEliminar = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.txtNroRegistros = new System.Windows.Forms.TextBox();
-            this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GrpCarga.SuspendLayout();
@@ -270,6 +270,30 @@
             this.GrpDatos.TabStop = false;
             this.GrpDatos.Text = "Registro de Asistencias";
             // 
+            // txtNroRegistros
+            // 
+            this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNroRegistros.Location = new System.Drawing.Point(342, 244);
+            this.txtNroRegistros.Name = "txtNroRegistros";
+            this.txtNroRegistros.ReadOnly = true;
+            this.txtNroRegistros.Size = new System.Drawing.Size(41, 20);
+            this.txtNroRegistros.TabIndex = 108;
+            this.txtNroRegistros.Text = "0";
+            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRegistrosAsistencias
+            // 
+            this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegistrosAsistencias.AutoSize = true;
+            this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(250, 247);
+            this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
+            this.lblRegistrosAsistencias.Size = new System.Drawing.Size(80, 13);
+            this.lblRegistrosAsistencias.TabIndex = 107;
+            this.lblRegistrosAsistencias.Text = "Nro. Registros :";
+            // 
             // btnExportarCsv
             // 
             this.btnExportarCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -356,30 +380,6 @@
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // txtNroRegistros
-            // 
-            this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNroRegistros.Location = new System.Drawing.Point(342, 244);
-            this.txtNroRegistros.Name = "txtNroRegistros";
-            this.txtNroRegistros.ReadOnly = true;
-            this.txtNroRegistros.Size = new System.Drawing.Size(41, 20);
-            this.txtNroRegistros.TabIndex = 108;
-            this.txtNroRegistros.Text = "0";
-            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblRegistrosAsistencias
-            // 
-            this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegistrosAsistencias.AutoSize = true;
-            this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(250, 247);
-            this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
-            this.lblRegistrosAsistencias.Size = new System.Drawing.Size(80, 13);
-            this.lblRegistrosAsistencias.TabIndex = 107;
-            this.lblRegistrosAsistencias.Text = "Nro. Registros :";
             // 
             // FrmAsistenciaMant
             // 

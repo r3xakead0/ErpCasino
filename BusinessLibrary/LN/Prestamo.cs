@@ -158,7 +158,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 foreach (var bePrestamo in lstbePrestamo)
                 {
                     BE.UI.Prestamo uiPrestamo = this.PrestamoBEtoUI(bePrestamo);
-                    uiPrestamo.NombreCompletoEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
+                    uiPrestamo.NombreCompletoEmpleado = new DA.Trabajador().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
                     lstUiPrestamo.Add(uiPrestamo);
                 }
                 return lstUiPrestamo;
@@ -179,7 +179,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 foreach (var bePrestamo in lstbePrestamo)
                 {
                     BE.UI.Prestamo uiPrestamo = this.PrestamoBEtoUI(bePrestamo);
-                    uiPrestamo.NombreCompletoEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
+                    uiPrestamo.NombreCompletoEmpleado = new DA.Trabajador().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
                     uiPrestamo.Cuotas = this.ListPrestamoCuotaBEtoUI(bePrestamo.Cuotas);
 
                     lstUiPrestamo.Add(uiPrestamo);
@@ -202,7 +202,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 if (bePrestamo != null)
                 {
                     uiPrestamo = this.PrestamoBEtoUI(bePrestamo);
-                    uiPrestamo.NombreCompletoEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
+                    uiPrestamo.NombreCompletoEmpleado = new DA.Trabajador().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
                 }
 
                 return uiPrestamo;
@@ -223,7 +223,7 @@ namespace ErpCasino.BusinessLibrary.LN
                 if (bePrestamo != null)
                 {
                     uiPrestamo = this.PrestamoBEtoUI(bePrestamo);
-                    uiPrestamo.NombreCompletoEmpleado = new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
+                    uiPrestamo.NombreCompletoEmpleado = new DA.Trabajador().ObtenerNombreCompleto(bePrestamo.CodigoEmpleado);
                     uiPrestamo.Cuotas = this.ListPrestamoCuotaBEtoUI(bePrestamo.Cuotas);
                 }
 
@@ -248,6 +248,44 @@ namespace ErpCasino.BusinessLibrary.LN
                     total = lstUiPrestamos.Select(x => x.Monto).Sum();
 
                 return total;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public double ObtenerCuotaTotal(int anho, int mes, string codigoEmpleado)
+        {
+            double total = 0;
+            try
+            {
+                var lstUiCuotas = this.ListarCuotas(anho, mes, codigoEmpleado);
+
+                total = lstUiCuotas.Sum(x => x.Importe);
+
+                return total;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<BE.UI.Cuota> ListarCuotas(int anho, int mes, string codigoEmpleado)
+        {
+            List<BE.UI.Cuota> lstUiCuotas = new List<BE.UI.Cuota>();
+            try
+            {
+               var lstBeCuotas = new DA.Prestamo().ListarCuotas(anho, mes, codigoEmpleado);
+
+                foreach (BE.PrestamoCuota beCuota in lstBeCuotas)
+                {
+                    BE.UI.Cuota uiCuota = this.PrestamoCuotaBEtoUI(beCuota);
+                    lstUiCuotas.Add(uiCuota);
+                }
+
+                return lstUiCuotas;
             }
             catch (Exception ex)
             {

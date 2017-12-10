@@ -27,7 +27,9 @@ BEGIN
 			T0.MinutosTardanzaNormalNocturna,
 			T0.MinutosTardanzaFeriadoDiurna,
 			T0.MinutosTardanzaFeriadoNocturna,
-			T0.MinutosInasistenciaTotal 
+			T0.MinutosInasistenciaTotal,
+			T0.MinutosInasistenciaNormal,
+			T0.MinutosInasistenciaFeriado
 	FROM	TbPlanillaAsistencia T0 WITH(NOLOCK)
 	WHERE	T0.IdPlanilla = @IdPlanilla
 END

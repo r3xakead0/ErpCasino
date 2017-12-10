@@ -318,11 +318,17 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.dgvAsistencias.Columns["FormateadoTardanzaFeriadoNocturna"].HeaderText = "Tardanza Nocturna";
 
                 //Inasistencias
-                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].Visible = true;
-                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].HeaderText = "Inasistencia Total";
-                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].Width = 70;
-                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.dgvAsistencias.Columns["FormateadoInasistenciaTotal"].DefaultCellStyle.BackColor = Color.Red;
+                iniHoras = this.dgvAsistencias.Columns["FormateadoInasistenciaNormal"].Index;
+                finHoras = this.dgvAsistencias.Columns["FormateadoInasistenciaFeriado"].Index + 1;
+                for (int i = iniHoras; i < finHoras; i++)
+                {
+                    this.dgvAsistencias.Columns[i].Visible = true;
+                    this.dgvAsistencias.Columns[i].Width = 70;
+                    this.dgvAsistencias.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.dgvAsistencias.Columns[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+                this.dgvAsistencias.Columns["FormateadoInasistenciaNormal"].HeaderText = "Inasistencia Normal";
+                this.dgvAsistencias.Columns["FormateadoInasistenciaFeriado"].HeaderText = "Inasistencia Feriado";
 
             }
             catch (Exception ex)
@@ -441,7 +447,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     #region Cargar
                     var objCosto = new BE.UI.PlanillaCosto();
-                    objCosto.CodigoEmpleado = codEmpleado;
+                    objCosto.Codigo = codEmpleado;
                     objCosto.Sueldo = sueldoBase;
                     objCosto.AsignacionFamiliar = asignacionFamiliar;
                     objCosto.CostosPor = codCostoPor;
@@ -775,12 +781,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 #region Validaciones de Formulario
 
-                if (this.lstUiAsistencias != null || this.lstUiAsistencias.Count == 0)
+                if (this.lstUiAsistencias == null || this.lstUiAsistencias.Count == 0)
                 {
                     return;
                 }
 
-                if (this.lstUiCostos != null || this.lstUiCostos.Count == 0)
+                if (this.lstUiCostos == null || this.lstUiCostos.Count == 0)
                 {
                     return;
                 }
@@ -934,7 +940,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     var bePlanillaDetalle = new BE.PlanillaDetalle();
 
                     #region Datos de Empleado
-                    string codEmpleado = uiPlanillaCosto.CodigoEmpleado.ToString();
+                    string codEmpleado = uiPlanillaCosto.Codigo.ToString();
                     var beEmpleado = new LN.Empleado().Obtener(codEmpleado, true);
 
                     bePlanillaDetalle.CodigoEmpleado = beEmpleado.Codigo;
@@ -1035,12 +1041,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     int cantidadMinutoExtra35Nocturno = 0;
 
                     #region Asistencias Normal
-                    cantidadMinutoHorarioDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaNormalDiurna);
-                    cantidadMinutoHorarioNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaNormalNocturna);
-                    cantidadMinutoExtra25Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaNormalDiurnaExtra1);
-                    cantidadMinutoExtra25Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaNormalNocturnaExtra1);
-                    cantidadMinutoExtra35Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaNormalDiurnaExtra2);
-                    cantidadMinutoExtra35Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaNormalNocturnaExtra2);
+                    cantidadMinutoHorarioDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaNormalDiurna);
+                    cantidadMinutoHorarioNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaNormalNocturna);
+                    cantidadMinutoExtra25Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaNormalDiurnaExtra1);
+                    cantidadMinutoExtra25Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaNormalNocturnaExtra1);
+                    cantidadMinutoExtra35Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaNormalDiurnaExtra2);
+                    cantidadMinutoExtra35Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaNormalNocturnaExtra2);
 
                     bePlanillaDetalle.CantidadMinutosAsistenciaNormalDiurno = cantidadMinutoHorarioDiurno;
                     bePlanillaDetalle.CantidadMinutosAsistenciaNormalNocturno = cantidadMinutoHorarioNocturno;
@@ -1051,12 +1057,12 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     #endregion
 
                     #region Asistencias Feriado
-                    cantidadMinutoHorarioDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaFeriadoDiurna);
-                    cantidadMinutoHorarioNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaFeriadoNocturna);
-                    cantidadMinutoExtra25Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaFeriadoDiurnaExtra1);
-                    cantidadMinutoExtra25Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaFeriadoNocturnaExtra1);
-                    cantidadMinutoExtra35Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaFeriadoDiurnaExtra2);
-                    cantidadMinutoExtra35Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.AsistenciaFeriadoNocturnaExtra2);
+                    cantidadMinutoHorarioDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaFeriadoDiurna);
+                    cantidadMinutoHorarioNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaFeriadoNocturna);
+                    cantidadMinutoExtra25Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaFeriadoDiurnaExtra1);
+                    cantidadMinutoExtra25Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaFeriadoNocturnaExtra1);
+                    cantidadMinutoExtra35Diurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaFeriadoDiurnaExtra2);
+                    cantidadMinutoExtra35Nocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.AsistenciaFeriadoNocturnaExtra2);
 
                     bePlanillaDetalle.CantidadMinutosAsistenciaFeriadoDiurno = cantidadMinutoHorarioDiurno;
                     bePlanillaDetalle.CantidadMinutosAsistenciaFeriadoNocturno = cantidadMinutoHorarioNocturno;
@@ -1073,16 +1079,16 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     int cantidadMinutoTardanzaNocturno = 0;
 
                     #region Tardanzas Normal
-                    cantidadMinutoTardanzaDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.TardanzaNormalDiurna);
-                    cantidadMinutoTardanzaNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.TardanzaNormalNocturna);
+                    cantidadMinutoTardanzaDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.TardanzaNormalDiurna);
+                    cantidadMinutoTardanzaNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.TardanzaNormalNocturna);
 
                     bePlanillaDetalle.CantidadMinutosTardanzaNormalDiurno = cantidadMinutoTardanzaDiurno;
                     bePlanillaDetalle.CantidadMinutosTardanzaNormalNocturno = cantidadMinutoTardanzaNocturno;
                     #endregion
 
                     #region Tardanzas Feriado
-                    cantidadMinutoTardanzaDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.TardanzaFeriadoDiurna);
-                    cantidadMinutoTardanzaNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.TardanzaFeriadoNocturna);
+                    cantidadMinutoTardanzaDiurno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.TardanzaFeriadoDiurna);
+                    cantidadMinutoTardanzaNocturno = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.TardanzaFeriadoNocturna);
 
                     bePlanillaDetalle.CantidadMinutosTardanzaFeriadoDiurno = cantidadMinutoTardanzaDiurno;
                     bePlanillaDetalle.CantidadMinutosTardanzaFeriadoNocturno = cantidadMinutoTardanzaNocturno;
@@ -1091,7 +1097,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     #endregion
 
                     #region Inasistencias
-                    int cantidadMinutoInasistencia = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.CodigoEmpleado == codEmpleado).Sum(x => x.InasistenciaTotal);
+                    int cantidadMinutoInasistencia = (int)lstAsistenciasMinutos.AsEnumerable().Where(x => x.Codigo == codEmpleado).Sum(x => x.InasistenciaTotal);
 
                     bePlanillaDetalle.CantidadMinutosInasistencia = cantidadMinutoInasistencia;
                     #endregion
@@ -1200,8 +1206,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     #region Prestamos
 
-                    double prestamoTotal = new LN.Prestamo().ObtenerTotal(bePlanilla.Anho, bePlanilla.Mes, bePlanillaDetalle.CodigoEmpleado);
-                    bePlanillaDetalle.PrestamoTotal = Math.Round(prestamoTotal, 2);
+                    double prestamoCuotaMonto = new LN.Prestamo().ObtenerCuotaTotal(bePlanilla.Anho, bePlanilla.Mes, bePlanillaDetalle.CodigoEmpleado);
+                    bePlanillaDetalle.PrestamoTotal = Math.Round(prestamoCuotaMonto, 2);
 
                     #endregion
 
@@ -1225,49 +1231,50 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 List<BE.PlanillaAsistencia> asistencias = new List<BE.PlanillaAsistencia>();
 
-                foreach (BE.UI.PlanillaAsistencia objAsistencia in lstAsistenciasMinutos)
+                foreach (BE.UI.PlanillaAsistencia uiPlanillaAsistencia in lstAsistenciasMinutos)
                 {
-                    var asistencia = new BE.PlanillaAsistencia();
+                    var bePlanillaAsistencia = new BE.PlanillaAsistencia();
 
                     #region Empleado
-                    asistencia.CodigoEmpleado = objAsistencia.CodigoEmpleado;
+                    bePlanillaAsistencia.CodigoEmpleado = uiPlanillaAsistencia.Codigo;
                     #endregion
 
                     #region Fechas y Horas de Asistencia
-                    asistencia.Fecha = objAsistencia.Fecha;
-                    asistencia.Semana = objAsistencia.Semana;
-                    asistencia.FechaHoraInicio = objAsistencia.FechaHoraInicio;
-                    asistencia.FechaHoraFinal = objAsistencia.FechaHoraFinal;
+                    bePlanillaAsistencia.Fecha = uiPlanillaAsistencia.Fecha;
+                    bePlanillaAsistencia.Semana = uiPlanillaAsistencia.Semana;
+                    bePlanillaAsistencia.FechaHoraInicio = uiPlanillaAsistencia.FechaHoraInicio;
+                    bePlanillaAsistencia.FechaHoraFinal = uiPlanillaAsistencia.FechaHoraFinal;
                     #endregion
 
                     #region Asistencias en Minutos
-                    asistencia.MinutosAsistenciaNormalDiurna = objAsistencia.AsistenciaNormalDiurna;
-                    asistencia.MinutosAsistenciaNormalNocturna = objAsistencia.AsistenciaNormalNocturna;
-                    asistencia.MinutosAsistenciaNormalDiurnaExtra1 = objAsistencia.AsistenciaNormalDiurnaExtra1;
-                    asistencia.MinutosAsistenciaNormalNocturnaExtra1 = objAsistencia.AsistenciaNormalNocturnaExtra1;
-                    asistencia.MinutosAsistenciaNormalDiurnaExtra2 = objAsistencia.AsistenciaNormalDiurnaExtra2;
-                    asistencia.MinutosAsistenciaNormalNocturnaExtra2 = objAsistencia.AsistenciaNormalNocturnaExtra2;
+                    bePlanillaAsistencia.MinutosAsistenciaNormalDiurna = uiPlanillaAsistencia.AsistenciaNormalDiurna;
+                    bePlanillaAsistencia.MinutosAsistenciaNormalNocturna = uiPlanillaAsistencia.AsistenciaNormalNocturna;
+                    bePlanillaAsistencia.MinutosAsistenciaNormalDiurnaExtra1 = uiPlanillaAsistencia.AsistenciaNormalDiurnaExtra1;
+                    bePlanillaAsistencia.MinutosAsistenciaNormalNocturnaExtra1 = uiPlanillaAsistencia.AsistenciaNormalNocturnaExtra1;
+                    bePlanillaAsistencia.MinutosAsistenciaNormalDiurnaExtra2 = uiPlanillaAsistencia.AsistenciaNormalDiurnaExtra2;
+                    bePlanillaAsistencia.MinutosAsistenciaNormalNocturnaExtra2 = uiPlanillaAsistencia.AsistenciaNormalNocturnaExtra2;
 
-                    asistencia.MinutosAsistenciaFeriadoDiurna = objAsistencia.AsistenciaFeriadoDiurna;
-                    asistencia.MinutosAsistenciaFeriadoNocturna = objAsistencia.AsistenciaFeriadoNocturna;
-                    asistencia.MinutosAsistenciaFeriadoDiurnaExtra1 = objAsistencia.AsistenciaFeriadoDiurnaExtra1;
-                    asistencia.MinutosAsistenciaFeriadoNocturnaExtra1 = objAsistencia.AsistenciaFeriadoNocturnaExtra1;
-                    asistencia.MinutosAsistenciaFeriadoDiurnaExtra2 = objAsistencia.AsistenciaFeriadoDiurnaExtra2;
-                    asistencia.MinutosAsistenciaFeriadoNocturnaExtra2 = objAsistencia.AsistenciaFeriadoNocturnaExtra2;
+                    bePlanillaAsistencia.MinutosAsistenciaFeriadoDiurna = uiPlanillaAsistencia.AsistenciaFeriadoDiurna;
+                    bePlanillaAsistencia.MinutosAsistenciaFeriadoNocturna = uiPlanillaAsistencia.AsistenciaFeriadoNocturna;
+                    bePlanillaAsistencia.MinutosAsistenciaFeriadoDiurnaExtra1 = uiPlanillaAsistencia.AsistenciaFeriadoDiurnaExtra1;
+                    bePlanillaAsistencia.MinutosAsistenciaFeriadoNocturnaExtra1 = uiPlanillaAsistencia.AsistenciaFeriadoNocturnaExtra1;
+                    bePlanillaAsistencia.MinutosAsistenciaFeriadoDiurnaExtra2 = uiPlanillaAsistencia.AsistenciaFeriadoDiurnaExtra2;
+                    bePlanillaAsistencia.MinutosAsistenciaFeriadoNocturnaExtra2 = uiPlanillaAsistencia.AsistenciaFeriadoNocturnaExtra2;
                     #endregion
 
                     #region Tardanzas en Minutos
-                    asistencia.MinutosTardanzaNormalDiurna = objAsistencia.TardanzaNormalDiurna;
-                    asistencia.MinutosTardanzaNormalNocturna = objAsistencia.TardanzaNormalNocturna;
-                    asistencia.MinutosTardanzaFeriadoDiurna = objAsistencia.TardanzaFeriadoDiurna;
-                    asistencia.MinutosTardanzaFeriadoNocturna = objAsistencia.TardanzaFeriadoNocturna;
+                    bePlanillaAsistencia.MinutosTardanzaNormalDiurna = uiPlanillaAsistencia.TardanzaNormalDiurna;
+                    bePlanillaAsistencia.MinutosTardanzaNormalNocturna = uiPlanillaAsistencia.TardanzaNormalNocturna;
+                    bePlanillaAsistencia.MinutosTardanzaFeriadoDiurna = uiPlanillaAsistencia.TardanzaFeriadoDiurna;
+                    bePlanillaAsistencia.MinutosTardanzaFeriadoNocturna = uiPlanillaAsistencia.TardanzaFeriadoNocturna;
                     #endregion
 
                     #region Inasistencias en Minutos
-                    asistencia.MinutosInasistenciaTotal = objAsistencia.InasistenciaTotal;
+                    bePlanillaAsistencia.MinutosInasistenciaNormal = uiPlanillaAsistencia.InasistenciaNormal;
+                    bePlanillaAsistencia.MinutosInasistenciaFeriado = uiPlanillaAsistencia.InasistenciaFeriado;
                     #endregion
 
-                    asistencias.Add(asistencia);
+                    asistencias.Add(bePlanillaAsistencia);
                 }
 
                 bePlanilla.Asistencias = asistencias;

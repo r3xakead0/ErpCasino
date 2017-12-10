@@ -137,7 +137,7 @@ namespace ErpCasino.BusinessLibrary.LN
         }
 
         /// <summary>
-        /// Validar si existe bonos calcululados para el periodo (año y mes) y tipo de bono
+        /// Validar si existe bonos calculados para el periodo (año y mes) y tipo de bono
         /// </summary>
         /// <param name="anho">Año de consulta en formato yyyy. Ejm: 2017</param>
         /// <param name="mes">Mes de consulta en rango del 1 al 12. Ejm: 1</param>

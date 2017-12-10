@@ -7,7 +7,7 @@ using System;
 namespace ErpCasino.BusinessLibrary.LN
 {
 
-    public class Empleado: IDisposable  
+    public class Empleado: Trabajador, IDisposable 
     {
 
         public bool Insertar(ref BE.ClsBeTbEmpleado beEmpleado)
@@ -527,11 +527,6 @@ namespace ErpCasino.BusinessLibrary.LN
             {
                 throw ex;
             }
-        }
-
-        public string ObtenerNombreCompleto(string codigo, bool? activo = null)
-        {
-            return new DA.ClsDaTbEmpleado().ObtenerNombreCompleto(codigo, activo);
         }
 
         public bool ValidarCodigo(BE.ClsBeTbEmpleado beEmpleado)

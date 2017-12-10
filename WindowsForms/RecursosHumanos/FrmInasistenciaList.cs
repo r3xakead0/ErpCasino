@@ -94,18 +94,19 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                if (this.dgvInasistencias.CurrentRow != null)
-                {
+                this.Clasificar();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
 
-                    var uiInasistencia = (BE.UI.Inasistencia)this.dgvInasistencias.CurrentRow.DataBoundItem;
-
-                    var frmInasistencia = new FrmInasistenciaMant(this);
-                    frmInasistencia.MdiParent = this.MdiParent;
-                    frmInasistencia.Show();
-
-                    frmInasistencia.Cargar(uiInasistencia);
-
-                }
+        private void dgvInasistencias_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                this.Clasificar();
             }
             catch (Exception ex)
             {
@@ -114,6 +115,29 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         }
 
         #endregion
+
+        private void Clasificar()
+        {
+            try
+            {
+
+                if (this.dgvInasistencias.CurrentRow != null)
+                {
+                    var uiInasistencia = (BE.UI.Inasistencia)this.dgvInasistencias.CurrentRow.DataBoundItem;
+                 
+                    var frmInasistencia = new FrmInasistenciaMant(this);
+                    frmInasistencia.MdiParent = this.MdiParent;
+                    frmInasistencia.Show();
+
+                    frmInasistencia.Cargar(uiInasistencia);
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private void CargarSalas()
         {
@@ -204,11 +228,11 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
-                var lstInasistencias = new LN.Inasistencia().Listar(anho, mes, idSala);
+                var lstUiInasistencias = new LN.Inasistencia().Listar(anho, mes, idSala);
 
-                BindingSource source = new BindingSource();
-                source.DataSource = lstInasistencias;
-                this.dgvInasistencias.DataSource = lstInasistencias;
+                var sorted = new SortableBindingList<BE.UI.Inasistencia>(lstUiInasistencias);
+               
+                this.dgvInasistencias.DataSource = sorted;
 
                 this.FormatoListadoInasistencias();
             }
@@ -305,7 +329,5 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 throw ex;
             }
         }
-
-        
     }
 }

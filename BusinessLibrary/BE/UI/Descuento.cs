@@ -8,6 +8,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public string Descripcion { get; set; }
         public double Monto { get; set; }
         public bool Activo { get; set; }
+        public bool Calculado { get; set; }
 
         public Descuento()
         {

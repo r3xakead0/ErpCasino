@@ -47,6 +47,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
         {
             try
             {
+                //General
                 this.CargarSexos(true);
                 this.CargarEstadosCiviles(true);
                 this.CargarTiposDocumentos(true);
@@ -57,13 +58,16 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.CargarDepartamentos(ref this.CbxDepartamentoNacimiento, true);
                 this.CargarProvincias(ref this.CbxProvinciaNacimiento, 0, true);
 
+                //Contacto
                 this.CargarDepartamentos(ref this.CbxDepartamento, true);
                 this.CbxDepartamento.SelectedValue = "15";
                 this.CargarProvincias(ref this.CbxProvincia, 15, true);
                 this.CbxProvincia.SelectedValue = "1";
                 this.CargarDistritos(ref this.CbxDistrito, 15, 1, true);
 
+                //Contratacion
                 this.CargarDocumentos();
+                this.CargarCargos();
             }
             catch (Exception ex)
             {
@@ -256,6 +260,8 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                         this.CbxAproboDocumentos.CheckedChanged += CbxAproboDocumentos_CheckedChanged;
                         this.TxtObservacion.Text = this.beCandidatoGeneral.Contratacion.Observacion;
                         this.txtSueldo.Text = this.beCandidatoGeneral.Contratacion.Sueldo.ToString("N2");
+                        if (this.beCandidatoGeneral.Contratacion.Cargo != null)
+                            this.cboCargo.SelectedValue = this.beCandidatoGeneral.Contratacion.Cargo.IdCargo;
                     }
 
                 }
@@ -563,6 +569,18 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             this.CbxTelefono.ValueMember = "Codigo";
         }
 
+        private void CargarCargos(bool Seleccione = true)
+        {
+            var lstCargos = new LN.Cargo().ListarCombo();
+
+            if (Seleccione == true)
+                lstCargos.Insert(0, new BE.UI.Cargo() { Id = 0, Nombre = "Seleccione", Descripcion = "" });
+
+            this.cboCargo.DataSource = lstCargos;
+            this.cboCargo.DisplayMember = "Nombre";
+            this.cboCargo.ValueMember = "Id";
+        }
+
         private void CargarDocumentos()
         {
             this.ClbDocumentos.Items.Clear();
@@ -731,6 +749,27 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 this.beCandidatoGeneral.Contratacion.Informe = this.CbxAproboAdministrativo.Checked;
                 this.beCandidatoGeneral.Contratacion.Documentacion = this.CbxAproboDocumentos.Checked;
                 this.beCandidatoGeneral.Contratacion.Observacion = this.TxtObservacion.Text;
+
+                double sueldo = 0.0;
+                if (double.TryParse(this.txtSueldo.Text, out sueldo) == false)
+                    sueldo = 0.0;
+                this.beCandidatoGeneral.Contratacion.Sueldo = sueldo;
+
+                if (this.cboCargo.SelectedIndex > 0)
+                {
+                    var uiCargo = (BE.UI.Cargo)this.cboCargo.SelectedItem;
+
+                    var beCargo = new BE.Cargo();
+                    beCargo.IdCargo = uiCargo.Id;
+                    beCargo.Nombre = uiCargo.Nombre;
+                    beCargo.Descripcion = uiCargo.Descripcion;
+                    beCargo.Activo = uiCargo.Activo;
+                    beCargo.Bono = uiCargo.Bono;
+                    uiCargo = null;
+
+                    this.beCandidatoGeneral.Contratacion.Cargo = beCargo;
+                }
+                
                 #endregion
 
                 int idUsuarioSesion = ((MdiMain)this.MdiParent).uiUsuario.ID;

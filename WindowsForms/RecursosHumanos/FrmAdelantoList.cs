@@ -51,7 +51,47 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
             }
         }
 
-        private void FrmPostulanteList_Load(object sender, EventArgs e)
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmAdelantoCargar = FrmAdelantoCarga.Instance();
+                frmAdelantoCargar.MdiParent = this.MdiParent;
+                frmAdelantoCargar.Show();
+
+                frmAdelantoCargar.frmList = this;
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Comma-separated Values (*.csv)|*.csv";
+                sfd.FileName = "export.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Util.PointerLoad(this);
+                    Util.DatagridviewToCsv(this.dgvAdelantos, sfd.FileName);
+                    Util.InformationMessage("Se exporto correctamente el archivo CSV");
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Util.PointerReady(this);
+            }
+        }
+
+        private void FrmAdelantoList_Load(object sender, EventArgs e)
         {
             try
             {
@@ -197,10 +237,9 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                 var lstUiAdelantos = new LN.Adelanto().Listar(anho, mes);
 
-                var source = new BindingSource();
-                source.DataSource = lstUiAdelantos;
+                var sorted = new SortableBindingList<BE.UI.Adelanto>(lstUiAdelantos);
 
-                this.dgvAdelantos.DataSource = source;
+                this.dgvAdelantos.DataSource = sorted;
 
                 int nroRegistros = lstUiAdelantos.Count;
                 double totalAdelantos = lstUiAdelantos.Sum(x => x.Monto);
@@ -326,20 +365,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #endregion
 
-        private void btnCargar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frmAdelantoCargar = FrmAdelantoCarga.Instance();
-                frmAdelantoCargar.MdiParent = this.MdiParent;
-                frmAdelantoCargar.Show();
-
-                frmAdelantoCargar.frmList = this;
-            }
-            catch (Exception ex)
-            {
-                Util.ErrorMessage(ex.Message);
-            }
-        }
+        
     }
 }

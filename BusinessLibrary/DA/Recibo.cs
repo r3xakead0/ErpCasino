@@ -9,6 +9,79 @@ namespace ErpCasino.BusinessLibrary.DA
     public class Recibo
     {
 
+        /// <summary>
+        /// Calculo al detalle por dia sobre : 
+        /// - Horas asistidas e inasistidas en Minutos
+        /// - Horas normales y extras en Minutos
+        /// - Minutos de Tardanza
+        /// </summary>
+        /// <param name="anho">Numero del año</param>
+        /// <param name="mes">Numero del mes</param>
+        /// <returns></returns>
+        public DataTable ListarAsistencias(int anho, int mes)
+        {
+            try
+            {
+                string sp = "SpListarAsistenciaCandidato";
+                DataTable dt = new DataTable();
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ANHO", anho));
+                    cmd.Parameters.Add(new SqlParameter("@MES", mes));
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Lista de sueldos de los candidatos que esten activos
+        /// </summary>
+        /// <returns></returns>
+        public DataTable ListarSueldos()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                string sp = "SpListarSueldosCandidato";
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionManager.ConexionLocal))
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sp, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter dad = new SqlDataAdapter(cmd);
+                    dad.Fill(dt);
+
+                    cnn.Close();
+                }
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Insertar(ref List<BE.Recibo> lstBeRecibos)
         {
             SqlTransaction tns = null;
