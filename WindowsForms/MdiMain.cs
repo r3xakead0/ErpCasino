@@ -641,6 +641,19 @@ namespace ErpCasino.WindowsForms
             }
         }
 
-        
+        private void tsmInformacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmInformacion = FrmInformacion.Instance();
+                frmInformacion.MdiParent = this;
+                frmInformacion.StartPosition = FormStartPosition.CenterScreen;
+                frmInformacion.Show();
+            }
+            catch (Exception ex)
+            {
+                Util.ErrorMessage(ex.Message);
+            }
+        }
     }
 }

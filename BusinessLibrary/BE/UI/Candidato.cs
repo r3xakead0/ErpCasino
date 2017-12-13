@@ -22,7 +22,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
     }
 
     /// <summary>
-    /// Objeto de datos simples del Candidato y Sueldo
+    /// Objeto de datos simples del Candidato (Codigo, Nombres y Apellidos) y Sueldo
     /// </summary>
     public class CandidatoSueldo
     {
@@ -30,7 +30,29 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         public string Nombres { get; set; } = "";
         public string ApellidoPaterno { get; set; } = "";
         public string ApellidoMaterno { get; set; } = "";
-        public double Sueldo { get; set; } = 0.0;
+
+        private double _Sueldo = 0.0;
+        public double Sueldo
+        {
+            get
+            {
+                return Math.Round(_Sueldo, 2);
+            }
+            set 
+            {
+                _Sueldo = value;
+            }
+        }
+
     }
+
+    public class CandidatoAsistencia : AsistenciaCalculo
+    {
+    }
+
+    public class CandidatoCosto : CostoCalculo
+    {
+    }
+
 
 }

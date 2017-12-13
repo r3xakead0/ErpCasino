@@ -62,6 +62,7 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmPlanillasMovilidad = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRecibos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAsignarSueldos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAsignarBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAsignarDescuentos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAsignarObservaciones = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,7 +100,7 @@
             this.stsPrincipal = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.stlUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmAsignarSueldos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmInformacion = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.stsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -382,6 +383,13 @@
             this.tsmRecibos.Size = new System.Drawing.Size(155, 22);
             this.tsmRecibos.Text = "Recibos";
             // 
+            // tsmAsignarSueldos
+            // 
+            this.tsmAsignarSueldos.Name = "tsmAsignarSueldos";
+            this.tsmAsignarSueldos.Size = new System.Drawing.Size(194, 22);
+            this.tsmAsignarSueldos.Text = "Asignar Sueldos";
+            this.tsmAsignarSueldos.Click += new System.EventHandler(this.tsmAsignarSueldos_Click);
+            // 
             // tsmAsignarBonos
             // 
             this.tsmAsignarBonos.Name = "tsmAsignarBonos";
@@ -427,14 +435,14 @@
             // tsmHorariosSemanales
             // 
             this.tsmHorariosSemanales.Name = "tsmHorariosSemanales";
-            this.tsmHorariosSemanales.Size = new System.Drawing.Size(152, 22);
+            this.tsmHorariosSemanales.Size = new System.Drawing.Size(130, 22);
             this.tsmHorariosSemanales.Text = "Semanales";
             this.tsmHorariosSemanales.Click += new System.EventHandler(this.tsmHorariosSemanales_Click);
             // 
             // tsmHorariosMensuales
             // 
             this.tsmHorariosMensuales.Name = "tsmHorariosMensuales";
-            this.tsmHorariosMensuales.Size = new System.Drawing.Size(152, 22);
+            this.tsmHorariosMensuales.Size = new System.Drawing.Size(130, 22);
             this.tsmHorariosMensuales.Text = "Mensuales";
             this.tsmHorariosMensuales.Click += new System.EventHandler(this.tsmHorariosMensuales_Click);
             // 
@@ -563,13 +571,13 @@
             // tsmAlmacenes
             // 
             this.tsmAlmacenes.Name = "tsmAlmacenes";
-            this.tsmAlmacenes.Size = new System.Drawing.Size(152, 22);
+            this.tsmAlmacenes.Size = new System.Drawing.Size(144, 22);
             this.tsmAlmacenes.Text = "Almacenes";
             // 
             // tsmArticulos
             // 
             this.tsmArticulos.Name = "tsmArticulos";
-            this.tsmArticulos.Size = new System.Drawing.Size(152, 22);
+            this.tsmArticulos.Size = new System.Drawing.Size(144, 22);
             this.tsmArticulos.Text = "Articulos";
             // 
             // tsmMovimientos
@@ -579,7 +587,7 @@
             this.tsmMovimientosSalidas,
             this.tsmMovimientosTransferencias});
             this.tsmMovimientos.Name = "tsmMovimientos";
-            this.tsmMovimientos.Size = new System.Drawing.Size(152, 22);
+            this.tsmMovimientos.Size = new System.Drawing.Size(144, 22);
             this.tsmMovimientos.Text = "Movimientos";
             // 
             // tsmMovimientosIngresos
@@ -617,6 +625,8 @@
             // 
             // tsmAyuda
             // 
+            this.tsmAyuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmInformacion});
             this.tsmAyuda.Name = "tsmAyuda";
             this.tsmAyuda.Size = new System.Drawing.Size(53, 20);
             this.tsmAyuda.Text = "Ayuda";
@@ -644,12 +654,12 @@
             this.stlUsuario.Name = "stlUsuario";
             this.stlUsuario.Size = new System.Drawing.Size(0, 17);
             // 
-            // tsmAsignarSueldos
+            // tsmInformacion
             // 
-            this.tsmAsignarSueldos.Name = "tsmAsignarSueldos";
-            this.tsmAsignarSueldos.Size = new System.Drawing.Size(194, 22);
-            this.tsmAsignarSueldos.Text = "Asignar Sueldos";
-            this.tsmAsignarSueldos.Click += new System.EventHandler(this.tsmAsignarSueldos_Click);
+            this.tsmInformacion.Name = "tsmInformacion";
+            this.tsmInformacion.Size = new System.Drawing.Size(152, 22);
+            this.tsmInformacion.Text = "Información";
+            this.tsmInformacion.Click += new System.EventHandler(this.tsmInformacion_Click);
             // 
             // MdiMain
             // 
@@ -746,5 +756,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem tsmPlanillasMovilidad;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarSueldos;
+        private System.Windows.Forms.ToolStripMenuItem tsmInformacion;
     }
 }

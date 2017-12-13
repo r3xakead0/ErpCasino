@@ -480,8 +480,6 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
         #endregion
 
-
-
         private void FrmPlanillaDetalleBoleta_Load(object sender, EventArgs e)
         {
             try

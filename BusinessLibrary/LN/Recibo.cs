@@ -19,9 +19,9 @@ namespace ErpCasino.BusinessLibrary.LN
         /// <param name="anho">Año en formato yyyy</param>
         /// <param name="mes">Mes en el rango de 1 al 12</param>
         /// <returns></returns>
-        public List<BE.UI.AsistenciaCalculo> ListarAsistencias(int anho, int mes)
+        public List<BE.UI.CandidatoAsistencia> ListarAsistencias(int anho, int mes)
         {
-            var lstUiAsistenciasCalculo = new List<BE.UI.AsistenciaCalculo>();
+            var lstUiCandidatosAsistencias = new List<BE.UI.CandidatoAsistencia>();
 
             try
             {
@@ -166,53 +166,53 @@ namespace ErpCasino.BusinessLibrary.LN
 
                     #endregion
 
-                    var uiAsistenciaCalculo = new BE.UI.AsistenciaCalculo();
+                    var uiCandidatoAsistencia = new BE.UI.CandidatoAsistencia();
 
-                    uiAsistenciaCalculo.Codigo = codEmpleado;
+                    uiCandidatoAsistencia.Codigo = codEmpleado;
                     //uiPlanillaAsistencia.NombreEmpleado = nomEmpleado;
-                    uiAsistenciaCalculo.Fecha = fecha;
-                    uiAsistenciaCalculo.Semana = semana;
+                    uiCandidatoAsistencia.Fecha = fecha;
+                    uiCandidatoAsistencia.Semana = semana;
 
-                    uiAsistenciaCalculo.FechaHoraInicio = fechaHoraHorarioInicio;
-                    uiAsistenciaCalculo.FechaHoraFinal = fechaHoraHorarioFinal;
+                    uiCandidatoAsistencia.FechaHoraInicio = fechaHoraHorarioInicio;
+                    uiCandidatoAsistencia.FechaHoraFinal = fechaHoraHorarioFinal;
 
                     //Asistencia Normales
-                    uiAsistenciaCalculo.AsistenciaNormalTotal = minutosAsistenciaNormalesTotales;
-                    uiAsistenciaCalculo.AsistenciaNormalDiurna = minutosAsistenciaNormalesDiurnas;
-                    uiAsistenciaCalculo.AsistenciaNormalNocturna = minutosAsistenciaNormalesNocturnas;
-                    uiAsistenciaCalculo.AsistenciaNormalDiurnaExtra1 = minutosAsistenciaNormalesDiurnasPrimerasExtras;
-                    uiAsistenciaCalculo.AsistenciaNormalNocturnaExtra1 = minutosAsistenciaNormalesNocturnasPrimerasExtras;
-                    uiAsistenciaCalculo.AsistenciaNormalDiurnaExtra2 = minutosAsistenciaNormalesDiurnasPosterioresExtras;
-                    uiAsistenciaCalculo.AsistenciaNormalNocturnaExtra2 = minutosAsistenciaNormalesNocturnasPosterioresExtras;
+                    uiCandidatoAsistencia.AsistenciaNormalTotal = minutosAsistenciaNormalesTotales;
+                    uiCandidatoAsistencia.AsistenciaNormalDiurna = minutosAsistenciaNormalesDiurnas;
+                    uiCandidatoAsistencia.AsistenciaNormalNocturna = minutosAsistenciaNormalesNocturnas;
+                    uiCandidatoAsistencia.AsistenciaNormalDiurnaExtra1 = minutosAsistenciaNormalesDiurnasPrimerasExtras;
+                    uiCandidatoAsistencia.AsistenciaNormalNocturnaExtra1 = minutosAsistenciaNormalesNocturnasPrimerasExtras;
+                    uiCandidatoAsistencia.AsistenciaNormalDiurnaExtra2 = minutosAsistenciaNormalesDiurnasPosterioresExtras;
+                    uiCandidatoAsistencia.AsistenciaNormalNocturnaExtra2 = minutosAsistenciaNormalesNocturnasPosterioresExtras;
 
                     //Tardanza Normales
-                    uiAsistenciaCalculo.TardanzaNormalTotal = minutosTardanzaNormalesTotales;
-                    uiAsistenciaCalculo.TardanzaNormalDiurna = minutosTardanzaNormalesDiurnas;
-                    uiAsistenciaCalculo.TardanzaNormalNocturna = minutosTardanzaNormalesNocturnas;
+                    uiCandidatoAsistencia.TardanzaNormalTotal = minutosTardanzaNormalesTotales;
+                    uiCandidatoAsistencia.TardanzaNormalDiurna = minutosTardanzaNormalesDiurnas;
+                    uiCandidatoAsistencia.TardanzaNormalNocturna = minutosTardanzaNormalesNocturnas;
 
                     //Asistencia Feriados
-                    uiAsistenciaCalculo.AsistenciaFeriadoTotal = minutosAsistenciaFeriadosTotales;
-                    uiAsistenciaCalculo.AsistenciaFeriadoDiurna = minutosAsistenciaFeriadosDiurnas;
-                    uiAsistenciaCalculo.AsistenciaFeriadoNocturna = minutosAsistenciaFeriadosNocturnas;
-                    uiAsistenciaCalculo.AsistenciaFeriadoDiurnaExtra1 = minutosAsistenciaFeriadosDiurnasPrimerasExtras;
-                    uiAsistenciaCalculo.AsistenciaFeriadoNocturnaExtra1 = minutosAsistenciaFeriadosNocturnasPrimerasExtras;
-                    uiAsistenciaCalculo.AsistenciaFeriadoDiurnaExtra2 = minutosAsistenciaFeriadosDiurnasPosterioresExtras;
-                    uiAsistenciaCalculo.AsistenciaFeriadoNocturnaExtra2 = minutosAsistenciaFeriadosNocturnasPosterioresExtras;
+                    uiCandidatoAsistencia.AsistenciaFeriadoTotal = minutosAsistenciaFeriadosTotales;
+                    uiCandidatoAsistencia.AsistenciaFeriadoDiurna = minutosAsistenciaFeriadosDiurnas;
+                    uiCandidatoAsistencia.AsistenciaFeriadoNocturna = minutosAsistenciaFeriadosNocturnas;
+                    uiCandidatoAsistencia.AsistenciaFeriadoDiurnaExtra1 = minutosAsistenciaFeriadosDiurnasPrimerasExtras;
+                    uiCandidatoAsistencia.AsistenciaFeriadoNocturnaExtra1 = minutosAsistenciaFeriadosNocturnasPrimerasExtras;
+                    uiCandidatoAsistencia.AsistenciaFeriadoDiurnaExtra2 = minutosAsistenciaFeriadosDiurnasPosterioresExtras;
+                    uiCandidatoAsistencia.AsistenciaFeriadoNocturnaExtra2 = minutosAsistenciaFeriadosNocturnasPosterioresExtras;
 
                     //Tardanza Feriado
-                    uiAsistenciaCalculo.TardanzaFeriadoTotal = minutosTardanzaFeriadosTotales;
-                    uiAsistenciaCalculo.TardanzaFeriadoDiurna = minutosTardanzaFeriadosDiurnas;
-                    uiAsistenciaCalculo.TardanzaFeriadoNocturna = minutosTardanzaFeriadosNocturnas;
+                    uiCandidatoAsistencia.TardanzaFeriadoTotal = minutosTardanzaFeriadosTotales;
+                    uiCandidatoAsistencia.TardanzaFeriadoDiurna = minutosTardanzaFeriadosDiurnas;
+                    uiCandidatoAsistencia.TardanzaFeriadoNocturna = minutosTardanzaFeriadosNocturnas;
 
                     //Tardanza Inasistencias
-                    uiAsistenciaCalculo.InasistenciaTotal = minutosInasistenciasTotales;
-                    uiAsistenciaCalculo.InasistenciaNormal = minutosInasistenciasNormales;
-                    uiAsistenciaCalculo.InasistenciaFeriado = minutosInasistenciasFeriados;
+                    uiCandidatoAsistencia.InasistenciaTotal = minutosInasistenciasTotales;
+                    uiCandidatoAsistencia.InasistenciaNormal = minutosInasistenciasNormales;
+                    uiCandidatoAsistencia.InasistenciaFeriado = minutosInasistenciasFeriados;
 
-                    lstUiAsistenciasCalculo.Add(uiAsistenciaCalculo);
+                    lstUiCandidatosAsistencias.Add(uiCandidatoAsistencia);
                 }
 
-                return lstUiAsistenciasCalculo;
+                return lstUiCandidatosAsistencias;
             }
             catch (Exception ex)
             {

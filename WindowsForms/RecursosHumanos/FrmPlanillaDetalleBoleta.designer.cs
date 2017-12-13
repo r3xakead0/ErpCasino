@@ -411,9 +411,9 @@
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(10, 281);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(67, 13);
+            this.label41.Size = new System.Drawing.Size(52, 13);
             this.label41.TabIndex = 111;
-            this.label41.Text = "IPSS Salud :";
+            this.label41.Text = "EsSalud :";
             // 
             // txtSegVidaTrab
             // 
@@ -1139,7 +1139,6 @@
             // 
             this.txtCargo.Location = new System.Drawing.Point(120, 134);
             this.txtCargo.Name = "txtCargo";
-            this.txtCargo.ReadOnly = true;
             this.txtCargo.Size = new System.Drawing.Size(322, 20);
             this.txtCargo.TabIndex = 91;
             this.txtCargo.Text = "ATENCION SALA";

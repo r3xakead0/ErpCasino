@@ -15,6 +15,7 @@ namespace ErpCasino.WindowsForms
         
         //Titulo de la Aplicacion
         private static string TitleApplication = "ERP Casino";
+        private static string VersionApplication = "0.98";
 
         public static void PointerLoad(Form form)
         {
@@ -203,49 +204,6 @@ namespace ErpCasino.WindowsForms
             return strValor;
         }
 
-        public static void ListToCsv<T>(List<T> list, string filename)
-        {
-            if (list == null || list.Count == 0) return;
-
-            //get type from 0th member
-            Type t = list[0].GetType();
-            string newLine = Environment.NewLine;
-
-            using (var sw = new StreamWriter(filename))
-            {
-                //make a new instance of the class name we figured out to get its props
-                object o = Activator.CreateInstance(t);
-                //gets all properties
-                PropertyInfo[] props = o.GetType().GetProperties();
-
-                //foreach of the properties in class above, write out properties
-                //this is the header row
-                foreach (PropertyInfo pi in props)
-                {
-                    sw.Write(pi.Name.ToUpper() + ",");
-                }
-                sw.Write(newLine);
-
-                //this acts as datarow
-                foreach (T item in list)
-                {
-                    //this acts as datacolumn
-                    foreach (PropertyInfo pi in props)
-                    {
-                        //this is the row+col intersection (the value)
-                        string whatToWrite =
-                            Convert.ToString(item.GetType()
-                                                 .GetProperty(pi.Name)
-                                                 .GetValue(item, null))
-                                .Replace(',', ' ') + ',';
-
-                        sw.Write(whatToWrite);
-
-                    }
-                    sw.Write(newLine);
-                }
-            }
-        }
         
         public static void DatagridviewToCsv(DataGridView dGV, string filename)
         {
@@ -288,6 +246,16 @@ namespace ErpCasino.WindowsForms
                 fs.Close();
             }
 
+        }
+
+        public static string GetTitle()
+        {
+            return TitleApplication;
+        }
+
+        public static string GetVersion()
+        {
+            return VersionApplication;
         }
 
     }
