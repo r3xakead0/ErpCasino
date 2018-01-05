@@ -35,8 +35,8 @@ namespace ErpCasino.BusinessLibrary.LN
 
                     #region Obtener datos de asistencia
 
-                    string codEmpleado = drItem["Codigo"].ToString();
-                    string nomEmpleado = drItem["Empleado"].ToString();
+                    string codCandidato = drItem["Codigo"].ToString();
+                    string nomCandidato = drItem["Candidato"].ToString();
                     DateTime fecha = DateTime.Parse(drItem["Fecha"].ToString());
                     int semana = int.Parse(drItem["Semana"].ToString());
 
@@ -168,8 +168,8 @@ namespace ErpCasino.BusinessLibrary.LN
 
                     var uiCandidatoAsistencia = new BE.UI.CandidatoAsistencia();
 
-                    uiCandidatoAsistencia.Codigo = codEmpleado;
-                    //uiPlanillaAsistencia.NombreEmpleado = nomEmpleado;
+                    uiCandidatoAsistencia.Codigo = codCandidato;
+                    uiCandidatoAsistencia.NombleCompleto = nomCandidato;
                     uiCandidatoAsistencia.Fecha = fecha;
                     uiCandidatoAsistencia.Semana = semana;
 

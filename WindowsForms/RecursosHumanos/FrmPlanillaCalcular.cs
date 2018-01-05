@@ -405,7 +405,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                 var empleados = new LN.Planilla(this.anho, this.mes).ListarSueldos();
                 foreach (DataRow emp in empleados.Rows)
                 {
-                    string codEmpleado = emp["Codigo"].ToString();
+                    string codCandidato = emp["Codigo"].ToString();
 
                     double sueldoBase = Math.Round(double.Parse(emp["Sueldo"].ToString()), 2);
                     bool tieneHijos = bool.Parse(emp["Hijos"].ToString());
@@ -447,7 +447,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
 
                     #region Cargar
                     var objCosto = new BE.UI.PlanillaCosto();
-                    objCosto.Codigo = codEmpleado;
+                    objCosto.Codigo = codCandidato;
                     objCosto.Sueldo = sueldoBase;
                     objCosto.AsignacionFamiliar = asignacionFamiliar;
                     objCosto.CostosPor = codCostoPor;
@@ -978,6 +978,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     #endregion
 
                     #region Horario Feriado
+
                     costoMinutoHorarioDiurno = Math.Round(uiPlanillaCosto.FeriadoDiurno, 4);
                     costoMinutoHorarioNocturno = Math.Round(uiPlanillaCosto.FeriadoNocturno, 4);
                     costoMinutoExtra25Diurno = Math.Round(uiPlanillaCosto.FeriadoDiurnoExtra1, 4);
@@ -991,6 +992,7 @@ namespace ErpCasino.WindowsForms.RecursosHumanos
                     bePlanillaDetalle.CostoMinutoFeriadoNocturnoExtras1 = costoMinutoExtra25Nocturno;
                     bePlanillaDetalle.CostoMinutoFeriadoDiurnoExtras2 = costoMinutoExtra35Diurno;
                     bePlanillaDetalle.CostoMinutoFeriadoNocturnoExtras2 = costoMinutoExtra35Nocturno;
+                   
                     #endregion
 
                     #endregion

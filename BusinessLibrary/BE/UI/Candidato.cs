@@ -48,10 +48,17 @@ namespace ErpCasino.BusinessLibrary.BE.UI
 
     public class CandidatoAsistencia : AsistenciaCalculo
     {
+        public string NombleCompleto { get; set; } = "";
     }
 
     public class CandidatoCosto : CostoCalculo
     {
+        public string NombleCompleto { get; set; } = "";
+    }
+
+    public class CandidatoAsistenciaResumen : AsistenciaResumenCalculo
+    {
+        public string NombleCompleto { get; set; } = "";
     }
 
 

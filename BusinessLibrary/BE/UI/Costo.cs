@@ -10,7 +10,7 @@ namespace ErpCasino.BusinessLibrary.BE.UI
         /// Codigo Unico del Trabajador (Candidato o Empleado)
         /// </summary>
         public string Codigo { get; set; }
-
+  
         #region Sueldo
         public double Sueldo { get; set; }
         public double AsignacionFamiliar { get; set; }
