@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPostulanteMant));
             this.TlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.TbcMantenimiento = new System.Windows.Forms.TabControl();
             this.TbpGeneral = new System.Windows.Forms.TabPage();
@@ -574,7 +575,7 @@
             this.TbpConctacto.Location = new System.Drawing.Point(4, 22);
             this.TbpConctacto.Name = "TbpConctacto";
             this.TbpConctacto.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpConctacto.Size = new System.Drawing.Size(504, 398);
+            this.TbpConctacto.Size = new System.Drawing.Size(504, 408);
             this.TbpConctacto.TabIndex = 1;
             this.TbpConctacto.Text = "Contacto";
             this.TbpConctacto.UseVisualStyleBackColor = true;
@@ -816,7 +817,7 @@
             this.TbpReclutamiento.Location = new System.Drawing.Point(4, 22);
             this.TbpReclutamiento.Name = "TbpReclutamiento";
             this.TbpReclutamiento.Padding = new System.Windows.Forms.Padding(3);
-            this.TbpReclutamiento.Size = new System.Drawing.Size(504, 398);
+            this.TbpReclutamiento.Size = new System.Drawing.Size(504, 408);
             this.TbpReclutamiento.TabIndex = 2;
             this.TbpReclutamiento.Text = "Reclutamiento";
             this.TbpReclutamiento.UseVisualStyleBackColor = true;
@@ -1044,6 +1045,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 490);
             this.Controls.Add(this.TlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPostulanteMant";
             this.Text = "Mantenimiento de Postulante";
             this.Load += new System.EventHandler(this.FrmPostulanteMant_Load);

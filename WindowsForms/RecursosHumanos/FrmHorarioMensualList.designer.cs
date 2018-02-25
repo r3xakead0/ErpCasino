@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHorarioMensualList));
             this.btnNuevo = new System.Windows.Forms.Button();
             this.TlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.PnlBotones = new System.Windows.Forms.Panel();
@@ -148,6 +149,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 382);
             this.Controls.Add(this.TlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmHorarioMensualList";
             this.Text = "Listado de Horarios Mensuales";

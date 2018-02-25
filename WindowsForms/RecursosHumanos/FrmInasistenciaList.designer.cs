@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInasistenciaList));
             this.dgvInasistencias = new System.Windows.Forms.DataGridView();
             this.btnClasificar = new System.Windows.Forms.Button();
             this.TlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
@@ -196,6 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 376);
             this.Controls.Add(this.TlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmInasistenciaList";
             this.Text = "Listado de Inasistencias";
             this.Load += new System.EventHandler(this.FrmInasistenciaList_Load);

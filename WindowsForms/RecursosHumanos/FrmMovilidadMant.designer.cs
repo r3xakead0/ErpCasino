@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPlanillaMovilidadMant));
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.grpDetalle = new System.Windows.Forms.GroupBox();
+            this.cboMes = new System.Windows.Forms.ComboBox();
+            this.cboAnho = new System.Windows.Forms.ComboBox();
+            this.LblFechaHora = new System.Windows.Forms.Label();
             this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.cboEmpleado = new System.Windows.Forms.ComboBox();
             this.txtMonto = new System.Windows.Forms.TextBox();
@@ -39,9 +43,6 @@
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.cboMes = new System.Windows.Forms.ComboBox();
-            this.cboAnho = new System.Windows.Forms.ComboBox();
-            this.LblFechaHora = new System.Windows.Forms.Label();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.grpDetalle.SuspendLayout();
@@ -90,6 +91,35 @@
             this.grpDetalle.TabIndex = 39;
             this.grpDetalle.TabStop = false;
             this.grpDetalle.Text = "Detalle de Movilidad";
+            // 
+            // cboMes
+            // 
+            this.cboMes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMes.FormattingEnabled = true;
+            this.cboMes.Location = new System.Drawing.Point(170, 22);
+            this.cboMes.Name = "cboMes";
+            this.cboMes.Size = new System.Drawing.Size(249, 21);
+            this.cboMes.TabIndex = 93;
+            // 
+            // cboAnho
+            // 
+            this.cboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAnho.FormattingEnabled = true;
+            this.cboAnho.Location = new System.Drawing.Point(78, 22);
+            this.cboAnho.Name = "cboAnho";
+            this.cboAnho.Size = new System.Drawing.Size(86, 21);
+            this.cboAnho.TabIndex = 92;
+            // 
+            // LblFechaHora
+            // 
+            this.LblFechaHora.AutoSize = true;
+            this.LblFechaHora.Location = new System.Drawing.Point(9, 25);
+            this.LblFechaHora.Name = "LblFechaHora";
+            this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
+            this.LblFechaHora.TabIndex = 91;
+            this.LblFechaHora.Text = "Año y Mes :";
             // 
             // txtEmpleadoCodigo
             // 
@@ -173,41 +203,13 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // cboMes
-            // 
-            this.cboMes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMes.FormattingEnabled = true;
-            this.cboMes.Location = new System.Drawing.Point(170, 22);
-            this.cboMes.Name = "cboMes";
-            this.cboMes.Size = new System.Drawing.Size(249, 21);
-            this.cboMes.TabIndex = 93;
-            // 
-            // cboAnho
-            // 
-            this.cboAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAnho.FormattingEnabled = true;
-            this.cboAnho.Location = new System.Drawing.Point(78, 22);
-            this.cboAnho.Name = "cboAnho";
-            this.cboAnho.Size = new System.Drawing.Size(86, 21);
-            this.cboAnho.TabIndex = 92;
-            // 
-            // LblFechaHora
-            // 
-            this.LblFechaHora.AutoSize = true;
-            this.LblFechaHora.Location = new System.Drawing.Point(9, 25);
-            this.LblFechaHora.Name = "LblFechaHora";
-            this.LblFechaHora.Size = new System.Drawing.Size(63, 13);
-            this.LblFechaHora.TabIndex = 91;
-            this.LblFechaHora.Text = "Año y Mes :";
-            // 
             // FrmPlanillaMovilidadMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 184);
             this.Controls.Add(this.tlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmPlanillaMovilidadMant";
             this.Text = "Mantenimiento de Molividad por Translado";

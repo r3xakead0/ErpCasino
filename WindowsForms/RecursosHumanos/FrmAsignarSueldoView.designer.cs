@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAsignarSueldoView));
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
-            this.grpResumen = new System.Windows.Forms.GroupBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.grpResumen = new System.Windows.Forms.GroupBox();
             this.txtTotalDescuentos = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtTotalBonos = new System.Windows.Forms.TextBox();
@@ -40,6 +41,8 @@
             this.txtTotalSueldo = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.grpDescuentos = new System.Windows.Forms.GroupBox();
+            this.txtDescuentoInasistenciaCantidad = new System.Windows.Forms.TextBox();
+            this.txtDescuentoTardanzaCantidad = new System.Windows.Forms.TextBox();
             this.txtDescuentoInasistenciaTotal = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescuentoTardanzaTotal = new System.Windows.Forms.TextBox();
@@ -50,6 +53,9 @@
             this.txtSueldoBase = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.grpBonos = new System.Windows.Forms.GroupBox();
+            this.txtBonoFeriadoCantidad = new System.Windows.Forms.TextBox();
+            this.txtBonoHorasExtrasCantidad = new System.Windows.Forms.TextBox();
+            this.txtBonoNocturnoCantidad = new System.Windows.Forms.TextBox();
             this.txtBonoFeriadoTotal = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBonoHorasExtrasTotal = new System.Windows.Forms.TextBox();
@@ -63,11 +69,6 @@
             this.lblCandidato = new System.Windows.Forms.Label();
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtBonoNocturnoCantidad = new System.Windows.Forms.TextBox();
-            this.txtBonoHorasExtrasCantidad = new System.Windows.Forms.TextBox();
-            this.txtBonoFeriadoCantidad = new System.Windows.Forms.TextBox();
-            this.txtDescuentoTardanzaCantidad = new System.Windows.Forms.TextBox();
-            this.txtDescuentoInasistenciaCantidad = new System.Windows.Forms.TextBox();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.grpResumen.SuspendLayout();
@@ -111,22 +112,6 @@
             this.pnlPrincipal.Size = new System.Drawing.Size(479, 273);
             this.pnlPrincipal.TabIndex = 16;
             // 
-            // grpResumen
-            // 
-            this.grpResumen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpResumen.Controls.Add(this.txtTotalDescuentos);
-            this.grpResumen.Controls.Add(this.label17);
-            this.grpResumen.Controls.Add(this.txtTotalBonos);
-            this.grpResumen.Controls.Add(this.label14);
-            this.grpResumen.Controls.Add(this.txtTotalSueldo);
-            this.grpResumen.Controls.Add(this.label15);
-            this.grpResumen.Location = new System.Drawing.Point(241, 154);
-            this.grpResumen.Name = "grpResumen";
-            this.grpResumen.Size = new System.Drawing.Size(213, 104);
-            this.grpResumen.TabIndex = 102;
-            this.grpResumen.TabStop = false;
-            this.grpResumen.Text = "Resumen";
-            // 
             // txtTotal
             // 
             this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -147,6 +132,22 @@
             this.label18.Size = new System.Drawing.Size(37, 13);
             this.label18.TabIndex = 78;
             this.label18.Text = "Total :";
+            // 
+            // grpResumen
+            // 
+            this.grpResumen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpResumen.Controls.Add(this.txtTotalDescuentos);
+            this.grpResumen.Controls.Add(this.label17);
+            this.grpResumen.Controls.Add(this.txtTotalBonos);
+            this.grpResumen.Controls.Add(this.label14);
+            this.grpResumen.Controls.Add(this.txtTotalSueldo);
+            this.grpResumen.Controls.Add(this.label15);
+            this.grpResumen.Location = new System.Drawing.Point(241, 154);
+            this.grpResumen.Name = "grpResumen";
+            this.grpResumen.Size = new System.Drawing.Size(213, 104);
+            this.grpResumen.TabIndex = 102;
+            this.grpResumen.TabStop = false;
+            this.grpResumen.Text = "Resumen";
             // 
             // txtTotalDescuentos
             // 
@@ -223,6 +224,28 @@
             this.grpDescuentos.TabIndex = 103;
             this.grpDescuentos.TabStop = false;
             this.grpDescuentos.Text = "Descuentos";
+            // 
+            // txtDescuentoInasistenciaCantidad
+            // 
+            this.txtDescuentoInasistenciaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescuentoInasistenciaCantidad.Location = new System.Drawing.Point(89, 45);
+            this.txtDescuentoInasistenciaCantidad.Name = "txtDescuentoInasistenciaCantidad";
+            this.txtDescuentoInasistenciaCantidad.ReadOnly = true;
+            this.txtDescuentoInasistenciaCantidad.Size = new System.Drawing.Size(48, 20);
+            this.txtDescuentoInasistenciaCantidad.TabIndex = 82;
+            this.txtDescuentoInasistenciaCantidad.Text = "24:00";
+            this.txtDescuentoInasistenciaCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtDescuentoTardanzaCantidad
+            // 
+            this.txtDescuentoTardanzaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescuentoTardanzaCantidad.Location = new System.Drawing.Point(88, 19);
+            this.txtDescuentoTardanzaCantidad.Name = "txtDescuentoTardanzaCantidad";
+            this.txtDescuentoTardanzaCantidad.ReadOnly = true;
+            this.txtDescuentoTardanzaCantidad.Size = new System.Drawing.Size(48, 20);
+            this.txtDescuentoTardanzaCantidad.TabIndex = 81;
+            this.txtDescuentoTardanzaCantidad.Text = "24:00";
+            this.txtDescuentoTardanzaCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDescuentoInasistenciaTotal
             // 
@@ -334,6 +357,39 @@
             this.grpBonos.TabIndex = 100;
             this.grpBonos.TabStop = false;
             this.grpBonos.Text = "Bonos";
+            // 
+            // txtBonoFeriadoCantidad
+            // 
+            this.txtBonoFeriadoCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBonoFeriadoCantidad.Location = new System.Drawing.Point(88, 71);
+            this.txtBonoFeriadoCantidad.Name = "txtBonoFeriadoCantidad";
+            this.txtBonoFeriadoCantidad.ReadOnly = true;
+            this.txtBonoFeriadoCantidad.Size = new System.Drawing.Size(48, 20);
+            this.txtBonoFeriadoCantidad.TabIndex = 80;
+            this.txtBonoFeriadoCantidad.Text = "24:00";
+            this.txtBonoFeriadoCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtBonoHorasExtrasCantidad
+            // 
+            this.txtBonoHorasExtrasCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBonoHorasExtrasCantidad.Location = new System.Drawing.Point(88, 45);
+            this.txtBonoHorasExtrasCantidad.Name = "txtBonoHorasExtrasCantidad";
+            this.txtBonoHorasExtrasCantidad.ReadOnly = true;
+            this.txtBonoHorasExtrasCantidad.Size = new System.Drawing.Size(48, 20);
+            this.txtBonoHorasExtrasCantidad.TabIndex = 79;
+            this.txtBonoHorasExtrasCantidad.Text = "24:00";
+            this.txtBonoHorasExtrasCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtBonoNocturnoCantidad
+            // 
+            this.txtBonoNocturnoCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBonoNocturnoCantidad.Location = new System.Drawing.Point(88, 19);
+            this.txtBonoNocturnoCantidad.Name = "txtBonoNocturnoCantidad";
+            this.txtBonoNocturnoCantidad.ReadOnly = true;
+            this.txtBonoNocturnoCantidad.Size = new System.Drawing.Size(48, 20);
+            this.txtBonoNocturnoCantidad.TabIndex = 78;
+            this.txtBonoNocturnoCantidad.Text = "24:00";
+            this.txtBonoNocturnoCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBonoFeriadoTotal
             // 
@@ -461,67 +517,13 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtBonoNocturnoCantidad
-            // 
-            this.txtBonoNocturnoCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBonoNocturnoCantidad.Location = new System.Drawing.Point(88, 19);
-            this.txtBonoNocturnoCantidad.Name = "txtBonoNocturnoCantidad";
-            this.txtBonoNocturnoCantidad.ReadOnly = true;
-            this.txtBonoNocturnoCantidad.Size = new System.Drawing.Size(48, 20);
-            this.txtBonoNocturnoCantidad.TabIndex = 78;
-            this.txtBonoNocturnoCantidad.Text = "24:00";
-            this.txtBonoNocturnoCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtBonoHorasExtrasCantidad
-            // 
-            this.txtBonoHorasExtrasCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBonoHorasExtrasCantidad.Location = new System.Drawing.Point(88, 45);
-            this.txtBonoHorasExtrasCantidad.Name = "txtBonoHorasExtrasCantidad";
-            this.txtBonoHorasExtrasCantidad.ReadOnly = true;
-            this.txtBonoHorasExtrasCantidad.Size = new System.Drawing.Size(48, 20);
-            this.txtBonoHorasExtrasCantidad.TabIndex = 79;
-            this.txtBonoHorasExtrasCantidad.Text = "24:00";
-            this.txtBonoHorasExtrasCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtBonoFeriadoCantidad
-            // 
-            this.txtBonoFeriadoCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBonoFeriadoCantidad.Location = new System.Drawing.Point(88, 71);
-            this.txtBonoFeriadoCantidad.Name = "txtBonoFeriadoCantidad";
-            this.txtBonoFeriadoCantidad.ReadOnly = true;
-            this.txtBonoFeriadoCantidad.Size = new System.Drawing.Size(48, 20);
-            this.txtBonoFeriadoCantidad.TabIndex = 80;
-            this.txtBonoFeriadoCantidad.Text = "24:00";
-            this.txtBonoFeriadoCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtDescuentoTardanzaCantidad
-            // 
-            this.txtDescuentoTardanzaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescuentoTardanzaCantidad.Location = new System.Drawing.Point(88, 19);
-            this.txtDescuentoTardanzaCantidad.Name = "txtDescuentoTardanzaCantidad";
-            this.txtDescuentoTardanzaCantidad.ReadOnly = true;
-            this.txtDescuentoTardanzaCantidad.Size = new System.Drawing.Size(48, 20);
-            this.txtDescuentoTardanzaCantidad.TabIndex = 81;
-            this.txtDescuentoTardanzaCantidad.Text = "24:00";
-            this.txtDescuentoTardanzaCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtDescuentoInasistenciaCantidad
-            // 
-            this.txtDescuentoInasistenciaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescuentoInasistenciaCantidad.Location = new System.Drawing.Point(89, 45);
-            this.txtDescuentoInasistenciaCantidad.Name = "txtDescuentoInasistenciaCantidad";
-            this.txtDescuentoInasistenciaCantidad.ReadOnly = true;
-            this.txtDescuentoInasistenciaCantidad.Size = new System.Drawing.Size(48, 20);
-            this.txtDescuentoInasistenciaCantidad.TabIndex = 82;
-            this.txtDescuentoInasistenciaCantidad.Text = "24:00";
-            this.txtDescuentoInasistenciaCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // FrmAsignarSueldoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 329);
             this.Controls.Add(this.tlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmAsignarSueldoView";
             this.Text = "Detalle de Sueldo de Candidato";

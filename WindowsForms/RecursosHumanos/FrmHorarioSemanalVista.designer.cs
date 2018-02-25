@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHorarioSemanalVista));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.TlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlBotones = new System.Windows.Forms.Panel();
@@ -202,6 +203,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 492);
             this.Controls.Add(this.TlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmHorarioSemanalVista";
             this.Text = "Vista del Horario Semanal";
             this.Load += new System.EventHandler(this.FrmHorarioSemanalVista_Load);

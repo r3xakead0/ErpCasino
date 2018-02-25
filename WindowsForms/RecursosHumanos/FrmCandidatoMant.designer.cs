@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCandidatoMant));
             this.TlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.TbcMantenimiento = new System.Windows.Forms.TabControl();
             this.TbpGeneral = new System.Windows.Forms.TabPage();
@@ -95,6 +96,8 @@
             this.LblEmail = new System.Windows.Forms.Label();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TbpContratacion = new System.Windows.Forms.TabPage();
+            this.LblIdCargo = new System.Windows.Forms.Label();
+            this.cboCargo = new System.Windows.Forms.ComboBox();
             this.lblSueldo = new System.Windows.Forms.Label();
             this.txtSueldo = new System.Windows.Forms.TextBox();
             this.GrpInformes = new System.Windows.Forms.GroupBox();
@@ -115,8 +118,6 @@
             this.PnlPrincipal = new System.Windows.Forms.Panel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.LblIdCargo = new System.Windows.Forms.Label();
-            this.cboCargo = new System.Windows.Forms.ComboBox();
             this.TlpPrincipal.SuspendLayout();
             this.TbcMantenimiento.SuspendLayout();
             this.TbpGeneral.SuspendLayout();
@@ -848,6 +849,25 @@
             this.TbpContratacion.Text = "Contratación";
             this.TbpContratacion.UseVisualStyleBackColor = true;
             // 
+            // LblIdCargo
+            // 
+            this.LblIdCargo.AutoSize = true;
+            this.LblIdCargo.Location = new System.Drawing.Point(28, 325);
+            this.LblIdCargo.Name = "LblIdCargo";
+            this.LblIdCargo.Size = new System.Drawing.Size(38, 13);
+            this.LblIdCargo.TabIndex = 84;
+            this.LblIdCargo.Text = "Cargo:";
+            // 
+            // cboCargo
+            // 
+            this.cboCargo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCargo.Location = new System.Drawing.Point(145, 322);
+            this.cboCargo.Name = "cboCargo";
+            this.cboCargo.Size = new System.Drawing.Size(330, 21);
+            this.cboCargo.TabIndex = 83;
+            // 
             // lblSueldo
             // 
             this.lblSueldo.Location = new System.Drawing.Point(27, 299);
@@ -1055,31 +1075,13 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // LblIdCargo
-            // 
-            this.LblIdCargo.AutoSize = true;
-            this.LblIdCargo.Location = new System.Drawing.Point(28, 325);
-            this.LblIdCargo.Name = "LblIdCargo";
-            this.LblIdCargo.Size = new System.Drawing.Size(38, 13);
-            this.LblIdCargo.TabIndex = 84;
-            this.LblIdCargo.Text = "Cargo:";
-            // 
-            // cboCargo
-            // 
-            this.cboCargo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCargo.Location = new System.Drawing.Point(145, 322);
-            this.cboCargo.Name = "cboCargo";
-            this.cboCargo.Size = new System.Drawing.Size(330, 21);
-            this.cboCargo.TabIndex = 83;
-            // 
             // FrmCandidatoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 509);
             this.Controls.Add(this.TlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCandidatoMant";
             this.Text = "Mantenimiento de Candidato";
             this.Load += new System.EventHandler(this.FrmCandidatoMant_Load);

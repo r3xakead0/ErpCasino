@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAsignarSueldoCalc));
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlFiltro = new System.Windows.Forms.Panel();
             this.grpCalcular = new System.Windows.Forms.GroupBox();
@@ -780,6 +781,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 489);
             this.Controls.Add(this.tlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmAsignarSueldoCalc";
             this.Text = "Calcular Sueldos de Candidatos";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReciboRevisar));
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -90,7 +91,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnExportarAsistenciasCsv);
             this.groupBox1.Controls.Add(this.btnVerDetalle);
             this.groupBox1.Controls.Add(this.txtMes);
             this.groupBox1.Controls.Add(this.label3);
@@ -113,11 +113,15 @@
             // btnExportarAsistenciasCsv
             // 
             this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(133, 288);
+            this.btnExportarAsistenciasCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarAsistenciasCsv.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarAsistenciasCsv.Image")));
+            this.btnExportarAsistenciasCsv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(9, 5);
             this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
-            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(121, 21);
+            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(100, 30);
             this.btnExportarAsistenciasCsv.TabIndex = 92;
             this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
+            this.btnExportarAsistenciasCsv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
             this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
             // 
@@ -317,6 +321,7 @@
             // 
             // pnlBotones
             // 
+            this.pnlBotones.Controls.Add(this.btnExportarAsistenciasCsv);
             this.pnlBotones.Controls.Add(this.btnGenerar);
             this.pnlBotones.Controls.Add(this.btnCancelar);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -353,6 +358,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 482);
             this.Controls.Add(this.tlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmReciboRevisar";
             this.Text = "Revisar Recibos";

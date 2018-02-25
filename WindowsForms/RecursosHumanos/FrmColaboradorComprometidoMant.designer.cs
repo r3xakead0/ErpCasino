@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmColaboradorComprometidoMant));
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.grpFiltro = new System.Windows.Forms.GroupBox();
@@ -37,12 +38,12 @@
             this.LblFechaHora = new System.Windows.Forms.Label();
             this.cboAnho = new System.Windows.Forms.ComboBox();
             this.grpComprometidos = new System.Windows.Forms.GroupBox();
+            this.txtNroRegistros = new System.Windows.Forms.TextBox();
+            this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
             this.dgvComprometidos = new System.Windows.Forms.DataGridView();
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtNroRegistros = new System.Windows.Forms.TextBox();
-            this.lblRegistrosAsistencias = new System.Windows.Forms.Label();
             this.tlpPrincipal.SuspendLayout();
             this.pnlPrincipal.SuspendLayout();
             this.grpFiltro.SuspendLayout();
@@ -159,6 +160,30 @@
             this.grpComprometidos.TabStop = false;
             this.grpComprometidos.Text = "Listado de Colaboradores";
             // 
+            // txtNroRegistros
+            // 
+            this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNroRegistros.Location = new System.Drawing.Point(430, 288);
+            this.txtNroRegistros.Name = "txtNroRegistros";
+            this.txtNroRegistros.ReadOnly = true;
+            this.txtNroRegistros.Size = new System.Drawing.Size(62, 20);
+            this.txtNroRegistros.TabIndex = 60;
+            this.txtNroRegistros.Text = "0";
+            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRegistrosAsistencias
+            // 
+            this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegistrosAsistencias.AutoSize = true;
+            this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(344, 290);
+            this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
+            this.lblRegistrosAsistencias.Size = new System.Drawing.Size(80, 13);
+            this.lblRegistrosAsistencias.TabIndex = 59;
+            this.lblRegistrosAsistencias.Text = "Nro. Registros :";
+            // 
             // dgvComprometidos
             // 
             this.dgvComprometidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -202,36 +227,13 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtNroRegistros
-            // 
-            this.txtNroRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNroRegistros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNroRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNroRegistros.Location = new System.Drawing.Point(430, 288);
-            this.txtNroRegistros.Name = "txtNroRegistros";
-            this.txtNroRegistros.ReadOnly = true;
-            this.txtNroRegistros.Size = new System.Drawing.Size(62, 20);
-            this.txtNroRegistros.TabIndex = 60;
-            this.txtNroRegistros.Text = "0";
-            this.txtNroRegistros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblRegistrosAsistencias
-            // 
-            this.lblRegistrosAsistencias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegistrosAsistencias.AutoSize = true;
-            this.lblRegistrosAsistencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrosAsistencias.Location = new System.Drawing.Point(344, 290);
-            this.lblRegistrosAsistencias.Name = "lblRegistrosAsistencias";
-            this.lblRegistrosAsistencias.Size = new System.Drawing.Size(80, 13);
-            this.lblRegistrosAsistencias.TabIndex = 59;
-            this.lblRegistrosAsistencias.Text = "Nro. Registros :";
-            // 
             // FrmColaboradorComprometidoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 472);
             this.Controls.Add(this.tlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmColaboradorComprometidoMant";
             this.Text = "Colaboradores Comprometidos";

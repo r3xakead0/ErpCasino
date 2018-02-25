@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPlanillaDetalleAsistencia));
             this.dgvAsistencias = new System.Windows.Forms.DataGridView();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlInferior = new System.Windows.Forms.Panel();
             this.pnlSuperior = new System.Windows.Forms.Panel();
+            this.btnExportarAsistenciasCsv = new System.Windows.Forms.Button();
             this.lblTituloAsistencias = new System.Windows.Forms.Label();
             this.txtNroRegistros = new System.Windows.Forms.TextBox();
             this.lblNroRegistros = new System.Windows.Forms.Label();
@@ -47,7 +49,6 @@
             this.txtEmpleadoCodigo = new System.Windows.Forms.TextBox();
             this.txtEmpleadoNombres = new System.Windows.Forms.TextBox();
             this.lblEmpleado = new System.Windows.Forms.Label();
-            this.btnExportarAsistenciasCsv = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsistencias)).BeginInit();
             this.tlpPrincipal.SuspendLayout();
             this.pnlInferior.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // pnlInferior
             // 
+            this.pnlInferior.Controls.Add(this.btnExportarAsistenciasCsv);
             this.pnlInferior.Controls.Add(this.btnCerrar);
             this.pnlInferior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInferior.Location = new System.Drawing.Point(3, 342);
@@ -106,7 +108,6 @@
             // 
             // pnlSuperior
             // 
-            this.pnlSuperior.Controls.Add(this.btnExportarAsistenciasCsv);
             this.pnlSuperior.Controls.Add(this.lblTituloAsistencias);
             this.pnlSuperior.Controls.Add(this.txtNroRegistros);
             this.pnlSuperior.Controls.Add(this.lblNroRegistros);
@@ -118,6 +119,21 @@
             this.pnlSuperior.Name = "pnlSuperior";
             this.pnlSuperior.Size = new System.Drawing.Size(881, 243);
             this.pnlSuperior.TabIndex = 0;
+            // 
+            // btnExportarAsistenciasCsv
+            // 
+            this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportarAsistenciasCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarAsistenciasCsv.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarAsistenciasCsv.Image")));
+            this.btnExportarAsistenciasCsv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(9, 5);
+            this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
+            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(111, 30);
+            this.btnExportarAsistenciasCsv.TabIndex = 92;
+            this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
+            this.btnExportarAsistenciasCsv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
+            this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
             // 
             // lblTituloAsistencias
             // 
@@ -272,23 +288,13 @@
             this.lblEmpleado.TabIndex = 20;
             this.lblEmpleado.Text = "Empleado :";
             // 
-            // btnExportarAsistenciasCsv
-            // 
-            this.btnExportarAsistenciasCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExportarAsistenciasCsv.Location = new System.Drawing.Point(3, 218);
-            this.btnExportarAsistenciasCsv.Name = "btnExportarAsistenciasCsv";
-            this.btnExportarAsistenciasCsv.Size = new System.Drawing.Size(111, 21);
-            this.btnExportarAsistenciasCsv.TabIndex = 92;
-            this.btnExportarAsistenciasCsv.Text = "Exportar CSV";
-            this.btnExportarAsistenciasCsv.UseVisualStyleBackColor = true;
-            this.btnExportarAsistenciasCsv.Click += new System.EventHandler(this.btnExportarAsistenciasCsv_Click);
-            // 
             // FrmPlanillaDetalleAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 389);
             this.Controls.Add(this.tlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPlanillaDetalleAsistencia";
             this.Text = "Detalle de la Asistencia en Planilla";
             this.Load += new System.EventHandler(this.FrmPlanillaDetalleAsistencia_Load);

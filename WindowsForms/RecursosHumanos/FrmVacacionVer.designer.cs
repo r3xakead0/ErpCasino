@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVacacionVer));
             this.grpVacacion = new System.Windows.Forms.GroupBox();
+            this.txtRedondeo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtTotalDescuento = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grpPromedios = new System.Windows.Forms.GroupBox();
@@ -67,8 +70,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
-            this.txtRedondeo = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.grpVacacion.SuspendLayout();
             this.grpPromedios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalles)).BeginInit();
@@ -119,6 +120,26 @@
             this.grpVacacion.TabIndex = 116;
             this.grpVacacion.TabStop = false;
             this.grpVacacion.Text = "Calculo de Vacaciones";
+            // 
+            // txtRedondeo
+            // 
+            this.txtRedondeo.Location = new System.Drawing.Point(127, 149);
+            this.txtRedondeo.Name = "txtRedondeo";
+            this.txtRedondeo.ReadOnly = true;
+            this.txtRedondeo.Size = new System.Drawing.Size(59, 20);
+            this.txtRedondeo.TabIndex = 144;
+            this.txtRedondeo.Text = "0.00";
+            this.txtRedondeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 152);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 13);
+            this.label11.TabIndex = 143;
+            this.label11.Text = "Redondeo :";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTotalDescuento
             // 
@@ -533,26 +554,6 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
-            // txtRedondeo
-            // 
-            this.txtRedondeo.Location = new System.Drawing.Point(127, 149);
-            this.txtRedondeo.Name = "txtRedondeo";
-            this.txtRedondeo.ReadOnly = true;
-            this.txtRedondeo.Size = new System.Drawing.Size(59, 20);
-            this.txtRedondeo.TabIndex = 144;
-            this.txtRedondeo.Text = "0.00";
-            this.txtRedondeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 152);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 13);
-            this.label11.TabIndex = 143;
-            this.label11.Text = "Redondeo :";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // FrmVacacionVer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -561,6 +562,7 @@
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.grpVacacion);
             this.Controls.Add(this.btnCancelar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmVacacionVer";
             this.Text = "Visualización del Calculo de Vacaciones";

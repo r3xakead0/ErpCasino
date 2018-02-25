@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmpleadoMant));
             this.TlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.TbcMantenimiento = new System.Windows.Forms.TabControl();
             this.TbpGeneral = new System.Windows.Forms.TabPage();
@@ -95,6 +96,8 @@
             this.LblEmail = new System.Windows.Forms.Label();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TbpRecurso = new System.Windows.Forms.TabPage();
+            this.lblAutogenerado = new System.Windows.Forms.Label();
+            this.txtAutogenerado = new System.Windows.Forms.TextBox();
             this.btnVerHijos = new System.Windows.Forms.Button();
             this.chkVacaciones = new System.Windows.Forms.CheckBox();
             this.dtpVacaciones = new System.Windows.Forms.DateTimePicker();
@@ -139,8 +142,6 @@
             this.PnlPrincipal = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblAutogenerado = new System.Windows.Forms.Label();
-            this.txtAutogenerado = new System.Windows.Forms.TextBox();
             this.TlpPrincipal.SuspendLayout();
             this.TbcMantenimiento.SuspendLayout();
             this.TbpGeneral.SuspendLayout();
@@ -890,6 +891,24 @@
             this.TbpRecurso.Text = "Recurso";
             this.TbpRecurso.UseVisualStyleBackColor = true;
             // 
+            // lblAutogenerado
+            // 
+            this.lblAutogenerado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAutogenerado.AutoSize = true;
+            this.lblAutogenerado.Location = new System.Drawing.Point(292, 301);
+            this.lblAutogenerado.Name = "lblAutogenerado";
+            this.lblAutogenerado.Size = new System.Drawing.Size(77, 13);
+            this.lblAutogenerado.TabIndex = 77;
+            this.lblAutogenerado.Text = "Autogenerado:";
+            // 
+            // txtAutogenerado
+            // 
+            this.txtAutogenerado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAutogenerado.Location = new System.Drawing.Point(375, 298);
+            this.txtAutogenerado.Name = "txtAutogenerado";
+            this.txtAutogenerado.Size = new System.Drawing.Size(100, 20);
+            this.txtAutogenerado.TabIndex = 76;
+            // 
             // btnVerHijos
             // 
             this.btnVerHijos.Location = new System.Drawing.Point(195, 158);
@@ -1323,30 +1342,13 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // lblAutogenerado
-            // 
-            this.lblAutogenerado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAutogenerado.AutoSize = true;
-            this.lblAutogenerado.Location = new System.Drawing.Point(292, 301);
-            this.lblAutogenerado.Name = "lblAutogenerado";
-            this.lblAutogenerado.Size = new System.Drawing.Size(77, 13);
-            this.lblAutogenerado.TabIndex = 77;
-            this.lblAutogenerado.Text = "Autogenerado:";
-            // 
-            // txtAutogenerado
-            // 
-            this.txtAutogenerado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAutogenerado.Location = new System.Drawing.Point(375, 298);
-            this.txtAutogenerado.Name = "txtAutogenerado";
-            this.txtAutogenerado.Size = new System.Drawing.Size(100, 20);
-            this.txtAutogenerado.TabIndex = 76;
-            // 
             // FrmEmpleadoMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 509);
             this.Controls.Add(this.TlpPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmEmpleadoMant";
             this.Text = "Mantenimiento de Empleado";
             this.Load += new System.EventHandler(this.FrmEmpleadoMant_Load);

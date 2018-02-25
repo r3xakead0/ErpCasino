@@ -36,11 +36,65 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.Engine.13.0.3501\lib\net20\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.ClientDoc.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.CommLayer.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.CommonControls.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.CommonObjectModel.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.Controllers.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.CubeDefModel.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.DataDefModel.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.DataSetConversion.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.ObjectFactory.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.Prompting.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.ReportDefModel.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.ReportAppServer.XmlSerialize.13.0.3501\lib\net20\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.Shared.13.0.3501\lib\net20\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -108,11 +162,11 @@
     <Compile Include="RecursosHumanos\FrmPlanillaDetalleBoleta.designer.cs">
       <DependentUpon>FrmPlanillaDetalleBoleta.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadMant.cs">
+    <Compile Include="RecursosHumanos\FrmMovilidadMant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadMant.designer.cs">
-      <DependentUpon>FrmPlanillaMovilidadMant.cs</DependentUpon>
+    <Compile Include="RecursosHumanos\FrmMovilidadMant.designer.cs">
+      <DependentUpon>FrmMovilidadMant.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmEmpleadoMantHijos.cs">
       <SubType>Form</SubType>
@@ -120,11 +174,11 @@
     <Compile Include="RecursosHumanos\FrmEmpleadoMantHijos.designer.cs">
       <DependentUpon>FrmEmpleadoMantHijos.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadList.cs">
+    <Compile Include="RecursosHumanos\FrmMovilidadList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecursosHumanos\FrmPlanillaMovilidadList.designer.cs">
-      <DependentUpon>FrmPlanillaMovilidadList.cs</DependentUpon>
+    <Compile Include="RecursosHumanos\FrmMovilidadList.designer.cs">
+      <DependentUpon>FrmMovilidadList.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursosHumanos\FrmVacacionVer.cs">
       <SubType>Form</SubType>
@@ -580,14 +634,14 @@
     <EmbeddedResource Include="RecursosHumanos\FrmPlanillaDetalleBoleta.resx">
       <DependentUpon>FrmPlanillaDetalleBoleta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaMovilidadMant.resx">
-      <DependentUpon>FrmPlanillaMovilidadMant.cs</DependentUpon>
+    <EmbeddedResource Include="RecursosHumanos\FrmMovilidadMant.resx">
+      <DependentUpon>FrmMovilidadMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmEmpleadoMantHijos.resx">
       <DependentUpon>FrmEmpleadoMantHijos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RecursosHumanos\FrmPlanillaMovilidadList.resx">
-      <DependentUpon>FrmPlanillaMovilidadList.cs</DependentUpon>
+    <EmbeddedResource Include="RecursosHumanos\FrmMovilidadList.resx">
+      <DependentUpon>FrmMovilidadList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecursosHumanos\FrmVacacionVer.resx">
       <DependentUpon>FrmVacacionVer.cs</DependentUpon>
@@ -820,6 +874,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -846,6 +901,46 @@
     <Folder Include="Logistica\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Iconos\accesos.ico" />
+    <Content Include="Iconos\acerca.ico" />
+    <Content Include="Iconos\almacenes.ico" />
+    <Content Include="Iconos\cargos.ico" />
+    <Content Include="Iconos\comprometidos.ico" />
+    <Content Include="Iconos\configuraciones.ico" />
+    <Content Include="Iconos\gratificaciones.ico" />
+    <Content Include="Iconos\compensaciones.ico" />
+    <Content Include="Iconos\permisos.ico" />
+    <Content Include="Iconos\recibos.ico" />
+    <Content Include="Iconos\movilidades.ico" />
+    <Content Include="Iconos\pensiones.ico" />
+    <Content Include="Iconos\planillas.ico" />
+    <Content Include="Iconos\liquidaciones.ico" />
+    <Content Include="Iconos\recursosHumanos.ico" />
+    <Content Include="Iconos\sueldosMinimos.ico" />
+    <Content Include="Iconos\salas.ico" />
+    <Content Include="Iconos\inasistencias.ico" />
+    <Content Include="Iconos\bonos.ico" />
+    <Content Include="Iconos\prestamos.ico" />
+    <Content Include="Iconos\sueldos.ico" />
+    <Content Include="Iconos\postulantes.ico" />
+    <Content Include="Iconos\descuentos.ico" />
+    <Content Include="Iconos\empleados.ico" />
+    <Content Include="Iconos\excel.ico" />
+    <Content Include="Iconos\fotos.ico" />
+    <Content Include="Iconos\mapa.ico" />
+    <Content Include="Iconos\horario.ico" />
+    <Content Include="Iconos\observaciones.ico" />
+    <Content Include="Iconos\adelantos.ico" />
+    <Content Include="Iconos\reportes.ico" />
+    <Content Include="Iconos\perflies.ico" />
+    <Content Include="Iconos\candidatos.ico" />
+    <Content Include="Iconos\empresa.ico" />
+    <Content Include="Iconos\telefono.ico" />
+    <Content Include="Iconos\asistencias.ico" />
+    <Content Include="Iconos\vacaciones.ico" />
+    <Content Include="Iconos\usuarios.ico" />
+    <Content Include="Iconos\feriados.ico" />
+    <Content Include="Imagenes\chainiz.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
