@@ -152,11 +152,15 @@
             // 
             // btnCalcular
             // 
+            this.btnCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcular.Image = ((System.Drawing.Image)(resources.GetObject("btnCalcular.Image")));
+            this.btnCalcular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCalcular.Location = new System.Drawing.Point(115, 5);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(100, 30);
             this.btnCalcular.TabIndex = 19;
             this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCalcular.UseVisualStyleBackColor = true;
             this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 

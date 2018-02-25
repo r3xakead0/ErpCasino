@@ -39,20 +39,14 @@
             this.crvVisorInforme.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crvVisorInforme.Location = new System.Drawing.Point(0, 0);
             this.crvVisorInforme.Name = "crvVisorInforme";
-            this.crvVisorInforme.ShowCloseButton = false;
-            this.crvVisorInforme.ShowLogo = false;
-            this.crvVisorInforme.Size = new System.Drawing.Size(622, 496);
+            this.crvVisorInforme.Size = new System.Drawing.Size(292, 273);
             this.crvVisorInforme.TabIndex = 0;
-            this.crvVisorInforme.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // FrmReporte
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 496);
+            this.ClientSize = new System.Drawing.Size(292, 273);
             this.Controls.Add(this.crvVisorInforme);
             this.Name = "FrmReporte";
-            this.Text = "Vista de Reporte";
             this.Load += new System.EventHandler(this.FrmReporte_Load);
             this.ResumeLayout(false);
 
